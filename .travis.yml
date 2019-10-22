@@ -1,5 +1,10 @@
 language: php
 
+dist: bionic
+
+services:
+  - mysql
+
 php:
   - '7.2'
 
