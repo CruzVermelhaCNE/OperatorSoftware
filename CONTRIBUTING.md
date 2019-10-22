@@ -34,7 +34,7 @@ This prevents code from being committed if the check fails.
 
 ## Committing to git
 Each commit **MUST** have a proper message describing the work that has been done.
-This is called [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+This is called [Conventional Commits](https://www.conventionalcommits.org/).
 
 We use the following types:
 
