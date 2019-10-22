@@ -2,6 +2,9 @@
 
 Applying Technology to Emergency
 
+[![Build Status](https://travis-ci.org/CruzVermelhaCNE/OperatorSoftware.svg?branch=master)](https://travis-ci.org/CruzVermelhaCNE/OperatorSoftware)
+[![Coverage Status](https://coveralls.io/repos/github/CruzVermelhaCNE/OperatorSoftware/badge.svg?branch=master)](https://coveralls.io/github/CruzVermelhaCNE/OperatorSoftware?branch=master)
+
 ## Project Objectives
 
 This Operator Software will be used by our Operations Room operators.
