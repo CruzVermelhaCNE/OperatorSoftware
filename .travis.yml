@@ -15,6 +15,9 @@ before_script:
   # Install project dependencies
   - composer install --no-interaction
 
+  # Generate Encryption Key
+  - php artisan key:generate
+
   # Clear everything
   - php artisan optimize:clear
 
