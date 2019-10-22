@@ -15,6 +15,9 @@ before_script:
   # Install project dependencies
   - composer install --no-interaction
 
+  # Copying .env.example
+  - cp .env.example .env
+  
   # Generate Encryption Key
   - php artisan key:generate
 
