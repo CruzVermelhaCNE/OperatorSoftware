@@ -12,14 +12,17 @@ sudo: true
 
 
 before_script:
+  # Copying .env.example
+  - cp .env.travis .env
+
+  # Creating database
+  - mysql -e 'create database operatorsoftware;'
+
+  # Composer Update
+  - composer self-update
+
   # Install project dependencies
   - composer install --no-interaction
-
-  # Copying .env.example
-  - cp .env.example .env
-  
-  # Generate Encryption Key
-  - php artisan key:generate
 
   # Clear everything
   - php artisan optimize:clear
