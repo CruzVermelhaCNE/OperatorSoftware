@@ -19,3 +19,22 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::prefix('panel')->name('panel.')->group(function () {
+    Route::get('/missed_calls', function () {
+        return view('missed_calls');
+    })->name('missed_calls');
+    Route::get('/callbacks', function () {
+        return view('callbacks');
+    })->name('callbacks');
+});
+
+
+Route::prefix('data')->name('data.')->group(function () {
+    Route::get('missed_calls.json', 'CDRMissedCallsController@fetch')->name('missed_calls');
+    Route::get('callbacks.json', 'CDRBusyCallsController@fetch')->name('callbacks');
+});

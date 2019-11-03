@@ -8,13 +8,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="#">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.missed_calls') }}">
                     <span data-feather="phone-missed"></span>
                     Chamadas Perdidas
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="#">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.callbacks') }}">
                     <span data-feather="phone-call"></span>
                     Chamadas Por Devolver
                 </a>
