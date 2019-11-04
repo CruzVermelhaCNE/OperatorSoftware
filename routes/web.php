@@ -16,15 +16,10 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
-
-Route::get('/home', function () {
-    return view('home');
-});
-
 Route::prefix('panel')->name('panel.')->group(function () {
+    Route::get('/', function () {
+        return view('fop2');
+    })->name('fop2');
     Route::get('/missed_calls', function () {
         return view('missed_calls');
     })->name('missed_calls');

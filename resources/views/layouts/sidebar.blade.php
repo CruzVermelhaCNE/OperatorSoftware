@@ -2,7 +2,7 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="#">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.fop2') }}">
                     <span data-feather="sliders"></span>
                     Painel
                 </a>
