@@ -71,7 +71,9 @@ class User extends Authenticatable
         $extensions = $this->extensions->toArray();
         foreach ($extensions as $key => $extension) {
             $extension = Extension::where('id','=',$extension["id"])->first();
-            $all_extensions .= $extension->number.", ";
+            if($extension) {
+                $all_extensions .= $extension->number.", ";
+            }
         }
         $all_extensions = substr_replace($all_extensions ,"", -2);
         if($all_extensions == "") {
