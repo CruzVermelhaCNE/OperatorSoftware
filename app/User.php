@@ -70,7 +70,7 @@ class User extends Authenticatable
         $all_extensions = "";
         $extensions = $this->extensions->toArray();
         foreach ($extensions as $key => $extension) {
-            $extension = Extension::where('id','=',$extension["id"])->first();
+            $extension = Extension::where('id','=',$extension["extension_id"])->first();
             if($extension) {
                 $all_extensions .= $extension->number.", ";
             }
