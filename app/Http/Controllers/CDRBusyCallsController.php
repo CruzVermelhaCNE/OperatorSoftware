@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\CDR;
 use Illuminate\Support\Carbon;
 
+use Auth;
+
 class CDRBusyCallsController extends Controller
 {
     public function fetch()

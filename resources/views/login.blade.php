@@ -21,14 +21,14 @@
 
 @section('body')
 <div class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" action="{{ route('login') }}" method="POST">
         @csrf
         <img class="mb-4" src="/img/CNE.png" alt="Coordenação Nacional de Emergência - Cruz Vermelha Portuguesa" width="150" height="150">
         <h1 class="h3 mb-3 font-weight-normal">Por favor inicie sessão</h1>
         <label for="inputEmail" class="sr-only">Endereço de Email</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Endereço de Email" required="" autofocus="">
+        <input type="email" id="inputEmail" class="form-control" placeholder="Endereço de Email" required="" autofocus="" name="email">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" name="password">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
     </form>
 </div>
