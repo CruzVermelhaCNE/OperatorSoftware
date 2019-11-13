@@ -21,9 +21,9 @@ Auth::routes([
 
 Route::get('/', function () {
     return view('login');
-});
+})->name("login");
 
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name("logout");
 
 Route::prefix('panel')->name('panel.')->middleware('auth')->group(function () {
 
