@@ -21,7 +21,7 @@ Auth::routes([
 
 Route::get('/', function () {
     return view('login');
-})->name("login");
+})->name("homepage");
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name("logout");
 
