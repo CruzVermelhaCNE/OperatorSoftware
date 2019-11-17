@@ -26,14 +26,14 @@ function sendNotification(notification_text) {
 // Call Notifications
 
 function callNotifications() {
-    $.getJSON('/data/missed_calls.json', function (data) {
+    $.getJSON('/data/missed_calls.json', function (object) {
         let count = object.data.length;
         if (count > 0) {
             sendNotification('Existem ' + count + ' Chamadas Perdidas');
         }
     });
 
-    $.getJSON('/data/callbacks.json', function (data) {
+    $.getJSON('/data/callbacks.json', function (object) {
         let count = object.data.length;
         if (count > 0) {
             sendNotification('Existem ' + count + ' Chamadas Por Devolver');
