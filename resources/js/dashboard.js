@@ -20,6 +20,7 @@ function sendNotification(notification_text) {
         }
       });
     }
+    console.log(Notification.permission);
 }
 
 
@@ -29,14 +30,16 @@ function callNotifications() {
     $.getJSON('/data/missed_calls.json', function (object) {
         let count = object.data.length;
         if (count > 0) {
-            sendNotification('Existem ' + count + ' Chamadas Perdidas');
+            let notification_text = 'Existem ' + count + ' Chamadas Perdidas';
+            sendNotification(notification_text);
         }
     });
 
     $.getJSON('/data/callbacks.json', function (object) {
         let count = object.data.length;
         if (count > 0) {
-            sendNotification('Existem ' + count + ' Chamadas Por Devolver');
+            let notification_text = 'Existem ' + count + ' Chamadas Por Devolver';
+            sendNotification(notification_text);
         }
     });
 }
