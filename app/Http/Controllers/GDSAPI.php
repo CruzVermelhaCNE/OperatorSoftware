@@ -17,6 +17,7 @@ class GDSAPI extends Controller
         $xml = simplexml_load_string($xml_string);
         $json = json_encode($xml);
         $array = json_decode($json,true);
+        dd($array);
         $ChallengeCode = $array["Configuration"]["ChallengeCode"];
         $IDCode = $array["Configuration"]["IDCode"];
         $AuthCode = md5($ChallengeCode . ":GDS3710IDyTIHwNgZ:". env('GDS3710_PASSWORD'));
