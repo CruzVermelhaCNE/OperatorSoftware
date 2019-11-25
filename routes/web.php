@@ -58,5 +58,4 @@ Route::prefix('panel')->name('panel.')->middleware('auth')->group(function () {
 Route::prefix('data')->name('data.')->middleware('auth')->group(function () {
     Route::get('missed_calls.json', 'CDRMissedCallsController@fetch')->name('missed_calls');
     Route::get('callbacks.json', 'CDRBusyCallsController@fetch')->name('callbacks');
-    Route::get('gds_video_url', 'GDSAPI@getVideoURL')->name('gds_video_url');    
 });
