@@ -59,3 +59,8 @@ Route::prefix('data')->name('data.')->middleware('auth')->group(function () {
     Route::get('missed_calls.json', 'CDRMissedCallsController@fetch')->name('missed_calls');
     Route::get('callbacks.json', 'CDRBusyCallsController@fetch')->name('callbacks');
 });
+
+Route::prefix('actions')->name('actions.')->middleware('auth')->group(function () {
+    Route::get('open_door', 'GDSAPI@openDoor')->name('open_door');
+});
+

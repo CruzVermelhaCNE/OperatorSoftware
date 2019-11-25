@@ -24,6 +24,7 @@
         "datatables.net-bs4": "^1.10.20",
         "feather-icons": "^4.24.1",
         "jquery": "^3.4.1",
-        "popper.js": "^1.16.0"
+        "popper.js": "^1.16.0",
+        "toastr": "^2.1.4"
     }
 }
