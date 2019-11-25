@@ -19,6 +19,13 @@
                     Chamadas Por Devolver
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.door_opener') }}">
+                    <span data-feather="video"></span>
+                    Video Porteiro
+                </a>
+            </li>
             
             <li class="nav-item">
                 <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.change_password') }}">

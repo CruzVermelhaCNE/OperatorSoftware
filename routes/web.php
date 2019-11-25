@@ -39,6 +39,10 @@ Route::prefix('panel')->name('panel.')->middleware('auth')->group(function () {
         return view('callbacks');
     })->name('callbacks');
 
+    Route::get('/door_opener', function () {
+        return view('door_opener');
+    })->name('door_opener');
+
     Route::get('/change_password', function () {
         return view('change_password');
     })->name('change_password');
