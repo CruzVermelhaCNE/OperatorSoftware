@@ -18,7 +18,8 @@
 $(document).ready(() => {
     $.ajax({type:"GET",
             crossdomain: true,
-            url:"https://{{ env('GDS3710_IP')}}/jpeg/stream?type=0&user={{ env('GDS3710_USERNAME')}}", 
+            url:"https://{{ env('GDS3710_IP')}}/jpeg/stream?type=0&user={{ env('GDS3710_USERNAME')}}",
+            dataType: "text/xml",
             success: function(data){
                 let parser = new DOMParser();
                 let xmlDoc = parser.parseFromString(data,"text/xml");
