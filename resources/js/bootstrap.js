@@ -3,9 +3,10 @@ window._ = require('lodash');
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
+    window.toastr = require('toastr');
 
     require('bootstrap');
-    require( 'datatables.net-bs4' );
+    require('datatables.net-bs4');
 
 } catch (e) {}
 
@@ -18,8 +19,6 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-window.toastr = require('toastr');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
