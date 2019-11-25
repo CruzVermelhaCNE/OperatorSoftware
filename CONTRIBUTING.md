@@ -57,12 +57,13 @@ We use the following scopes:
 * **fop2**
 * **analytics**
 * **dashboard**
+* **door opener**
 
 
 ## Branching strategy
 We will be using the **branch-per-issue** workflow.
 
-This means, that for each open [issue](https://github.com/vostpt/api/issues), we'll create a corresponding **git** branch.
+This means, that for each open [issue](https://github.com/CruzVermelhaCNE/OperatorSoftware/issues), we'll create a corresponding **git** branch.
 
 For instance, issue `#123` should have a corresponding `OS-123/ShortTaskDescription` branch, which **MUST** branch off the latest code in `master`.
 
