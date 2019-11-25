@@ -5,7 +5,7 @@
     <div class="container">
         <a href="#" class="btn btn-primary">Abrir Porta</a>
         <div class="embed-responsive embed-responsive-16by9">
-            <video crossOrigin="anonymous"  class="embed-responsive-item" id="door_opener_video" autoplay autobuffer src="https://{{ env('GDS3710_IP') }}/videoview.html"></video>
+            <iframe class="embed-responsive-item" src="{{ env('GDS3710_VIDEO') }}"></iframe>
         </div>
     </div>
 </main>
