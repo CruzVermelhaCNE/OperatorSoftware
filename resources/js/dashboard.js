@@ -55,7 +55,7 @@ $( document ).ready(function() {
 
 // Open Door
 
-function openDoor(url) {
+window.openDoor=function openDoor(url) {
   $.get(url, function(data, status) {
       toastr.success('Porta Aberta', 'Video Porteiro')
   })
