@@ -1,4 +1,4 @@
-toastr = require('toastr');
+window.toastr = require('toastr');
 
 feather = require('feather-icons');
 
