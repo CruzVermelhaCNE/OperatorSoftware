@@ -1,4 +1,4 @@
-window.toastr = require('toastr');
+toastr = require('toastr');
 
 feather = require('feather-icons');
 
@@ -51,3 +51,12 @@ $( document ).ready(function() {
     callNotifications();
     setInterval(callNotifications, 60 * 60 * 1000);
 });
+
+
+// Open Door
+
+function openDoor(url) {
+  $.get(url, function(data, status) {
+      toastr.success('Porta Aberta', 'Video Porteiro')
+  })
+}
