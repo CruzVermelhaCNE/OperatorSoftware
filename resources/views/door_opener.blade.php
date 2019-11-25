@@ -4,7 +4,7 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 panel">
     <a href="#" class="btn btn-primary">Abrir Porta</a>
     <div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="{{ env('DOOR_OPENER_STREAM') }}"></iframe>
+    <video class="embed-responsive-item" autoplay autobuffer src="{{ env('DOOR_OPENER_STREAM') }}"></video>
     </div>
 </main>
 @endsection
