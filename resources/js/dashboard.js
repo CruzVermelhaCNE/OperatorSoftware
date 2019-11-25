@@ -1,3 +1,5 @@
+toastr = require('toastr');
+
 feather = require('feather-icons');
 
 feather.replace();
