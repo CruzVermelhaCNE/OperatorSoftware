@@ -16,7 +16,7 @@
 <script>
     function openDoor() {
         $.get("{{ route('actions.open_door')}}", function(data, status) {
-            toastr.success('Porta Aberta', 'Video Porteiro')
+            window.toastr.success('Porta Aberta', 'Video Porteiro')
         })
     }
 </script>
