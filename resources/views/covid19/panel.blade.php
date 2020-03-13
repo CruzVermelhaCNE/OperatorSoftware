@@ -1399,7 +1399,8 @@
                 template = template.split("{case_id}").join(ambulance.case_id);
                 template = template.split("{codu_number}").join(response.data.CODU_number);
                 template = template.split("{codu_localization}").join(response.data.CODU_localization);
-                template = template.split("{source}").join(response.data.street + ", " + response.data.parish + ", " + response.data.county + ", " + response.data.district);
+                let complete_source = response.data.street + ", " + response.data.parish + ", " + response.data.county + ", " + response.data.district;
+                template = template.split("{source}").join(complete_source);
                 template = template.split("{destination}").join(response.data.destination);
                 $("#active_ambulances").prepend(template);
             })
@@ -1414,7 +1415,8 @@
                 updateAmbulance(ambulance,old_status);
                 $("#ambulance"+ambulance.id+" .amb-codu-number").html(response.data.CODU_number);
                 $("#ambulance"+ambulance.id+" .amb-codu-localization").html(response.data.CODU_localization);
-                $("#ambulance"+ambulance.id+" .amb-source").html(response.data.street + ", " + response.data.parish + ", " + response.data.county + ", " + response.data.district);
+                let complete_source = response.data.street + ", " + response.data.parish + ", " + response.data.county + ", " + response.data.district;
+                $("#ambulance"+ambulance.id+" .amb-source").html(complete_source);
                 $("#ambulance"+ambulance.id+" .amb-destination").html(response.data.destination);
             })
             .catch(function (error) {
