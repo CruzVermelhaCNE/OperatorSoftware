@@ -50,6 +50,7 @@ use App\Http\Requests\COVID19UpdateStreet;
 use App\Http\Requests\COVID19UpdateSuspect;
 use App\Http\Requests\COVID19UpdateSuspectValidation;
 use App\Http\Requests\COVID19UpdateTotalDistance;
+use App\Notifications\COVID19SlackNotification;
 use Illuminate\Http\Request;
 
 class COVID19CaseController extends Controller
@@ -102,8 +103,10 @@ class COVID19CaseController extends Controller
         $old_ambulance = COVID19Ambulance::where('case_id','=',$case->id)->get();
         if($old_ambulance->count() == 1) {
             $old_ambulance->first()->statusINOP(null);
+            $case->notify(new COVID19SlackNotification("*ATIVAÇÃO COVID-19 | ".$case->structure." ANULADA*"));
         }
         $ambulance->activate($case->id,null,null,null,null,null,null,null);
+        $case->notify(new COVID19SlackNotification("*ATIVAÇÃO COVID-19 | ".$case->structure."*\nOrigem: ". $case->complete_source() . "\nDestino: ". $case->destination."\nCODU: ".$case->CODU_number));
     }
 
     public function insertSIEMAmbulance(COVID19InsertSIEMAmbulance $request) {
@@ -354,6 +357,7 @@ class COVID19CaseController extends Controller
     public function cancel(COVID19CancelCase $request) {
         $validated = $request->validated();
         $case = COVID19Case::find($validated["id"]);
+        $case->notify(new COVID19SlackNotification("*ATIVAÇÃO COVID-19 | ".$case->structure." ANULADA*"));
         $old_ambulance = COVID19Ambulance::where('case_id','=',$case->id)->get();
         if($old_ambulance->count() == 1) {
             $old_ambulance->first()->INOP(null);

@@ -6,6 +6,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class COVID19Case extends Model
 {
@@ -25,7 +26,12 @@ class COVID19Case extends Model
     */
 
     use SoftDeletes;
+    use Notifiable;
     protected $table = 'covid19_cases';
+
+    public function routeNotificationForSlack() {
+        return env('SLACK_WEBHOOK_URL');
+    }
 
     public function ambulance() {
         return $this->belongsTo(COVID19Ambulance::class,"case_id","id");
