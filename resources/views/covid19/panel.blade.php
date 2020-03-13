@@ -2338,11 +2338,11 @@
         let id = $("#case_id").html();
         let rnu = $("#patient_information_RNU_edit_input").val();
         if(rnu == "") {
-            $("#patient_information_rnu").html("Sem Informação");
+            $("#patient_information_RNU").html("Sem Informação");
             rnu = null;
         }
         else {
-            $("#patient_information_rnu").html(rnu);
+            $("#patient_information_RNU").html(rnu);
         }
         cancelUpdatePatientInformationRNU();
         axios.post("{{route('covid19.updateRNU')}}", {
