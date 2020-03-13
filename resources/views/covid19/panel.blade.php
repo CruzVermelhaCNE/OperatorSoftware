@@ -1816,7 +1816,7 @@
                 $("#status_base_exit").html(response.data.status_base_exit);
                 $("#status_arrival_on_scene").html(response.data.status_arrival_on_scene);
                 $("#status_departure_from_scene").html(response.data.status_departure_from_scene);
-                $("#status_arrival_on_destination").html(response.data.status_arrival_on_scene);
+                $("#status_arrival_on_destination").html(response.data.status_arrival_on_destination);
                 $("#status_departure_from_destination").html(response.data.status_departure_from_destination);
                 $("#status_base_return").html(response.data.status_base_return);
                 $("#status_available").html(response.data.status_available);
