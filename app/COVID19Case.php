@@ -332,6 +332,36 @@ class COVID19Case extends Model
         $this->save();
     }
 
+    public function updateBaseExitStatus($status_base_exit) {
+        $this->status_base_exit = $status_base_exit;
+        $this->save();
+    }
+
+    public function updateArrivalOnSceneStatus($status_arrival_on_scene) {
+        $this->status_arrival_on_scene = $status_arrival_on_scene;
+        $this->save();
+    }
+
+    public function updateDepartureFromSceneStatus($status_departure_from_scene) {
+        $this->status_departure_from_scene = $status_departure_from_scene;
+        $this->save();
+    }
+
+    public function updateArrivalOnDestinationStatus($status_arrival_on_destination) {
+        $this->status_arrival_on_destination = $status_arrival_on_destination;
+        $this->save();
+    }
+
+    public function updateDepartureFromDestinationStatus($status_departure_from_destination) {
+        $this->status_departure_from_destination = $status_departure_from_destination;
+        $this->save();
+    }
+
+    public function updateBaseReturnStatus($status_base_return) {
+        $this->status_base_return = $status_base_return;
+        $this->save();
+    }
+
     public function complete_source() {
         return $this->street . ", " . $this->parish . ", ". $this->county . ', '. $this->district;
     }
