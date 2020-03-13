@@ -1399,16 +1399,16 @@
                 template = template.split("{case_id}").join(ambulance.case_id);
                 template = template.split("{codu_number}").join(response.data.CODU_number);
                 template = template.split("{codu_localization}").join(response.data.CODU_localization);
-                if(response.data.street) {
+                if(response.data.street == null) {
                     response.data.street = "Sem Rua";
                 }
-                if(response.data.parish) {
+                if(response.data.parish == null) {
                     response.data.parish = "Sem Freguesia";
                 }
-                if(response.data.county) {
+                if(response.data.county == null) {
                     response.data.county = "Sem Concelho";
                 }
-                if(response.data.district) {
+                if(response.data.district == null) {
                     response.data.district = "Sem Distrito";
                 }
                 let complete_source = response.data.street + ", " + response.data.parish + ", " + response.data.county + ", " + response.data.district;
@@ -1427,16 +1427,16 @@
                 updateAmbulance(ambulance,old_status);
                 $("#ambulance"+ambulance.id+" .amb-codu-number").html(response.data.CODU_number);
                 $("#ambulance"+ambulance.id+" .amb-codu-localization").html(response.data.CODU_localization);
-                if(response.data.street) {
+                if(response.data.street == null) {
                     response.data.street = "Sem Rua";
                 }
-                if(response.data.parish) {
+                if(response.data.parish == null) {
                     response.data.parish = "Sem Freguesia";
                 }
-                if(response.data.county) {
+                if(response.data.county == null) {
                     response.data.county = "Sem Concelho";
                 }
-                if(response.data.district) {
+                if(response.data.district == null) {
                     response.data.district = "Sem Distrito";
                 }
                 let complete_source = response.data.street + ", " + response.data.parish + ", " + response.data.county + ", " + response.data.district;
