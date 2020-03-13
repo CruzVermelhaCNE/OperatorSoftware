@@ -15,7 +15,7 @@ class COVID19UpdateBaseReturnStatus extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "status_base_return" => ['required','date'],
+            "status_base_return" => ['nullable','date'],
         ];
     }
 }
