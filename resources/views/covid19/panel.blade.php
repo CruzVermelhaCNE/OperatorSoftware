@@ -3488,7 +3488,7 @@
         cancelUpdateDepartureFromDestinationStatus();
         axios.post("{{route('covid19.updateDepartureFromDestinationStatus')}}", {
             id: id,
-            status_departure_from_scene: status_departure_from_scene,
+            status_departure_from_destination: status_departure_from_destination,
         })
         .then(function (response) {
             
