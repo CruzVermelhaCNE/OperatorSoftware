@@ -1791,7 +1791,7 @@
                     $("#occorrence_data").show();
                 }
 
-                if(response.data.driver_name == null && response.data.rescuer_name == null) {
+                if(response.data.driver_name == "Sem Informação" && response.data.rescuer_name == "Sem Informação") {
                     $("#occorrence_team").hide();
                     $("#occorrence_team_create").show();
                 }
@@ -1828,7 +1828,7 @@
                     }
                 }
 
-                if(response.data.status_base_exit != "Sem Informação") {
+                if(response.data.status_base_exit != "Sem Informação" || response.data.status_base_exit) {
                     $("#status_base_exit_display").show();
                 }
 
