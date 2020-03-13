@@ -362,6 +362,12 @@ class COVID19Case extends Model
         $this->save();
     }
 
+    public function updateAvailableStatus($status_available) {
+        $this->status_available = $status_available;
+        $this->save();
+    }
+
+
     public function complete_source() {
         return $this->street . ", " . $this->parish . ", ". $this->county . ', '. $this->district;
     }
