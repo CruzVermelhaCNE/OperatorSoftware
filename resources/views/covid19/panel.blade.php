@@ -1719,6 +1719,24 @@
                 if(response.data.status_available == null) {
                     response.data.status_available = "Sem Informação";
                 }
+                if(response.data.driver_name == null) {
+                    response.data.driver_name = "Sem Informação";
+                }
+                if(response.data.driver_age == null) {
+                    response.data.driver_age = "Sem Informação";
+                }
+                if(response.data.driver_contact == null) {
+                    response.data.driver_contact = "Sem Informação";
+                }
+                if(response.data.rescuer_name == null) {
+                    response.data.rescuer_name = "Sem Informação";
+                }
+                if(response.data.rescuer_age == null) {
+                    response.data.rescuer_age = "Sem Informação";
+                }
+                if(response.data.rescuer_contact == null) {
+                    response.data.rescuer_contact = "Sem Informação";
+                }
                 
                 $("#case_id").html(case_id);
                 $("#activation_information_CODU_number").html(response.data.CODU_number);
