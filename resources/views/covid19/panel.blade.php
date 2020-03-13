@@ -1282,6 +1282,19 @@
         }
     }
 
+    function getVehicleTypeFromNumber(vehicle_type) {
+        switch (status) {
+            case 1:                
+                return "COVID-19";
+            case 2:
+                return "SIEM-PEM";
+            case 3:
+                return "SIEM-RES";
+            default:
+                break;
+        }
+    }
+
     function getCODULocalizationFromNumber(status) {
         switch (status) {
             case 1:                
