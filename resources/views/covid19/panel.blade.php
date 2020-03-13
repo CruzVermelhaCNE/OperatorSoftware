@@ -1387,7 +1387,6 @@
     }
 
     function createActiveAmbulance(ambulance) {
-        console.log("here sunshine");
         axios.get("{{route('covid19.case','')}}/"+ambulance.case_id)
             .then(function (response) {
                 let template = $("#activeAmbulance_template").html();
@@ -1400,9 +1399,8 @@
                 template = template.split("{case_id}").join(ambulance.case_id);
                 template = template.split("{codu_number}").join(response.data.CODU_number);
                 template = template.split("{codu_localization}").join(response.data.CODU_localization);
-                template = template.split("{source}").join(response.data.source);
+                template = template.split("{source}").join(response.data.street + ", " + response.data.parish + ", " + response.data.county + ", " + response.data.district);
                 template = template.split("{destination}").join(response.data.destination);
-                console.log("herehey");
                 $("#active_ambulances").prepend(template);
             })
             .catch(function (error) {
@@ -1416,7 +1414,7 @@
                 updateAmbulance(ambulance,old_status);
                 $("#ambulance"+ambulance.id+" .amb-codu-number").html(response.data.CODU_number);
                 $("#ambulance"+ambulance.id+" .amb-codu-localization").html(response.data.CODU_localization);
-                $("#ambulance"+ambulance.id+" .amb-source").html(response.data.source);
+                $("#ambulance"+ambulance.id+" .amb-source").html(response.data.street + ", " + response.data.parish + ", " + response.data.county + ", " + response.data.district);
                 $("#ambulance"+ambulance.id+" .amb-destination").html(response.data.destination);
             })
             .catch(function (error) {
