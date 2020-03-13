@@ -1282,14 +1282,16 @@
         }
     }
 
-    function getVehicleTypeFromNumber(status) {
+    function getCODULocalizationFromNumber(status) {
         switch (status) {
             case 1:                
-                return "COVID-19";
+                return "Lisboa";
             case 2:
-                return "SIEM-PEM";
+                return "Porto";
             case 3:
-                return "SIEM-RES";
+                return "Coimbra";
+            case 4:
+                return "Sala de Crise";
             default:
                 break;
         }
@@ -1398,7 +1400,7 @@
                 template = template.split("{status_text}").join(getStatusTextFromNumber(ambulance.status));
                 template = template.split("{case_id}").join(ambulance.case_id);
                 template = template.split("{codu_number}").join(response.data.CODU_number);
-                template = template.split("{codu_localization}").join(response.data.CODU_localization);
+                template = template.split("{codu_localization}").join(getCODULocalizationFromNumber(response.data.CODU_localization));
                 if(response.data.street == null) {
                     response.data.street = "Sem Rua";
                 }
@@ -1426,7 +1428,7 @@
             .then(function (response) {
                 updateAmbulance(ambulance,old_status);
                 $("#ambulance"+ambulance.id+" .amb-codu-number").html(response.data.CODU_number);
-                $("#ambulance"+ambulance.id+" .amb-codu-localization").html(response.data.CODU_localization);
+                $("#ambulance"+ambulance.id+" .amb-codu-localization").html(getCODULocalizationFromNumber(response.data.CODU_localization));
                 if(response.data.street == null) {
                     response.data.street = "Sem Rua";
                 }
@@ -1614,7 +1616,7 @@
                         response.data.CODU_localization = "Coimbra";
                         break;
                     case 4:
-                        response.data.CODU_localization = "Coimbra";
+                        response.data.CODU_localization = "Sala de Crise";
                         break;
                     default:
                         response.data.CODU_localization = "Sem Localização";
