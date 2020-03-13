@@ -15,7 +15,7 @@ class COVID19UpdateArrivalOnSceneStatus extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "status_arrival_on_scene_activation" => ['required','date'],
+            "status_arrival_on_scene" => ['required','date'],
         ];
     }
 }

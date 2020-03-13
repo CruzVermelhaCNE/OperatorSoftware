@@ -15,7 +15,7 @@ class COVID19UpdateArrivalOnDestinationStatus extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "status_arrival_on_destination_activation" => ['required','date'],
+            "status_arrival_on_destination" => ['required','date'],
         ];
     }
 }

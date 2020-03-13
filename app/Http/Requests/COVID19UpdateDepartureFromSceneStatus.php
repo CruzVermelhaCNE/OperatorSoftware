@@ -15,7 +15,7 @@ class COVID19UpdateDepartureFromSceneStatus extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "status_departure_from_scene_activation" => ['required','date'],
+            "status_departure_from_scene" => ['required','date'],
         ];
     }
 }

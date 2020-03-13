@@ -15,7 +15,7 @@ class COVID19UpdateAvailableStatus extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "status_available_activation" => ['required','date'],
+            "status_available" => ['required','date'],
         ];
     }
 }

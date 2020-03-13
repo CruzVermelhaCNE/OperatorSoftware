@@ -15,7 +15,7 @@ class COVID19UpdateDepartureFromDestinationStatus extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "status_departure_from_destination_activation" => ['required','date'],
+            "status_departure_from_destination" => ['required','date'],
         ];
     }
 }
