@@ -103,10 +103,10 @@ class COVID19CaseController extends Controller
         $old_ambulance = COVID19Ambulance::where('case_id','=',$case->id)->get();
         if($old_ambulance->count() == 1) {
             $old_ambulance->first()->statusINOP(null);
-            $case->notify(new COVID19SlackNotification("*ATIVAÇÃO COVID-19 | ".$case->structure." ANULADA*"));
+            $case->notify(new COVID19SlackNotification("*ATIVAÇÃO COVID-19 | ".$old_ambulance->structure." ANULADA*"));
         }
         $ambulance->activate($case->id,null,null,null,null,null,null,null);
-        $case->notify(new COVID19SlackNotification("*ATIVAÇÃO COVID-19 | ".$case->structure."*\nOrigem: ". $case->complete_source() . "\nDestino: ". $case->destination."\nCODU: ".$case->CODU_number));
+        $case->notify(new COVID19SlackNotification("*ATIVAÇÃO COVID-19 | ".$ambulance->structure."*\nOrigem: ". $case->complete_source() . "\nDestino: ". $case->destination."\nCODU: ".$case->CODU_number));
     }
 
     public function insertSIEMAmbulance(COVID19InsertSIEMAmbulance $request) {
