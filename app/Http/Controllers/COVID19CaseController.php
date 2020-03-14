@@ -404,9 +404,7 @@ class COVID19CaseController extends Controller
         $old_ambulance = COVID19Ambulance::where('case_id', '=', $case->id)->get()->first();
         if ($old_ambulance) {
             $case->notify(new COVID19SlackNotification('*ATIVAÇÃO COVID-19 | '.$old_ambulance->structure.' ANULADA*'));
-            if ($old_ambulance->count() == 1) {
-                $old_ambulance->first()->INOP(null);
-            }
+            $old_ambulance->INOP(null);                
         }
         if (! $case->trashed()) {
             $case->delete();
