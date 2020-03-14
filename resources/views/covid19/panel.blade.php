@@ -1381,15 +1381,6 @@
     function createActiveAmbulance(ambulance) {
         axios.get("{{route('covid19.case','')}}/"+ambulance.case_id)
             .then(function (response) {
-                let template = $("#activeAmbulance_template").html();
-                template = template.split("{id}").join(ambulance.id);
-                template = template.split("{status}").join(ambulance.status);
-                template = template.split("{structure}").join(ambulance.structure.toUpperCase());
-                template = template.split("{region}").join(ambulance.region);
-                template = template.split("{vehicle_identification}").join(ambulance.vehicle_identification);
-                template = template.split("{status_text}").join(getStatusTextFromNumber(ambulance.status));
-                template = template.split("{case_id}").join(ambulance.case_id);
-                template = template.split("{codu_number}").join(response.data.CODU_number);
                 if(response.data.street == null) {
                     response.data.street = "Sem Rua";
                 }
@@ -1402,7 +1393,19 @@
                 if(response.data.district == null) {
                     response.data.district = "Sem Distrito";
                 }
+                if(response.data.CODU_number == null) {
+                    response.data.CODU_number = "Sem Número";
+                }
                 let complete_source = response.data.street + ", " + response.data.parish + ", " + response.data.county + ", " + response.data.district;
+                let template = $("#activeAmbulance_template").html();
+                template = template.split("{id}").join(ambulance.id);
+                template = template.split("{status}").join(ambulance.status);
+                template = template.split("{structure}").join(ambulance.structure.toUpperCase());
+                template = template.split("{region}").join(ambulance.region);
+                template = template.split("{vehicle_identification}").join(ambulance.vehicle_identification);
+                template = template.split("{status_text}").join(getStatusTextFromNumber(ambulance.status));
+                template = template.split("{case_id}").join(ambulance.case_id);
+                template = template.split("{codu_number}").join(response.data.CODU_number);
                 template = template.split("{source}").join(complete_source);
                 template = template.split("{destination}").join(response.data.destination);
                 $("#active_ambulances").prepend(template);
@@ -1416,7 +1419,6 @@
         axios.get("{{route('covid19.case','')}}/"+ambulance.case_id)
             .then(function (response) {
                 updateAmbulance(ambulance,old_status);
-                $("#ambulance"+ambulance.id+" .amb-codu-number").html(response.data.CODU_number);
                 if(response.data.street == null) {
                     response.data.street = "Sem Rua";
                 }
@@ -1429,7 +1431,11 @@
                 if(response.data.district == null) {
                     response.data.district = "Sem Distrito";
                 }
+                if(response.data.CODU_number == null) {
+                    response.data.CODU_number = "Sem Número";
+                }
                 let complete_source = response.data.street + ", " + response.data.parish + ", " + response.data.county + ", " + response.data.district;
+                $("#ambulance"+ambulance.id+" .amb-codu-number").html(response.data.CODU_number);
                 $("#ambulance"+ambulance.id+" .amb-source").html(complete_source);
                 $("#ambulance"+ambulance.id+" .amb-destination").html(response.data.destination);
             })
