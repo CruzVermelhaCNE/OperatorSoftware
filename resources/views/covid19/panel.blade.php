@@ -113,7 +113,7 @@
             Ambulância</button>
         <div class="row" id="panel">
             <div class="col-md-4">
-                <h3>Ocorrências Ativas</h3>
+                <h3>Ambulâncias Ativas</h3>
                 <div id="active_ambulances">
                 </div>
             </div>
@@ -123,7 +123,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <h3>Ocorrências Pendentes</h3>
+                <h3>Ocorrências Ativas</h3>
                 <div id="open_cases">
                 </div>
             </div>
@@ -144,11 +144,12 @@
                             <th>Destino</th>
                             <th>Nome Condutor</th>
                             <th>Nome Socorrista</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($cases as $case)
-                        <tr class='case-clickable-row' data-id="{{$case->id}}">
+                        <tr>
                             <td>{{$case->id}}</td>
                             <td>{{$case->status_SALOP_activation}}</td>
                             <td>{{$case->status_available == null ? "Sem Informação": $case->status_available}}</td>
@@ -158,6 +159,7 @@
                             <td>{{$case->destination}}</td>
                             <td>{{$case->driver_name}}</td>
                             <td>{{$case->rescuer_name}}</td>
+                            <td><a href="#" onclick="openCase({{$case->id}})">Abrir</a></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -1218,7 +1220,6 @@
     <a onclick="openCase({id})" data-case-id="{id}" id="openCase{id}" class="pending"><div class="amb case-pending">
         <p><b>Número Interno:</b> <span class="case_id">{id}</span>/2020</p>
         <p><b>Número CODU:</b> <span class="CODU_number">{CODU_number}</span></p>
-        <p><b>Localização CODU:</b> <span class="CODU_localization">{CODU_localization}</span></p>
         <p><b>Meio de Ativação:</b> <span class="activation_mean">{activation_mean}</span></p>
     </div></a>
 </script>
@@ -1239,9 +1240,7 @@
         <p><b>Estado:</b> <span class="amb-status">{status_text}</span></p>
         <p class="prediction"><b>Previsões ainda não implementadas</b></p>
         <hr />
-        <p><b>Número Interno:</b> <span class="case_id">{id}</span>/2020</p>
         <p><b>Número CODU:</b> <span class="amb-codu-number">{codu_number}</span></p>
-        <p><b>Localização CODU:</b> <span class="amb-codu-localization">{codu_localization}</span></p>
         <hr />
         <p><b>Origem:</b> <span class="amb-source">{source}</span></p>
         <p><b>Destino:</b> <span class="amb-destination">{destination}</span></p>
@@ -1321,29 +1320,8 @@
                     if (element.CODU_number == null) {
                         element.CODU_number = "Sem Número";
                     }
-                    if (element.CODU_localization == null) {
-                        element.CODU_localization = "Sem Localização";
-                    }
-                    switch (element.CODU_localization) {
-                        case 1:
-                            element.CODU_localization = "Lisboa";
-                            break;
-                        case 2:
-                            element.CODU_localization = "Porto";
-                            break;
-                        case 3:
-                            element.CODU_localization = "Coimbra";
-                            break;
-                        case 4:
-                            element.CODU_localization = "Sala de Crise";
-                            break;
-                        default:
-                            element.CODU_localization = "Sem Localização";
-                            break;
-                    }
                     if(current_ids.includes(element.id)) {
                         $("#openCase"+element.id+" .CODU_number").html(element.CODU_number);
-                        $("#openCase"+element.id+" .CODU_localization").html(element.CODU_localization);
                         $("#openCase"+element.id+" .activation_mean").html(element.activation_mean);
                         index = current_ids.indexOf(element.id);
                         current_ids.splice(index, 1);
@@ -1352,7 +1330,6 @@
                         let template = $("#openCase_template").html();
                         template = template.split("{id}").join(element.id);
                         template = template.split("{CODU_number}").join(element.CODU_number);
-                        template = template.split("{CODU_localization}").join(element.CODU_localization);
                         template = template.split("{activation_mean}").join(element.activation_mean);
                         $("#open_cases").prepend(template);                        
                     }
@@ -1413,7 +1390,6 @@
                 template = template.split("{status_text}").join(getStatusTextFromNumber(ambulance.status));
                 template = template.split("{case_id}").join(ambulance.case_id);
                 template = template.split("{codu_number}").join(response.data.CODU_number);
-                template = template.split("{codu_localization}").join(getCODULocalizationFromNumber(response.data.CODU_localization));
                 if(response.data.street == null) {
                     response.data.street = "Sem Rua";
                 }
@@ -1441,7 +1417,6 @@
             .then(function (response) {
                 updateAmbulance(ambulance,old_status);
                 $("#ambulance"+ambulance.id+" .amb-codu-number").html(response.data.CODU_number);
-                $("#ambulance"+ambulance.id+" .amb-codu-localization").html(getCODULocalizationFromNumber(response.data.CODU_localization));
                 if(response.data.street == null) {
                     response.data.street = "Sem Rua";
                 }
@@ -1522,9 +1497,6 @@
 
     $(document).ready(function () {
         $("#all_cases").DataTable();
-        $(".case-clickable-row").click(function() {
-            openCase($(this).data("id"));
-        });
         $("#occorrence_ambulance_create_amb").change(function() {
             let val = $("#occorrence_ambulance_create_amb").val();
             console.log(val);
