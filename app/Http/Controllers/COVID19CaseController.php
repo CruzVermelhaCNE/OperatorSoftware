@@ -110,7 +110,7 @@ class COVID19CaseController extends Controller
             $case->notify(new COVID19SlackNotification('*ATIVAÇÃO COVID-19 | '.$old_ambulance->structure.' ANULADA*'));
         }
         $ambulance->activate($case->id, null, null, null, null, null, null, null);
-        $case->notify(new COVID19SlackNotification('*ATIVAÇÃO COVID-19 | '.$ambulance->structure."*\nOrigem: ".$case->complete_source()."\n".$case->source()."\nDestino: ".$case->destination."\nCODU: ".$case->CODU_number));
+        $case->notify(new COVID19SlackNotification('*ATIVAÇÃO COVID-19 | '.$ambulance->structure."*\nOrigem: ".$case->complete_source()."\n".$case->source."\nDestino: ".$case->destination."\nCODU: ".$case->CODU_number));
     }
 
     public function insertSIEMAmbulance(COVID19InsertSIEMAmbulance $request)
