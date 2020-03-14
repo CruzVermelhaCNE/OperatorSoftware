@@ -1283,6 +1283,7 @@
     }
 
     function getVehicleTypeFromNumber(vehicle_type) {
+        console.log(vehicle_type);
         switch (status) {
             case 1:                
                 return "COVID-19";
