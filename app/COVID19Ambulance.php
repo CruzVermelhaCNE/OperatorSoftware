@@ -47,6 +47,9 @@ class COVID19Ambulance extends Model
     }
 
     public function statusINOP($predicted_available) {
+        if($this->case_id != null) {
+            $this->case->statusAvailable(Carbon::now());
+        }
         $this->case_id = null;
         $this->status = 0;
         $this->predicted_base_exit = null;
