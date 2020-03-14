@@ -1291,7 +1291,7 @@
             case 3:
                 return "SIEM-RES";
             default:
-                break;
+                return "Informação Inválida";
         }
     }
 
