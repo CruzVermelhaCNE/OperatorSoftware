@@ -29,6 +29,10 @@ class COVID19Case extends Model
     use Notifiable;
     protected $table = 'covid19_cases';
 
+    protected $dispatchesEvents = [
+        'saved' => COVID19CaseSaved::class,
+    ];
+
     public function routeNotificationForSlack() {
         return env('SLACK_WEBHOOK_URL');
     }

@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/dashboard.css": "/css/dashboard.css",
-    "/js/dashboard.js": "/js/dashboard.js"
+    "/js/dashboard.js": "/js/dashboard.js",
+    "/js/laravel-echo-setup.js": "/js/laravel-echo-setup.js"
 }
