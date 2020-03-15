@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Events\COVID19CaseSaved;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
