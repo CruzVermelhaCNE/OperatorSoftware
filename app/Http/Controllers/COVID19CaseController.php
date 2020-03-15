@@ -51,6 +51,7 @@ use App\Http\Requests\COVID19UpdateSuspect;
 use App\Http\Requests\COVID19UpdateSuspectValidation;
 use App\Http\Requests\COVID19UpdateTotalDistance;
 use App\Notifications\COVID19SlackNotification;
+use Carbon\Carbon;
 
 class COVID19CaseController extends Controller
 {
@@ -122,6 +123,7 @@ class COVID19CaseController extends Controller
             $old_ambulance->first()->INOP(null);
             $case->notify(new COVID19SlackNotification('*ATIVAÇÃO COVID-19 | '.$old_ambulance->structure.' ANULADA*'));
         }
+        $case->statusActivation(Carbon::now());
         $case->addVehicleInformation($validated['structure'], $validated['vehicle_identification'], $validated['vehicle_type']);
     }
 
