@@ -1210,13 +1210,13 @@
 @endsection
 
 @section('javascript')
-@parent
 <script>
     window.laravel_echo_port='{{env("LARAVEL_ECHO_PORT")}}';
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script src="{{ url('/js/laravel-echo-setup.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+@parent
 <script type="covid19/template" id="openCase_template">
     <a onclick="openCase({id})" data-case-id="{id}" id="openCase{id}" class="pending"><div class="amb case-pending">
         <p><b>Número Interno:</b> <span class="case_id">{id}</span>/2020</p>
