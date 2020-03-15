@@ -20,7 +20,6 @@ function sendNotification(notification_text) {
         }
       });
     }
-    console.log(Notification.permission);
 }
 
 
