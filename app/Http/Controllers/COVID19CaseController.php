@@ -117,10 +117,10 @@ class COVID19CaseController extends Controller
     {
         $validated     = $request->validated();
         $case          = COVID19Case::find($validated['id']);
-        $ambulance     = COVID19Ambulance::find($validated['ambulance_id']);
         $old_ambulance = COVID19Ambulance::where('case_id', '=', $case->id)->get();
         if ($old_ambulance->count() == 1) {
             $old_ambulance->first()->INOP(null);
+            $case->notify(new COVID19SlackNotification('*ATIVAÇÃO COVID-19 | '.$old_ambulance->structure.' ANULADA*'));
         }
         $case->addVehicleInformation($validated['structure'], $validated['vehicle_identification'], $validated['vehicle_type']);
     }
