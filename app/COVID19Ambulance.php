@@ -65,9 +65,7 @@ class COVID19Ambulance extends Model
 
     public function statusAvailable() {
         if($this->case_id != null) {
-            if ($this->case) {
-                $this->case->statusAvailable(Carbon::now());
-            }
+            $this->case->statusAvailable(Carbon::now());
         }
         $this->case_id = null;
         $this->status = 1;
@@ -84,9 +82,7 @@ class COVID19Ambulance extends Model
 
     public function statusOnBase() {
         if($this->case_id != null) {
-            if ($this->case) {
-                $this->case->statusAvailable(Carbon::now());
-            }
+            $this->case->statusAvailable(Carbon::now());
         }
         $this->case_id = null;
         $this->status = 2;
