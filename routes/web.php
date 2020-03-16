@@ -19,6 +19,8 @@ Auth::routes([
     'verify'   => false,
 ]);
 
+Broadcast::routes();
+
 Route::get('/', function () {
     return view('login');
 })->name('homepage');
