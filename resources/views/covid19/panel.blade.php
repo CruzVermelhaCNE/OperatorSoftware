@@ -1505,7 +1505,6 @@
         $("#all_cases").DataTable();
         $("#occorrence_ambulance_create_amb").change(function() {
             let val = $("#occorrence_ambulance_create_amb").val();
-            console.log(val);
             if(val == "SIEM-PEM" || val == "SIEM-RES") {
                 $("#occorrence_ambulance_create_amb_non_covid19").show();
             }
