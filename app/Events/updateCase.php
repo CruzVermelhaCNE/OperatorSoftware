@@ -33,37 +33,14 @@ class updateCase implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('updateCase');
+        return new Channel('updateCase');
     }
 
-        /**
-
-     * The event's broadcast name.
-
+    /**
+     * Get the data to broadcast.
      *
-
-     * @return string
-
+     * @return array
      */
-
-    public function broadcastAs()
-
-    {
-
-        return 'updateCase';
-
-    }
-
-        /**
-
-     * The event's broadcast name.
-
-     *
-
-     * @return string
-
-     */
-
     public function broadcastWith()
 
     {
