@@ -52,6 +52,9 @@ class User extends Authenticatable
             elseif ($permission["permission"] == 2) {
                 $ranks .= "Administrador";
             }
+            elseif ($permission["permission"] == 3) {
+                $ranks .= "COVID19";
+            }
             $ranks .= ", ";
         }
         $ranks = substr_replace($ranks ,"", -2);
