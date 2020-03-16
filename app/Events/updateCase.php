@@ -50,7 +50,7 @@ class updateCase implements ShouldBroadcast
 
     {
 
-        return 'CaseEvent';
+        return 'updateCase';
 
     }
 
