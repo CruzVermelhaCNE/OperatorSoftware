@@ -2548,9 +2548,8 @@ function callNotifications() {
   });
 }
 
-$(document).ready(function () {
-  callNotifications();
-  setInterval(callNotifications, 60 * 60 * 1000);
+$(document).ready(function () {//callNotifications();
+  //setInterval(callNotifications, 60 * 60 * 1000);
 });
 
 /***/ }),
