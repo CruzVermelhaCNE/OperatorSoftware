@@ -3876,9 +3876,8 @@
             $("#nova-ambulancia-button").show();
         }
     }
-    Echo.private('update-case-channel').listen('updateCase', (data) => {
+    Echo.private('updateCase').listen('.updateCase', (data) => {
         console.log(data);
-        console.log("Update Case #" + data.id);
     });
 </script>
 @endsection

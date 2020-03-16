@@ -33,7 +33,7 @@ class updateCase implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('update-case-channel');
+        return new PrivateChannel('updateCase');
     }
 
         /**

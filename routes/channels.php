@@ -12,6 +12,6 @@ declare(strict_types=1);
 |
 */
 
-Broadcast::channel('update-case-channel', function () {
+Broadcast::channel('updateCase', function () {
     return true;
 });
