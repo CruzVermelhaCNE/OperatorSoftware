@@ -1922,6 +1922,7 @@
 
                 axios.get("{{route('covid19.case_operators','')}}/"+case_id)
                     .then(function (response) {
+                        $("#case_operators_inside").html("<p>Sem Operadores Registados</p>");
                         response.data.forEach(operator => {
                             $("#case_operators_inside").append('<p>'+operator+'</p>');
                         });
