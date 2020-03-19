@@ -11,12 +11,12 @@ class COVID19CaseOperator extends Model
 
     public function case()
     {
-        return $this->hasOne(COVID19Case::class);
+        return $this->belongsTo(COVID19Case::class);
     }
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public static function createCaseOperator($case_id, $user_id)
