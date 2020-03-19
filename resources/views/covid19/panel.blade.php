@@ -1229,6 +1229,7 @@
                             <button type="submit" class="btn btn-primary" onclick="addContact()">Adicionar</button>
                         </div>
                     </div>
+                    <hr />
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -4140,7 +4141,7 @@
             alert(error);
         });
     }
-    
+
     function SwapPanel() {
         let current = $("#SwapPanel").data("current");
         if(current == "panel") {
