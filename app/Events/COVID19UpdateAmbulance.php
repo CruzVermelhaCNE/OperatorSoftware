@@ -32,7 +32,7 @@ class COVID19UpdateAmbulance implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('COVID19UpdateCase');
+        return new Channel('COVID19UpdateAmbulance');
     }
 
     /**
