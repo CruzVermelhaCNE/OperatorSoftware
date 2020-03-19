@@ -1099,6 +1099,7 @@
                         </div>
                     </div>
                 </div>
+                <hr />
                 <div id="case_operators">
                     <h4>Operadores</h4>
                     <div id="case_operators_inside">
@@ -1921,7 +1922,9 @@
 
                 axios.get("{{route('covid19.case_operators','')}}/"+case_id)
                     .then(function (response) {
-                        console.log(response);
+                        response.data.forEach(operator => {
+                            $("#case_operators_inside").append('<p>'+operator+'</p>');
+                        });
                         $("#case").modal('show');
                     })
                     .catch(function (error) {
