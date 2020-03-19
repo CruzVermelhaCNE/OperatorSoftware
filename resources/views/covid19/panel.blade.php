@@ -3945,13 +3945,13 @@
             }
         }
         if(case.status_AMB_activation != null) {
-            if(isOpenCaseCreated(case)) {
-                removeOpenCase(case);
+            if(isOpenCaseCreated(data.case)) {
+                removeOpenCase(data.case);
             }
         }
         else {
-            if(!isOpenCaseCreated(case)) {
-                createOpenCase(case);
+            if(!isOpenCaseCreated(data.case)) {
+                createOpenCase(data.case);
             }
         }
     });
