@@ -59,6 +59,7 @@ Route::prefix('covid19')->name('covid19.')->group(function () {
 
     Route::get('openCases', 'COVID19CaseController@getOpenCases')->name('openCases');
     Route::get('case/{id}', 'COVID19CaseController@getCase')->name('case');
+    Route::get('case_operators/{id}', 'COVID19CaseController@getOperators')->name('case_operators');
 
     Route::get('ambulances', 'COVID19AmbulanceController@getAmbulances')->name('ambulances');
     Route::get('ambulance/{id}', 'COVID19AmbulanceController@getAmbulance')->name('ambulance');

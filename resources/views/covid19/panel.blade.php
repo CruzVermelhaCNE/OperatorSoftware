@@ -1099,6 +1099,11 @@
                         </div>
                     </div>
                 </div>
+                <div id="case_operators">
+                    <h4>Operadores</h4>
+                    <div id="case_operators_inside">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -1912,7 +1917,17 @@
                     $("#occorrence_team").show();
                 }
 
-                $("#case").modal('show');
+                //case_operators_inside
+
+                axios.get("{{route('covid19.case_operators','')}}/"+case_id)
+                    .then(function (response) {
+                        console.log(response);
+                        $("#case").modal('show');
+                    });
+                    .catch(function (error) {
+                        alert(error);
+                    })
+
             })
             .catch(function (error) {
                 alert(error);
