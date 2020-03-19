@@ -13,7 +13,7 @@ class RemoveDateFromCOVID19Observations extends Migration
      */
     public function up()
     {
-        Schema::table('covid19_observations', function (Blueprint $table) {
+        Schema::table('covid19_case_observations', function (Blueprint $table) {
             $table->dropColumn('date');
         });
     }
@@ -25,7 +25,7 @@ class RemoveDateFromCOVID19Observations extends Migration
      */
     public function down()
     {
-        Schema::table('covid19_observations', function (Blueprint $table) {
+        Schema::table('covid19_case_observations', function (Blueprint $table) {
             $table->dateTime('date');
         });
     }
