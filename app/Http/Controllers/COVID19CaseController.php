@@ -82,7 +82,12 @@ class COVID19CaseController extends Controller
     public function getOperators($id)
     {
         $case = COVID19Case::find($id);
-        return response()->json($case->operators);
+        $operators = $case->operators;
+        $operator_names = [];
+        foreach ($operators as $operator) {
+            array_push($operator_names,$operator->user->name);
+        }
+        return response()->json($operator_names);
     }
 
     public function getObservations($id)
