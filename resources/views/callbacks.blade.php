@@ -1,5 +1,7 @@
 @extends('layouts/panel')
 
+@section('pageTitle', 'Chamadas Por Devolver')
+
 @section('content')
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
     <h1 class="text-center">Chamadas Por Devolver</h1>

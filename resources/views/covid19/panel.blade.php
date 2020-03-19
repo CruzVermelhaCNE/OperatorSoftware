@@ -1,5 +1,7 @@
 @extends('layouts/panel')
 
+@section('pageTitle', 'COVID 19')
+
 @section('style')
 @parent
 <style>
@@ -1580,37 +1582,6 @@
         });
     }
 
-    function newCase() {
-        let CODU_number = 0;
-        let CODU_localization = 0;
-        let activation_mean = "";
-        if($('#nova_ocorrencia_sem_numero').is(':checked')) {
-            CODU_number = -1;
-        }
-        else {
-            CODU_number = $("#nova_ocorrencia_numero_codu").val();
-        }
-
-        if($('#nova_ocorrencia_sem_localizacao').is(':checked')) {
-            CODU_localization = -1;
-        }
-        else {
-            CODU_localization = $("#nova_ocorrencia_localizacao_codu").val();
-        }
-        activation_mean = $("#nova_ocorrencia_activation_mean").val() + " - " + $("#nova_ocorrencia_activation_mean_specify").val();
-        axios.post("{{route('covid19.newCase')}}", {
-            CODU_number: CODU_number,
-            CODU_localization: CODU_localization,
-            activation_mean: activation_mean,
-        })
-        .then(function (response) {
-            $('#nova_ocorrencia').modal('toggle');
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-    }
-
     function openCase(id) {
         let case_id = id;
         axios.get("{{route('covid19.case','')}}/"+case_id)
@@ -2255,6 +2226,45 @@
         }
     });
 
+    function newCase() {
+        let CODU_number = 0;
+        let CODU_localization = 0;
+        let activation_mean = "";
+        if($('#nova_ocorrencia_sem_numero').is(':checked')) {
+            CODU_number = -1;
+        }
+        else {
+            CODU_number = $("#nova_ocorrencia_numero_codu").val();
+        }
+
+        if($('#nova_ocorrencia_sem_localizacao').is(':checked')) {
+            CODU_localization = -1;
+        }
+        else {
+            CODU_localization = $("#nova_ocorrencia_localizacao_codu").val();
+        }
+        activation_mean = $("#nova_ocorrencia_activation_mean").val() + " - " + $("#nova_ocorrencia_activation_mean_specify").val();
+        $("#nova_ocorrencia_numero_codu").val("");
+        $("#nova_ocorrencia_numero_codu").prop( "disabled", false );
+        $("#nova_ocorrencia_sem_numero").prop( "checked", false );
+        $("#nova_ocorrencia_localizacao_codu").val("1");
+        $("#nova_ocorrencia_localizacao_codu").prop( "disabled", false );
+        $("#nova_ocorrencia_sem_localizacao").prop( "checked", false );
+        $("#nova_ocorrencia_activation_mean").val();
+        $("#nova_ocorrencia_activation_mean_specify").val();
+        axios.post("{{route('covid19.newCase')}}", {
+            CODU_number: CODU_number,
+            CODU_localization: CODU_localization,
+            activation_mean: activation_mean,
+        })
+        .then(function (response) {
+            $('#nova_ocorrencia').modal('toggle');
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    }
+
     function updateActivationInformationCODUnumber() {
         $("#activation_information_CODU_number_display").hide();
         $("#activation_information_CODU_number_edit").show();
@@ -2278,6 +2288,9 @@
             CODU_number_display = CODU_number;
         }
         $("#activation_information_CODU_number").html(CODU_number_display);
+        $("#activation_information_CODU_number_update").val("");
+        $("#activation_information_CODU_number_update").prop( "disabled", false );
+        $('#activation_information_CODU_number_update_sem_numero').prop( "checked", false );
         cancelUpdateActivationInformationCODUnumber();
         axios.post("{{route('covid19.updateCODUNumber')}}", {
             id: id,
@@ -2311,6 +2324,9 @@
         else {
             CODU_localization = $("#activation_information_CODU_localization_update").val();
         }
+        $("#activation_information_CODU_localization_update").val("1");
+        $("#activation_information_CODU_localization_update").prop( "disabled", false );
+        $('#activation_information_CODU_localization_update_sem_localizacao').prop( "checked", false );
         switch (CODU_localization) {
             case "1":
                 CODU_localization_display = "Lisboa";
@@ -2320,6 +2336,9 @@
                 break;
             case "3":
                 CODU_localization_display = "Coimbra";
+                break;
+            case "4":
+                CODU_localization_display = "Sala de Crise";
                 break;
             default:
                 CODU_localization_display = "Sem Localização";
@@ -2353,6 +2372,8 @@
         let id = $("#case_id").html();
         let activation_mean = $("#activation_information_activation_mean_update").val() + " - " + $("#activation_information_activation_mean_update_specify").val();
         $("#activation_information_activation_mean").html(activation_mean);
+        $("#activation_information_activation_mean_update").val("CNE");
+        $("#activation_information_activation_mean_update_specify").val("");
         cancelUpdateActivationInformationActivationMean();
         axios.post("{{route('covid19.updateActivationMean')}}", {
             id: id,
@@ -2379,6 +2400,7 @@
     function submitUpdatePatientInformationRNU() {
         let id = $("#case_id").html();
         let rnu = $("#patient_information_RNU_edit_input").val();
+        $("#patient_information_RNU_edit_input").val("");
         if(rnu == "") {
             $("#patient_information_RNU").html("Sem Informação");
             rnu = null;
@@ -2390,39 +2412,6 @@
         axios.post("{{route('covid19.updateRNU')}}", {
             id: id,
             rnu: rnu,
-        })
-        .then(function (response) {
-            
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-    }
-
-    function updatePatientInformationLastname() {
-        $("#patient_information_lastname_display").hide();
-        $("#patient_information_lastname_edit").show();
-    }
-
-    function cancelUpdatePatientInformationLastname() {
-        $("#patient_information_lastname_edit").hide();
-        $("#patient_information_lastname_display").show();
-    }
-
-    function submitUpdatePatientInformationLastname() {
-        let id = $("#case_id").html();
-        let lastname = $("#patient_information_lastname_edit_input").val();
-        if(lastname == "") {
-            $("#patient_information_lastname").html("Sem Informação");
-            lastname = null;
-        }
-        else {
-            $("#patient_information_lastname").html(lastname);
-        }
-        cancelUpdatePatientInformationLastname();
-        axios.post("{{route('covid19.updateLastName')}}", {
-            id: id,
-            lastname: lastname,
         })
         .then(function (response) {
             
@@ -2445,6 +2434,7 @@
     function submitUpdatePatientInformationFirstname() {
         let id = $("#case_id").html();
         let firstname = $("#patient_information_firstname_edit_input").val();
+        $("#patient_information_firstname_edit_input").val("");
         if(firstname == "") {
             $("#patient_information_firstname").html("Sem Informação");
             firstname = null;
@@ -2456,6 +2446,40 @@
         axios.post("{{route('covid19.updateFirstName')}}", {
             id: id,
             firstname: firstname,
+        })
+        .then(function (response) {
+            
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    }
+
+    function updatePatientInformationLastname() {
+        $("#patient_information_lastname_display").hide();
+        $("#patient_information_lastname_edit").show();
+    }
+
+    function cancelUpdatePatientInformationLastname() {
+        $("#patient_information_lastname_edit").hide();
+        $("#patient_information_lastname_display").show();
+    }
+
+    function submitUpdatePatientInformationLastname() {
+        let id = $("#case_id").html();
+        let lastname = $("#patient_information_lastname_edit_input").val();
+        $("#patient_information_lastname_edit_input").val("");
+        if(lastname == "") {
+            $("#patient_information_lastname").html("Sem Informação");
+            lastname = null;
+        }
+        else {
+            $("#patient_information_lastname").html(lastname);
+        }
+        cancelUpdatePatientInformationLastname();
+        axios.post("{{route('covid19.updateLastName')}}", {
+            id: id,
+            lastname: lastname,
         })
         .then(function (response) {
             
@@ -2478,6 +2502,7 @@
     function submitUpdatePatientInformationSex() {
         let id = $("#case_id").html();
         let sex = $("#patient_information_sex_edit_input").val();
+        $("#patient_information_sex_edit_input").val("");
         let sex_display = "";
         if(sex == "") {
             sex = null;
@@ -2516,6 +2541,7 @@
     function submitUpdatePatientInformationDoB() {
         let id = $("#case_id").html();
         let DoB = $("#patient_information_DoB_edit_input").val();
+        $("#patient_information_DoB_edit_input").val("");
         if(DoB == "") {
             $("#patient_information_DoB").html("Sem Informação");
             $("#patient_information_age").html("Sem Informação");
@@ -2552,6 +2578,7 @@
     function submitUpdatePatientInformationSuspect() {
         let id = $("#case_id").html();
         let suspect = $("#patient_information_suspect_edit_input").val();
+        $("#patient_information_suspect_edit_input").val("");
         if(suspect == "1") {
             $("#patient_information_suspect").html("Sim");
         }
@@ -2584,6 +2611,7 @@
     function submitUpdatePatientInformationSuspectValidation() {
         let id = $("#case_id").html();
         let suspect_validation = $("#patient_information_suspect_validation_edit_input").val();
+        $("#patient_information_suspect_validation_edit_input").val("");
         if(suspect_validation == "") {
             $("#patient_information_suspect_validation").html("Sem Informação");
             suspect_validation = null;
@@ -2617,6 +2645,7 @@
     function submitUpdatePatientInformationConfirmed() {
         let id = $("#case_id").html();
         let confirmed = $("#patient_information_confirmed_edit_input").val();
+        $("#patient_information_confirmed_edit_input").val("");
         if(confirmed == "") {
             $("#patient_information_confirmed").html("Sem Informação");
             confirmed = null;
@@ -2653,6 +2682,7 @@
     function submitUpdatePatientInformationInvasiveCare() {
         let id = $("#case_id").html();
         let invasive_care = $("#patient_information_invasive_care_edit_input").val();
+        $("#patient_information_invasive_care_edit_input").val("");
         if(invasive_care == "") {
             $("#patient_information_invasive_care").html("Sem Informação");
             invasive_care = null;
@@ -2689,6 +2719,7 @@
     function submitUpdateEventStreet() {
         let id = $("#case_id").html();
         let street = $("#event_street_edit_input").val();
+        $("#event_street_edit_input").val("");
         if(street == "") {
             $("#event_street").html("Sem Informação");
             street = null;
@@ -2722,6 +2753,7 @@
     function submitUpdateEventRef() {
         let id = $("#case_id").html();
         let ref = $("#event_ref_edit_input").val();
+        $("#event_ref_edit_input").val("");
         if(ref == "") {
             $("#event_ref").html("Sem Informação");
             ref = null;
@@ -2755,6 +2787,7 @@
     function submitUpdateEventParish() {
         let id = $("#case_id").html();
         let parish = $("#event_parish_edit_input").val();
+        $("#event_parish_edit_input").val("");
         if(parish == "") {
             $("#event_parish").html("Sem Informação");
             parish = null;
@@ -2788,39 +2821,7 @@
     function submitUpdateEventCounty() {
         let id = $("#case_id").html();
         let county = $("#event_county_edit_input").val();
-        if(county == "") {
-            $("#event_county").html("Sem Informação");
-            county = null;
-        }
-        else {
-            $("#event_county").html(county);
-        }
-        cancelUpdateEventCounty();
-        axios.post("{{route('covid19.updateCounty')}}", {
-            id: id,
-            county: county,
-        })
-        .then(function (response) {
-            
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-    }
-
-    function updateEventCounty() {
-        $("#event_county_display").hide();
-        $("#event_county_edit").show();
-    }
-
-    function cancelUpdateEventCounty() {
-        $("#event_county_edit").hide();
-        $("#event_county_display").show();
-    }
-
-    function submitUpdateEventCounty() {
-        let id = $("#case_id").html();
-        let county = $("#event_county_edit_input").val();
+        $("#event_county_edit_input").val("");
         if(county == "") {
             $("#event_county").html("Sem Informação");
             county = null;
@@ -2854,6 +2855,7 @@
     function submitUpdateEventDistrict() {
         let id = $("#case_id").html();
         let district = $("#event_district_edit_input").val();
+        $("#event_district_edit_input").val("")
         if(district == "") {
             $("#event_district").html("Sem Informação");
             district = null;
@@ -2887,6 +2889,8 @@
     function submitUpdateEventSource() {
         let id = $("#case_id").html();
         let source = $("#event_source_edit_input").val() + " - " + $("#event_source_edit_input_specify").val();
+        $("#event_source_edit_input").val("Domicílio");
+        $("#event_source_edit_input_specify").val("");
         $("#event_source").html(source);
         cancelUpdateEventSource();
         axios.post("{{route('covid19.updateSource')}}", {
@@ -2947,6 +2951,7 @@
     function submitUpdateEventDoctorResponsibleOnScene() {
         let id = $("#case_id").html();
         let doctor_responsible_on_scene = $("#event_doctor_responsible_on_scene_edit_input").val();
+        $("#event_doctor_responsible_on_scene_edit_input").val("");
         if(doctor_responsible_on_scene == "") {
             $("#event_doctor_responsible_on_scene").html("Sem Informação");
             doctor_responsible_on_scene = null;
@@ -2980,6 +2985,7 @@
     function submitUpdateEventDoctorResponsibleOnDestination() {
         let id = $("#case_id").html();
         let doctor_responsible_on_destination = $("#event_doctor_responsible_on_destination_edit_input").val();
+        $("#event_doctor_responsible_on_destination_edit_input").val("");
         if(doctor_responsible_on_destination == "") {
             $("#event_doctor_responsible_on_destination").html("Sem Informação");
             doctor_responsible_on_destination = null;
@@ -3025,6 +3031,8 @@
             on_scene_units = "Não";
             $("#event_on_scene_units").html(on_scene_units);
         }
+        $("#event_on_scene_units_edit_input").val("");
+        $("#event_on_scene_units_edit_input_specify").val("");
         cancelUpdateEventOnSceneUnits();
         axios.post("{{route('covid19.updateOnSceneUnits')}}", {
             id: id,
@@ -3051,6 +3059,7 @@
     function submitUpdateEventTotalDistance() {
         let id = $("#case_id").html();
         let total_distance = $("#event_total_distance_edit_input").val();
+        $("#event_total_distance_edit_input").val("");
         if(total_distance == "") {
             $("#event_total_distance").html("Sem Informação");
             total_distance = null;
@@ -3084,6 +3093,7 @@
     function submitUpdateTeamDriverName() {
         let id = $("#case_id").html();
         let driver_name = $("#team_driver_name_edit_input").val();
+        $("#team_driver_name_edit_input").val("");
         if(driver_name == "") {
             $("#team_driver_name").html("Sem Informação");
             driver_name = null;
@@ -3117,6 +3127,7 @@
     function submitUpdateTeamDriverAge() {
         let id = $("#case_id").html();
         let driver_age = $("#team_driver_age_edit_input").val();
+        $("#team_driver_age_edit_input").val("");
         if(driver_age == "") {
             $("#team_driver_age").html("Sem Informação");
             driver_age = null;
@@ -3150,6 +3161,7 @@
     function submitUpdateTeamDriverContact() {
         let id = $("#case_id").html();
         let driver_contact = $("#team_driver_contact_edit_input").val();
+        $("#team_driver_contact_edit_input").val("");
         if(driver_contact == "") {
             $("#team_driver_contact").html("Sem Informação");
             driver_contact = null;
@@ -3183,6 +3195,7 @@
     function submitUpdateTeamRescuerName() {
         let id = $("#case_id").html();
         let rescuer_name = $("#team_rescuer_name_edit_input").val();
+        $("#team_rescuer_name_edit_input").val("");
         if(rescuer_name == "") {
             $("#team_rescuer_name").html("Sem Informação");
             rescuer_name = null;
@@ -3216,6 +3229,7 @@
     function submitUpdateTeamRescuerAge() {
         let id = $("#case_id").html();
         let rescuer_age = $("#team_rescuer_age_edit_input").val();
+        $("#team_rescuer_age_edit_input").val("");
         if(rescuer_age == "") {
             $("#team_rescuer_age").html("Sem Informação");
             rescuer_age = null;
@@ -3249,6 +3263,7 @@
     function submitUpdateTeamRescuerContact() {
         let id = $("#case_id").html();
         let rescuer_contact = $("#team_rescuer_contact_edit_input").val();
+        $("#team_rescuer_contact_edit_input").val("");
         if(rescuer_contact == "") {
             $("#team_rescuer_contact").html("Sem Informação");
             rescuer_contact = null;
@@ -3321,6 +3336,7 @@
     function submitUpdateSALOPActivationStatus() {
         let id = $("#case_id").html();
         let status_SALOP_activation = $("#status_SALOP_activation_edit_input").val();
+        $("#status_SALOP_activation_edit_input").val("");
         if(status_SALOP_activation == "") {
             $("#status_SALOP_activation").html("Sem Informação");
             status_SALOP_activation = null;
@@ -3354,6 +3370,7 @@
     function submitUpdateAMBActivationStatus() {
         let id = $("#case_id").html();
         let status_AMB_activation = $("#status_AMB_activation_edit_input").val();
+        $("#status_AMB_activation_edit_input").val("");
         if(status_AMB_activation == "") {
             $("#status_AMB_activation").html("Sem Informação");
             status_AMB_activation = null;
@@ -3387,6 +3404,7 @@
     function submitUpdateBaseExitStatus() {
         let id = $("#case_id").html();
         let status_base_exit = $("#status_base_exit_edit_input").val();
+        $("#status_base_exit_edit_input").val("");
         if(status_base_exit == "") {
             $("#status_base_exit").html("Sem Informação");
             status_base_exit = null;
@@ -3420,6 +3438,7 @@
     function submitUpdateArrivalOnSceneStatus() {
         let id = $("#case_id").html();
         let status_arrival_on_scene = $("#status_arrival_on_scene_edit_input").val();
+        $("#status_arrival_on_scene_edit_input").val("");
         if(status_arrival_on_scene == "") {
             $("#status_arrival_on_scene").html("Sem Informação");
             status_arrival_on_scene = null;
@@ -3453,6 +3472,7 @@
     function submitUpdateDepartureFromSceneStatus() {
         let id = $("#case_id").html();
         let status_departure_from_scene = $("#status_departure_from_scene_edit_input").val();
+        $("#status_departure_from_scene_edit_input").val("");
         if(status_departure_from_scene == "") {
             $("#status_departure_from_scene").html("Sem Informação");
             status_departure_from_scene = null;
@@ -3487,6 +3507,7 @@
     function submitUpdateArrivalOnDestinationStatus() {
         let id = $("#case_id").html();
         let status_arrival_on_destination = $("#status_arrival_on_destination_edit_input").val();
+        $("#status_arrival_on_destination_edit_input").val("");
         if(status_arrival_on_destination == "") {
             $("#status_arrival_on_destination").html("Sem Informação");
             status_arrival_on_destination = null;
@@ -3520,6 +3541,7 @@
     function submitUpdateDepartureFromDestinationStatus() {
         let id = $("#case_id").html();
         let status_departure_from_destination = $("#status_departure_from_destination_edit_input").val();
+        $("#status_departure_from_destination_edit_input").val("");
         if(status_departure_from_destination == "") {
             $("#status_departure_from_destination").html("Sem Informação");
             status_departure_from_destination = null;
@@ -3553,6 +3575,7 @@
     function submitUpdateBaseReturnStatus() {
         let id = $("#case_id").html();
         let status_base_return = $("#status_base_return_edit_input").val();
+        $("#status_base_return_edit_input").val("");
         if(status_base_return == "") {
             $("#status_base_return").html("Sem Informação");
             status_base_return = null;
@@ -3745,6 +3768,7 @@
     function submitUpdateOpenAmbulanceStructure() {
         let id = $("#ambulance_id").html();
         let structure = $("#open_ambulance_structure_edit_input").val();
+        $("#open_ambulance_structure_edit_input").val("");
         if(structure == "") {
             $("#open_ambulance_structure").html("Sem Informação");
             structure = null;
@@ -3778,6 +3802,7 @@
     function submitUpdateOpenAmbulanceRegion() {
         let id = $("#ambulance_id").html();
         let region = $("#open_ambulance_region_edit_input").val();
+        $("#open_ambulance_region_edit_input").val("");
         if(region == "") {
             $("#open_ambulance_region").html("Sem Informação");
             region = null;
@@ -3811,6 +3836,7 @@
     function submitUpdateOpenAmbulanceVehicleIdentification() {
         let id = $("#ambulance_id").html();
         let vehicle_identification = $("#open_ambulance_vehicle_identification_edit_input").val();
+        $("#open_ambulance_vehicle_identification_edit_input").val("");
         if(vehicle_identification == "") {
             $("#open_ambulance_vehicle_identification").html("Sem Informação");
             vehicle_identification = null;
@@ -3844,6 +3870,7 @@
     function submitUpdateOpenAmbulanceActivePrevention() {
         let id = $("#ambulance_id").html();
         let active_prevention = $("#open_ambulance_active_prevention_edit_input").val();
+        $("#open_ambulance_active_prevention_edit_input").val(1);
         if(active_prevention == "") {
             $("#open_ambulance_active_prevention").html("Sem Informação");
             active_prevention = null;

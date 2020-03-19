@@ -1,5 +1,7 @@
 @extends('layouts/panel')
 
+@section('pageTitle', 'Video Porteiro')
+
 @section('style')
     @parent
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">

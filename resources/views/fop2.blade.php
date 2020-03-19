@@ -1,5 +1,7 @@
 @extends('layouts/panel')
 
+@section('pageTitle', 'Telefones')
+
 @section('content')
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 panel">
     <div class="form-group col-md-3" id="extension_picker">

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @yield('style')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Painel de Operadores</title>
+    <title>@yield('pageTitle') - Painel de Operadores</title>
   </head>
   <body>
     @yield('body')    

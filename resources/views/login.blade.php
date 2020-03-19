@@ -1,5 +1,7 @@
 @extends('layouts/bootstrap')
 
+@section('pageTitle', 'Login')
+
 @section('style')
 <style>
     body {
