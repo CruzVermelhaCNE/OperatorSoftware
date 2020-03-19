@@ -1478,8 +1478,6 @@
 
     function updateAmbulance(ambulance) {
         let old_status = getAmbulanceCurrentStatus(ambulance);
-        console.log(ambulance.status);
-        console.log(old_status);
         if(old_status == ambulance.status) {
             if(old_status > 2  && old_status < 8) {
                 updateActiveAmbulance(ambulance,old_status);
@@ -1499,7 +1497,7 @@
                 }
             }
             else {
-                if(ambulance.status > 2  && ambulance.status < 8) {
+                if(!(ambulance.status > 2  && ambulance.status < 8)) {
                     $("#ambulance"+ambulance.id).remove();
                     createOnHoldAmbulance(ambulance);
                 }
