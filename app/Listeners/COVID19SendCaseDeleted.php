@@ -6,7 +6,7 @@ namespace App\Listeners;
 use App\Events\COVID19CaseDeleted;
 use App\Events\COVID19DeleteCase;
 
-class COVID19SendCaseSaved
+class COVID19SendCaseDeleted
 {
     /**
      * Create the event listener.
