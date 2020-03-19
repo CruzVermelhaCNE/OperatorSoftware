@@ -26,6 +26,6 @@ class COVID19SendCaseSaved
      */
     public function handle(COVID19CaseSaved $event)
     {
-        event(new COVID19UpdateCase($event->case->id));
+        event(new COVID19UpdateCase($event->case));
     }
 }
