@@ -79,6 +79,17 @@ class COVID19CaseController extends Controller
         return response()->json($case);
     }
 
+    public function getOperators($id)
+    {
+        $case = COVID19Case::find($id);
+        $operators = $case->operators;
+        $operators_names = [];
+        foreach ($operators as $operator) {
+            array_push($operators_names,$operator->name)
+        }
+        return response()->json($operators_names);
+    }
+
     public function insertPatient(COVID19InsertPatient $request)
     {
         $validated = $request->validated();

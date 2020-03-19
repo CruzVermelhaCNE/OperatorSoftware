@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class COVID19Case extends Model
 {
@@ -39,7 +40,18 @@ class COVID19Case extends Model
     }
 
     public function ambulance() {
-        return $this->belongsTo(COVID19Ambulance::class,"case_id","id");
+        return $this->hasOne(COVID19Ambulance::class,"case_id","id");
+    }
+
+    public function operators() {
+        return $this->hasMany(COVID19CaseOperator::class,"case_id","id");
+    }
+
+    public function addOperator() {
+        $user_id = Auth::user()->id;
+        if(!$this->operators->contains('id',$user_id)) {
+            COVID19CaseOperator::createCaseOperator($this->id,$user_id);
+        }
     }
 
     public static function createCase($CODU_number, $CODU_localization, $activation_mean)
