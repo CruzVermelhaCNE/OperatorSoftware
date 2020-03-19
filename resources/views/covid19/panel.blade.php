@@ -1294,6 +1294,7 @@
             data-parent="#case_observations_inside">
             <div class="card-body">
                 {observation}
+                <button type="button" class="btn btn-danger" onclick="removeObservation({id})">Remover Observação</button>
             </div>
         </div>
     </div>
@@ -1997,7 +1998,7 @@
                         response.data.forEach(observation => {
                             let template = $("#observation_template").html();
                             template = template.split("{id}").join(observation.id);
-                            template = template.split("{author}").join(observation.author);
+                            template = template.split("{author}").join(observation.author_name);
                             template = template.split("{date}").join(observation.created_at);
                             template = template.split("{observation}").join(observation.observation);
                             $("#case_observations_inside").append(template);
@@ -4030,6 +4031,19 @@
                 alert(error);
             });
         }
+    }
+
+    function removeObservation(id) {
+        axios.post("{{route('covid19.removeObservation')}}", {
+            id: id
+        })
+        .then(function (response) {
+            closeCase();
+            openCase(id);
+        })
+        .catch(function (error) {
+            alert(error);
+        });
     }
 
     function cancelCase() {
