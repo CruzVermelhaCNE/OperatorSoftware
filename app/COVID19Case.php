@@ -55,9 +55,7 @@ class COVID19Case extends Model
 
     public function addOperator() {
         $user_id = Auth::user()->id;
-        if(!$this->operators->contains('id',$user_id)) {
-            COVID19CaseOperator::createCaseOperator($this->id,$user_id);
-        }
+        COVID19CaseOperator::createCaseOperator($this->id,$user_id);
     }
 
     public static function createCase($CODU_number, $CODU_localization, $activation_mean)

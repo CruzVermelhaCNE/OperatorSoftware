@@ -21,9 +21,11 @@ class COVID19CaseOperator extends Model
 
     public static function createCaseOperator($case_id, $user_id)
     {
-        $case_operator          = new COVID19CaseOperator();
-        $case_operator->case_id = $case_id;
-        $case_operator->user_id = $user_id;
-        $case_operator->save();
+        if(COVID19CaseOperator::where([['case_id','=',$case_id],['user_id','=',$user_id]])->get()->count() == 0) {
+            $case_operator          = new COVID19CaseOperator();
+            $case_operator->case_id = $case_id;
+            $case_operator->user_id = $user_id;
+            $case_operator->save();
+        }
     }
 }
