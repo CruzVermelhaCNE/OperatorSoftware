@@ -878,21 +878,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div id="patient_information_lastname_display">
-                                    <p><b>Último Apelido (3 primeiras consoantes):</b> <a href="#"
-                                            onclick="updatePatientInformationLastname()"
-                                            id="patient_information_lastname">BCD</a></p>
-                                </div>
-                                <div id="patient_information_lastname_edit" class="form-inline" style="display:none;">
-                                    <p><b>Último Apelido (3 primeiras consoantes):</b> <input autocomplete="off"
-                                            type="text" id="patient_information_lastname_edit_input"
-                                            class="form-control" placeholder="3 primeiras consoantes"> <a href="#"
-                                            onclick="cancelUpdatePatientInformationLastname()">Cancelar</a> <a href="#"
-                                            onclick="submitUpdatePatientInformationLastname()">Atualizar</a></p>
-                                </div>
-                            </div>
+                        <div class="row">                            
                             <div class="col-sm-6">
                                 <div id="patient_information_firstname_display">
                                     <p><b>Nome Próprio (2 primeiras consoantes):</b> <a href="#"
@@ -905,6 +891,20 @@
                                             class="form-control" placeholder="2 primeiras consoantes"><a href="#"
                                             onclick="cancelUpdatePatientInformationFirstname()">Cancelar</a> <a href="#"
                                             onclick="submitUpdatePatientInformationFirstname()">Atualizar</a></p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div id="patient_information_lastname_display">
+                                    <p><b>Último Apelido (3 primeiras consoantes):</b> <a href="#"
+                                            onclick="updatePatientInformationLastname()"
+                                            id="patient_information_lastname">BCD</a></p>
+                                </div>
+                                <div id="patient_information_lastname_edit" class="form-inline" style="display:none;">
+                                    <p><b>Último Apelido (3 primeiras consoantes):</b> <input autocomplete="off"
+                                            type="text" id="patient_information_lastname_edit_input"
+                                            class="form-control" placeholder="3 primeiras consoantes"> <a href="#"
+                                            onclick="cancelUpdatePatientInformationLastname()">Cancelar</a> <a href="#"
+                                            onclick="submitUpdatePatientInformationLastname()">Atualizar</a></p>
                                 </div>
                             </div>
                         </div>
@@ -1032,14 +1032,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 form-inline">
-                                    <p><b>Último Apelido (3 primeiras consoantes):</b> <input autocomplete="off"
-                                            type="text" id="occorence_patient_create_lastname" class="form-control"
-                                            placeholder="3 primeiras consoantes"></p>
-                                </div>
-                                <div class="col-sm-6 form-inline">
                                     <p><b>Nome Próprio (2 primeiras consoantes):</b> <input autocomplete="off"
                                             type="text" id="occorence_patient_create_firstname" class="form-control"
                                             placeholder="2 primeiras consoantes"></p>
+                                </div>
+                                <div class="col-sm-6 form-inline">
+                                    <p><b>Último Apelido (3 primeiras consoantes):</b> <input autocomplete="off"
+                                            type="text" id="occorence_patient_create_lastname" class="form-control"
+                                            placeholder="3 primeiras consoantes"></p>
                                 </div>
                             </div>
                             <div class="row">
