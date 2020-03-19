@@ -1,9 +1,7 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Listeners;
-
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 use App\Events\COVID19AmbulanceSaved;
 use App\Events\COVID19UpdateAmbulance;
@@ -28,6 +26,6 @@ class COVID19SendAmbulanceSaved
      */
     public function handle(COVID19AmbulanceSaved $event)
     {
-        event(new COVID19SendAmbulanceSaved($event->case->id));
+        event(new COVID19UpdateAmbulance($event->case->id));
     }
 }
