@@ -99,8 +99,8 @@ class COVID19CaseController extends Controller
     {
         $case = COVID19Case::find($id);
         $observations = $case->observations;
-        foreach ($observations as $observation) {
-            $observation->author_name = $observation->author->name;
+        foreach ($observations as $key => $observation) {
+            $observations[$key]->author_name = $observation->author->name;
         }
         return response()->json($observations);
     }
