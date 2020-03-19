@@ -32,7 +32,7 @@ class COVID19UpdateAmbulance implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('updateAmbulance');
+        return new Channel('updateAmbulance');
     }
 
     /**
