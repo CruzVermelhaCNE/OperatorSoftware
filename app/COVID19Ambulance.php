@@ -130,6 +130,12 @@ class COVID19Ambulance extends Model
         $this->updated_by = Auth::user()->id;
         $this->save();
         $this->case->statusBaseExit(Carbon::now());
+        $this->case->statusArrivalOnScene(null);
+        $this->case->statusDepartureFromScene(null);
+        $this->case->statusArrivalOnDestination(null);
+        $this->case->statusDepartureFromDestination(null);
+        $this->case->statusBaseReturn(null);
+
     }
 
     public function statusArrivalOnScene($predicted_departure_from_scene,$predicted_arrival_on_destination,$predicted_departure_from_destination,$predicted_base_return,$predicted_available) {
@@ -142,6 +148,10 @@ class COVID19Ambulance extends Model
         $this->updated_by = Auth::user()->id;
         $this->save();
         $this->case->statusArrivalOnScene(Carbon::now());
+        $this->case->statusDepartureFromScene(null);
+        $this->case->statusArrivalOnDestination(null);
+        $this->case->statusDepartureFromDestination(null);
+        $this->case->statusBaseReturn(null);
     }
 
     public function statusDepartureFromScene($predicted_arrival_on_destination,$predicted_departure_from_destination,$predicted_base_return,$predicted_available) {
@@ -153,6 +163,9 @@ class COVID19Ambulance extends Model
         $this->updated_by = Auth::user()->id;
         $this->save();
         $this->case->statusDepartureFromScene(Carbon::now());
+        $this->case->statusArrivalOnDestination(null);
+        $this->case->statusDepartureFromDestination(null);
+        $this->case->statusBaseReturn(null);
     }
 
     public function statusArrivalOnDestination($predicted_departure_from_destination,$predicted_base_return,$predicted_available) {
@@ -163,6 +176,8 @@ class COVID19Ambulance extends Model
         $this->updated_by = Auth::user()->id;
         $this->save();
         $this->case->statusArrivalOnDestination(Carbon::now());
+        $this->case->statusDepartureFromDestination(null);
+        $this->case->statusBaseReturn(null);
     }
 
     public function statusDepartureFromDestination($predicted_base_return,$predicted_available) {
@@ -172,6 +187,7 @@ class COVID19Ambulance extends Model
         $this->updated_by = Auth::user()->id;
         $this->save();
         $this->case->statusDepartureFromDestination(Carbon::now());
+        $this->case->statusBaseReturn(null);
     }
 
     public function statusBaseReturn($predicted_available) {

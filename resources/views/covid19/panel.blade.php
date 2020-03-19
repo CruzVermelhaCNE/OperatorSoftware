@@ -1963,21 +1963,27 @@
                     $("#ambulance-base-exit-button").show();
                 }
                 else if(response.data.status == 4) {
+                    $("#ambulance-base-exit-button").show();
                     $("#ambulance-arrival-on-scene-button").show();
                 }
                 else if(response.data.status == 5) {
+                    $("#ambulance-arrival-on-scene-button").show();
                     $("#ambulance-departure-from-scene-button").show();
                 }
                 else if(response.data.status == 6) {
+                    $("#ambulance-departure-from-scene-button").show();
                     $("#ambulance-arrival-on-destination-button").show();
                 }
                 else if(response.data.status == 7) {
+                    $("#ambulance-arrival-on-destination-button").show();
                     $("#ambulance-departure-from-destination-button").show();
                 }
                 else if(response.data.status == 8) {
+                    $("#ambulance-departure-from-destination-button").show();
                     $("#ambulance-base-return-button").show();
                 }
                 else if(response.data.status == 9) {
+                    $("#ambulance-base-return-button").show();
                     $("#ambulance-inop-button").show();
                     $("#ambulance-available-button").show();
                     $("#ambulance-on-base-button").show();
