@@ -47,6 +47,10 @@ class COVID19Case extends Model
         return $this->hasMany(COVID19CaseOperator::class,"case_id","id");
     }
 
+    public function observations() {
+        return $this->hasMany(COVID19CaseObservation::class,"case_id","id");
+    }
+
     public function addOperator() {
         $user_id = Auth::user()->id;
         if(!$this->operators->contains('id',$user_id)) {
