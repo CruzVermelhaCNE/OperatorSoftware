@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <h3>Ocorrências Ativas</h3>
+                <h3>Ocorrências Pendentes</h3>
                 <div id="open_cases">
                 </div>
             </div>
