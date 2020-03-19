@@ -5,6 +5,7 @@ namespace App;
 
 use App\Events\COVID19CaseDeleted;
 use App\Events\COVID19CaseSaved;
+use App\Events\COVID19UpdateCase;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -56,11 +57,13 @@ class COVID19Case extends Model
     public function addOperator() {
         $user_id = Auth::user()->id;
         COVID19CaseOperator::createCaseOperator($this->id,$user_id);
+        event(new COVID19UpdateCase($this));
     }
 
     public function addObservation($observation) {
         $user_id = Auth::user()->id;
         COVID19CaseObservation::createCaseObservation($this->id,$user_id,$observation);
+        event(new COVID19UpdateCase($this));
     }
 
     public static function createCase($CODU_number, $CODU_localization, $activation_mean)
