@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Events\COVID19CaseDeleted;
 use App\Events\COVID19CaseSaved;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -33,6 +34,7 @@ class COVID19Case extends Model
 
     protected $dispatchesEvents = [
         'saved' => COVID19CaseSaved::class,
+        'deleted' => COVID19CaseDeleted::class,
     ];
 
     public function routeNotificationForSlack() {

@@ -1478,6 +1478,8 @@
 
     function updateAmbulance(ambulance) {
         let old_status = getAmbulanceCurrentStatus(ambulance);
+        console.log(ambulance.status);
+        console.log(old_status);
         if(old_status == ambulance.status) {
             if(old_status > 2  && old_status < 8) {
                 updateActiveAmbulance(ambulance,old_status);
@@ -3967,6 +3969,18 @@
         }
         else {
             updateAmbulance(data.ambulance);
+        }
+    });
+
+    Echo.channel('COVID19DeleteCase').listen('COVID19DeleteCase', (data) => {
+        if(($("#case").data('bs.modal') || {})._isShown) {
+            let case_id = $("#case_id").html();
+            if(case_id == data.case.id) {
+                closeCase();
+            }
+        }
+        if(isOpenCaseCreated(data.case)) {
+            removeOpenCase(data.case);
         }
     });
 </script>
