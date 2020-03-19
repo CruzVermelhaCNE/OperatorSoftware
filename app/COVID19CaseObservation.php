@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class COVID19CaseObservation extends Model
 {
+    use SoftDeletes;
     protected $table = 'covid19_case_observations';
 
     public function case()
@@ -32,6 +34,13 @@ class COVID19CaseObservation extends Model
         $case_observation->deleted_by = null;
         $case_observation->reason_deleted = null;
         $case_observation->save();
+    }
+
+    public function remove($deleted_by)
+    {
+        $this->deleted_by = $deleted_by;
+        $this->save();
+        $this->delete();
     }
 
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use App\COVID19Ambulance;
 use App\COVID19Case;
+use App\COVID19CaseObservation;
+use App\Http\Requests\COVID19AddObservation;
 use App\Http\Requests\COVID19CancelCase;
 use App\Http\Requests\COVID19InsertAmbulance;
 use App\Http\Requests\COVID19InsertEvent;
@@ -51,8 +53,10 @@ use App\Http\Requests\COVID19UpdateStreet;
 use App\Http\Requests\COVID19UpdateSuspect;
 use App\Http\Requests\COVID19UpdateSuspectValidation;
 use App\Http\Requests\COVID19UpdateTotalDistance;
+use App\Http\Requests\COVID19RemoveObservation;
 use App\Notifications\COVID19SlackNotification;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class COVID19CaseController extends Controller
 {
@@ -422,6 +426,20 @@ class COVID19CaseController extends Controller
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
         $case->updateNotes($validated['notes']);
+    }
+
+    public function addObservation(COVID19AddObservation $request)
+    {
+        $validated = $request->validated();
+        $case      = COVID19Case::find($validated['id']);
+        $case->addObservation($validated['observation']);
+    }
+
+    public function removeObservation(COVID19RemoveObservation $request)
+    {
+        $validated = $request->validated();
+        $observation      = COVID19CaseObservation::find($validated['id']);
+        $observation->remove(Auth::user()->id);
     }
 
     public function cancel(COVID19CancelCase $request)

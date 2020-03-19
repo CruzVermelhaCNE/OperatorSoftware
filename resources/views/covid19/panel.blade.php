@@ -878,7 +878,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">                            
+                        <div class="row">
                             <div class="col-sm-6">
                                 <div id="patient_information_firstname_display">
                                     <p><b>Nome Próprio (2 primeiras consoantes):</b> <a href="#"
@@ -1114,6 +1114,19 @@
                         <button type="button" class="btn btn-primary" onclick="updateCaseNotes()">Guardar</button>
                     </div>
                 </div>
+                <hr />
+                <div id="case_observations">
+                    <h4>Observações</h4>
+                    <div id="case_observations_inside">
+                        
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="case_observations_textarea" rows="3"
+                            placeholder="Observação"></textarea>
+                        <button type="button" class="btn btn-primary" onclick="addObservation()">Adicionar
+                            Observation</button>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -1264,6 +1277,27 @@
         <p><b>Destino:</b> <span class="amb-destination">{destination}</span></p>
     </div></a>
 </script>
+<script type="covid19/template" id="observation_template">
+    <div class="card">
+        <div class="card-header" id="observation{id}">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse"
+                    data-target="#collapse_observation{id}" aria-expanded="true"
+                    aria-controls="collapse_observation{id}">
+                    Observação de {author} - {date}
+                </button>
+            </h5>
+        </div>
+    
+        <div id="collapse_observation{id}" class="collapse show" aria-labelledby="observation{id}"
+            data-parent="#case_observations_inside">
+            <div class="card-body">
+                {observation}
+            </div>
+        </div>
+    </div>
+</script>
+
 <script>
     let cases_history = false;
     function _calculateAge(birthday) {
@@ -1946,6 +1980,26 @@
                         }
                         response.data.forEach(operator => {
                             $("#case_operators_inside").append('<p>'+operator+'</p>');
+                        });
+                        $("#case").modal('show');
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    })
+
+                axios.get("{{route('covid19.case_observations','')}}/"+case_id)
+                    .then(function (response) {
+                        $("#case_observations_inside").html("<p>Sem Observações</p>");
+                        if(response.data.length > 0) {
+                            $("#case_observations_inside").html("");
+                        }
+                        response.data.forEach(observation => {
+                            let template = $("#observation_template").html();
+                            template = template.split("{id}").join(observation.id);
+                            template = template.split("{author}").join(observation.author);
+                            template = template.split("{date}").join(observation.created_at);
+                            template = template.split("{observation}").join(observation.observation);
+                            $("#case_observations_inside").append(template);
                         });
                         $("#case").modal('show');
                     })
@@ -3956,6 +4010,24 @@
         .catch(function (error) {
             alert(error);
         });
+    }
+
+    function addObservation() {
+        let id = $("#case_id").html();
+        let observation = $("#case_observations_textarea").val();
+        if(observation != "") {
+            $("#case_observations_textarea").val("");
+            axios.post("{{route('covid19.addObservation')}}", {
+                id: id,
+                observation: observation,
+            })
+            .then(function (response) {
+                
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+        }
     }
 
     function cancelCase() {

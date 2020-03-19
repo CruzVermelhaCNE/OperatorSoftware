@@ -58,6 +58,11 @@ class COVID19Case extends Model
         COVID19CaseOperator::createCaseOperator($this->id,$user_id);
     }
 
+    public function addObservation($observation) {
+        $user_id = Auth::user()->id;
+        COVID19CaseObservation::createCaseObservation($this->id,$user_id,$observation);
+    }
+
     public static function createCase($CODU_number, $CODU_localization, $activation_mean)
     {
         $case                          = new COVID19Case();
