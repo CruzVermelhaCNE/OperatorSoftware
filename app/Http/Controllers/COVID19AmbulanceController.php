@@ -4,7 +4,10 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\COVID19Ambulance;
+use App\COVID19AmbulanceContact;
+use App\Http\Requests\COVID19AddContact;
 use App\Http\Requests\COVID19NewAmbulance;
+use App\Http\Requests\COVID19RemoveContact;
 use App\Http\Requests\COVID19UpdateAmbulanceActivePrevention;
 use App\Http\Requests\COVID19UpdateAmbulanceRegion;
 use App\Http\Requests\COVID19UpdateAmbulanceStatus;
@@ -25,8 +28,14 @@ class COVID19AmbulanceController extends Controller
     }
 
     public function getAmbulance($id) {
-        $ambulance = COVID19Ambulance::find($id);
+        $ambulance = COVID19Case::find($id);
         return response()->json($ambulance);
+    }
+
+    public function getContacts($id)
+    {
+        $ambulance = COVID19Case::find($id);
+        return response()->json($ambulance->contacts);
     }
 
     public function INOP(COVID19UpdateAmbulanceStatus $request) {
@@ -101,4 +110,19 @@ class COVID19AmbulanceController extends Controller
         $ambulance = COVID19Ambulance::find($validated["id"]);
         $ambulance->updateActivePrevention($validated["active_prevention"]);
     }
+
+    public function addContact(COVID19AddContact $request)
+    {
+        $validated = $request->validated();
+        $case      = COVID19Ambulance::find($validated['id']);
+        $case->addContact($validated['contact'],$validated['name'],$validated['sms']);
+    }
+
+    public function removeContact(COVID19RemoveContact $request)
+    {
+        $validated = $request->validated();
+        $contact      = COVID19AmbulanceContact::find($validated['id']);
+        $contact->delete();
+    }
+
 }

@@ -1118,7 +1118,7 @@
                 <div id="case_observations">
                     <h4>Observações</h4>
                     <div id="case_observations_inside">
-                        
+
                     </div>
                     <div class="form-group">
                         <hr />
@@ -1202,6 +1202,32 @@
                     <div class="col-md-3">
                         <h4>Previsões</h4>
                         <p>Por Implementar</p>
+                    </div>
+                </div>
+                <div id="ambulance_contacts">
+                    <h4>Contactos</h4>
+                    <div id="ambulance_contacts_inside">
+                    </div>
+                    <hr />
+                    <h6>Adicionar Contacto</h6>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="ambulance_contacts_contact" placeholder="Número">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="ambulance_contacts_name" placeholder="Nome">
+                        </div>
+                        <div class="col-auto">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="ambulance_contacts_sms">
+                                <label class="form-check-label" for="ambulance_contacts_sms">
+                                    Enviar SMS de Ativação
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary" onclick="addContact()">Adicionar</button>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -2088,6 +2114,20 @@
                     $("#ambulance-open-case-button").show();
                     $("#ambulance-open-case-button").attr("onclick","closeAmbulance();openCase("+response.data.case_id+")");
                 }
+                axios.get("{{route('covid19.ambulance_contacts','')}}/"+ambulance_id)
+                    .then(function (response) {
+                        $("#ambulance_contacts_inside").html("<p>Sem Contactos Registados</p>");
+                        if(response.data.length > 0) {
+                            $("#ambulance_contacts_inside").html("");
+                        }
+                        response.data.forEach(contact => {
+                            $("#ambulance_contacts_inside").append('<p>'+contact.number+' - '+contact.name+' - '+(contact.sms?"Envio de SMS Automático":"Sem Envio de SMS Automático")+' - <a href="#" onclick="removeContact('+contact.id+')">Remover</a></p>');
+                        });
+                        $("#ambulance").modal('show');
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    })
                 $("#ambulance").modal('show');
              })
             .catch(function (error) {
@@ -4036,12 +4076,52 @@
     }
 
     function removeObservation(id) {
+        let case_id = $("#case_id").html();
         axios.post("{{route('covid19.removeObservation')}}", {
             id: id
         })
         .then(function (response) {
             closeCase();
-            openCase(id);
+            openCase(case_id);
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    }
+
+    function addContact() {
+        let ambulance_id = $("#case_id").html();
+        let contact = $("#ambulance_contacts_contact").val();
+        let name = $("#ambulance_contacts_name").val();
+        let sms = $("#ambulance_contacts_sms").val();
+        if(observation != "") {
+            $("#ambulance_contacts_contact").val("");
+            $("#ambulance_contacts_name").val("");
+            $("#ambulance_contacts_sms").prop( "checked", false );
+            axios.post("{{route('covid19.addContact')}}", {
+                id: id,
+                contact: contact,
+                name: name,
+                sms: sms
+            })
+            .then(function (response) {
+                closeAmbulance();
+                openAmbulance(id);
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+        }
+    }
+
+    function removeContact(id) {
+        let ambulance_id = $("#ambulance_id").html();
+        axios.post("{{route('covid19.removeContact')}}", {
+            id: id
+        })
+        .then(function (response) {
+            closeAmbulance();
+            openAmbulance(ambulance_id);
         })
         .catch(function (error) {
             alert(error);
@@ -4060,6 +4140,7 @@
             alert(error);
         });
     }
+    
     function SwapPanel() {
         let current = $("#SwapPanel").data("current");
         if(current == "panel") {

@@ -64,6 +64,8 @@ Route::prefix('covid19')->name('covid19.')->group(function () {
 
     Route::get('ambulances', 'COVID19AmbulanceController@getAmbulances')->name('ambulances');
     Route::get('ambulance/{id}', 'COVID19AmbulanceController@getAmbulance')->name('ambulance');
+    Route::get('ambulance_contacts/{id}', 'COVID19AmbulanceController@getContacts')->name('ambulance_contacts');
+
 
 
     Route::post('newCase', 'COVID19CaseController@newCase')->name('newCase');
@@ -129,6 +131,8 @@ Route::prefix('covid19')->name('covid19.')->group(function () {
     Route::post('updateAmbulanceRegion', 'COVID19AmbulanceController@updateRegion')->name('updateAmbulanceRegion');
     Route::post('updateAmbulanceVehicleIdentification', 'COVID19AmbulanceController@updateVehicleIdentification')->name('updateAmbulanceVehicleIdentification');
     Route::post('updateAmbulanceActivePrevention', 'COVID19AmbulanceController@updateActivePrevention')->name('updateAmbulanceActivePrevention');
+    Route::post('addContact', 'COVID19AmbulanceController@addContact')->name('addContact');
+    Route::post('removeContact', 'COVID19AmbulanceController@removeContact')->name('removeContact');
 
     Route::post('cancelCase', 'COVID19CaseController@cancel')->name('cancelCase');
 

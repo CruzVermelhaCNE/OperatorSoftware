@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Events\COVID19AmbulanceSaved;
+use App\Events\COVID19UpdateAmbulance;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,16 @@ class COVID19Ambulance extends Model
 
     public function updater() {
         return $this->hasOne(User::class,'id','updated_by');
+    }
+    
+    public function contacts() {
+        return $this->hasMany(COVID19AmbulanceContact::class,"ambulance_id","id");
+    }
+
+
+    public function addContact($contact,$name,$sms) {
+        COVID19AmbulanceContact::createContact($this->id,$contact,$name,$sms);
+        event(new COVID19UpdateAmbulance($this));
     }
 
     public static function createAmbulance($structure,$region,$vehicle_identification,$base_lat,$base_long,$active_prevention) {
