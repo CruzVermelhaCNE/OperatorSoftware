@@ -1539,7 +1539,7 @@
             }
         });
         fetchInitialOpenCases();
-        fetchInitialOpenCases();
+        fetchInitialAmbulances();
         
     });
     $('#nova_ocorrencia_sem_numero').change(function() {
