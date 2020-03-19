@@ -3935,6 +3935,7 @@
     }
 
     Echo.channel('COVID19UpdateCase').listen('updateCase', (data) => {
+        console.log("update case");
         if(($("#case").data('bs.modal') || {})._isShown) {
             let case_id = $("#case_id").html();
             if(case_id == data.case.id) {
@@ -3955,6 +3956,7 @@
     });
 
     Echo.channel('COVID19UpdateAmbulance').listen('updateAmbulance', (data) => {
+        console.log("update ambulance");
         if(($("#ambulance").data('bs.modal') || {})._isShown) {
             let ambulance_id = $("#ambulance_id").html();
             if(ambulance_id == data.ambulance.id) {
