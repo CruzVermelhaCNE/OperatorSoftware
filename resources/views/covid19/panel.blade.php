@@ -3934,7 +3934,7 @@
         }
     }
 
-    Echo.channel('COVID19UpdateCase').listen('COVID19UpdateAmbulance', (data) => {
+    Echo.channel('COVID19UpdateCase').listen('COVID19UpdateCase', (data) => {
         console.log("update case");
         console.log(data);
         if(($("#case").data('bs.modal') || {})._isShown) {
