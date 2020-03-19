@@ -1294,6 +1294,7 @@
             data-parent="#case_observations_inside">
             <div class="card-body">
                 {observation}
+                <hr />
                 <button type="button" class="btn btn-danger" onclick="removeObservation({id})">Remover Observação</button>
             </div>
         </div>
@@ -1996,6 +1997,7 @@
                             $("#case_observations_inside").html("");
                         }
                         response.data.forEach(observation => {
+                            console.log(observation);
                             let template = $("#observation_template").html();
                             template = template.split("{id}").join(observation.id);
                             template = template.split("{author}").join(observation.author_name);
