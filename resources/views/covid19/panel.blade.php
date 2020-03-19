@@ -3944,7 +3944,7 @@
                 openCase(data.case.id);
             }
         }
-        if(case.status_AMB_activation != null) {
+        if(data.case.status_AMB_activation != null) {
             if(isOpenCaseCreated(data.case)) {
                 removeOpenCase(data.case);
             }
