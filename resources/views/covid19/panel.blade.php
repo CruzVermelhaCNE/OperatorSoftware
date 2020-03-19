@@ -1923,7 +1923,7 @@
                     .then(function (response) {
                         console.log(response);
                         $("#case").modal('show');
-                    });
+                    })
                     .catch(function (error) {
                         alert(error);
                     })
