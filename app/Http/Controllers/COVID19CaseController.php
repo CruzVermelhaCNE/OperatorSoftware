@@ -69,7 +69,7 @@ class COVID19CaseController extends Controller
 
     public function getOpenCases()
     {
-        $cases = COVID19Case::where('status_available', null)->get();
+        $cases = COVID19Case::where('status_AMB_activation', null)->get();
         return response()->json($cases);
     }
 
@@ -406,7 +406,7 @@ class COVID19CaseController extends Controller
         $old_ambulance = COVID19Ambulance::where('case_id', '=', $case->id)->get()->first();
         if ($old_ambulance) {
             $case->notify(new COVID19SlackNotification('*ATIVAÇÃO COVID-19 | '.$old_ambulance->structure.' ANULADA*'));
-            $old_ambulance->INOP(null);                
+            $old_ambulance->INOP(null);
         }
         if (! $case->trashed()) {
             $case->delete();

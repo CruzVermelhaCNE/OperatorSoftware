@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\COVID19AmbulanceSaved;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,10 @@ class COVID19Ambulance extends Model
 
 
     protected $table = 'covid19_ambulances';
+
+    protected $dispatchesEvents = [
+        'saved' => COVID19AmbulanceSaved::class,
+    ];
 
     public function case() {
         return $this->hasOne(COVID19Case::class,"id","case_id");

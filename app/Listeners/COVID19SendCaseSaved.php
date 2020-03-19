@@ -6,9 +6,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
 use App\Events\COVID19CaseSaved;
-use App\Events\updateCase;
+use App\Events\COVID19UpdateCase;
 
-class SendCOVID19CaseSaved
+class COVID19SendCaseSaved
 {
     /**
      * Create the event listener.
@@ -28,6 +28,6 @@ class SendCOVID19CaseSaved
      */
     public function handle(COVID19CaseSaved $event)
     {
-        event(new updateCase($event->case->id));
+        event(new COVID19UpdateCase($event->case->id));
     }
 }

@@ -344,6 +344,7 @@
                             </div>
                             <div id="occorrence_ambulance_create" style="display:none">
                                 <p>Ambulância: <select class="form-control" id="occorrence_ambulance_create_amb">
+                                        <option value=""></option>
                                         <option value="SIEM-PEM">SIEM-PEM</option>
                                         <option value="SIEM-RES">SIEM-RES</option>
                                     </select></p>
@@ -1309,41 +1310,60 @@
         }
     }
 
-    function updateOpenCases() {
+    function isOpenCaseCreated(case) {
+        if($("#openCase"+case.id).length) {
+            return true;
+        }
+        return false;
+    }
+
+    function createOpenCase(case) {
+        if (case.CODU_number == null) {
+            case.CODU_number = "Sem Número";
+        }
+        let template = $("#openCase_template").html();
+        template = template.split("{id}").join(case.id);
+        template = template.split("{CODU_number}").join(case.CODU_number);
+        template = template.split("{activation_mean}").join(case.activation_mean);
+        $("#open_cases").prepend(template);   
+    }
+
+    function updateOpenCase(case) {
+        if (case.CODU_number == null) {
+            case.CODU_number = "Sem Número";
+        }
+        $("#openCase"+case.id+" .CODU_number").html(case.CODU_number);
+        $("#openCase"+case.id+" .activation_mean").html(case.activation_mean);
+    }
+
+    function removeOpenCase(case) {
+        $("#openCase"+case.id).remove();
+    }
+
+    function fetchInitialOpenCases() {
         axios.get("{{route('covid19.openCases')}}")
             .then(function (response) {
-                let current_ids = [];
-                $(".pending").each(function( index ) {
-                    current_ids.push($(this).data('case-id'));
-                });
-                response.data.forEach(element => {
-                    if (element.CODU_number == null) {
-                        element.CODU_number = "Sem Número";
-                    }
-                    if(current_ids.includes(element.id)) {
-                        $("#openCase"+element.id+" .CODU_number").html(element.CODU_number);
-                        $("#openCase"+element.id+" .activation_mean").html(element.activation_mean);
-                        index = current_ids.indexOf(element.id);
-                        current_ids.splice(index, 1);
-                    }
-                    else {
-                        let template = $("#openCase_template").html();
-                        template = template.split("{id}").join(element.id);
-                        template = template.split("{CODU_number}").join(element.CODU_number);
-                        template = template.split("{activation_mean}").join(element.activation_mean);
-                        $("#open_cases").prepend(template);                        
-                    }
-                });
-                current_ids.forEach(element => {
-                    $("#openCase"+element).remove();
+                response.data.forEach(case => {
+                    createOpenCase(case);                    
                 });
             })
             .catch(function (error) {
                 alert(error);
             })
     }
+    
+    function isAmbulanceCreated(ambulance) {
+        if($("#ambulance"+ambulance.id).length) {
+            return true;
+        }
+        return false;
+    }
 
-    function createAmbulance(ambulance) {
+    function getAmbulanceCurrentStatus(ambulance) {
+        return $("#ambulance"+ambulance.id).data('ambulance-status');
+    }
+
+    function createOnHoldAmbulance(ambulance) {
         let template = $("#ambulance_template").html();
         template = template.split("{id}").join(ambulance.id);
         template = template.split("{status}").join(ambulance.status);
@@ -1359,24 +1379,7 @@
         }
     }
 
-    function updateAmbulance(ambulance, old_status) {
-        $("#ambulance"+ambulance.id+" .amb-structure").html(ambulance.structure.toUpperCase());
-        $("#ambulance"+ambulance.id+" .amb-region").html(ambulance.region);
-        $("#ambulance"+ambulance.id+" .amb-identification").html(ambulance.vehicle_identification);
-        $("#ambulance"+ambulance.id+" .amb-status").html(getStatusTextFromNumber(ambulance.status));
-        $("#ambulance"+ambulance.id+" .amb").removeClass('amb-'+old_status);
-        $("#ambulance"+ambulance.id+" .amb").addClass('amb-'+ambulance.status);
-        $("#ambulance"+ambulance.id).data('ambulance-status', ambulance.status);
-        if(ambulance.status == 1 || ambulance.status == 2) {
-            if(document.getElementById("occorrence_ambulance_create_amb-"+ambulance.id) === null) {
-                $("#occorrence_ambulance_create_amb").prepend('<option id="occorrence_ambulance_create_amb-'+ambulance.id+'" value="'+ambulance.id+'">'+ambulance.structure.toUpperCase()+' - '+ambulance.region+' - '+ambulance.vehicle_identification+'</option>');   
-            }
-        }
-        else {
-            $("#occorrence_ambulance_create_amb-"+ambulance.id).remove();
-        }
-        
-    }
+    s
 
     function createActiveAmbulance(ambulance) {
         axios.get("{{route('covid19.case','')}}/"+ambulance.case_id)
@@ -1415,10 +1418,39 @@
             })
     }
 
+    function createAmbulance(ambulance) {
+        if(ambulance.status > 2  && ambulance.status < 8) {
+            createActiveAmbulance(ambulance);
+        }
+        else {
+            createOnHoldAmbulance(ambulance);
+        }
+    }
+
+    function updateOnHoldAmbulance(ambulance, old_status) {
+        $("#ambulance"+ambulance.id+" .amb-structure").html(ambulance.structure.toUpperCase());
+        $("#ambulance"+ambulance.id+" .amb-region").html(ambulance.region);
+        $("#ambulance"+ambulance.id+" .amb-identification").html(ambulance.vehicle_identification);
+        $("#ambulance"+ambulance.id+" .amb-status").html(getStatusTextFromNumber(ambulance.status));
+        $("#ambulance"+ambulance.id+" .amb").removeClass('amb-'+old_status);
+        $("#ambulance"+ambulance.id+" .amb").addClass('amb-'+ambulance.status);
+        $("#ambulance"+ambulance.id).data('ambulance-status', ambulance.status);
+        //Add or Remove Ambulance to Ambulance Activation Select
+        if(ambulance.status == 1 || ambulance.status == 2) {
+            if(document.getElementById("occorrence_ambulance_create_amb-"+ambulance.id) === null) {
+                $("#occorrence_ambulance_create_amb").prepend('<option id="occorrence_ambulance_create_amb-'+ambulance.id+'" value="'+ambulance.id+'">'+ambulance.structure.toUpperCase()+' - '+ambulance.region+' - '+ambulance.vehicle_identification+'</option>');   
+            }
+        }
+        else {
+            $("#occorrence_ambulance_create_amb-"+ambulance.id).remove();
+        }
+        
+    }
+
     function updateActiveAmbulance(ambulance,old_status) {
         axios.get("{{route('covid19.case','')}}/"+ambulance.case_id)
             .then(function (response) {
-                updateAmbulance(ambulance,old_status);
+                updateOnHoldAmbulance(ambulance,old_status);
                 if(response.data.street == null) {
                     response.data.street = "Sem Rua";
                 }
@@ -1444,57 +1476,49 @@
             })
     }
 
-    function updateAmbulances() {
+    function updateAmbulance(ambulance) {
+        let old_status = getAmbulanceCurrentStatus(ambulance);
+        if(old_status == ambulance.status) {
+            if(old_status > 2  && old_status < 8) {
+                updateActiveAmbulance(ambulance,old_status);
+            }
+           else {
+                updateOnHoldAmbulance(ambulance,old_status);
+            }
+        }
+        else {
+            if(ambulance.status > 2  && ambulance.status < 8) {
+                if(old_status > 2  && old_status < 8) {
+                    updateActiveAmbulance(ambulance,old_status);
+                }
+                else {
+                    $("#ambulance"+ambulance.id).remove();
+                    createActiveAmbulance(ambulance);
+                }
+            }
+            else {
+                if(ambulance.status > 2  && ambulance.status < 8) {
+                    $("#ambulance"+ambulance.id).remove();
+                    createOnHoldAmbulance(ambulance);
+                }
+                else {
+                    updateOnHoldAmbulance(ambulance,old_status);
+                }
+            }
+        }
+    }
+
+    function fetchInitialAmbulances() {
         axios.get("{{route('covid19.ambulances')}}")
             .then(function (response) {
-                let current_ids = {};
-                $(".ambulance").each(function( index ) {
-                    current_ids[$(this).data('ambulance-id')] = $(this).data('ambulance-status');
-                });
-                response.data.forEach(element => {      
-                    if(element.id in current_ids) {
-                        if(current_ids[element.id] == element.status) {
-                            if(current_ids[element.id] > 2  && current_ids[element.id] < 8) {
-                                updateActiveAmbulance(element,current_ids[element.id]);
-                            }
-                            else {
-                                updateAmbulance(element,current_ids[element.id]);
-                            }
-                        }
-                        else {
-                            if(element.status > 2  && element.status < 8) {
-                                if(current_ids[element.id] > 2  && current_ids[element.id] < 8) {
-                                    updateActiveAmbulance(element,current_ids[element.id]);
-                                }
-                                else {
-                                    $("#ambulance"+element.id).remove();
-                                    createActiveAmbulance(element);
-                                }
-                            }
-                            else {
-                                if(current_ids[element.id] > 2  && current_ids[element.id] < 8) {
-                                    $("#ambulance"+element.id).remove();
-                                    createAmbulance(element);
-                                }
-                                else {
-                                    updateAmbulance(element,current_ids[element.id]);
-                                }
-                            }
-                        }
-                        delete current_ids[element.id]; 
+                response.data.forEach(ambulance => {
+                    if(ambulance.status > 2  && ambulance.status < 8) {
+                        createActiveAmbulance(ambulance);
                     }
-                    else {
-                        if(element.status > 2  && element.status < 8) {
-                            createActiveAmbulance(element);
-                        }
                         else {
-                            createAmbulance(element);
-                        }                     
-                    }
+                        createAmbulance(ambulance);
+                    }                     
                 });
-                for (var [key, value] of Object.entries(current_ids)) {
-                    $("#ambulance"+key).remove();
-                }
             })
             .catch(function (error) {
                 alert(error);
@@ -1505,15 +1529,17 @@
         $("#all_cases").DataTable();
         $("#occorrence_ambulance_create_amb").change(function() {
             let val = $("#occorrence_ambulance_create_amb").val();
-            if(val == "SIEM-PEM" || val == "SIEM-RES") {
-                $("#occorrence_ambulance_create_amb_non_covid19").show();
-            }
-            else {
-                $("#occorrence_ambulance_create_amb_non_covid19").hide();
+            if(val != "") {
+                if(val == "SIEM-PEM" || val == "SIEM-RES") {
+                    $("#occorrence_ambulance_create_amb_non_covid19").show();
+                }
+                else {
+                    $("#occorrence_ambulance_create_amb_non_covid19").hide();
+                }
             }
         });
-        setInterval(updateOpenCases,1000);
-        setInterval(updateAmbulances,1000);
+        fetchInitialOpenCases();
+        fetchInitialOpenCases();
         
     });
     $('#nova_ocorrencia_sem_numero').change(function() {
@@ -3876,8 +3902,41 @@
             $("#nova-ambulancia-button").show();
         }
     }
-    Echo.channel('updateCase').listen('updateCase', (data) => {
-        console.log(data);
+
+    Echo.channel('COVID19UpdateCase').listen('updateCase', (data) => {
+        if(($("#case").data('bs.modal') || {})._isShown) {
+            let case_id = $("#case_id").html();
+            if(case_id == data.case.id) {
+                closeCase();
+                openCase(data.case.id);
+            }
+        }
+        if(case.status_AMB_activation != null) {
+            if(isOpenCaseCreated(case)) {
+                removeOpenCase(case);
+            }
+        }
+        else {
+            if(!isOpenCaseCreated(case)) {
+                createOpenCase(case);
+            }
+        }
+    });
+
+    Echo.channel('COVID19UpdateAmbulance').listen('updateAmbulance', (data) => {
+        if(($("#ambulance").data('bs.modal') || {})._isShown) {
+            let ambulance_id = $("#ambulance_id").html();
+            if(ambulance_id == data.ambulance.id) {
+                closeAmbulance();
+                openAmbulance(data.ambulance.id);
+            }
+        }
+        if(!isAmbulanceCreated(data.ambulance)) {            
+            createAmbulance(ambulance);
+        }
+        else {
+            updateAmbulance(data.ambulance);
+        }
     });
 </script>
 @endsection

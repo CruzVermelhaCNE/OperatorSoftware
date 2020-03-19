@@ -1,29 +1,27 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class updateCase implements ShouldBroadcast
+class COVID19UpdateAmbulance
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $id;
+    private $ambulance;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($id)
+    public function __construct($ambulance)
     {
-        $this->id = $id;
+        $this->ambulance = $ambulance;
     }
 
     /**
@@ -33,7 +31,7 @@ class updateCase implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('updateCase');
+        return new PrivateChannel('updateAmbulance');
     }
 
     /**
@@ -42,10 +40,7 @@ class updateCase implements ShouldBroadcast
      * @return array
      */
     public function broadcastWith()
-
     {
-
-        return ['id'=>$this->id];
-
+        return ['ambulance' => $this->ambulance];
     }
 }
