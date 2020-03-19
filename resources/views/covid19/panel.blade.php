@@ -1312,41 +1312,41 @@
         }
     }
 
-    function isOpenCaseCreated(case) {
-        if($("#openCase"+case.id).length) {
+    function isOpenCaseCreated(open_case) {
+        if($("#openCase"+open_case.id).length) {
             return true;
         }
         return false;
     }
 
-    function createOpenCase(case) {
-        if (case.CODU_number == null) {
-            case.CODU_number = "Sem Número";
+    function createOpenCase(open_case) {
+        if (open_case.CODU_number == null) {
+            open_case.CODU_number = "Sem Número";
         }
         let template = $("#openCase_template").html();
-        template = template.split("{id}").join(case.id);
-        template = template.split("{CODU_number}").join(case.CODU_number);
-        template = template.split("{activation_mean}").join(case.activation_mean);
+        template = template.split("{id}").join(open_case.id);
+        template = template.split("{CODU_number}").join(open_case.CODU_number);
+        template = template.split("{activation_mean}").join(open_case.activation_mean);
         $("#open_cases").prepend(template);   
     }
 
-    function updateOpenCase(case) {
-        if (case.CODU_number == null) {
-            case.CODU_number = "Sem Número";
+    function updateOpenCase(open_case) {
+        if (open_case.CODU_number == null) {
+            open_case.CODU_number = "Sem Número";
         }
-        $("#openCase"+case.id+" .CODU_number").html(case.CODU_number);
-        $("#openCase"+case.id+" .activation_mean").html(case.activation_mean);
+        $("#openCase"+open_case.id+" .CODU_number").html(open_case.CODU_number);
+        $("#openCase"+open_case.id+" .activation_mean").html(open_case.activation_mean);
     }
 
-    function removeOpenCase(case) {
-        $("#openCase"+case.id).remove();
+    function removeOpenCase(open_case) {
+        $("#openCase"+open_case.id).remove();
     }
 
     function fetchInitialOpenCases() {
         axios.get("{{route('covid19.openCases')}}")
             .then(function (response) {
-                response.data.forEach(case => {
-                    createOpenCase(case);                    
+                response.data.forEach(open_case => {
+                    createOpenCase(open_case);                    
                 });
             })
             .catch(function (error) {
