@@ -1381,8 +1381,6 @@
         }
     }
 
-    s
-
     function createActiveAmbulance(ambulance) {
         axios.get("{{route('covid19.case','')}}/"+ambulance.case_id)
             .then(function (response) {
