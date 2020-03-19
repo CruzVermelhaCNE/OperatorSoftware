@@ -442,10 +442,18 @@ class COVID19Case extends Model
 
     public function updateAvailableStatus($status_available) {
         $this->status_available = $status_available;
+        $this->notes = null;
         $this->save();
         $this->addOperator();
     }
 
+    public function updateNotes($notes) {
+        if ($this->status_available == null) {
+            $this->notes = $notes;
+            $this->save();
+            $this->addOperator();
+        }
+    }
 
     public function complete_source() {
         return $this->street . ", " . $this->parish . ", ". $this->county . ', '. $this->district;

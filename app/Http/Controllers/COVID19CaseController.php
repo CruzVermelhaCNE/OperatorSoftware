@@ -36,6 +36,7 @@ use App\Http\Requests\COVID19UpdateDriverName;
 use App\Http\Requests\COVID19UpdateFirstName;
 use App\Http\Requests\COVID19UpdateInvasiveCare;
 use App\Http\Requests\COVID19UpdateLastName;
+use App\Http\Requests\COVID19UpdateNotes;
 use App\Http\Requests\COVID19UpdateOnSceneUnits;
 use App\Http\Requests\COVID19UpdateParish;
 use App\Http\Requests\COVID19UpdateRef;
@@ -414,6 +415,13 @@ class COVID19CaseController extends Controller
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
         $case->updateAvailableStatus($validated['status_available']);
+    }
+
+    public function updateNotes(COVID19UpdateNotes $request)
+    {
+        $validated = $request->validated();
+        $case      = COVID19Case::find($validated['id']);
+        $case->updateNotes($validated['notes']);
     }
 
     public function cancel(COVID19CancelCase $request)

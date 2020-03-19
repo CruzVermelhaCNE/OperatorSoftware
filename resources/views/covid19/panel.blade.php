@@ -1105,6 +1105,14 @@
                     <div id="case_operators_inside">
                     </div>
                 </div>
+                <div id="case_notes">
+                    <h4>Notas</h4>
+                    <div class="form-group">
+                        <label>As notas são apagadas no encerramento da ocorrência.</label>
+                        <textarea class="form-control" id="case_notes_textarea" rows="3"></textarea>
+                        <button type="button" class="btn btn-primary" onclick="updateCaseNotes()">Guardar</button>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -1571,7 +1579,10 @@
         let region = $("#nova_ambulancia_region").val();
         let vehicle_identification = $("#nova_ambulancia_vehicle_identification").val();
         let active_prevention = $("#nova_ambulancia_active_prevention").val();
-
+        $("#nova_ambulancia_structure").val("");
+        $("#nova_ambulancia_region").val("");
+        $("#nova_ambulancia_vehicle_identification").val("");
+        $("#nova_ambulancia_active_prevention").val("");
         axios.post("{{route('covid19.newAmbulance')}}", {
             structure: structure,
             region: region,
@@ -1798,6 +1809,7 @@
                 $("#status_departure_from_destination").html(response.data.status_departure_from_destination);
                 $("#status_base_return").html(response.data.status_base_return);
                 $("#status_available").html(response.data.status_available);
+                $("#case_notes_textarea").val(response.data.notes);
 
                 if(response.data.source == "Sem Informação") {
                     $("#occorrence_data").hide();
@@ -1916,6 +1928,13 @@
                     $("#occorrence_data").show();
                     $("#occorrence_team_create").hide();
                     $("#occorrence_team").show();
+                }
+
+                if(response.data.status_available != "Sem Informação") {
+                    $("#case_notes").hide();
+                }
+                else {
+                    $("#case_notes").show();
                 }
 
                 axios.get("{{route('covid19.case_operators','')}}/"+case_id)
@@ -3911,6 +3930,21 @@
         axios.post("{{route('covid19.updateAmbulanceActivePrevention')}}", {
             id: id,
             active_prevention: active_prevention,
+        })
+        .then(function (response) {
+            
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    }
+
+    function updateCaseNotes() {
+        let id = $("#case_id").html();
+        let notes = $("#case_notes_textarea").val();
+        axios.post("{{route('covid19.updateCaseNotes')}}", {
+            id: id,
+            notes: notes,
         })
         .then(function (response) {
             
