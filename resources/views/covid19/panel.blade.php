@@ -1285,12 +1285,12 @@
     }
 
     function getVehicleTypeFromNumber(vehicle_type) {
-        switch (status) {
-            case "1":                
+        switch (vehicle_type) {
+            case 1:                
                 return "COVID-19";
-            case "2":
+            case 2:
                 return "SIEM-PEM";
-            case "3":
+            case 3:
                 return "SIEM-RES";
             default:
                 return "Informação Inválida";
