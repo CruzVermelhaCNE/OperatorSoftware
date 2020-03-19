@@ -9,6 +9,7 @@ use App\Http\Requests\COVID19UpdateAmbulanceActivePrevention;
 use App\Http\Requests\COVID19UpdateAmbulanceRegion;
 use App\Http\Requests\COVID19UpdateAmbulanceStatus;
 use App\Http\Requests\COVID19UpdateAmbulanceStructure;
+use App\Http\Requests\COVID19UpdateAmbulanceVehicleIdentification;
 
 class COVID19AmbulanceController extends Controller
 {
@@ -89,10 +90,10 @@ class COVID19AmbulanceController extends Controller
         $ambulance->updateRegion($validated["region"]);
     }
 
-    public function updateVehicleIdentification(COVID19UpdateAmbulanceRegion $request) {
+    public function updateVehicleIdentification(COVID19UpdateAmbulanceVehicleIdentification $request) {
         $validated = $request->validated();
         $ambulance = COVID19Ambulance::find($validated["id"]);
-        $ambulance->updateVehicleIdentification($validated["vehicle_idenntification"]);
+        $ambulance->updateVehicleIdentification($validated["vehicle_identification"]);
     }
 
     public function updateActivePrevention(COVID19UpdateAmbulanceActivePrevention $request) {
