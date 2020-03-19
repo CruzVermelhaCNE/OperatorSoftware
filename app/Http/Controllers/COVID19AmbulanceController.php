@@ -28,13 +28,13 @@ class COVID19AmbulanceController extends Controller
     }
 
     public function getAmbulance($id) {
-        $ambulance = COVID19Case::find($id);
+        $ambulance = COVID19Ambulance::find($id);
         return response()->json($ambulance);
     }
 
     public function getContacts($id)
     {
-        $ambulance = COVID19Case::find($id);
+        $ambulance = COVID19Ambulance::find($id);
         return response()->json($ambulance->contacts);
     }
 
