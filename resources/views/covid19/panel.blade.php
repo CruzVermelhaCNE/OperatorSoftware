@@ -1121,10 +1121,11 @@
                         
                     </div>
                     <div class="form-group">
+                        <hr />
                         <textarea class="form-control" id="case_observations_textarea" rows="3"
                             placeholder="Observação"></textarea>
                         <button type="button" class="btn btn-primary" onclick="addObservation()">Adicionar
-                            Observation</button>
+                            Observação</button>
                     </div>
                 </div>
             </div>
@@ -4022,7 +4023,8 @@
                 observation: observation,
             })
             .then(function (response) {
-                
+                closeCase();
+                openCase(id);
             })
             .catch(function (error) {
                 alert(error);

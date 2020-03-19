@@ -20,6 +20,11 @@ class COVID19CaseObservation extends Model
         return $this->hasOne(User::class,'id','author_id');
     }
 
+    public function author_name()
+    {
+        return $this->author->name;
+    }
+
     public function deleted_by()
     {
         return $this->hasOne(User::class,'id','deleted_by');
