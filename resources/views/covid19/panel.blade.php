@@ -3943,6 +3943,9 @@
     function updateCaseNotes() {
         let id = $("#case_id").html();
         let notes = $("#case_notes_textarea").val();
+        if(notes == "") {
+            notes = null;
+        }
         axios.post("{{route('covid19.updateCaseNotes')}}", {
             id: id,
             notes: notes,
