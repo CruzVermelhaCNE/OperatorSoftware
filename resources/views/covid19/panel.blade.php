@@ -4095,24 +4095,22 @@
         let contact = $("#ambulance_contacts_contact").val();
         let name = $("#ambulance_contacts_name").val();
         let sms = $("#ambulance_contacts_sms").val();
-        if(observation != "") {
-            $("#ambulance_contacts_contact").val("");
-            $("#ambulance_contacts_name").val("");
-            $("#ambulance_contacts_sms").prop( "checked", false );
-            axios.post("{{route('covid19.addContact')}}", {
-                id: id,
-                contact: contact,
-                name: name,
-                sms: sms
-            })
-            .then(function (response) {
-                closeAmbulance();
-                openAmbulance(id);
-            })
-            .catch(function (error) {
-                alert(error);
-            });
-        }
+        $("#ambulance_contacts_contact").val("");
+        $("#ambulance_contacts_name").val("");
+        $("#ambulance_contacts_sms").prop( "checked", false );
+        axios.post("{{route('covid19.addContact')}}", {
+            id: id,
+            contact: contact,
+            name: name,
+            sms: sms
+        })
+        .then(function (response) {
+            closeAmbulance();
+            openAmbulance(id);
+        })
+        .catch(function (error) {
+            alert(error);
+        });
     }
 
     function removeContact(id) {
