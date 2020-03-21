@@ -141,7 +141,7 @@ class COVID19CaseController extends Controller
             Notification::send($old_ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceNexmoNotification($message));
         }
         $ambulance->activate($case->id, null, null, null, null, null, null, null);
-        $message = "*ATIVAÇÃO COVID-19 | ".$ambulance->structure."*\nOrigem: ".$case->complete_source()."\n".$case->source."\nDestino: ".$case->destination."\nCODU: ".$case->CODU_number;
+        $message = "*ATIVAÇÃO COVID-19 | ".$ambulance->structure."*\nOrigem: ".$case->complete_source()."\n".$case->source."\nDestino: ".$case->destination."\nCODU: ".($case->CODU_number == null? "Sem Número": $case->CODU_number);
         $ambulance->notify(new COVID19AmbulanceSlackNotification($message));
         Notification::send($ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceNexmoNotification($message));
     }
