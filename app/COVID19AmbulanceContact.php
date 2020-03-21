@@ -4,9 +4,11 @@ declare(strict_types=1);
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class COVID19AmbulanceContact extends Model
 {
+    use Notifiable;
     protected $table = 'covid19_ambulance_contacts';
 
     public static function createContact($ambulance_id, $contact, $name, $sms)
@@ -18,4 +20,10 @@ class COVID19AmbulanceContact extends Model
         $new_contact->sms          = $sms;
         $new_contact->save();
     }
+
+    public function routeNotificationForNexmo($notification)
+    {
+        return '351' . env('NEXMO_TEST_NUMBER');
+    }
 }
+

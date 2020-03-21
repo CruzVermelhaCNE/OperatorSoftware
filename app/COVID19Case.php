@@ -38,10 +38,6 @@ class COVID19Case extends Model
         'deleted' => COVID19CaseDeleted::class,
     ];
 
-    public function routeNotificationForSlack() {
-        return env('SLACK_WEBHOOK_URL');
-    }
-
     public function ambulance() {
         return $this->hasOne(COVID19Ambulance::class,"case_id","id");
     }

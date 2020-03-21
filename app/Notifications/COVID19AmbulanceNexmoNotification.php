@@ -1,26 +1,24 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Messages\SlackMessage;
 
-class COVID19SlackNotification extends Notification
+class COVID19AmbulanceNexmoNotification extends Notification
 {
     use Queueable;
 
     private $message;
-
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct()
     {
         $this->message = $message;
     }
@@ -33,18 +31,18 @@ class COVID19SlackNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['slack'];
+        return ['nexmo'];
     }
 
     /**
-     * Get the Slack representation of the notification.
+     * Get the Nexmo representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return SlackMessage
+     * @return NexmoMessage
      */
-    public function toSlack($notifiable)
+    public function toNexmo($notifiable)
     {
-        return (new SlackMessage)
+        return (new NexmoMessage)
                     ->content($this->message);
     }
 

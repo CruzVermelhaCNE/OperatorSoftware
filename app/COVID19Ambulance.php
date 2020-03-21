@@ -29,6 +29,15 @@ class COVID19Ambulance extends Model
         'saved' => COVID19AmbulanceSaved::class,
     ];
 
+    public function routeNotificationForSlack() {
+        return env('SLACK_WEBHOOK_URL');
+    }
+
+    public function routeNotificationForNexmo($notification)
+    {
+        return $this->contacts->first()->formatNumber();
+    }
+
     public function case()
     {
         return $this->hasOne(COVID19Case::class, 'id', 'case_id');
