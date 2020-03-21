@@ -4091,7 +4091,7 @@
     }
 
     function addContact() {
-        let ambulance_id = $("#case_id").html();
+        let id = $("#ambulance_id").html();
         let contact = $("#ambulance_contacts_contact").val();
         let name = $("#ambulance_contacts_name").val();
         let sms = $("#ambulance_contacts_sms").val();
