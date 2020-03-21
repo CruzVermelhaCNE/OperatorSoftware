@@ -23,7 +23,7 @@ class COVID19AmbulanceContact extends Model
 
     public function routeNotificationForNexmo($notification)
     {
-        return '351' . env('NEXMO_TEST_NUMBER');
+        return '351' . $this->contact;
     }
 }
 

@@ -20,7 +20,7 @@ class COVID19AmbulanceNexmoNotification extends Notification
      */
     public function __construct($message)
     {
-        $message = 
+        $message = str_replace("*", "", $message);
         $this->message = $message;
     }
 
@@ -44,7 +44,7 @@ class COVID19AmbulanceNexmoNotification extends Notification
     public function toNexmo($notifiable)
     {
         return (new NexmoMessage)
-                    ->content($this->message);
+                    ->content($this->message)->unicode();
     }
 
     /**
