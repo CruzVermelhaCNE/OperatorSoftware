@@ -7,10 +7,12 @@ use App\Events\COVID19AmbulanceSaved;
 use App\Events\COVID19UpdateAmbulance;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 
 class COVID19Ambulance extends Model
 {
+    use Notifiable;
     /** STATUS
      * 0: INOP
      * 1: DISPONIVEL
