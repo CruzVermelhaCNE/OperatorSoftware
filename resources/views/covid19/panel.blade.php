@@ -4094,7 +4094,7 @@
         let id = $("#ambulance_id").html();
         let contact = $("#ambulance_contacts_contact").val();
         let name = $("#ambulance_contacts_name").val();
-        let sms = $("#ambulance_contacts_sms").val();
+        let sms = $("#ambulance_contacts_sms").is(":checked");
         $("#ambulance_contacts_contact").val("");
         $("#ambulance_contacts_name").val("");
         $("#ambulance_contacts_sms").prop( "checked", false );
