@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App;
 
@@ -22,128 +23,135 @@ class COVID19Ambulance extends Model
      * 8: CAMINHO DA BASE DE DESINFECAO
      * 9: DESINFECÇÃO
      */
-
-
     protected $table = 'covid19_ambulances';
 
     protected $dispatchesEvents = [
         'saved' => COVID19AmbulanceSaved::class,
     ];
 
-    public function case() {
-        return $this->hasOne(COVID19Case::class,"id","case_id");
+    public function case()
+    {
+        return $this->hasOne(COVID19Case::class, 'id', 'case_id');
     }
 
-    public function updater() {
-        return $this->hasOne(User::class,'id','updated_by');
-    }
-    
-    public function contacts() {
-        return $this->hasMany(COVID19AmbulanceContact::class,"ambulance_id","id");
+    public function updater()
+    {
+        return $this->hasOne(User::class, 'id', 'updated_by');
     }
 
+    public function contacts()
+    {
+        return $this->hasMany(COVID19AmbulanceContact::class, 'ambulance_id', 'id');
+    }
 
-    public function addContact($contact,$name,$sms) {
-        COVID19AmbulanceContact::createContact($this->id,$contact,$name,$sms);
+    public function addContact($contact, $name, $sms)
+    {
+        $ambulance_id = $this->id;
+        COVID19AmbulanceContact::createContact($ambulance_id, $contact, $name, $sms);
         event(new COVID19UpdateAmbulance($this));
     }
 
-    public static function createAmbulance($structure,$region,$vehicle_identification,$base_lat,$base_long,$active_prevention) {
-        $amb = new COVID19Ambulance();
-        $amb->structure = $structure;
-        $amb->region = $region;
+    public static function createAmbulance($structure, $region, $vehicle_identification, $base_lat, $base_long, $active_prevention)
+    {
+        $amb                         = new COVID19Ambulance();
+        $amb->structure              = $structure;
+        $amb->region                 = $region;
         $amb->vehicle_identification = $vehicle_identification;
-        $amb->base_lat = $base_lat;
-        $amb->base_long = $base_long;
-        $amb->active_prevention = $active_prevention;
-        $amb->status = 0;
-        $amb->status_date = Carbon::now();
-        $amb->updated_by = Auth::user()->id;
+        $amb->base_lat               = $base_lat;
+        $amb->base_long              = $base_long;
+        $amb->active_prevention      = $active_prevention;
+        $amb->status                 = 0;
+        $amb->status_date            = Carbon::now();
+        $amb->updated_by             = Auth::user()->id;
         $amb->save();
     }
 
-    public function statusINOP($predicted_available) {
-        if($this->case_id != null) {
+    public function statusINOP($predicted_available)
+    {
+        if ($this->case_id != null) {
             $this->case->statusAvailable(Carbon::now());
         }
-        $this->case_id = null;
-        $this->status = 0;
-        $this->status_date = Carbon::now();
-        $this->predicted_base_exit = null;
-        $this->predicted_arrival_on_scene = null;
-        $this->predicted_departure_from_scene = null;
-        $this->predicted_arrival_on_destination = null;
+        $this->case_id                              = null;
+        $this->status                               = 0;
+        $this->status_date                          = Carbon::now();
+        $this->predicted_base_exit                  = null;
+        $this->predicted_arrival_on_scene           = null;
+        $this->predicted_departure_from_scene       = null;
+        $this->predicted_arrival_on_destination     = null;
         $this->predicted_departure_from_destination = null;
-        $this->predicted_base_return = null;
-        $this->predicted_available = $predicted_available;
-        $this->updated_by = Auth::user()->id;
+        $this->predicted_base_return                = null;
+        $this->predicted_available                  = $predicted_available;
+        $this->updated_by                           = Auth::user()->id;
         $this->save();
     }
 
-    public function statusAvailable() {
-        if($this->case_id != null) {
+    public function statusAvailable()
+    {
+        if ($this->case_id != null) {
             $this->case->statusAvailable(Carbon::now());
         }
-        $this->case_id = null;
-        $this->status = 1;
-        $this->status_date = Carbon::now();
-        $this->predicted_base_exit = null;
-        $this->predicted_arrival_on_scene = null;
-        $this->predicted_departure_from_scene = null;
-        $this->predicted_arrival_on_destination = null;
+        $this->case_id                              = null;
+        $this->status                               = 1;
+        $this->status_date                          = Carbon::now();
+        $this->predicted_base_exit                  = null;
+        $this->predicted_arrival_on_scene           = null;
+        $this->predicted_departure_from_scene       = null;
+        $this->predicted_arrival_on_destination     = null;
         $this->predicted_departure_from_destination = null;
-        $this->predicted_base_return = null;
-        $this->predicted_available = null;
-        $this->updated_by = Auth::user()->id;
+        $this->predicted_base_return                = null;
+        $this->predicted_available                  = null;
+        $this->updated_by                           = Auth::user()->id;
         $this->save();
     }
 
-    public function statusOnBase() {
-        if($this->case_id != null) {
+    public function statusOnBase()
+    {
+        if ($this->case_id != null) {
             $this->case->statusAvailable(Carbon::now());
         }
-        $this->case_id = null;
-        $this->status = 2;
-        $this->status_date = Carbon::now();
-        $this->predicted_base_exit = null;
-        $this->predicted_arrival_on_scene = null;
-        $this->predicted_departure_from_scene = null;
-        $this->predicted_arrival_on_destination = null;
+        $this->case_id                              = null;
+        $this->status                               = 2;
+        $this->status_date                          = Carbon::now();
+        $this->predicted_base_exit                  = null;
+        $this->predicted_arrival_on_scene           = null;
+        $this->predicted_departure_from_scene       = null;
+        $this->predicted_arrival_on_destination     = null;
         $this->predicted_departure_from_destination = null;
-        $this->predicted_base_return = null;
-        $this->predicted_available = null;
-        $this->updated_by = Auth::user()->id;
+        $this->predicted_base_return                = null;
+        $this->predicted_available                  = null;
+        $this->updated_by                           = Auth::user()->id;
         $this->save();
     }
 
-
-    public function activate($case_id,$predicted_base_exit,$predicted_arrival_on_scene,$predicted_departure_from_scene,$predicted_arrival_on_destination,$predicted_departure_from_destination,$predicted_base_return,$predicted_available) {
-        $this->case_id = $case_id;
-        $this->status = 3;
-        $this->status_date = Carbon::now();
-        $this->predicted_base_exit = $predicted_base_exit;
-        $this->predicted_arrival_on_scene = $predicted_arrival_on_scene;
-        $this->predicted_departure_from_scene = $predicted_departure_from_scene;
-        $this->predicted_arrival_on_destination = $predicted_arrival_on_destination;
+    public function activate($case_id, $predicted_base_exit, $predicted_arrival_on_scene, $predicted_departure_from_scene, $predicted_arrival_on_destination, $predicted_departure_from_destination, $predicted_base_return, $predicted_available)
+    {
+        $this->case_id                              = $case_id;
+        $this->status                               = 3;
+        $this->status_date                          = Carbon::now();
+        $this->predicted_base_exit                  = $predicted_base_exit;
+        $this->predicted_arrival_on_scene           = $predicted_arrival_on_scene;
+        $this->predicted_departure_from_scene       = $predicted_departure_from_scene;
+        $this->predicted_arrival_on_destination     = $predicted_arrival_on_destination;
         $this->predicted_departure_from_destination = $predicted_departure_from_destination;
-        $this->predicted_base_return = $predicted_base_return;
-        $this->predicted_available = $predicted_available;
-        $this->updated_by = Auth::user()->id;
+        $this->predicted_base_return                = $predicted_base_return;
+        $this->predicted_available                  = $predicted_available;
+        $this->updated_by                           = Auth::user()->id;
         $this->save();
         $this->case->addVehicleInformation($this->structure, $this->vehicle_identification, 1);
         $this->case->statusActivation(Carbon::now());
     }
 
-    public function statusBaseExit($predicted_arrival_on_scene,$predicted_departure_from_scene,$predicted_arrival_on_destination,$predicted_departure_from_destination,$predicted_base_return,$predicted_available) {
-        $this->status = 4;
-        $this->status_date = Carbon::now();
-        $this->predicted_arrival_on_scene = $predicted_arrival_on_scene;
-        $this->predicted_departure_from_scene = $predicted_departure_from_scene;
-        $this->predicted_arrival_on_destination = $predicted_arrival_on_destination;
+    public function statusBaseExit($predicted_arrival_on_scene, $predicted_departure_from_scene, $predicted_arrival_on_destination, $predicted_departure_from_destination, $predicted_base_return, $predicted_available)
+    {
+        $this->status                               = 4;
+        $this->status_date                          = Carbon::now();
+        $this->predicted_arrival_on_scene           = $predicted_arrival_on_scene;
+        $this->predicted_departure_from_scene       = $predicted_departure_from_scene;
+        $this->predicted_arrival_on_destination     = $predicted_arrival_on_destination;
         $this->predicted_departure_from_destination = $predicted_departure_from_destination;
-        $this->predicted_base_return = $predicted_base_return;
-        $this->predicted_available = $predicted_available;
-        $this->updated_by = Auth::user()->id;
+        $this->predicted_base_return                = $predicted_base_return;
+        $this->predicted_available                  = $predicted_available;
+        $this->updated_by                           = Auth::user()->id;
         $this->save();
         $this->case->statusBaseExit(Carbon::now());
         $this->case->statusArrivalOnScene(null);
@@ -151,18 +159,18 @@ class COVID19Ambulance extends Model
         $this->case->statusArrivalOnDestination(null);
         $this->case->statusDepartureFromDestination(null);
         $this->case->statusBaseReturn(null);
-
     }
 
-    public function statusArrivalOnScene($predicted_departure_from_scene,$predicted_arrival_on_destination,$predicted_departure_from_destination,$predicted_base_return,$predicted_available) {
-        $this->status = 5;
-        $this->status_date = Carbon::now();
-        $this->predicted_departure_from_scene = $predicted_departure_from_scene;
-        $this->predicted_arrival_on_destination = $predicted_arrival_on_destination;
+    public function statusArrivalOnScene($predicted_departure_from_scene, $predicted_arrival_on_destination, $predicted_departure_from_destination, $predicted_base_return, $predicted_available)
+    {
+        $this->status                               = 5;
+        $this->status_date                          = Carbon::now();
+        $this->predicted_departure_from_scene       = $predicted_departure_from_scene;
+        $this->predicted_arrival_on_destination     = $predicted_arrival_on_destination;
         $this->predicted_departure_from_destination = $predicted_departure_from_destination;
-        $this->predicted_base_return = $predicted_base_return;
-        $this->predicted_available = $predicted_available;
-        $this->updated_by = Auth::user()->id;
+        $this->predicted_base_return                = $predicted_base_return;
+        $this->predicted_available                  = $predicted_available;
+        $this->updated_by                           = Auth::user()->id;
         $this->save();
         $this->case->statusArrivalOnScene(Carbon::now());
         $this->case->statusDepartureFromScene(null);
@@ -171,14 +179,15 @@ class COVID19Ambulance extends Model
         $this->case->statusBaseReturn(null);
     }
 
-    public function statusDepartureFromScene($predicted_arrival_on_destination,$predicted_departure_from_destination,$predicted_base_return,$predicted_available) {
-        $this->status = 6;
-        $this->status_date = Carbon::now();
-        $this->predicted_arrival_on_destination = $predicted_arrival_on_destination;
+    public function statusDepartureFromScene($predicted_arrival_on_destination, $predicted_departure_from_destination, $predicted_base_return, $predicted_available)
+    {
+        $this->status                               = 6;
+        $this->status_date                          = Carbon::now();
+        $this->predicted_arrival_on_destination     = $predicted_arrival_on_destination;
         $this->predicted_departure_from_destination = $predicted_departure_from_destination;
-        $this->predicted_base_return = $predicted_base_return;
-        $this->predicted_available = $predicted_available;
-        $this->updated_by = Auth::user()->id;
+        $this->predicted_base_return                = $predicted_base_return;
+        $this->predicted_available                  = $predicted_available;
+        $this->updated_by                           = Auth::user()->id;
         $this->save();
         $this->case->statusDepartureFromScene(Carbon::now());
         $this->case->statusArrivalOnDestination(null);
@@ -186,67 +195,75 @@ class COVID19Ambulance extends Model
         $this->case->statusBaseReturn(null);
     }
 
-    public function statusArrivalOnDestination($predicted_departure_from_destination,$predicted_base_return,$predicted_available) {
-        $this->status = 7;
-        $this->status_date = Carbon::now();
+    public function statusArrivalOnDestination($predicted_departure_from_destination, $predicted_base_return, $predicted_available)
+    {
+        $this->status                               = 7;
+        $this->status_date                          = Carbon::now();
         $this->predicted_departure_from_destination = $predicted_departure_from_destination;
-        $this->predicted_base_return = $predicted_base_return;
-        $this->predicted_available = $predicted_available;
-        $this->updated_by = Auth::user()->id;
+        $this->predicted_base_return                = $predicted_base_return;
+        $this->predicted_available                  = $predicted_available;
+        $this->updated_by                           = Auth::user()->id;
         $this->save();
         $this->case->statusArrivalOnDestination(Carbon::now());
         $this->case->statusDepartureFromDestination(null);
         $this->case->statusBaseReturn(null);
     }
 
-    public function statusDepartureFromDestination($predicted_base_return,$predicted_available) {
-        $this->status = 8;
-        $this->status_date = Carbon::now();
+    public function statusDepartureFromDestination($predicted_base_return, $predicted_available)
+    {
+        $this->status                = 8;
+        $this->status_date           = Carbon::now();
         $this->predicted_base_return = $predicted_base_return;
-        $this->predicted_available = $predicted_available;
-        $this->updated_by = Auth::user()->id;
+        $this->predicted_available   = $predicted_available;
+        $this->updated_by            = Auth::user()->id;
         $this->save();
         $this->case->statusDepartureFromDestination(Carbon::now());
         $this->case->statusBaseReturn(null);
     }
 
-    public function statusBaseReturn($predicted_available) {
-        $this->status = 9;
-        $this->status_date = Carbon::now();
+    public function statusBaseReturn($predicted_available)
+    {
+        $this->status              = 9;
+        $this->status_date         = Carbon::now();
         $this->predicted_available = $predicted_available;
-        $this->updated_by = Auth::user()->id;
+        $this->updated_by          = Auth::user()->id;
         $this->save();
         $this->case->statusBaseReturn(Carbon::now());
     }
 
-    public function updateVehicleIdentification($vehicle_identification) {
+    public function updateVehicleIdentification($vehicle_identification)
+    {
         $this->vehicle_identification = $vehicle_identification;
+        $this->updated_by             = Auth::user()->id;
+        $this->save();
+    }
+
+    public function updateStructure($structure)
+    {
+        $this->structure  = $structure;
         $this->updated_by = Auth::user()->id;
         $this->save();
     }
 
-    public function updateStructure($structure) {
-        $this->structure = $structure;
+    public function updateRegion($region)
+    {
+        $this->region     = $region;
         $this->updated_by = Auth::user()->id;
         $this->save();
     }
 
-    public function updateRegion($region) {
-        $this->region = $region;
+    public function updateBaseLocalization($base_lat, $base_long)
+    {
+        $this->base_lat   = $base_lat;
+        $this->base_long  = $base_long;
         $this->updated_by = Auth::user()->id;
         $this->save();
     }
 
-    public function updateBaseLocalization($base_lat,$base_long) {
-        $this->base_lat = $base_lat;
-        $this->base_long = $base_long;
-        $this->updated_by = Auth::user()->id;
-        $this->save();
-    }
-
-    public function updateActivePrevention($active_prevention) {
+    public function updateActivePrevention($active_prevention)
+    {
         $this->active_prevention = $active_prevention;
-        $this->updated_by = Auth::user()->id;
+        $this->updated_by        = Auth::user()->id;
         $this->save();
-    }    
+    }
 }

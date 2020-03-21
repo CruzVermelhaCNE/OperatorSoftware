@@ -19,15 +19,17 @@ class COVID19AmbulanceController extends Controller
     public function newAmbulance(COVID19NewAmbulance $request)
     {
         $validated = $request->validated();
-        COVID19Ambulance::createAmbulance($validated["structure"],$validated["region"],$validated["vehicle_identification"],0,0,$validated["active_prevention"]);
+        COVID19Ambulance::createAmbulance($validated['structure'], $validated['region'], $validated['vehicle_identification'], 0, 0, $validated['active_prevention']);
     }
 
-    public function getAmbulances() {
+    public function getAmbulances()
+    {
         $ambulances = COVID19Ambulance::all();
         return response()->json($ambulances);
     }
 
-    public function getAmbulance($id) {
+    public function getAmbulance($id)
+    {
         $ambulance = COVID19Ambulance::find($id);
         return response()->json($ambulance);
     }
@@ -38,91 +40,108 @@ class COVID19AmbulanceController extends Controller
         return response()->json($ambulance->contacts);
     }
 
-    public function INOP(COVID19UpdateAmbulanceStatus $request) {
+    public function INOP(COVID19UpdateAmbulanceStatus $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
+        $ambulance = COVID19Ambulance::find($validated['id']);
         $ambulance->statusINOP(null);
     }
 
-    public function available(COVID19UpdateAmbulanceStatus $request) {
+    public function available(COVID19UpdateAmbulanceStatus $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
+        $ambulance = COVID19Ambulance::find($validated['id']);
         $ambulance->statusAvailable();
     }
 
-    public function onBase(COVID19UpdateAmbulanceStatus $request) {
+    public function onBase(COVID19UpdateAmbulanceStatus $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
+        $ambulance = COVID19Ambulance::find($validated['id']);
         $ambulance->statusOnBase();
     }
 
-    public function baseExit(COVID19UpdateAmbulanceStatus $request) {
+    public function baseExit(COVID19UpdateAmbulanceStatus $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
-        $ambulance->statusBaseExit(null,null,null,null,null,null);
+        $ambulance = COVID19Ambulance::find($validated['id']);
+        $ambulance->statusBaseExit(null, null, null, null, null, null);
     }
-    public function arrivalOnScene(COVID19UpdateAmbulanceStatus $request) {
+
+    public function arrivalOnScene(COVID19UpdateAmbulanceStatus $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
-        $ambulance->statusArrivalOnScene(null,null,null,null,null);
+        $ambulance = COVID19Ambulance::find($validated['id']);
+        $ambulance->statusArrivalOnScene(null, null, null, null, null);
     }
-    public function departureFromScene(COVID19UpdateAmbulanceStatus $request) {
+
+    public function departureFromScene(COVID19UpdateAmbulanceStatus $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
-        $ambulance->statusDepartureFromScene(null,null,null,null);
+        $ambulance = COVID19Ambulance::find($validated['id']);
+        $ambulance->statusDepartureFromScene(null, null, null, null);
     }
-    public function arrivalOnDestination(COVID19UpdateAmbulanceStatus $request) {
+
+    public function arrivalOnDestination(COVID19UpdateAmbulanceStatus $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
-        $ambulance->statusArrivalOnDestination(null,null,null);
+        $ambulance = COVID19Ambulance::find($validated['id']);
+        $ambulance->statusArrivalOnDestination(null, null, null);
     }
-    public function departureFromDestination(COVID19UpdateAmbulanceStatus $request) {
+
+    public function departureFromDestination(COVID19UpdateAmbulanceStatus $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
-        $ambulance->statusDepartureFromDestination(null,null);
+        $ambulance = COVID19Ambulance::find($validated['id']);
+        $ambulance->statusDepartureFromDestination(null, null);
     }
-    public function baseReturn(COVID19UpdateAmbulanceStatus $request) {
+
+    public function baseReturn(COVID19UpdateAmbulanceStatus $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
+        $ambulance = COVID19Ambulance::find($validated['id']);
         $ambulance->statusBaseReturn(null);
     }
 
-    public function updateStructure(COVID19UpdateAmbulanceStructure $request) {
+    public function updateStructure(COVID19UpdateAmbulanceStructure $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
-        $ambulance->updateStructure($validated["structure"]);
+        $ambulance = COVID19Ambulance::find($validated['id']);
+        $ambulance->updateStructure($validated['structure']);
     }
 
-    public function updateRegion(COVID19UpdateAmbulanceRegion $request) {
+    public function updateRegion(COVID19UpdateAmbulanceRegion $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
-        $ambulance->updateRegion($validated["region"]);
+        $ambulance = COVID19Ambulance::find($validated['id']);
+        $ambulance->updateRegion($validated['region']);
     }
 
-    public function updateVehicleIdentification(COVID19UpdateAmbulanceVehicleIdentification $request) {
+    public function updateVehicleIdentification(COVID19UpdateAmbulanceVehicleIdentification $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
-        $ambulance->updateVehicleIdentification($validated["vehicle_identification"]);
+        $ambulance = COVID19Ambulance::find($validated['id']);
+        $ambulance->updateVehicleIdentification($validated['vehicle_identification']);
     }
 
-    public function updateActivePrevention(COVID19UpdateAmbulanceActivePrevention $request) {
+    public function updateActivePrevention(COVID19UpdateAmbulanceActivePrevention $request)
+    {
         $validated = $request->validated();
-        $ambulance = COVID19Ambulance::find($validated["id"]);
-        $ambulance->updateActivePrevention($validated["active_prevention"]);
+        $ambulance = COVID19Ambulance::find($validated['id']);
+        $ambulance->updateActivePrevention($validated['active_prevention']);
     }
 
     public function addContact(COVID19AddContact $request)
     {
         $validated = $request->validated();
-        $case      = COVID19Ambulance::find($validated['id']);
-        $case->addContact($validated['contact'],$validated['name'],$validated['sms']);
+        $ambulance = COVID19Ambulance::find($validated['id']);
+        $ambulance->addContact($validated['contact'], $validated['name'], $validated['sms']);
     }
 
     public function removeContact(COVID19RemoveContact $request)
     {
         $validated = $request->validated();
-        $contact      = COVID19AmbulanceContact::find($validated['id']);
+        $contact   = COVID19AmbulanceContact::find($validated['id']);
         $contact->delete();
     }
-
 }
