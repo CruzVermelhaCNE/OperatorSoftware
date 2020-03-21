@@ -2122,7 +2122,7 @@
                             $("#ambulance_contacts_inside").html("");
                         }
                         response.data.forEach(contact => {
-                            $("#ambulance_contacts_inside").append('<p>'+contact.number+' - '+contact.name+' - '+(contact.sms?"Envio de SMS Automático":"Sem Envio de SMS Automático")+' - <a href="#" onclick="removeContact('+contact.id+')">Remover</a></p>');
+                            $("#ambulance_contacts_inside").append('<p>'+contact.contact+' - '+contact.name+' - '+(contact.sms?"Envio de SMS Automático":"Sem Envio de SMS Automático")+' - <a href="#" onclick="removeContact('+contact.id+')">Remover</a></p>');
                         });
                         $("#ambulance").modal('show');
                     })
