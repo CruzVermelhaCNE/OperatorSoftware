@@ -20,6 +20,7 @@ class COVID19AmbulanceNexmoNotification extends Notification
      */
     public function __construct($message)
     {
+        $message = 
         $this->message = $message;
     }
 
