@@ -57,7 +57,7 @@ use App\Http\Requests\COVID19RemoveObservation;
 use App\Notifications\COVID19AmbulanceSlackNotification;
 use App\Notifications\COVID19AmbulanceNexmoNotification;
 use Carbon\Carbon;
-use Illuminate\Notifications\Notification;
+use Notification;
 use Illuminate\Support\Facades\Auth;
 
 class COVID19CaseController extends Controller
