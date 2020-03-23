@@ -27,13 +27,13 @@ class COVID19AmbulanceController extends Controller
         foreach ($ambulances as $key => $ambulance) {
             $current_case = $ambulance->cases->where('status_available', '=', null)->first();
             if ($current_case) {
-                $ambulance->current_case = null;
-            } else {
                 if ($current_case->trashed()) {
                     $ambulances[$key]->current_case = $current_case->case_id;
                 } else {
                     $ambulances[$key]->current_case = null;
                 }
+            } else {
+                $ambulance->current_case = null;
             }
         }
         return response()->json($ambulances);
