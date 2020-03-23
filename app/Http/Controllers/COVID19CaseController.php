@@ -174,7 +174,7 @@ class COVID19CaseController extends Controller
         $old_ambulance = COVID19Ambulance::where('case_id', '=', $case->id)->get();
         if ($old_ambulance->count() == 1) {
             $old_ambulance->first()->INOP(null);
-            $message = "*ATIVAÇÃO COVID-19 | '.$old_ambulance->structure.' ANULADA*";
+            $message = "*ATIVAÇÃO COVID-19 | $old_ambulance->structure ANULADA*";
             $old_ambulance->notify(new COVID19AmbulanceSlackNotification($message));
             //Notification::send($old_ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceNexmoNotification($message));
         }
@@ -474,7 +474,7 @@ class COVID19CaseController extends Controller
         $case          = COVID19Case::find($validated['id']);
         $old_ambulance = COVID19Ambulance::where('case_id', '=', $case->id)->get()->first();
         if ($old_ambulance) {
-            $message = "*ATIVAÇÃO COVID-19 | '.$old_ambulance->structure.' ANULADA*";
+            $message = "*ATIVAÇÃO COVID-19 | $old_ambulance->structure ANULADA*";
             $old_ambulance->notify(new COVID19AmbulanceSlackNotification($message));
             //Notification::send($old_ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceNexmoNotification($message));
             $old_ambulance->statusINOP(null);
