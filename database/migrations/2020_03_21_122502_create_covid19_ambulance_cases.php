@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCOVID19AmbulanceCase extends Migration
+class CreateCOVID19AmbulanceCases extends Migration
 {
     /**
      * Run the migrations.
