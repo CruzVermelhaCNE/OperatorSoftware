@@ -760,93 +760,85 @@
                     </div>
                     <hr />
                     <div id="case_patient_new_accordion">
-                        <div class="card">                            
-                            <div id="case_patient_new_collapse" class="collapse"
-                                aria-labelledby="case_patient_new_heading" data-parent="#case_patient_new_accordion">
-                                <div class="card-body">
-                                    <div class="form-row align-items-center">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h6>Deixar em branco para registar sem informação</h6>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12 form-inline">
-                                                <p><b>Nº RNU:</b> <input autocomplete="off" type="number"
-                                                        id="case_patient_RNU" class="form-control" placeholder="Nº RNU">
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6 form-inline">
-                                                <p><b>Nome Próprio (2 primeiras consoantes):</b> <input
-                                                        autocomplete="off" type="text" id="case_patient_firstname"
-                                                        class="form-control" placeholder="2 primeiras consoantes"></p>
-                                            </div>
-                                            <div class="col-sm-6 form-inline">
-                                                <p><b>Último Apelido (3 primeiras consoantes):</b> <input
-                                                        autocomplete="off" type="text" id="case_patient_lastname"
-                                                        class="form-control" placeholder="3 primeiras consoantes"></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6 form-inline">
-                                                <p><b>Género:</b> <select autocomplete="off" class="form-control"
-                                                        id="case_patient_genero">
-                                                        <option value="">Sem Informação</option>
-                                                        <option value="0">Masculino</option>
-                                                        <option value="1">Feminino</option>
-                                                    </select></p>
-                                            </div>
-                                            <div class="col-sm-6 form-inline">
-                                                <p><b>Data de Nascimento:</b> <input autocomplete="off" type="date"
-                                                        id="case_patient_DoB" class="form-control"></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-3 form-inline">
-                                                <p><b>Caso Suspeito COVID-19:</b> <select autocomplete="off"
-                                                        class="form-control" id="case_patient_suspect">
-                                                        <option value="1">Sim</option>
-                                                        <option value="0">Não</option>
-                                                    </select></p>
-                                            </div>
-                                            <div class="col-sm-3 form-inline">
-                                                <p><b>Validação:</b> <select autocomplete="off" class="form-control"
-                                                        id="case_patient_suspect_validation">
-                                                        <option value="">Sem Informação</option>
-                                                        <option value="CODU">CODU</option>
-                                                        <option value="Equipa">Equipa</option>
-                                                        <option value="Hospital">Hospital</option>
-                                                    </select></p>
-                                            </div>
-                                            <div class="col-sm-6 form-inline">
-                                                <p><b>Caso Confirmado COVID-19:</b> <select autocomplete="off"
-                                                        class="form-control" id="case_patient_confirmed">
-                                                        <option value="">Sem Informação</option>
-                                                        <option value="1">Sim</option>
-                                                        <option value="0">Não</option>
-                                                    </select></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6 form-inline">
-                                                <p><b>Realizados cuidados invasivos:</b><select autocomplete="off"
-                                                        class="form-control" id="case_patient_invasive_care">
-                                                        <option value="">Sem Informação</option>
-                                                        <option value="1">Sim</option>
-                                                        <option value="0">Não</option>
-                                                    </select></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <button type="button" class="btn btn-primary"
-                                                    onclick="insertPatient()">Adicionar
-                                                    Vitima</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="form-row align-items-center">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h6>Deixar em branco para registar sem informação</h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 form-inline">
+                                    <p><b>Nº RNU:</b> <input autocomplete="off" type="number" id="case_patient_RNU"
+                                            class="form-control" placeholder="Nº RNU">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 form-inline">
+                                    <p><b>Nome Próprio (2 primeiras consoantes):</b> <input autocomplete="off"
+                                            type="text" id="case_patient_firstname" class="form-control"
+                                            placeholder="2 primeiras consoantes"></p>
+                                </div>
+                                <div class="col-sm-6 form-inline">
+                                    <p><b>Último Apelido (3 primeiras consoantes):</b> <input autocomplete="off"
+                                            type="text" id="case_patient_lastname" class="form-control"
+                                            placeholder="3 primeiras consoantes"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 form-inline">
+                                    <p><b>Género:</b> <select autocomplete="off" class="form-control"
+                                            id="case_patient_genero">
+                                            <option value="">Sem Informação</option>
+                                            <option value="0">Masculino</option>
+                                            <option value="1">Feminino</option>
+                                        </select></p>
+                                </div>
+                                <div class="col-sm-6 form-inline">
+                                    <p><b>Data de Nascimento:</b> <input autocomplete="off" type="date"
+                                            id="case_patient_DoB" class="form-control"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3 form-inline">
+                                    <p><b>Caso Suspeito COVID-19:</b> <select autocomplete="off" class="form-control"
+                                            id="case_patient_suspect">
+                                            <option value="1">Sim</option>
+                                            <option value="0">Não</option>
+                                        </select></p>
+                                </div>
+                                <div class="col-sm-3 form-inline">
+                                    <p><b>Validação:</b> <select autocomplete="off" class="form-control"
+                                            id="case_patient_suspect_validation">
+                                            <option value="">Sem Informação</option>
+                                            <option value="CODU">CODU</option>
+                                            <option value="Equipa">Equipa</option>
+                                            <option value="Hospital">Hospital</option>
+                                        </select></p>
+                                </div>
+                                <div class="col-sm-6 form-inline">
+                                    <p><b>Caso Confirmado COVID-19:</b> <select autocomplete="off" class="form-control"
+                                            id="case_patient_confirmed">
+                                            <option value="">Sem Informação</option>
+                                            <option value="1">Sim</option>
+                                            <option value="0">Não</option>
+                                        </select></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 form-inline">
+                                    <p><b>Realizados cuidados invasivos:</b><select autocomplete="off"
+                                            class="form-control" id="case_patient_invasive_care">
+                                            <option value="">Sem Informação</option>
+                                            <option value="1">Sim</option>
+                                            <option value="0">Não</option>
+                                        </select></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-primary" onclick="insertPatient()">Adicionar
+                                        Vitima</button>
                                 </div>
                             </div>
                         </div>
