@@ -783,7 +783,7 @@
                                         <div class="row">
                                             <div class="col-sm-12 form-inline">
                                                 <p><b>Nº RNU:</b> <input autocomplete="off" type="number"
-                                                        id="case_patient_rnu" class="form-control" placeholder="Nº RNU">
+                                                        id="case_patient_RNU" class="form-control" placeholder="Nº RNU">
                                                 </p>
                                             </div>
                                         </div>
