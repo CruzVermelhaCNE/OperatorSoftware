@@ -374,7 +374,7 @@ class COVID19CaseController extends Controller
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->COVID19UpdateTeamMemberContact($validated['team_member_id'],$validated['contact']);
+        $case->updateTeamMemberContact($validated['team_member_id'],$validated['contact']);
     }
 
     public function updateTeamMemberType(COVID19UpdateTeamMemberType $request)
