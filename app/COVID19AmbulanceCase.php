@@ -4,9 +4,11 @@ declare(strict_types=1);
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class COVID19AmbulanceCase extends Model
 {
+    use SoftDeletes;
     protected $table = 'covid19_ambulance_cases';
 
     public static function createAmbulanceCase($ambulance_id, $case_id)
