@@ -738,7 +738,7 @@
                             <input type="text" class="form-control" id="case_team_age" placeholder="Idade">
                         </div>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="case_team_contact" placeholder="Idade">
+                            <input type="text" class="form-control" id="case_team_contact" placeholder="Contacto">
                         </div>
                         <div class="col-sm-auto">
                             <select class="form-control" id="case_team_type" placeholder="Tipo">
