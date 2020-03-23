@@ -1600,7 +1600,8 @@
                     name: name,
                 })
                 .then(function (response) {
-                    console.log(response.data);
+                    $("#case_team_age").val(response.data[0].age);
+                    $("#case_team_contact").val(response.data[0].contact);
                 })
                 .catch(function (error) {
                     alert(error);
