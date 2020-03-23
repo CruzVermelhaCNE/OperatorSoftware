@@ -57,7 +57,7 @@ class COVID19Ambulance extends Model
 
     public function cases()
     {
-        return $this->hasMany(COVID19AmbulanceCase::class);
+        return $this->hasMany(COVID19AmbulanceCase::class,"ambulance_id","id");
     }
 
     public function forceUpdate() {
