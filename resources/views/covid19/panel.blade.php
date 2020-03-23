@@ -1867,7 +1867,7 @@
                             template = template.split("{RNU}").join(patient.RNU);
                             template = template.split("{firstname}").join(patient.firstname);
                             template = template.split("{lastname}").join(patient.lastname);
-                            template = template.split("{sex}").join(patient.sex == 1 ? "Masculino": "Feminino");
+                            template = template.split("{sex}").join(patient.sex == 1 ? "Feminino": "Masculino");
                             template = template.split("{DoB}").join(patient.DoB);
                             let DoB_date = new Date(patient.DoB);
                             let age = _calculateAge(DoB_date);
