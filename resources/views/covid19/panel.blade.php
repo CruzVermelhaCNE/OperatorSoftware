@@ -1629,8 +1629,10 @@
                     name: name,
                 })
                 .then(function (response) {
-                    $("#case_team_age").val(response.data[0].age);
-                    $("#case_team_contact").val(response.data[0].contact);
+                    if(response.data[0]) {
+                        $("#case_team_age").val(response.data[0].age);
+                        $("#case_team_contact").val(response.data[0].contact);
+                    }
                 })
                 .catch(function (error) {
                     alert(error);
