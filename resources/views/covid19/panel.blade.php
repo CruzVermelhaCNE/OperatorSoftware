@@ -125,7 +125,7 @@
     .ui-helper-hidden-accessible {
         display: none;
     }
-    
+
     #case_source_map {
         height: 500px;
         width: 500px;
@@ -4083,12 +4083,17 @@
             let address = $("#case_source_map_search").val();
             $.get('https://nominatim.openstreetmap.org/search?format=json&q='+address, function(data){
                 console.log(data);
+                if(data[0]) {
+                    source_map.panTo(new L.LatLng(data[0].lat, data[0].lon));
+                }
             });
         });
         $( "#case_destination_map_search" ).change(function() {
             let address = $("#case_destination_map_search").val();
             $.get('https://nominatim.openstreetmap.org/search?format=json&q='+address, function(data){
-                console.log(data);
+                if(data[0]) {
+                    source_map.panTo(new L.LatLng(data[0].lat, data[0].lon));
+                }
             });
         });
     });
