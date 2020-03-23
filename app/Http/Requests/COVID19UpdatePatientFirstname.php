@@ -15,7 +15,7 @@ class COVID19UpdatePatientFirstname extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "patient_id" => ['required', 'exists:covid19_case_patients'],
+            "patient_id" => ['required', 'exists:covid19_case_patients,id'],
             "firstname" => ['string', 'nullable'],
         ];
     }

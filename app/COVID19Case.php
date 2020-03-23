@@ -132,7 +132,7 @@ class COVID19Case extends Model
     }
 
     public function removePatient($patient_id) {
-        $patient   = COVID19CasePatient::find("id",$patient_id);
+        $patient   = COVID19CasePatient::find($patient_id);
         $patient->delete();
         $this->forceUpdate();
     }
