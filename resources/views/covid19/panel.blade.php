@@ -719,8 +719,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div id="case_source_map"></div>
-                            <div id="case_destination_map"></div>
+                            <div class="col-sm-6">
+                                <h2>Origem</h2>
+                                <div id="case_source_map"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <h2>Destino</h2>
+                                <div id="case_destination_map"></div>
+                            </div>
                         </div>
                     </div>
                     <div id="occorrence_data_create" style="display:none">
@@ -1307,7 +1313,7 @@
 
 <script type="covid19/template" id="team_member_template">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-3">
             <div id="team_member_name_display{id}">
                 <p><b>Nome:</b> <a href="#" onclick="updateTeamMemberName({id})">{name}</a></p>
             </div>
