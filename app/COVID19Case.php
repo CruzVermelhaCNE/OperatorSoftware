@@ -71,63 +71,63 @@ class COVID19Case extends Model
     public function updatePatientRNU($patient_id, $RNU)
     {
         $patient   = COVID19CasePatient::find($patient_id);
-        $patient->updatePatientRNU($RNU);
+        $patient->updateRNU($RNU);
         $this->forceUpdate();
     }    
 
     public function updatePatientFirstname($patient_id,$firstname)
     {
         $patient   = COVID19CasePatient::find($patient_id);
-        $patient->updatePatientFirstname($firstname);
+        $patient->updateFirstname($firstname);
         $this->forceUpdate();
     }
 
     public function updatePatientLastname($patient_id,$lastname)
     {
         $patient   = COVID19CasePatient::find($patient_id);
-        $patient->updatePatientLastname($lastname);
+        $patient->updateLastname($lastname);
         $this->forceUpdate();
     }
 
     public function updatePatientSex($patient_id,$sex)
     {
         $patient   = COVID19CasePatient::find($patient_id);
-        $patient->updatePatientSex($sex);
+        $patient->updateSex($sex);
         $this->forceUpdate();
     }
 
     public function updatePatientDoB($patient_id,$DoB)
     {
         $patient   = COVID19CasePatient::find($patient_id);
-        $patient->updatePatientDoB($DoB);
+        $patient->updateDoB($DoB);
         $this->forceUpdate();
     }
 
     public function updatePatientSuspect($patient_id,$suspect)
     {
         $patient   = COVID19CasePatient::find($patient_id);
-        $patient->updatePatientSuspect($suspect);
+        $patient->updateSuspect($suspect);
         $this->forceUpdate();
     }
 
     public function updatePatientSuspectValidation($patient_id,$suspect_validation)
     {
         $patient   = COVID19CasePatient::find($patient_id);
-        $patient->updatePatientSuspectValidation($suspect_validation);
+        $patient->updateSuspectValidation($suspect_validation);
         $this->forceUpdate();
     }
 
     public function updatePatientConfirmed($patient_id,$confirmed)
     {
         $patient   = COVID19CasePatient::find($patient_id);
-        $patient->updatePatientConfirmed($confirmed);
+        $patient->updateConfirmed($confirmed);
         $this->forceUpdate();
     }
 
     public function updatePatientInvasiveCare($patient_id,$invasive_care)
     {
         $patient   = COVID19CasePatient::find($patient_id);
-        $patient->updatePatientInvasiveCare($invasive_care);
+        $patient->updateInvasiveCare($invasive_care);
         $this->forceUpdate();
     }
 
