@@ -2394,23 +2394,23 @@
         });
     }
 
-    function updatePatientInformationRNU(patient_id) {
+    function updatePatientRNU(patient_id) {
         $("#patient_information_RNU_display"+patient_id).hide();
         $("#patient_information_RNU_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationRNU(patient_id) {
+    function cancelUpdatePatientRNU(patient_id) {
         $("#patient_information_RNU_edit"+patient_id).hide();
         $("#patient_information_RNU_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationRNU(patient_id) {
+    function submitUpdatePatientRNU(patient_id) {
         let id = $("#case_id").html();
         let rnu = $("#patient_information_RNU_edit_input"+patient_id).val();
         if(rnu == "") {
             rnu = null;
         }
-        cancelUpdatePatientInformationRNU(patient_id);
+        cancelUpdatePatientRNU(patient_id);
         axios.post("{{route('covid19.updatePatientRNU')}}", {
             id: id,
             patient_id: patient_id,
@@ -2424,24 +2424,24 @@
         });
     }
 
-    function updatePatientInformationFirstname(patient_id) {
+    function updatePatientFirstname(patient_id) {
         $("#patient_information_firstname_display"+patient_id).hide();
         $("#patient_information_firstname_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationFirstname(patient_id) {
+    function cancelUpdatePatientFirstname(patient_id) {
         $("#patient_information_firstname_edit"+patient_id).hide();
         $("#patient_information_firstname_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationFirstname(patient_id) {
+    function submitUpdatePatientFirstname(patient_id) {
         let id = $("#case_id").html();
         let firstname = $("#patient_information_firstname_edit_input"+patient_id).val();
         $("#patient_information_firstname_edit_input"+patient_id).val("");
         if(firstname == "") {
             firstname = null;
         }
-        cancelUpdatePatientInformationFirstname(patient_id);
+        cancelUpdatePatientFirstname(patient_id);
         axios.post("{{route('covid19.updatePatientFirstname')}}", {
             id: id,
             patient_id: patient_id,
@@ -2455,24 +2455,24 @@
         });
     }
 
-    function updatePatientInformationLastname(patient_id) {
+    function updatePatientLastname(patient_id) {
         $("#patient_information_lastname_display"+patient_id).hide();
         $("#patient_information_lastname_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationLastname(patient_id) {
+    function cancelUpdatePatientLastname(patient_id) {
         $("#patient_information_lastname_edit"+patient_id).hide();
         $("#patient_information_lastname_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationLastname(patient_id) {
+    function submitUpdatePatientLastname(patient_id) {
         let id = $("#case_id").html();
         let lastname = $("#patient_information_lastname_edit_input"+patient_id).val();
         $("#patient_information_lastname_edit_input"+patient_id).val("");
         if(lastname == "") {
             lastname = null;
         }
-        cancelUpdatePatientInformationLastname(patient_id);
+        cancelUpdatePatientLastname(patient_id);
         axios.post("{{route('covid19.updatePatientLastname')}}", {
             id: id,
             patient_id: patient_id,
@@ -2486,17 +2486,17 @@
         });
     }
 
-    function updatePatientInformationSex(patient_id) {
+    function updatePatientSex(patient_id) {
         $("#patient_information_sex_display"+patient_id).hide();
         $("#patient_information_sex_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationSex(patient_id) {
+    function cancelUpdatePatientSex(patient_id) {
         $("#patient_information_sex_edit"+patient_id).hide();
         $("#patient_information_sex_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationSex(patient_id) {
+    function submitUpdatePatientSex(patient_id) {
         let id = $("#case_id").html();
         let sex = $("#patient_information_sex_edit_input"+patient_id).val();
         $("#patient_information_sex_edit_input"+patient_id).val("");
@@ -2505,7 +2505,7 @@
             sex = null;
         }
         $("#patient_information_sex").html(sex_display);
-        cancelUpdatePatientInformationSex(patient_id);
+        cancelUpdatePatientSex(patient_id);
         axios.post("{{route('covid19.updatePatientSex')}}", {
             id: id,
             patient_id: patient_id,
@@ -2519,24 +2519,24 @@
         });
     }
 
-    function updatePatientInformationDoB(patient_id) {
+    function updatePatientDoB(patient_id) {
         $("#patient_information_DoB_display"+patient_id).hide();
         $("#patient_information_DoB_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationDoB(patient_id) {
+    function cancelUpdatePatientDoB(patient_id) {
         $("#patient_information_DoB_edit"+patient_id).hide();
         $("#patient_information_DoB_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationDoB(patient_id) {
+    function submitUpdatePatientDoB(patient_id) {
         let id = $("#case_id").html();
         let DoB = $("#patient_information_DoB_edit_input"+patient_id).val();
         $("#patient_information_DoB_edit_input"+patient_id).val("");
         if(DoB == "") {
             DoB = null;
         }
-        cancelUpdatePatientInformationDoB(patient_id);
+        cancelUpdatePatientDoB(patient_id);
         axios.post("{{route('covid19.updatePatientDoB')}}", {
             id: id,
             patient_id: patient_id,
@@ -2550,21 +2550,21 @@
         });
     }
 
-    function updatePatientInformationSuspect(patient_id) {
+    function updatePatientSuspect(patient_id) {
         $("#patient_information_suspect_display"+patient_id).hide();
         $("#patient_information_suspect_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationSuspect(patient_id) {
+    function cancelUpdatePatientSuspect(patient_id) {
         $("#patient_information_suspect_edit"+patient_id).hide();
         $("#patient_information_suspect_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationSuspect(patient_id) {
+    function submitUpdatePatientSuspect(patient_id) {
         let id = $("#case_id").html();
         let suspect = $("#patient_information_suspect_edit_input"+patient_id).val();
         $("#patient_information_suspect_edit_input"+patient_id).val("");  
-        cancelUpdatePatientInformationSuspect(patient_id);
+        cancelUpdatePatientSuspect(patient_id);
         axios.post("{{route('covid19.updatePatientSuspect')}}", {
             id: id,
             patient_id: patient_id,
@@ -2578,24 +2578,24 @@
         });
     }
 
-    function updatePatientInformationSuspectValidation(patient_id) {
+    function updatePatientSuspectValidation(patient_id) {
         $("#patient_information_suspect_validation_display"+patient_id).hide();
         $("#patient_information_suspect_validation_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationSuspectValidation(patient_id) {
+    function cancelUpdatePatientSuspectValidation(patient_id) {
         $("#patient_information_suspect_validation_edit"+patient_id).hide();
         $("#patient_information_suspect_validation_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationSuspectValidation(patient_id) {
+    function submitUpdatePatientSuspectValidation(patient_id) {
         let id = $("#case_id").html();
         let suspect_validation = $("#patient_information_suspect_validation_edit_input"+patient_id).val();
         $("#patient_information_suspect_validation_edit_input"+patient_id).val("");
         if(suspect_validation == "") {
             suspect_validation = null;
         }   
-        cancelUpdatePatientInformationSuspectValidation(patient_id);
+        cancelUpdatePatientSuspectValidation(patient_id);
         axios.post("{{route('covid19.updatePatientSuspectValidation')}}", {
             id: id,
             patient_id: patient_id,
@@ -2609,24 +2609,24 @@
         });
     }
 
-    function updatePatientInformationConfirmed(patient_id) {
+    function updatePatientConfirmed(patient_id) {
         $("#patient_information_confirmed_display"+patient_id).hide();
         $("#patient_information_confirmed_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationConfirmed(patient_id) {
+    function cancelUpdatePatientConfirmed(patient_id) {
         $("#patient_information_confirmed_edit"+patient_id).hide();
         $("#patient_information_confirmed_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationConfirmed(patient_id) {
+    function submitUpdatePatientConfirmed(patient_id) {
         let id = $("#case_id").html();
         let confirmed = $("#patient_information_confirmed_edit_input"+patient_id).val();
         $("#patient_information_confirmed_edit_input"+patient_id).val("");
         if(confirmed == "") {
             confirmed = null;
         }   
-        cancelUpdatePatientInformationConfirmed(patient_id);
+        cancelUpdatePatientConfirmed(patient_id);
         axios.post("{{route('covid19.updatePatientConfirmed')}}", {
             id: id,
             patient_id: patient_id,
@@ -2640,24 +2640,24 @@
         });
     }
 
-    function updatePatientInformationInvasiveCare(patient_id) {
+    function updatePatientInvasiveCare(patient_id) {
         $("#patient_information_invasive_care_display"+patient_id).hide();
         $("#patient_information_invasive_care_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationInvasiveCare(patient_id) {
+    function cancelUpdatePatientInvasiveCare(patient_id) {
         $("#patient_information_invasive_care_edit"+patient_id).hide();
         $("#patient_information_invasive_care_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationInvasiveCare(patient_id) {
+    function submitUpdatePatientInvasiveCare(patient_id) {
         let id = $("#case_id").html();
         let invasive_care = $("#patient_information_invasive_care_edit_input"+patient_id).val();
         $("#patient_information_invasive_care_edit_input"+patient_id+patient_id).val("");
         if(invasive_care == "") {
             invasive_care = null;
         }    
-        cancelUpdatePatientInformationInvasiveCare(patient_id);
+        cancelUpdatePatientInvasiveCare(patient_id);
         axios.post("{{route('covid19.updatePatientInvasiveCare')}}", {
             id: id,
             patient_id: patient_id,
