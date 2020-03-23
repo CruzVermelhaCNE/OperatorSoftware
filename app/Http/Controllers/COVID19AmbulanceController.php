@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\COVID19Ambulance;
-use App\COVID19AmbulanceContact;
 use App\Http\Requests\COVID19AddContact;
 use App\Http\Requests\COVID19NewAmbulance;
 use App\Http\Requests\COVID19RemoveContact;
@@ -26,12 +25,11 @@ class COVID19AmbulanceController extends Controller
     {
         $ambulances = COVID19Ambulance::all();
         foreach ($ambulances as $key => $ambulance) {
-            $current_case = $ambulance->cases->where('status_available','=',null)->first();
-            if($current_case) {
+            $current_case = $ambulance->cases->where('status_available', '=', null)->first();
+            if ($current_case) {
                 $ambulances[$key]->current_case = $current_case->case_id;
-            }
-            else {
-                $ambulances[$key]->current_case = null; 
+            } else {
+                $ambulances[$key]->current_case = null;
             }
         }
         return response()->json($ambulances);
@@ -39,7 +37,13 @@ class COVID19AmbulanceController extends Controller
 
     public function getAmbulance($id)
     {
-        $ambulance = COVID19Ambulance::find($id);
+        $ambulance    = COVID19Ambulance::find($id);
+        $current_case = $ambulance->cases->where('status_available', '=', null)->first();
+        if ($current_case) {
+            $ambulance->current_case = $current_case->case_id;
+        } else {
+            $ambulance->current_case = null;
+        }
         return response()->json($ambulance);
     }
 
@@ -150,7 +154,7 @@ class COVID19AmbulanceController extends Controller
     public function removeContact(COVID19RemoveContact $request)
     {
         $validated = $request->validated();
-        $ambulance   = COVID19Ambulance::find($validated['id']);
+        $ambulance = COVID19Ambulance::find($validated['id']);
         $ambulance->removeContact($validated['contact_id']);
     }
 }
