@@ -15,7 +15,7 @@ class COVID19InsertPatient extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "rnu" => ['string', 'nullable'],
+            "RNU" => ['string', 'nullable'],
             "lastname" => ['string', 'nullable'],
             "firstname" => ['string', 'nullable'],
             "sex" => ['boolean', 'nullable'],
