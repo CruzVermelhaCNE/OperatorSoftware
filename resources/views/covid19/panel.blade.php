@@ -1220,7 +1220,7 @@
             </div>
             <div id="team_member_name_edit{id}" class="form-inline" style="display:none;">
                 <p><b>Nome:</b> <input autocomplete="off" type="text"
-                        id="team_driver_name_edit_input{id}" class="form-control" placeholder="Nome" value={name}> <a
+                        id="team_member_name_edit_input{id}" class="form-control" placeholder="Nome" value={name}> <a
                         href="#" onclick="cancelUpdateTeamMemberName({id})">Cancelar</a> <a href="#"
                         onclick="submitUpdateTeamMemberName({id})">Atualizar</a></p>
             </div>
