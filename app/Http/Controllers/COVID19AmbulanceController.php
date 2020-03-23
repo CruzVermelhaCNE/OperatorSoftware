@@ -26,7 +26,7 @@ class COVID19AmbulanceController extends Controller
     {
         $ambulances = COVID19Ambulance::all();
         foreach ($ambulances as $key => $ambulance) {
-            $ambulances[$key]->current_case = $ambulance->cases->where('status_available','=',null)->first() || null;
+            $ambulances[$key]->current_case = $ambulance->cases->where('status_available','=',null)->first();
         }
         return response()->json($ambulances);
     }
