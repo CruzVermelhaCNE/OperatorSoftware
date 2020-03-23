@@ -2061,7 +2061,7 @@
 
     function insertPatient() {
         let id = $("#case_id").html();
-        let rnu = $("#case_patient_RNU").val();
+        let RNU = $("#case_patient_RNU").val();
         let firstname = $("#case_patient_firstname").val();
         let lastname = $("#case_patient_lastname").val();
         let genero = $("#case_patient_genero").val();
@@ -2070,8 +2070,8 @@
         let suspect_validation = $("#case_patient_suspect_validation").val();
         let confirmed = $("#case_patient_confirmed").val();
         let invasive_care = $("#case_patient_invasive_care").val();
-        if(rnu == "") {
-            rnu = null;
+        if(RNU == "") {
+            RNU = null;
         }
         if(firstname == "") {
             firstname = null;
@@ -2096,7 +2096,7 @@
         }
         axios.post("{{route('covid19.insertPatient')}}", {
             id: id,
-            rnu: rnu,
+            RNU: RNU,
             firstname: firstname,
             lastname: lastname,
             sex: genero,
