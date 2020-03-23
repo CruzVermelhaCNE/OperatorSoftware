@@ -1594,7 +1594,7 @@
         $( "#case_team_name" ).blur(function() {
             let ambulance_id = $("#case_team_name").data('ambulance-id');
             let name = $("#case_team_name").val();
-            axios.post("{{route('covid19.ambulance_team_member','')}}/"+ambulance_id, {
+            axios.post("{{route('covid19.ambulance_team_member')}}", {
                 id: ambulance_id,
                 name: name,
             })
