@@ -1101,6 +1101,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js" integrity="sha256-fNoRrwkP2GuYPbNSJmMJOCyfRB2DhPQe0rGTgzRsyso=" crossorigin="anonymous"></script>
+<script src="{{ url('/js/Control.OSMGeocoder.js') }}" type="text/javascript"></script>
 @parent
 <script type="covid19/template" id="openCase_template">
     <a onclick="openCase({id})" data-case-id="{id}" id="openCase{id}" class="pending"><div class="amb case-pending">
