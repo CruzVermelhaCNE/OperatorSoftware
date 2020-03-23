@@ -73,7 +73,6 @@ Route::prefix('covid19')->name('covid19.')->group(function () {
 
     Route::post('newCase', 'COVID19CaseController@newCase')->name('newCase');
     Route::post('newAmbulance', 'COVID19AmbulanceController@newAmbulance')->name('newAmbulance');
-    Route::post('insertPatient', 'COVID19CaseController@insertPatient')->name('insertPatient');
     Route::post('insertEvent', 'COVID19CaseController@insertEvent')->name('insertEvent');
     Route::post('insertAmbulance', 'COVID19CaseController@insertAmbulance')->name('insertAmbulance');
     Route::post('insertSIEMAmbulance', 'COVID19CaseController@insertSIEMAmbulance')->name('insertSIEMAmbulance');

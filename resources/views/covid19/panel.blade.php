@@ -852,7 +852,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <button type="button" class="btn btn-primary"
-                                                    onclick="addNewPatient()">Adicionar
+                                                    onclick="insertPatient()">Adicionar
                                                     Vitima</button>
                                             </div>
                                         </div>
@@ -2059,7 +2059,7 @@
         $("#occorence_team_create_insert").show();
     }
 
-    function submitPatientInsert() {
+    function insertPatient() {
         let id = $("#case_id").html();
         let rnu = $("#occorence_patient_create_rnu").val();
         let lastname = $("#occorence_patient_create_lastname").val();
