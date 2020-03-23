@@ -728,7 +728,6 @@
                     <h4>Dados Equipa</h4>
                     <div id="occorrence_team">
                     </div>
-                    <hr />
                     <h6>Adicionar Membro de Equipa</h6>
                     <div class="form-row align-items-center">
                         <div class="col-sm-3">
@@ -756,9 +755,7 @@
                 <div id="case_patient">
                     <h4>Dados Vitima</h4>
                     <div id="occorrence_patient">
-
                     </div>
-
                     <div class="row">
                         <div class="col-sm-12">
                             <h6>Adicionar Vitima</h6>
