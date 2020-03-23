@@ -6,13 +6,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class COVID19CaseTeamMember extends Model
+class COVID19AmbulanceTeamMember extends Model
 {
     protected $table = "covid19_ambulance_team_members";
     use SoftDeletes;
     public static function createCaseTeamMember($ambulance_id, $case_id, $name,$age, $contact, $type)
     {
-        $ambulance_team               = new COVID19CaseTeamMember();
+        $ambulance_team               = new COVID19AmbulanceTeamMember();
         $ambulance_team->ambulance_id = $ambulance_id;
         $ambulance_team->case_id      = $case_id;
         $ambulance_team->name         = $name;

@@ -56,7 +56,7 @@ class COVID19Case extends Model
 
     public function team_members()
     {
-        return $this->hasMany(COVID19CaseTeamMember::class,"case_id","id");
+        return $this->hasMany(COVID19AmbulanceTeamMember::class,"case_id","id");
     }
 
     public function forceUpdate() {
@@ -190,14 +190,14 @@ class COVID19Case extends Model
     public function addTeamMember($name, $age, $contact, $type)
     {
         $ambulance_id = $this->ambulance->first()->id;
-        COVID19CaseTeamMember::createCaseTeamMember($ambulance_id,$this->id,$name,$age,$contact,$type);
+        COVID19AmbulanceTeamMember::createCaseTeamMember($ambulance_id,$this->id,$name,$age,$contact,$type);
         $this->forceUpdate();
         $this->addOperator();
     }
 
     public function updateTeamMemberName($team_member_id,$name)
     {
-        $team_member   = COVID19CaseTeamMember::find($team_member_id);
+        $team_member   = COVID19AmbulanceTeamMember::find($team_member_id);
         $team_member->updateName($name);
         $this->forceUpdate();
         $this->addOperator();
@@ -205,7 +205,7 @@ class COVID19Case extends Model
 
     public function updateTeamMemberAge($team_member_id,$age)
     {
-        $team_member   = COVID19CaseTeamMember::find($team_member_id);
+        $team_member   = COVID19AmbulanceTeamMember::find($team_member_id);
         $team_member->updateAge($age);
         $this->forceUpdate();
         $this->addOperator();
@@ -213,7 +213,7 @@ class COVID19Case extends Model
 
     public function updateTeamMemberContact($team_member_id,$contact)
     {
-        $team_member   = COVID19CaseTeamMember::find($team_member_id);
+        $team_member   = COVID19AmbulanceTeamMember::find($team_member_id);
         $team_member->updateContact($contact);
         $this->forceUpdate();
         $this->addOperator();
@@ -221,14 +221,14 @@ class COVID19Case extends Model
 
     public function updateTeamMemberType($team_member_id,$type)
     {
-        $team_member   = COVID19CaseTeamMember::find($team_member_id);
+        $team_member   = COVID19AmbulanceTeamMember::find($team_member_id);
         $team_member->updateType($type);
         $this->forceUpdate();
         $this->addOperator();
     }
 
     public function removeTeamMember($member_id) {
-        $member   = COVID19CaseTeamMember::find($member_id);
+        $member   = COVID19AmbulanceTeamMember::find($member_id);
         $member->delete();
         $this->forceUpdate();
     }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\COVID19Ambulance;
+use App\COVID19AmbulanceTeamMember;
+use App\COVID19CasePatient;
 use App\Http\Requests\COVID19AddContact;
 use App\Http\Requests\COVID19NewAmbulance;
 use App\Http\Requests\COVID19RemoveContact;
@@ -64,7 +66,8 @@ class COVID19AmbulanceController extends Controller
     }
 
     public function getTeamMembers($id) {
-        
+        $team_members = COVID19AmbulanceTeamMember::all()->where('ambulance_id','=',$id)->orderBy('id', 'desc')->groupBy('name')->get();
+        return response()->json($team_members);
     }
 
     public function INOP(COVID19UpdateAmbulanceStatus $request)
