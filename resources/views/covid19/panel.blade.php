@@ -2014,6 +2014,7 @@
                     $("#ambulance-available-button").show();
                     $("#ambulance-on-base-button").show();
                 }
+                console.log(response.data);
                 if(response.data.current_case != null) {
                     $("#ambulance-open-case-button").show();
                     $("#ambulance-open-case-button").attr("onclick","closeAmbulance();openCase("+response.data.current_case+")");
