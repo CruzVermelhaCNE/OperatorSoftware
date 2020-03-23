@@ -2043,20 +2043,11 @@
         $("#ambulance").modal('hide');
     }
 
-    function openPatientInsert() {
-        $("#occorence_patient_create_validate").hide();
-        $("#occorence_patient_create_insert").show();
-    }
-
     function openDataInsert() {
         $("#occorence_data_create_validate").hide();
         $("#occorence_data_create_insert").show();
     }
 
-    function openTeamInsert() {
-        $("#occorence_team_create_validate").hide();
-        $("#occorence_team_create_insert").show();
-    }
 
     function insertPatient() {
         let id = $("#case_id").html();
@@ -2115,9 +2106,7 @@
             invasive_care: invasive_care
         })
         .then(function (response) {
-            cancelPatientInsert();
-            closeCase();
-            openCase(id);
+
         })
         .catch(function (error) {
             alert(error);
@@ -2200,13 +2189,6 @@
             alert(error);
         });
 
-    }
-
-
-
-    function cancelPatientInsert() {
-        $("#occorence_patient_create_validate").show();
-        $("#occorence_patient_create_insert").hide();
     }
 
     function cancelDataInsert() {
@@ -3698,8 +3680,6 @@
                 observation: observation,
             })
             .then(function (response) {
-                closeCase();
-                openCase(id);
             })
             .catch(function (error) {
                 alert(error);
@@ -3714,8 +3694,6 @@
             observation_id: id
         })
         .then(function (response) {
-            closeCase();
-            openCase(case_id);
         })
         .catch(function (error) {
             alert(error);
@@ -3740,8 +3718,7 @@
             type: type
         })
         .then(function (response) {
-            closeAmbulance();
-            openAmbulance(id);
+
         })
         .catch(function (error) {
             alert(error);
