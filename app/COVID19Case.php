@@ -39,7 +39,7 @@ class COVID19Case extends Model
     ];
 
     public function ambulance() {
-        return $this->hasMany(COVID19AmbulanceCase::class);
+        return $this->hasMany(COVID19AmbulanceCase::class,"case_id","id");
     }
 
     public function operators() {
@@ -51,12 +51,12 @@ class COVID19Case extends Model
     }
 
     public function patients() {
-        return $this->hasMany(COVID19CasePatient::class);
+        return $this->hasMany(COVID19CasePatient::class,"case_id","id");
     }
 
     public function team_members()
     {
-        return $this->hasMany(COVID19CaseTeamMember::class);
+        return $this->hasMany(COVID19CaseTeamMember::class,"case_id","id");
     }
 
     public function forceUpdate() {
