@@ -1886,6 +1886,18 @@
                     .catch(function (error) {
                         alert(error);
                     })
+                    
+                axios.get("{{route('covid19.ambulance_team_members','')}}/"+response.data.ambulance_id)
+                    .then(function (response) {
+                        let team_members = Object.values(response.data);
+                        $( "#case_team_name" ).autocomplete({
+                            source: team_members
+                        });
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    })
+                    
 
                 axios.get("{{route('covid19.case_operators','')}}/"+case_id)
                     .then(function (response) {
