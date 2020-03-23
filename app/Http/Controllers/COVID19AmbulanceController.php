@@ -67,7 +67,7 @@ class COVID19AmbulanceController extends Controller
 
     public function getTeamMembers($id)
     {
-        $team_members = COVID19AmbulanceTeamMember::where('ambulance_id', '=', $id)->orderBy('id','desc')->groupBy('name')->get()->keys();
+        $team_members = COVID19AmbulanceTeamMember::where('ambulance_id', '=', $id)->get()->sortByDesc('id')->groupBy('name')->keys();
         return response()->json($team_members);
     }
 
@@ -77,7 +77,7 @@ class COVID19AmbulanceController extends Controller
         $team_member = COVID19AmbulanceTeamMember::where([
             ['ambulance_id','=',$validated['id']],
             ['name','=',$validated['name']],
-        ])->orderBy('id','desc')->groupBy('name')->get()->first();
+        ])->get()->sortByDesc('id')->groupBy('name')->first();
         return response()->json($team_member);
     }
 
