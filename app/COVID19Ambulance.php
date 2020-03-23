@@ -164,8 +164,10 @@ class COVID19Ambulance extends Model
         $this->predicted_available                  = $predicted_available;
         $this->updated_by                           = Auth::user()->id;
         $this->save();
+        COVID19AmbulanceCase::createAmbulanceCase($this->id,$case_id);
         $this->case->addVehicleInformation($this->structure, $this->vehicle_identification, 1);
         $this->case->statusActivation(Carbon::now());
+        $this->forceUpdate();
     }
 
     public function statusBaseExit($predicted_arrival_on_scene, $predicted_departure_from_scene, $predicted_arrival_on_destination, $predicted_departure_from_destination, $predicted_base_return, $predicted_available)
