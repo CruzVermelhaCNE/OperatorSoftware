@@ -1428,6 +1428,9 @@
     }
 
     function createActiveAmbulance(ambulance) {
+        if(ambulance.current_case == undefined) {
+            return;
+        }
         axios.get("{{route('covid19.case','')}}/"+ambulance.current_case)
             .then(function (response) {
                 if(response.data.street == null) {
@@ -1494,6 +1497,9 @@
     }
 
     function updateActiveAmbulance(ambulance,old_status) {
+        if(ambulance.current_case == undefined) {
+            return;
+        }
         axios.get("{{route('covid19.case','')}}/"+ambulance.current_case)
             .then(function (response) {
                 updateOnHoldAmbulance(ambulance,old_status);
@@ -1646,6 +1652,9 @@
 
     function openCase(id) {
         let case_id = id;
+        if(ambulance.current_case == null) {
+            return;
+        }
         axios.get("{{route('covid19.case','')}}/"+case_id)
             .then(function (response) {
                 let ambulance_id = response.data.ambulance_id;
