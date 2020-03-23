@@ -2019,8 +2019,7 @@
                     })
 
                 $("#case").modal('show');
-                resetMap();
-
+                //resetMap();
             })
             .catch(function (error) {
                 alert(error);
