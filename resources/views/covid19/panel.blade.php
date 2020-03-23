@@ -760,17 +760,7 @@
                     </div>
                     <hr />
                     <div id="case_patient_new_accordion">
-                        <div class="card">
-                            <div class="card-header" id="case_patient_new_heading">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse"
-                                        data-target="#case_patient_new_collapse" aria-expanded="false"
-                                        aria-controls="case_patient_new_collapse">
-                                        Adicionar Vitima
-                                    </button>
-                                </h5>
-                            </div>
-
+                        <div class="card">                            
                             <div id="case_patient_new_collapse" class="collapse"
                                 aria-labelledby="case_patient_new_heading" data-parent="#case_patient_new_accordion">
                                 <div class="card-body">
@@ -1234,6 +1224,7 @@
         </div>
     </div>
     <button type="button" class="btn btn-danger" onclick="removePatient({id})">Remover Vitima</button>
+    <hr/>
 </script>
 
 <script type="covid19/template" id="team_member_template">
@@ -1287,8 +1278,8 @@
         </div>
     </div>
     <button type="button" class="btn btn-danger" onclick="removeTeamMember({id})">Remover Membro da Equipa</button>
+    <hr />
 </script>
-
 <script>
     let cases_history = false;
     function _calculateAge(birthday) {

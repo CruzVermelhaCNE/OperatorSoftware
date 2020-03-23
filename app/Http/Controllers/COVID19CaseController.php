@@ -477,9 +477,10 @@ class COVID19CaseController extends Controller
             $message = "*ATIVAÇÃO COVID-19 | '.$old_ambulance->structure.' ANULADA*";
             $old_ambulance->notify(new COVID19AmbulanceSlackNotification($message));
             //Notification::send($old_ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceNexmoNotification($message));
-            $old_ambulance->INOP(null);
+            $old_ambulance->statusINOP(null);
         }
         if (! $case->trashed()) {
+            $case->cancel();
             $case->delete();
         }
     }

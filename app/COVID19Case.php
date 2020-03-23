@@ -469,4 +469,8 @@ class COVID19Case extends Model
     public function complete_source() {
         return $this->street . ", " . $this->parish . ", ". $this->county . ', '. $this->district;
     }
+
+    public function cancel() {
+        $this->ambulance()->delete();
+    }
 }
