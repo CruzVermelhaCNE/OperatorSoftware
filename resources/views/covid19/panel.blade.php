@@ -1855,16 +1855,19 @@
                         response.data.forEach(patient => {
                             let template = $("#patient_template").html();
                             template = template.split("{id}").join(patient.id);
-                            template = template.split("{RNU}").join(patient.RNU);
-                            template = template.split("{firstname}").join(patient.firstname);
-                            template = template.split("{lastname}").join(patient.lastname);
+                            template = template.split("{RNU}").join(patient.RNU == null ? "Sem Informação": patient.RNU);
+                            template = template.split("{firstname}").join(patient.firstname == null ? "Sem Informação": patient.firstname);
+                            template = template.split("{lastname}").join(patient.lastname == null ? "Sem Informação": patient.lastname);
                             template = template.split("{sex}").join(patient.sex == 1 ? "Feminino": "Masculino");
-                            template = template.split("{DoB}").join(patient.DoB);
-                            let DoB_date = new Date(patient.DoB);
-                            let age = _calculateAge(DoB_date);
+                            template = template.split("{DoB}").join(patient.DoB == null ? "Sem Informação": patient.DoB);
+                            let age = "Sem Informação";
+                            if(patient.DoB != null) {
+                                let DoB_date = new Date(patient.DoB);
+                                age = _calculateAge(DoB_date);
+                            }
                             template = template.split("{age}").join(age);
                             template = template.split("{suspect}").join(patient.suspect == 1 ? "Sim":"Não");
-                            template = template.split("{validation}").join(patient.suspect_validation);
+                            template = template.split("{validation}").join(patient.suspect_validation == null ? "": patient.suspect_validation);
                             template = template.split("{confirmed}").join(patient.confirmed == 1 ? "Sim":"Não");
                             template = template.split("{invasive_care}").join(patient.invasive_care == 1 ? "Sim":"Não");
                             $("#occorrence_patient").append(template);
@@ -1885,9 +1888,9 @@
                         response.data.forEach(team_member => {
                             let template = $("#team_member_template").html();
                             template = template.split("{id}").join(team_member.id);
-                            template = template.split("{name}").join(team_member.name);
-                            template = template.split("{age}").join(team_member.age);
-                            template = template.split("{contact}").join(team_member.contact);
+                            template = template.split("{name}").join(team_member.name == null ? "Sem Informação": team_member.name);
+                            template = template.split("{age}").join(team_member.age == null ? "Sem Informação": team_member.age);
+                            template = template.split("{contact}").join(team_member.contact == null ? "Sem Informação": team_member.contact);
                             template = template.split("{type}").join(team_member.type);
                             $("#occorrence_team").append(template);
                         });
