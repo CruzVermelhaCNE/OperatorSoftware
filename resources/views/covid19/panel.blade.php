@@ -125,51 +125,7 @@
     .ui-helper-hidden-accessible {
         display: none;
     }
-
-    .leaflet-control-geocoder a {
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        display: block;
-    }
-
-    .leaflet-control-geocoder {
-        box-shadow: 0 1px 7px #999;
-        background: #f8f8f9;
-        -moz-border-radius: 8px;
-        -webkit-border-radius: 8px;
-        border-radius: 8px;
-    }
-
-    .leaflet-control-geocoder a {
-        background-image: url(images/geocoder.png);
-        width: 36px;
-        height: 36px;
-    }
-
-    .leaflet-touch .leaflet-control-geocoder a {
-        width: 44px;
-        height: 44px;
-    }
-
-    .leaflet-control-geocoder .leaflet-control-geocoder-form,
-    .leaflet-control-geocoder-expanded .leaflet-control-geocoder-toggle {
-        display: block;
-        position: relative;
-    }
-
-    .leaflet-control-geocoder-toggle {
-        display: none !important;
-    }
-
-    .leaflet-control-geocoder-expanded .leaflet-control-geocoder-form {
-        display: block;
-        position: relative;
-    }
-
-    .leaflet-control-geocoder-expanded .leaflet-control-geocoder-form {
-        padding: 5px;
-    }
-
+    
     #case_source_map {
         height: 500px;
         width: 500px;
@@ -721,10 +677,16 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <h2>Origem</h2>
+                                <p><b>Procurar:</b> <input autocomplete="off" type="text"
+                                    id="case_source_map_search" class="form-control"
+                                    placeholder="Procurar"></p>
                                 <div id="case_source_map"></div>
                             </div>
                             <div class="col-sm-6">
                                 <h2>Destino</h2>
+                                <p><b>Procurar:</b> <input autocomplete="off" type="text"
+                                    id="case_destino_map_search" class="form-control"
+                                    placeholder="Procurar"></p>
                                 <div id="case_destination_map"></div>
                             </div>
                         </div>
@@ -1111,7 +1073,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"
     integrity="sha256-fNoRrwkP2GuYPbNSJmMJOCyfRB2DhPQe0rGTgzRsyso=" crossorigin="anonymous"></script>
-<script src="{{ url('/js/Control.OSMGeocoder.js') }}" type="text/javascript"></script>
 @parent
 <script type="covid19/template" id="openCase_template">
     <a onclick="openCase({id})" data-case-id="{id}" id="openCase{id}" class="pending"><div class="amb case-pending">
@@ -4097,10 +4058,6 @@
         var osmAttrib='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
         var map = new L.Map(div_id).addLayer(osm).setView([48.5, 2.5], 15);
-
-        var osmGeocoder = new L.Control.OSMGeocoder({placeholder: 'Search location...'});
-
-        map.addControl(osmGeocoder);
         var marker = undefined;
         map.on('click', function(e) {
             if(marker !== undefined) {
@@ -4121,7 +4078,19 @@
 
     $(document).ready(function () {
         source_map = createMap("case_source_map");
-        destination_map = createMap("case_destination_map");        
+        destination_map = createMap("case_destination_map");
+        $( "#case_source_map_search" ).change(function() {
+            let address = $("#case_source_map_search").val();
+            $.get('https://nominatim.openstreetmap.org/search?format=json&q='+address, function(data){
+                console.log(data);
+            });
+        });
+        $( "#case_destination_map_search" ).change(function() {
+            let address = $("#case_destination_map_search").val();
+            $.get('https://nominatim.openstreetmap.org/search?format=json&q='+address, function(data){
+                console.log(data);
+            });
+        });
     });
 </script>
 @endsection
