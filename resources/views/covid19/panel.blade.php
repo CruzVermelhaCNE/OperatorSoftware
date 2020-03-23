@@ -2061,23 +2061,23 @@
 
     function insertPatient() {
         let id = $("#case_id").html();
-        let rnu = $("#occorence_patient_create_rnu").val();
-        let lastname = $("#occorence_patient_create_lastname").val();
-        let firstname = $("#occorence_patient_create_firstname").val();
-        let genero = $("#occorence_patient_create_genero").val();
-        let DoB = $("#occorence_patient_create_DoB").val();
-        let suspect = $("#occorence_patient_create_suspect").val();
-        let suspect_validation = $("#occorence_patient_create_suspect_validation").val();
-        let confirmed = $("#occorence_patient_create_confirmed").val();
-        let invasive_care = $("#occorence_patient_create_invasive_care").val();
+        let rnu = $("#case_patient_RNU").val();
+        let firstname = $("#case_patient_firstname").val();
+        let lastname = $("#case_patient_lastname").val();
+        let genero = $("#case_patient_genero").val();
+        let DoB = $("#case_patient_DoB").val();
+        let suspect = $("#case_patient_suspect").val();
+        let suspect_validation = $("#case_patient_suspect_validation").val();
+        let confirmed = $("#case_patient_confirmed").val();
+        let invasive_care = $("#case_patient_invasive_care").val();
         if(rnu == "") {
             rnu = null;
         }
-        if(lastname == "") {
-            lastname = null;
-        }
         if(firstname == "") {
             firstname = null;
+        }
+        if(lastname == "") {
+            lastname = null;
         }
         if(genero == "") {
             genero = null;
@@ -2097,8 +2097,8 @@
         axios.post("{{route('covid19.insertPatient')}}", {
             id: id,
             rnu: rnu,
-            lastname: lastname,
             firstname: firstname,
+            lastname: lastname,
             sex: genero,
             DoB: DoB,
             suspect: suspect,
