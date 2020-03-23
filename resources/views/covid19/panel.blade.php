@@ -5,7 +5,8 @@
 @section('style')
 @parent
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous" />	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css"
+    integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous" />
 <style>
     .amb {
         width: 100%;
@@ -124,6 +125,7 @@
     .ui-helper-hidden-accessible {
         display: none;
     }
+
     .leaflet-control-geocoder a {
         background-position: 50% 50%;
         background-repeat: no-repeat;
@@ -154,9 +156,11 @@
         display: block;
         position: relative;
     }
+
     .leaflet-control-geocoder-toggle {
         display: none !important;
     }
+
     .leaflet-control-geocoder-expanded .leaflet-control-geocoder-form {
         display: block;
         position: relative;
@@ -167,15 +171,14 @@
     }
 
     #case_source_map {
-      height: 500px;
-      width: 500px;
+        height: 500px;
+        width: 500px;
     }
 
     #case_destination_map {
-      height: 500px;
-      width: 500px;
+        height: 500px;
+        width: 500px;
     }
-
 </style>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
 @endsection
@@ -1100,7 +1103,8 @@
 <script src="{{ url('/js/laravel-echo-setup.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js" integrity="sha256-fNoRrwkP2GuYPbNSJmMJOCyfRB2DhPQe0rGTgzRsyso=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"
+    integrity="sha256-fNoRrwkP2GuYPbNSJmMJOCyfRB2DhPQe0rGTgzRsyso=" crossorigin="anonymous"></script>
 <script src="{{ url('/js/Control.OSMGeocoder.js') }}" type="text/javascript"></script>
 @parent
 <script type="covid19/template" id="openCase_template">
@@ -1993,7 +1997,6 @@
                             template = template.split("{type}").join(team_member.type);
                             $("#occorrence_team").append(template);
                         });
-                        $("#case").modal('show');
                     })
                     .catch(function (error) {
                         alert(error);
@@ -2046,6 +2049,9 @@
                     .catch(function (error) {
                         alert(error);
                     })
+
+                $("#case").modal('show');
+                resetMap();
 
             })
             .catch(function (error) {
@@ -4089,7 +4095,6 @@
         var osmGeocoder = new L.Control.OSMGeocoder({placeholder: 'Search location...'});
 
         map.addControl(osmGeocoder);
-        map.invalidateSize();
         var marker = undefined;
         map.on('click', function(e) {
             if(marker !== undefined) {
@@ -4103,10 +4108,14 @@
         return map;
     }
 
+    function resetMap() {
+        source_map.invalidateSize();
+        destination_map.invalidateSize();
+    }
+
     $(document).ready(function () {
         source_map = createMap("case_source_map");
-        destination_map = createMap("case_destination_map");
-        
+        destination_map = createMap("case_destination_map");        
     });
 </script>
 @endsection
