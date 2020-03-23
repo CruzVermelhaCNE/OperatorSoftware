@@ -189,8 +189,8 @@ class COVID19Case extends Model
 
     public function addTeamMember($name, $age, $contact, $type)
     {
-        $ambulance_id = $this->ambulance->first()->id;
-        COVID19AmbulanceTeamMember::createCaseTeamMember($ambulance_id,$this->id,$name,$age,$contact,$type);
+        $ambulance_id = $this->ambulance->first()->ambulance_id;
+        COVID19AmbulanceTeamMember::createAmbulanceTeamMember($ambulance_id,$this->id,$name,$age,$contact,$type);
         $this->forceUpdate();
         $this->addOperator();
     }

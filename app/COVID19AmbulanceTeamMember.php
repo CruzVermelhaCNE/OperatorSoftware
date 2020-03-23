@@ -10,7 +10,7 @@ class COVID19AmbulanceTeamMember extends Model
 {
     protected $table = "covid19_ambulance_team_members";
     use SoftDeletes;
-    public static function createCaseTeamMember($ambulance_id, $case_id, $name,$age, $contact, $type)
+    public static function createAmbulanceTeamMember($ambulance_id, $case_id, $name,$age, $contact, $type)
     {
         $ambulance_team               = new COVID19AmbulanceTeamMember();
         $ambulance_team->ambulance_id = $ambulance_id;
