@@ -776,7 +776,9 @@
                                 <div class="card-body">
                                     <div class="form-row align-items-center">
                                         <div class="row">
-                                            <h6>Deixar em branco para registar sem informação</h6>
+                                            <div class="col-sm-12">
+                                                <h6>Deixar em branco para registar sem informação</h6>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12 form-inline">
@@ -847,9 +849,13 @@
                                                     </select></p>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-primary"
-                                            onclick="addNewPatient()">Adicionar
-                                            Vitima</button>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="addNewPatient()">Adicionar
+                                                    Vitima</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
