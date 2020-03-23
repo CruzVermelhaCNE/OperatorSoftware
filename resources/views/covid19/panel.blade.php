@@ -5,6 +5,7 @@
 @section('style')
 @parent
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous" />	
 <style>
     .amb {
         width: 100%;
@@ -123,6 +124,58 @@
     .ui-helper-hidden-accessible {
         display: none;
     }
+    .leaflet-control-geocoder a {
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        display: block;
+    }
+
+    .leaflet-control-geocoder {
+        box-shadow: 0 1px 7px #999;
+        background: #f8f8f9;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        border-radius: 8px;
+    }
+
+    .leaflet-control-geocoder a {
+        background-image: url(images/geocoder.png);
+        width: 36px;
+        height: 36px;
+    }
+
+    .leaflet-touch .leaflet-control-geocoder a {
+        width: 44px;
+        height: 44px;
+    }
+
+    .leaflet-control-geocoder .leaflet-control-geocoder-form,
+    .leaflet-control-geocoder-expanded .leaflet-control-geocoder-toggle {
+        display: block;
+        position: relative;
+    }
+    .leaflet-control-geocoder-toggle {
+        display: none !important;
+    }
+    .leaflet-control-geocoder-expanded .leaflet-control-geocoder-form {
+        display: block;
+        position: relative;
+    }
+
+    .leaflet-control-geocoder-expanded .leaflet-control-geocoder-form {
+        padding: 5px;
+    }
+
+    #case_source_map {
+      height: 500px;
+      width: 500px;
+    }
+
+    #case_destination_map {
+      height: 500px;
+      width: 500px;
+    }
+
 </style>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
 @endsection
@@ -662,6 +715,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div id="case_source_map"></div>
+                            <div id="case_destination_map"></div>
+                        </div>
                     </div>
                     <div id="occorrence_data_create" style="display:none">
                         <div id="occorence_data_create_validate">
@@ -1043,6 +1100,7 @@
 <script src="{{ url('/js/laravel-echo-setup.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js" integrity="sha256-fNoRrwkP2GuYPbNSJmMJOCyfRB2DhPQe0rGTgzRsyso=" crossorigin="anonymous"></script>
 @parent
 <script type="covid19/template" id="openCase_template">
     <a onclick="openCase({id})" data-case-id="{id}" id="openCase{id}" class="pending"><div class="amb case-pending">
@@ -4017,5 +4075,32 @@
             removeOpenCase(data.case);
         }
     });
+</script>
+<script>
+    var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var osmAttrib='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
+	var map = new L.Map('map').addLayer(osm).setView([48.5, 2.5], 15);
+
+	var osmGeocoder = new L.Control.OSMGeocoder({placeholder: 'Search location...'});
+
+	map.addControl(osmGeocoder);
+	
+	var marker = undefined;
+	map.on('click', function(e) {
+	    if(marker !== undefined) {
+			map.removeLayer(marker)
+	}
+		
+		marker = L.marker(e.latlng).addTo(map);
+
+		var latlng = e.latlng;
+
+		$("#latitude").text(latlng.lat);
+		$("#longitude").text(latlng.lng);
+
+		$("#latlng").text(latlng.lat + "," + latlng.lng);
+
+	});
 </script>
 @endsection
