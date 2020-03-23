@@ -1652,9 +1652,6 @@
 
     function openCase(id) {
         let case_id = id;
-        if(ambulance.current_case == null) {
-            return;
-        }
         axios.get("{{route('covid19.case','')}}/"+case_id)
             .then(function (response) {
                 let ambulance_id = response.data.ambulance_id;
