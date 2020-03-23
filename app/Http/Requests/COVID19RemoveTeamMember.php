@@ -15,7 +15,7 @@ class COVID19RemoveTeamMember extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "team_member_id" => ['required', 'exists:covid19_case_team_members,id'],
+            "team_member_id" => ['required', 'exists:covid19_ambulance_team_members,id'],
         ];
     }
 }
