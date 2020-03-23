@@ -1871,6 +1871,7 @@
                             template = template.split("{DoB}").join(patient.DoB);
                             let DoB_date = new Date(patient.DoB);
                             let age = _calculateAge(DoB_date);
+                            template = template.split("{age}").join(age);
                             template = template.split("{suspect}").join(patient.suspect == 1 ? "Sim":"Não");
                             template = template.split("{validation}").join(patient.suspect_validation);
                             template = template.split("{confirmed}").join(patient.confirmed == 1 ? "Sim":"Não");
@@ -2395,18 +2396,18 @@
     }
 
     function updatePatientRNU(patient_id) {
-        $("#patient_information_RNU_display"+patient_id).hide();
-        $("#patient_information_RNU_edit"+patient_id).show();
+        $("#case_patient_RNU_display"+patient_id).hide();
+        $("#case_patient_RNU_edit"+patient_id).show();
     }
 
     function cancelUpdatePatientRNU(patient_id) {
-        $("#patient_information_RNU_edit"+patient_id).hide();
-        $("#patient_information_RNU_display"+patient_id).show();
+        $("#case_patient_RNU_edit"+patient_id).hide();
+        $("#case_patient_RNU_display"+patient_id).show();
     }
 
     function submitUpdatePatientRNU(patient_id) {
         let id = $("#case_id").html();
-        let rnu = $("#patient_information_RNU_edit_input"+patient_id).val();
+        let rnu = $("#case_patient_RNU_edit_input"+patient_id).val();
         if(rnu == "") {
             rnu = null;
         }
@@ -2425,19 +2426,19 @@
     }
 
     function updatePatientFirstname(patient_id) {
-        $("#patient_information_firstname_display"+patient_id).hide();
-        $("#patient_information_firstname_edit"+patient_id).show();
+        $("#case_patient_firstname_display"+patient_id).hide();
+        $("#case_patient_firstname_edit"+patient_id).show();
     }
 
     function cancelUpdatePatientFirstname(patient_id) {
-        $("#patient_information_firstname_edit"+patient_id).hide();
-        $("#patient_information_firstname_display"+patient_id).show();
+        $("#case_patient_firstname_edit"+patient_id).hide();
+        $("#case_patient_firstname_display"+patient_id).show();
     }
 
     function submitUpdatePatientFirstname(patient_id) {
         let id = $("#case_id").html();
-        let firstname = $("#patient_information_firstname_edit_input"+patient_id).val();
-        $("#patient_information_firstname_edit_input"+patient_id).val("");
+        let firstname = $("#case_patient_firstname_edit_input"+patient_id).val();
+        $("#case_patient_firstname_edit_input"+patient_id).val("");
         if(firstname == "") {
             firstname = null;
         }
@@ -2456,19 +2457,19 @@
     }
 
     function updatePatientLastname(patient_id) {
-        $("#patient_information_lastname_display"+patient_id).hide();
-        $("#patient_information_lastname_edit"+patient_id).show();
+        $("#case_patient_lastname_display"+patient_id).hide();
+        $("#case_patient_lastname_edit"+patient_id).show();
     }
 
     function cancelUpdatePatientLastname(patient_id) {
-        $("#patient_information_lastname_edit"+patient_id).hide();
-        $("#patient_information_lastname_display"+patient_id).show();
+        $("#case_patient_lastname_edit"+patient_id).hide();
+        $("#case_patient_lastname_display"+patient_id).show();
     }
 
     function submitUpdatePatientLastname(patient_id) {
         let id = $("#case_id").html();
-        let lastname = $("#patient_information_lastname_edit_input"+patient_id).val();
-        $("#patient_information_lastname_edit_input"+patient_id).val("");
+        let lastname = $("#case_patient_lastname_edit_input"+patient_id).val();
+        $("#case_patient_lastname_edit_input"+patient_id).val("");
         if(lastname == "") {
             lastname = null;
         }
@@ -2487,24 +2488,24 @@
     }
 
     function updatePatientSex(patient_id) {
-        $("#patient_information_sex_display"+patient_id).hide();
-        $("#patient_information_sex_edit"+patient_id).show();
+        $("#case_patient_sex_display"+patient_id).hide();
+        $("#case_patient_sex_edit"+patient_id).show();
     }
 
     function cancelUpdatePatientSex(patient_id) {
-        $("#patient_information_sex_edit"+patient_id).hide();
-        $("#patient_information_sex_display"+patient_id).show();
+        $("#case_patient_sex_edit"+patient_id).hide();
+        $("#case_patient_sex_display"+patient_id).show();
     }
 
     function submitUpdatePatientSex(patient_id) {
         let id = $("#case_id").html();
-        let sex = $("#patient_information_sex_edit_input"+patient_id).val();
-        $("#patient_information_sex_edit_input"+patient_id).val("");
+        let sex = $("#case_patient_sex_edit_input"+patient_id).val();
+        $("#case_patient_sex_edit_input"+patient_id).val("");
         let sex_display = "";
         if(sex == "") {
             sex = null;
         }
-        $("#patient_information_sex").html(sex_display);
+        $("#case_patient_sex").html(sex_display);
         cancelUpdatePatientSex(patient_id);
         axios.post("{{route('covid19.updatePatientSex')}}", {
             id: id,
@@ -2520,19 +2521,19 @@
     }
 
     function updatePatientDoB(patient_id) {
-        $("#patient_information_DoB_display"+patient_id).hide();
-        $("#patient_information_DoB_edit"+patient_id).show();
+        $("#case_patient_DoB_display"+patient_id).hide();
+        $("#case_patient_DoB_edit"+patient_id).show();
     }
 
     function cancelUpdatePatientDoB(patient_id) {
-        $("#patient_information_DoB_edit"+patient_id).hide();
-        $("#patient_information_DoB_display"+patient_id).show();
+        $("#case_patient_DoB_edit"+patient_id).hide();
+        $("#case_patient_DoB_display"+patient_id).show();
     }
 
     function submitUpdatePatientDoB(patient_id) {
         let id = $("#case_id").html();
-        let DoB = $("#patient_information_DoB_edit_input"+patient_id).val();
-        $("#patient_information_DoB_edit_input"+patient_id).val("");
+        let DoB = $("#case_patient_DoB_edit_input"+patient_id).val();
+        $("#case_patient_DoB_edit_input"+patient_id).val("");
         if(DoB == "") {
             DoB = null;
         }
@@ -2551,19 +2552,19 @@
     }
 
     function updatePatientSuspect(patient_id) {
-        $("#patient_information_suspect_display"+patient_id).hide();
-        $("#patient_information_suspect_edit"+patient_id).show();
+        $("#case_patient_suspect_display"+patient_id).hide();
+        $("#case_patient_suspect_edit"+patient_id).show();
     }
 
     function cancelUpdatePatientSuspect(patient_id) {
-        $("#patient_information_suspect_edit"+patient_id).hide();
-        $("#patient_information_suspect_display"+patient_id).show();
+        $("#case_patient_suspect_edit"+patient_id).hide();
+        $("#case_patient_suspect_display"+patient_id).show();
     }
 
     function submitUpdatePatientSuspect(patient_id) {
         let id = $("#case_id").html();
-        let suspect = $("#patient_information_suspect_edit_input"+patient_id).val();
-        $("#patient_information_suspect_edit_input"+patient_id).val("");  
+        let suspect = $("#case_patient_suspect_edit_input"+patient_id).val();
+        $("#case_patient_suspect_edit_input"+patient_id).val("");  
         cancelUpdatePatientSuspect(patient_id);
         axios.post("{{route('covid19.updatePatientSuspect')}}", {
             id: id,
@@ -2579,19 +2580,19 @@
     }
 
     function updatePatientSuspectValidation(patient_id) {
-        $("#patient_information_suspect_validation_display"+patient_id).hide();
-        $("#patient_information_suspect_validation_edit"+patient_id).show();
+        $("#case_patient_suspect_validation_display"+patient_id).hide();
+        $("#case_patient_suspect_validation_edit"+patient_id).show();
     }
 
     function cancelUpdatePatientSuspectValidation(patient_id) {
-        $("#patient_information_suspect_validation_edit"+patient_id).hide();
-        $("#patient_information_suspect_validation_display"+patient_id).show();
+        $("#case_patient_suspect_validation_edit"+patient_id).hide();
+        $("#case_patient_suspect_validation_display"+patient_id).show();
     }
 
     function submitUpdatePatientSuspectValidation(patient_id) {
         let id = $("#case_id").html();
-        let suspect_validation = $("#patient_information_suspect_validation_edit_input"+patient_id).val();
-        $("#patient_information_suspect_validation_edit_input"+patient_id).val("");
+        let suspect_validation = $("#case_patient_suspect_validation_edit_input"+patient_id).val();
+        $("#case_patient_suspect_validation_edit_input"+patient_id).val("");
         if(suspect_validation == "") {
             suspect_validation = null;
         }   
@@ -2610,19 +2611,19 @@
     }
 
     function updatePatientConfirmed(patient_id) {
-        $("#patient_information_confirmed_display"+patient_id).hide();
-        $("#patient_information_confirmed_edit"+patient_id).show();
+        $("#case_patient_confirmed_display"+patient_id).hide();
+        $("#case_patient_confirmed_edit"+patient_id).show();
     }
 
     function cancelUpdatePatientConfirmed(patient_id) {
-        $("#patient_information_confirmed_edit"+patient_id).hide();
-        $("#patient_information_confirmed_display"+patient_id).show();
+        $("#case_patient_confirmed_edit"+patient_id).hide();
+        $("#case_patient_confirmed_display"+patient_id).show();
     }
 
     function submitUpdatePatientConfirmed(patient_id) {
         let id = $("#case_id").html();
-        let confirmed = $("#patient_information_confirmed_edit_input"+patient_id).val();
-        $("#patient_information_confirmed_edit_input"+patient_id).val("");
+        let confirmed = $("#case_patient_confirmed_edit_input"+patient_id).val();
+        $("#case_patient_confirmed_edit_input"+patient_id).val("");
         if(confirmed == "") {
             confirmed = null;
         }   
@@ -2641,19 +2642,19 @@
     }
 
     function updatePatientInvasiveCare(patient_id) {
-        $("#patient_information_invasive_care_display"+patient_id).hide();
-        $("#patient_information_invasive_care_edit"+patient_id).show();
+        $("#case_patient_invasive_care_display"+patient_id).hide();
+        $("#case_patient_invasive_care_edit"+patient_id).show();
     }
 
     function cancelUpdatePatientInvasiveCare(patient_id) {
-        $("#patient_information_invasive_care_edit"+patient_id).hide();
-        $("#patient_information_invasive_care_display"+patient_id).show();
+        $("#case_patient_invasive_care_edit"+patient_id).hide();
+        $("#case_patient_invasive_care_display"+patient_id).show();
     }
 
     function submitUpdatePatientInvasiveCare(patient_id) {
         let id = $("#case_id").html();
-        let invasive_care = $("#patient_information_invasive_care_edit_input"+patient_id).val();
-        $("#patient_information_invasive_care_edit_input"+patient_id+patient_id).val("");
+        let invasive_care = $("#case_patient_invasive_care_edit_input"+patient_id).val();
+        $("#case_patient_invasive_care_edit_input"+patient_id+patient_id).val("");
         if(invasive_care == "") {
             invasive_care = null;
         }    
