@@ -125,7 +125,7 @@ class COVID19CaseController extends Controller
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->addPatient($validated['rnu'], $validated['firstname'], $validated['lastname'], $validated['sex'], $validated['DoB'], $validated['suspect'], $validated['suspect_validation'], $validated['confirmed'], $validated['invasive_care']);
+        $case->addPatient($validated['RNU'], $validated['firstname'], $validated['lastname'], $validated['sex'], $validated['DoB'], $validated['suspect'], $validated['suspect_validation'], $validated['confirmed'], $validated['invasive_care']);
     }
 
     public function insertEvent(COVID19InsertEvent $request)
