@@ -764,19 +764,20 @@
                             <div class="card-header" id="case_patient_new_heading">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link" data-toggle="collapse"
-                                        data-target="#case_patient_new_collapse" aria-expanded="true"
+                                        data-target="#case_patient_new_collapse" aria-expanded="false"
                                         aria-controls="case_patient_new_collapse">
                                         Adicionar Vitima
                                     </button>
                                 </h5>
                             </div>
 
-                            <div id="case_patient_new_collapse" class="collapse show"
+                            <div id="case_patient_new_collapse" class="collapse"
                                 aria-labelledby="case_patient_new_heading" data-parent="#case_patient_new_accordion">
                                 <div class="card-body">
                                     <div class="form-row align-items-center">
-                                        <h6>Deixar em branco para registar sem informação</h6>
-                                        <br />
+                                        <div class="row">
+                                            <h6>Deixar em branco para registar sem informação</h6>
+                                        </div>
                                         <div class="row">
                                             <div class="col-sm-12 form-inline">
                                                 <p><b>Nº RNU:</b> <input autocomplete="off" type="number"
