@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class COVID19CasePatient extends Model
 {
+    protected $table = 'covid19_case_patients';
     public static function createCasePatient($case_id, $RNU, $firstname, $lastname, $sex, $DoB, $suspect, $suspect_validation, $confirmed, $invasive_care)
     {
         $case_patient                     = new COVID19CasePatient();

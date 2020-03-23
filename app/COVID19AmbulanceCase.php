@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class COVID19AmbulanceCase extends Model
 {
+    protected $table = 'covid19_ambulance_cases';
+
     public static function createAmbulanceCase($ambulance_id, $case_id)
     {
         $ambulance_case               = new COVID19AmbulanceCase();
