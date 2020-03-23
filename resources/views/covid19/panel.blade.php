@@ -2219,7 +2219,7 @@
         $("#nova_ocorrencia_localizacao_codu").prop( "disabled", false );
         $("#nova_ocorrencia_sem_localizacao").prop( "checked", false );
         $("#nova_ocorrencia_activation_mean").val("");
-        $("#nova_ocorrencia_activation_mean_specify").val()"";
+        $("#nova_ocorrencia_activation_mean_specify").val("");
         axios.post("{{route('covid19.newCase')}}", {
             CODU_number: CODU_number,
             CODU_localization: CODU_localization,
