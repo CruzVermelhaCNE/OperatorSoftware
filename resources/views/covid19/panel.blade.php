@@ -1928,7 +1928,6 @@
                             $("#case_observations_inside").html("");
                         }
                         response.data.forEach(observation => {
-                            console.log(observation);
                             let template = $("#observation_template").html();
                             template = template.split("{id}").join(observation.id);
                             template = template.split("{author}").join(observation.author_name);
@@ -2015,7 +2014,6 @@
                     $("#ambulance-available-button").show();
                     $("#ambulance-on-base-button").show();
                 }
-                console.log(response.data);
                 if(response.data.current_case != null) {
                     $("#ambulance-open-case-button").show();
                     $("#ambulance-open-case-button").attr("onclick","closeAmbulance();openCase("+response.data.current_case+")");
