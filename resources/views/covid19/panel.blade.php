@@ -685,7 +685,7 @@
                             <div class="col-sm-6">
                                 <h2>Destino</h2>
                                 <p><b>Procurar:</b> <input autocomplete="off" type="text"
-                                    id="case_destino_map_search" class="form-control"
+                                    id="case_destination_map_search" class="form-control"
                                     placeholder="Procurar"></p>
                                 <div id="case_destination_map"></div>
                             </div>
@@ -4082,7 +4082,6 @@
         $( "#case_source_map_search" ).change(function() {
             let address = $("#case_source_map_search").val();
             $.get('https://nominatim.openstreetmap.org/search?format=json&q='+address, function(data){
-                console.log(data);
                 if(data[0]) {
                     source_map.panTo(new L.LatLng(parseFloat(data[0].lat), parseFloat(data[0].lon)));
                 }
