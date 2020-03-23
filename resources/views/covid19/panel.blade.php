@@ -4077,30 +4077,31 @@
     });
 </script>
 <script>
-    var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    var osmAttrib='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
-	var map = new L.Map('case_source_map').addLayer(osm).setView([48.5, 2.5], 15);
+    function createMap(div_id) {
+        var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var osmAttrib='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
+        var map = new L.Map(div_id).addLayer(osm).setView([48.5, 2.5], 15);
 
-	var osmGeocoder = new L.Control.OSMGeocoder({placeholder: 'Search location...'});
+        var osmGeocoder = new L.Control.OSMGeocoder({placeholder: 'Search location...'});
 
-	map.addControl(osmGeocoder);
-	
-	var marker = undefined;
-	map.on('click', function(e) {
-	    if(marker !== undefined) {
-			map.removeLayer(marker)
-	}
-		
-		marker = L.marker(e.latlng).addTo(map);
+        map.addControl(osmGeocoder);
+        
+        var marker = undefined;
+        map.on('click', function(e) {
+            if(marker !== undefined) {
+                map.removeLayer(marker)
+            }            
+            marker = L.marker(e.latlng).addTo(map);
 
-		var latlng = e.latlng;
+            var latlng = e.latlng;
+            console.log(latlng.lat + "," + latlng.lng);
+        });
+    }
 
-		$("#latitude").text(latlng.lat);
-		$("#longitude").text(latlng.lng);
-
-		$("#latlng").text(latlng.lat + "," + latlng.lng);
-
-	});
+    $(document).ready(function () {
+        createMap("case_source_map");
+        createMap("case_destination_map");
+    });
 </script>
 @endsection
