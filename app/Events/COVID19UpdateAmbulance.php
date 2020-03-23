@@ -22,6 +22,16 @@ class COVID19UpdateAmbulance implements ShouldBroadcastNow
      */
     public function __construct($ambulance)
     {
+        $current_case = $ambulance->cases->where('status_available', '=', null)->last();
+        if ($current_case) {
+            if (! $current_case->trashed()) {
+                $ambulance->current_case = $current_case->case_id;
+            } else {
+                $ambulance->current_case = null;
+            }
+        } else {
+            $ambulance->current_case = null;
+        }
         $this->ambulance = $ambulance;
     }
 

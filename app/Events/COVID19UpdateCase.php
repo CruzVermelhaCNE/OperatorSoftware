@@ -22,6 +22,11 @@ class COVID19UpdateCase implements ShouldBroadcastNow
      */
     public function __construct($case)
     {
+        $ambulance =  $case->ambulance->first();
+        $case->ambulance_id = null;
+        if($ambulance) {
+            $case->ambulance_id = $ambulance->ambulance_id;
+        } 
         $this->case = $case;
     }
 
@@ -42,6 +47,7 @@ class COVID19UpdateCase implements ShouldBroadcastNow
      */
     public function broadcastWith()
     {
+
         return ['case' => $this->case];
     }
 }
