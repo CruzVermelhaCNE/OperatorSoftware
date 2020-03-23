@@ -83,7 +83,11 @@ class COVID19CaseController extends Controller
     public function getCase($id)
     {
         $case = COVID19Case::find($id);
-        $case->ambulance_id = $case->ambulance->first()->ambulance_id;
+        $ambulance =  $case->ambulance->first();
+        $case->ambulance_id = null;
+        if($ambulance) {
+            $case->ambulance_id = $ambulance->ambulance_id;
+        }        
         return response()->json($case);
     }
 
