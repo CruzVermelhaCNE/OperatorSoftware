@@ -849,8 +849,8 @@
                     <h4>Operadores</h4>
                     <div id="case_operators_inside">
                     </div>
+                    <hr />
                 </div>
-                <hr />
                 <div id="case_notes">
                     <h4>Notas</h4>
                     <div class="form-group">
