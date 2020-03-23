@@ -674,22 +674,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="col-sm-6">
                                 <h2>Origem</h2>
-                                <p><b>Procurar:</b> <input autocomplete="off" type="text"
-                                    id="case_source_map_search" class="form-control"
-                                    placeholder="Procurar"></p>
+                                <p><b>Procurar:</b> <input autocomplete="off" type="text" id="case_source_map_search"
+                                        class="form-control" placeholder="Procurar"></p>
                                 <div id="case_source_map"></div>
                             </div>
                             <div class="col-sm-6">
                                 <h2>Destino</h2>
                                 <p><b>Procurar:</b> <input autocomplete="off" type="text"
-                                    id="case_destination_map_search" class="form-control"
-                                    placeholder="Procurar"></p>
+                                        id="case_destination_map_search" class="form-control" placeholder="Procurar">
+                                </p>
                                 <div id="case_destination_map"></div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div id="occorrence_data_create" style="display:none">
                         <div id="occorence_data_create_validate">
@@ -4052,38 +4051,79 @@
 </script>
 <script>
     let source_map = null;
+    let source_marker = undefined;
+    let source_latlon = null;
     let destination_map = null;
-    function createMap(div_id) {
+    let destination_marker = undefined;
+    let destination_latlon = null;
+
+
+    function createSourceMap() {
         var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
         var osmAttrib='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
-        var map = new L.Map(div_id).addLayer(osm).setView([48.5, 2.5], 15);
-        var marker = undefined;
-        map.on('click', function(e) {
-            if(marker !== undefined) {
-                map.removeLayer(marker)
-            }            
-            marker = L.marker(e.latlng).addTo(map);
-
-            var latlng = e.latlng;
-            console.log(latlng.lat + "," + latlng.lng);
+        source_map = new L.Map("case_source_map").addLayer(osm).setView([48.5, 2.5], 15);
+        source_map.on('click', function(e) {
+            placeSourceMarker(e.latlng.lat,e.latlng.lng);
         });
-        return map;
+    }
+
+    function placeSourceMarker(lat,lon) {
+        removeSourceMarker();
+        source_latlon = new L.LatLng(lat, long);
+        source_marker = L.marker(source_latlon).addTo(source_map);
+        console.log(source_latlng.lat + "," + source_latlng.lng);
+    }
+
+    function removeSourceMarker() {
+        if(source_marker !== undefined) {
+            source_map.removeLayer(source_marker)
+            source_marker = undefined;
+            source_latlng = null;
+        }      
+    }
+
+    function createDestinationMap() {
+        var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var osmAttrib='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
+        destination_map = new L.Map("case_destination_map").addLayer(osm).setView([48.5, 2.5], 15);
+        destination_map.on('click', function(e) {
+            placeDestinationMarker(e.latlng.lat,e.latlng.lng);
+        });
+    }
+
+    function placeDestinationMarker(lat,lon) {
+        removeDesinationMarker();
+        destination_latlon = new L.LatLng(lat, long);
+        destination_marker = L.marker(destination_latlon).addTo(destination_map);
+        console.log(destination_latlon.lat + "," + destination_latlon.lng);
+    }
+
+    function removeDestinationMarker() {
+        if(destination_marker !== undefined) {
+            destination_map.removeLayer(destination_marker)
+            destination_marker = undefined;
+            destination_latlon = null;
+        }      
     }
 
     function resetMap() {
         source_map.invalidateSize();
         destination_map.invalidateSize();
+        removeSourceMarker();
+        removeDestinationMarker();
     }
 
     $(document).ready(function () {
-        source_map = createMap("case_source_map");
-        destination_map = createMap("case_destination_map");
+        createSourceMap();
+        createDestinationMap():
         $( "#case_source_map_search" ).change(function() {
             let address = $("#case_source_map_search").val();
             $.get('https://nominatim.openstreetmap.org/search?format=json&q='+address, function(data){
                 if(data[0]) {
                     source_map.panTo(new L.LatLng(parseFloat(data[0].lat), parseFloat(data[0].lon)));
+                    placeSourceMarker(parseFloat(data[0].lat), parseFloat(data[0].lon));
                 }
             });
         });
@@ -4092,6 +4132,7 @@
             $.get('https://nominatim.openstreetmap.org/search?format=json&q='+address, function(data){
                 if(data[0]) {
                     destination_map.panTo(new L.LatLng(parseFloat(data[0].lat), parseFloat(data[0].lon)));
+                    placeDestinationMarker(parseFloat(data[0].lat), parseFloat(data[0].lon));
                 }
             });
         });
