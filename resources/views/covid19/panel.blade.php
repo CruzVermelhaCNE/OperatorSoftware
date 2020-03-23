@@ -4078,6 +4078,8 @@
     });
 </script>
 <script>
+    let source_map = null;
+    let destination_map = null;
     function createMap(div_id) {
         var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
         var osmAttrib='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -4098,11 +4100,13 @@
             var latlng = e.latlng;
             console.log(latlng.lat + "," + latlng.lng);
         });
+        return map;
     }
 
     $(document).ready(function () {
-        createMap("case_source_map");
-        createMap("case_destination_map");
+        source_map = createMap("case_source_map");
+        destination_map = createMap("case_destination_map");
+        
     });
 </script>
 @endsection
