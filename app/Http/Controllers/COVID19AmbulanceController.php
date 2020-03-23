@@ -25,7 +25,7 @@ class COVID19AmbulanceController extends Controller
     {
         $ambulances = COVID19Ambulance::all();
         foreach ($ambulances as $key => $ambulance) {
-            $current_case = $ambulance->cases->where('status_available', '=', null)->orderByDesc('id')->first();
+            $current_case = $ambulance->cases->where('status_available', '=', null)->last();
             if ($current_case) {
                 if ($current_case->trashed()) {
                     $ambulances[$key]->current_case = $current_case->case_id;
@@ -43,7 +43,7 @@ class COVID19AmbulanceController extends Controller
     {
         $ambulance = COVID19Ambulance::find($id);
         if ($ambulance) {
-            $current_case = $ambulance->cases->where('status_available', '=', null)->orderByDesc('id')->first();
+            $current_case = $ambulance->cases->where('status_available', '=', null)->last();
             if ($current_case) {
                 if ($current_case->trashed()) {
                     $ambulance->current_case = null;
