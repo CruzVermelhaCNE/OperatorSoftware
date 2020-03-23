@@ -4087,7 +4087,7 @@
         var osmGeocoder = new L.Control.OSMGeocoder({placeholder: 'Search location...'});
 
         map.addControl(osmGeocoder);
-        
+        map.invalidateSize();
         var marker = undefined;
         map.on('click', function(e) {
             if(marker !== undefined) {
