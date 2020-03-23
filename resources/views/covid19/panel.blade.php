@@ -1867,14 +1867,14 @@
                             template = template.split("{RNU}").join(patient.RNU);
                             template = template.split("{firstname}").join(patient.firstname);
                             template = template.split("{lastname}").join(patient.lastname);
-                            template = template.split("{sex}").join(patient.sex);
+                            template = template.split("{sex}").join(patient.sex == 1 ? "Masculino": "Feminino");
                             template = template.split("{DoB}").join(patient.DoB);
                             let DoB_date = new Date(patient.DoB);
                             let age = _calculateAge(DoB_date);
-                            template = template.split("{suspect}").join(patient.suspect);
+                            template = template.split("{suspect}").join(patient.suspect == 1 ? "Sim":"Não");
                             template = template.split("{validation}").join(patient.suspect_validation);
-                            template = template.split("{confirmed}").join(patient.confirmed);
-                            template = template.split("{invasive_care}").join(patient.invasive_care);
+                            template = template.split("{confirmed}").join(patient.confirmed == 1 ? "Sim":"Não");
+                            template = template.split("{invasive_care}").join(patient.invasive_care == 1 ? "Sim":"Não");
                             $("#occorrence_patient").append(template);
                         });
                         $("#case").modal('show');
@@ -2094,6 +2094,15 @@
         if(invasive_care == "") {
             invasive_care = null;
         }
+        $("#case_patient_RNU").val("");
+        $("#case_patient_firstname").val("");
+        $("#case_patient_lastname").val("");
+        $("#case_patient_genero").val("");
+        $("#case_patient_DoB").val("");
+        $("#case_patient_suspect").val("1");
+        $("#case_patient_suspect_validation").val("");
+        $("#case_patient_confirmed").val("");
+        $("#case_patient_invasive_care").val("");
         axios.post("{{route('covid19.insertPatient')}}", {
             id: id,
             RNU: RNU,
