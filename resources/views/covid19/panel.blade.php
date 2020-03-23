@@ -4051,7 +4051,7 @@
     });
 </script>
 <script>
-    let source_map = null;
+    /*let source_map = null;
     let source_marker = undefined;
     let source_latlon = null;
     let destination_map = null;
@@ -4137,6 +4137,6 @@
                 }
             });
         });
-    });
+    });*/
 </script>
 @endsection
