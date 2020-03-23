@@ -15,7 +15,7 @@ class COVID19UpdateTeamMemberName extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "team_member_id" => ['required', 'exists:covid19_case_team_members'],
+            "team_member_id" => ['required', 'exists:covid19_case_team_members,id'],
             "name" => ['string', 'nullable'],       
         ];
     }
