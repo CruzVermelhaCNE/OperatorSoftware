@@ -63,6 +63,10 @@ class COVID19AmbulanceController extends Controller
         return response()->json($ambulance->contacts);
     }
 
+    public function getTeamMembers($id) {
+        
+    }
+
     public function INOP(COVID19UpdateAmbulanceStatus $request)
     {
         $validated = $request->validated();
