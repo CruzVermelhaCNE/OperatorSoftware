@@ -15,7 +15,7 @@ class COVID19RemoveContact extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_ambulances'],
-            "contact_id" => ['required', 'exists:covid19_ambulance_contacts'],
+            "contact_id" => ['required', 'exists:covid19_ambulance_contacts,id'],
         ];
     }
 }

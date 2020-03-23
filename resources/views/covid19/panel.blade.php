@@ -1887,7 +1887,7 @@
                         alert(error);
                     })
 
-                /*axios.get("{{route('covid19.ambulance_team_members','')}}/"+response.data.ambulance_id)
+                axios.get("{{route('covid19.ambulance_team_members','')}}/"+response.data.ambulance_id)
                     .then(function (response) {
                         let team_members = Object.values(response.data);
                         $( "#case_team_name" ).autocomplete({
@@ -1896,7 +1896,7 @@
                     })
                     .catch(function (error) {
                         alert(error);
-                    })*/
+                    })
                     
 
                 axios.get("{{route('covid19.case_operators','')}}/"+case_id)
