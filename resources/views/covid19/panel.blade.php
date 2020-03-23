@@ -823,7 +823,7 @@
                                             </div>
                                             <div class="col-sm-3 form-inline">
                                                 <p><b>Validação:</b> <select autocomplete="off" class="form-control"
-                                                        id="case_patient_validation">
+                                                        id="case_patient_suspect_validation">
                                                         <option value="">Sem Informação</option>
                                                         <option value="CODU">CODU</option>
                                                         <option value="Equipa">Equipa</option>
