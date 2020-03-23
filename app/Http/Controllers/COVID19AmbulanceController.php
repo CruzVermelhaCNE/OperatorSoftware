@@ -25,6 +25,9 @@ class COVID19AmbulanceController extends Controller
     public function getAmbulances()
     {
         $ambulances = COVID19Ambulance::all();
+        foreach ($ambulances as $key => $ambulance) {
+            $ambulances[$key]->current_case = $ambulance->cases->where('status_available','=',null)->get()->first() || null;
+        }
         return response()->json($ambulances);
     }
 
@@ -141,7 +144,7 @@ class COVID19AmbulanceController extends Controller
     public function removeContact(COVID19RemoveContact $request)
     {
         $validated = $request->validated();
-        $contact   = COVID19AmbulanceContact::find($validated['id']);
-        $contact->delete();
+        $ambulance   = COVID19Ambulance::find($validated['id']);
+        $ambulance->removeContact($validated['contact_id']);
     }
 }

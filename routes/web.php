@@ -59,8 +59,11 @@ Route::prefix('covid19')->name('covid19.')->group(function () {
 
     Route::get('openCases', 'COVID19CaseController@getOpenCases')->name('openCases');
     Route::get('case/{id}', 'COVID19CaseController@getCase')->name('case');
+    Route::get('case_patients/{id}', 'COVID19CaseController@getPatients')->name('case_patients');
+    Route::get('case_team_members/{id}', 'COVID19CaseController@getTeamMembers')->name('case_team_members');
     Route::get('case_operators/{id}', 'COVID19CaseController@getOperators')->name('case_operators');
     Route::get('case_observations/{id}', 'COVID19CaseController@getObservations')->name('case_observations');
+
 
     Route::get('ambulances', 'COVID19AmbulanceController@getAmbulances')->name('ambulances');
     Route::get('ambulance/{id}', 'COVID19AmbulanceController@getAmbulance')->name('ambulance');
@@ -72,21 +75,11 @@ Route::prefix('covid19')->name('covid19.')->group(function () {
     Route::post('newAmbulance', 'COVID19AmbulanceController@newAmbulance')->name('newAmbulance');
     Route::post('insertPatient', 'COVID19CaseController@insertPatient')->name('insertPatient');
     Route::post('insertEvent', 'COVID19CaseController@insertEvent')->name('insertEvent');
-    Route::post('insertTeam', 'COVID19CaseController@insertTeam')->name('insertTeam');
     Route::post('insertAmbulance', 'COVID19CaseController@insertAmbulance')->name('insertAmbulance');
     Route::post('insertSIEMAmbulance', 'COVID19CaseController@insertSIEMAmbulance')->name('insertSIEMAmbulance');
     Route::post('updateCODUNumber', 'COVID19CaseController@updateCODUNumber')->name('updateCODUNumber');
     Route::post('updateCODULocalization', 'COVID19CaseController@updateCODULocalization')->name('updateCODULocalization');
     Route::post('updateActivationMean', 'COVID19CaseController@updateActivationMean')->name('updateActivationMean');
-    Route::post('updateRNU', 'COVID19CaseController@updateRNU')->name('updateRNU');
-    Route::post('updateLastName', 'COVID19CaseController@updateLastName')->name('updateLastName');
-    Route::post('updateFirstName', 'COVID19CaseController@updateFirstName')->name('updateFirstName');
-    Route::post('updateSex', 'COVID19CaseController@updateSex')->name('updateSex');
-    Route::post('updateDoB', 'COVID19CaseController@updateDoB')->name('updateDoB');
-    Route::post('updateSuspect', 'COVID19CaseController@updateSuspect')->name('updateSuspect');
-    Route::post('updateSuspectValidation', 'COVID19CaseController@updateSuspectValidation')->name('updateSuspectValidation');
-    Route::post('updateConfirmed', 'COVID19CaseController@updateConfirmed')->name('updateConfirmed');
-    Route::post('updateInvasiveCare', 'COVID19CaseController@updateInvasiveCare')->name('updateInvasiveCare');
     Route::post('updateStreet', 'COVID19CaseController@updateStreet')->name('updateStreet');
     Route::post('updateRef', 'COVID19CaseController@updateRef')->name('updateRef');
     Route::post('updateParish', 'COVID19CaseController@updateParish')->name('updateParish');
@@ -98,12 +91,6 @@ Route::prefix('covid19')->name('covid19.')->group(function () {
     Route::post('updateDoctorResponsibleOnDestination', 'COVID19CaseController@updateDoctorResponsibleOnDestination')->name('updateDoctorResponsibleOnDestination');
     Route::post('updateOnSceneUnits', 'COVID19CaseController@updateOnSceneUnits')->name('updateOnSceneUnits');
     Route::post('updateTotalDistance', 'COVID19CaseController@updateTotalDistance')->name('updateTotalDistance');
-    Route::post('updateDriverName', 'COVID19CaseController@updateDriverName')->name('updateDriverName');
-    Route::post('updateDriverAge', 'COVID19CaseController@updateDriverAge')->name('updateDriverAge');
-    Route::post('updateDriverContact', 'COVID19CaseController@updateDriverContact')->name('updateDriverContact');
-    Route::post('updateRescuerName', 'COVID19CaseController@updateRescuerName')->name('updateRescuerName');
-    Route::post('updateRescuerAge', 'COVID19CaseController@updateRescuerAge')->name('updateRescuerAge');
-    Route::post('updateRescuerContact', 'COVID19CaseController@updateRescuerContact')->name('updateRescuerContact');
     Route::post('updateSALOPActivationStatus', 'COVID19CaseController@updateSALOPActivationStatus')->name('updateSALOPActivationStatus');
     Route::post('updateAMBActivationStatus', 'COVID19CaseController@updateAMBActivationStatus')->name('updateAMBActivationStatus');
     Route::post('updateBaseExitStatus', 'COVID19CaseController@updateBaseExitStatus')->name('updateBaseExitStatus');
@@ -114,8 +101,28 @@ Route::prefix('covid19')->name('covid19.')->group(function () {
     Route::post('updateBaseReturnStatus', 'COVID19CaseController@updateBaseReturnStatus')->name('updateBaseReturnStatus');
     Route::post('updateAvailableStatus', 'COVID19CaseController@updateAvailableStatus')->name('updateAvailableStatus');
     Route::post('updateCaseNotes', 'COVID19CaseController@updateNotes')->name('updateCaseNotes');
+
+    Route::post('insertPatient', 'COVID19CaseController@insertPatient')->name('insertPatient');
+    Route::post('updatePatientRNU', 'COVID19CaseController@updatePatientRNU')->name('updatePatientRNU');
+    Route::post('updatePatientFirstname', 'COVID19CaseController@updatePatientFirstname')->name('updatePatientFirstname');
+    Route::post('updatePatientLastname', 'COVID19CaseController@updatePatientLastname')->name('updatePatientLastname');
+    Route::post('updatePatientSex', 'COVID19CaseController@updatePatientSex')->name('updatePatientSex');
+    Route::post('updatePatientDoB', 'COVID19CaseController@updatePatientDoB')->name('updatePatientDoB');
+    Route::post('updatePatientSuspect', 'COVID19CaseController@updatePatientSuspect')->name('updatePatientSuspect');
+    Route::post('updatePatientSuspectValidation', 'COVID19CaseController@updatePatientSuspectValidation')->name('updatePatientSuspectValidation');
+    Route::post('updatePatientConfirmed', 'COVID19CaseController@updatePatientConfirmed')->name('updatePatientConfirmed');
+    Route::post('updatePatientInvasiveCare', 'COVID19CaseController@updatePatientInvasiveCare')->name('updatePatientInvasiveCare');
+    Route::post('removePatient', 'COVID19CaseController@removePatient')->name('removePatient');
+
     Route::post('addObservation', 'COVID19CaseController@addObservation')->name('addObservation');
     Route::post('removeObservation', 'COVID19CaseController@removeObservation')->name('removeObservation');
+
+    Route::post('insertTeamMember', 'COVID19CaseController@insertTeamMember')->name('insertTeamMember');
+    Route::post('updateTeamMemberName', 'COVID19CaseController@updateTeamMemberName')->name('updateTeamMemberName');
+    Route::post('updateTeamMemberAge', 'COVID19CaseController@updateTeamMemberAge')->name('updateTeamMemberAge');
+    Route::post('updateTeamMemberContact', 'COVID19CaseController@updateTeamMemberContact')->name('updateTeamMemberContact');
+    Route::post('updateTeamMemberType', 'COVID19CaseController@updateTeamMemberType')->name('updateTeamMemberType');
+    Route::post('removeTeamMember', 'COVID19CaseController@removeTeamMember')->name('removeTeamMember');
 
     Route::post('ambulanceINOP', 'COVID19AmbulanceController@INOP')->name('ambulanceINOP');
     Route::post('ambulanceAvailable', 'COVID19AmbulanceController@available')->name('ambulanceAvailable');
@@ -135,7 +142,6 @@ Route::prefix('covid19')->name('covid19.')->group(function () {
     Route::post('removeContact', 'COVID19AmbulanceController@removeContact')->name('removeContact');
 
     Route::post('cancelCase', 'COVID19CaseController@cancel')->name('cancelCase');
-
 });
 
 

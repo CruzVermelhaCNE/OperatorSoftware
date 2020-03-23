@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class COVID19UpdateDriverName extends FormRequest
+class COVID19UpdateTeamMemberContact extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,7 +15,8 @@ class COVID19UpdateDriverName extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "driver_name" => ['string', 'nullable'],       
+            "team_member_id" => ['required', 'exists:covid19_case_team_members'],
+            "contact" => ['string', 'nullable'],
         ];
     }
 }

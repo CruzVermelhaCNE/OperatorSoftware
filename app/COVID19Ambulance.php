@@ -55,11 +55,27 @@ class COVID19Ambulance extends Model
         return $this->hasMany(COVID19AmbulanceContact::class, 'ambulance_id', 'id');
     }
 
+    public function cases()
+    {
+        return $this->hasMany(COVID19AmbulanceCase::class);
+    }
+
+    public function forceUpdate() {
+        event(new COVID19UpdateAmbulance($this));
+    }
+
     public function addContact($contact, $name, $sms)
     {
         $ambulance_id = $this->id;
         COVID19AmbulanceContact::createContact($ambulance_id, $contact, $name, $sms);
-        event(new COVID19UpdateAmbulance($this));
+        $this->forceUpdate();
+    }
+
+    public function removeContact($contact_id)
+    {
+        $contact   = COVID19AmbulanceContact::find($contact_id);
+        $contact->delete();
+        $this->forceUpdate();
     }
 
     public static function createAmbulance($structure, $region, $vehicle_identification, $base_lat, $base_long, $active_prevention)

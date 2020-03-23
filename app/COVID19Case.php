@@ -39,7 +39,7 @@ class COVID19Case extends Model
     ];
 
     public function ambulance() {
-        return $this->hasOne(COVID19Ambulance::class,"case_id","id");
+        return $this->hasMany(COVID19AmbulanceCase::class);
     }
 
     public function operators() {
@@ -50,16 +50,109 @@ class COVID19Case extends Model
         return $this->hasMany(COVID19CaseObservation::class,"case_id","id");
     }
 
+    public function patients() {
+        return $this->hasMany(COVID19CasePatient::class);
+    }
+
+    public function team_members()
+    {
+        return $this->hasMany(COVID19CaseTeamMember::class);
+    }
+
+    public function forceUpdate() {
+        event(new COVID19UpdateCase($this));
+    }
+
+    public function addPatient($RNU, $firstname, $lastname, $sex, $DoB, $suspect, $suspect_validation, $confirmed, $invasive_care) {
+        COVID19CasePatient::createCasePatient($this->id, $RNU, $firstname, $lastname, $sex, $DoB, $suspect, $suspect_validation, $confirmed, $invasive_care);
+        $this->forceUpdate();
+    }
+
+    public function updatePatientRNU($patient_id, $RNU)
+    {
+        $patient   = COVID19CasePatient::find($patient_id);
+        $patient->updatePatientRNU($RNU);
+        $this->forceUpdate();
+    }    
+
+    public function updatePatientFirstname($patient_id,$firstname)
+    {
+        $patient   = COVID19CasePatient::find($patient_id);
+        $patient->updatePatientFirstname($firstname);
+        $this->forceUpdate();
+    }
+
+    public function updatePatientLastname($patient_id,$lastname)
+    {
+        $patient   = COVID19CasePatient::find($patient_id);
+        $patient->updatePatientLastname($lastname);
+        $this->forceUpdate();
+    }
+
+    public function updatePatientSex($patient_id,$sex)
+    {
+        $patient   = COVID19CasePatient::find($patient_id);
+        $patient->updatePatientSex($sex);
+        $this->forceUpdate();
+    }
+
+    public function updatePatientDoB($patient_id,$DoB)
+    {
+        $patient   = COVID19CasePatient::find($patient_id);
+        $patient->updatePatientDoB($DoB);
+        $this->forceUpdate();
+    }
+
+    public function updatePatientSuspect($patient_id,$suspect)
+    {
+        $patient   = COVID19CasePatient::find($patient_id);
+        $patient->updatePatientSuspect($suspect);
+        $this->forceUpdate();
+    }
+
+    public function updatePatientSuspectValidation($patient_id,$suspect_validation)
+    {
+        $patient   = COVID19CasePatient::find($patient_id);
+        $patient->updatePatientSuspectValidation($suspect_validation);
+        $this->forceUpdate();
+    }
+
+    public function updatePatientConfirmed($patient_id,$confirmed)
+    {
+        $patient   = COVID19CasePatient::find($patient_id);
+        $patient->updatePatientConfirmed($confirmed);
+        $this->forceUpdate();
+    }
+
+    public function updatePatientInvasiveCare($patient_id,$invasive_care)
+    {
+        $patient   = COVID19CasePatient::find($patient_id);
+        $patient->updatePatientInvasiveCare($invasive_care);
+        $this->forceUpdate();
+    }
+
+    public function removePatient($patient_id) {
+        $patient   = COVID19CasePatient::find($patient_id);
+        $patient->delete();
+        $this->forceUpdate();
+    }
+
     public function addOperator() {
         $user_id = Auth::user()->id;
         COVID19CaseOperator::createCaseOperator($this->id,$user_id);
-        event(new COVID19UpdateCase($this));
+        $this->forceUpdate();
     }
 
     public function addObservation($observation) {
         $user_id = Auth::user()->id;
         COVID19CaseObservation::createCaseObservation($this->id,$user_id,$observation);
-        event(new COVID19UpdateCase($this));
+        $this->forceUpdate();
+    }
+
+    public function removeObservation($observation_id) {
+        $observation   = COVID19CaseObservation::find($observation_id);
+        $observation->delete();
+        $this->forceUpdate();
     }
 
     public static function createCase($CODU_number, $CODU_localization, $activation_mean)
@@ -94,31 +187,50 @@ class COVID19Case extends Model
         $this->addOperator();
     }
 
-    public function addTeamInformation($driver_name, $driver_age, $driver_contact, $rescuer_name, $rescuer_age, $rescuer_contact)
+    public function addTeamMember($name, $age, $contact, $type)
     {
-        $this->driver_name     = $driver_name;
-        $this->driver_age      = $driver_age;
-        $this->driver_contact  = $driver_contact;
-        $this->rescuer_name    = $rescuer_name;
-        $this->rescuer_age     = $rescuer_age;
-        $this->rescuer_contact = $rescuer_contact;
-        $this->save();
+        $ambulance_id = $this->ambulance->first()->id;
+        COVID19CaseTeamMember::createCaseTeamMember($ambulance_id,$this->id,$name,$age,$contact,$type);
+        $this->forceUpdate();
         $this->addOperator();
     }
 
-    public function addPatientInformation($RNU, $firstname, $lastname, $sex, $DoB, $suspect, $suspect_validation, $confirmed, $invasive_care)
+    public function updateTeamMemberName($team_member_id,$name)
     {
-        $this->RNU                = $RNU;
-        $this->firstname          = $firstname;
-        $this->lastname           = $lastname;
-        $this->sex                = $sex;
-        $this->DoB                = $DoB;
-        $this->suspect            = $suspect;
-        $this->suspect_validation = $suspect_validation;
-        $this->confirmed          = $confirmed;
-        $this->invasive_care      = $invasive_care;
-        $this->save();
+        $team_member   = COVID19CaseTeamMember::find($team_member_id);
+        $team_member->updateName($name);
+        $this->forceUpdate();
         $this->addOperator();
+    }
+
+    public function updateTeamMemberAge($team_member_id,$age)
+    {
+        $team_member   = COVID19CaseTeamMember::find($team_member_id);
+        $team_member->updateAge($age);
+        $this->forceUpdate();
+        $this->addOperator();
+    }
+
+    public function updateTeamMemberContact($team_member_id,$contact)
+    {
+        $team_member   = COVID19CaseTeamMember::find($team_member_id);
+        $team_member->updateContact($contact);
+        $this->forceUpdate();
+        $this->addOperator();
+    }
+
+    public function updateTeamMemberType($team_member_id,$type)
+    {
+        $team_member   = COVID19CaseTeamMember::find($team_member_id);
+        $team_member->updateType($type);
+        $this->forceUpdate();
+        $this->addOperator();
+    }
+
+    public function removeTeamMember($member_id) {
+        $member   = COVID19CaseTeamMember::find($member_id);
+        $member->delete();
+        $this->forceUpdate();
     }
 
     public function addVehicleInformation($structure, $vehicle_identification, $vehicle_type)
@@ -214,69 +326,6 @@ class COVID19Case extends Model
         $this->addOperator();
     }
 
-    public function updateRNU($RNU)
-    {
-        $this->RNU = $RNU;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateLastName($lastname)
-    {
-        $this->lastname = $lastname;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateFirstName($firstname)
-    {
-        $this->firstname = $firstname;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateSex($sex)
-    {
-        $this->sex = $sex;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateDoB($DoB)
-    {
-        $this->DoB = $DoB;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateSuspect($suspect)
-    {
-        $this->suspect = $suspect;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateSuspectValidation($suspect_validation)
-    {
-        $this->suspect_validation = $suspect_validation;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateConfirmed($confirmed)
-    {
-        $this->confirmed = $confirmed;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateInvasiveCare($invasive_care)
-    {
-        $this->invasive_care = $invasive_care;
-        $this->save();
-        $this->addOperator();
-    }
-
     public function updateStreet($street)
     {
         $this->street = $street;
@@ -350,48 +399,6 @@ class COVID19Case extends Model
     public function updateTotalDistance($total_distance)
     {
         $this->total_distance = $total_distance;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateDriverName($driver_name)
-    {
-        $this->driver_name = $driver_name;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateDriverAge($driver_age)
-    {
-        $this->driver_age = $driver_age;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateDriverContact($driver_contact)
-    {
-        $this->driver_contact = $driver_contact;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateRescuerName($rescuer_name)
-    {
-        $this->rescuer_name = $rescuer_name;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateRescuerAge($rescuer_age)
-    {
-        $this->rescuer_age = $rescuer_age;
-        $this->save();
-        $this->addOperator();
-    }
-
-    public function updateRescuerContact($rescuer_contact)
-    {
-        $this->rescuer_contact = $rescuer_contact;
         $this->save();
         $this->addOperator();
     }

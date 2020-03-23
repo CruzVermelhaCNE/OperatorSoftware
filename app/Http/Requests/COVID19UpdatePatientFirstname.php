@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class COVID19UpdateDoB extends FormRequest
+class COVID19UpdatePatientFirstname extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,7 +15,8 @@ class COVID19UpdateDoB extends FormRequest
     {
         return [
             "id" => ['required', 'exists:covid19_cases'],
-            "dob" => ['date', 'nullable'],
+            "patient_id" => ['required', 'exists:covid19_case_patients'],
+            "firstname" => ['string', 'nullable'],
         ];
     }
 }

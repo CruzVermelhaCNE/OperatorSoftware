@@ -12,7 +12,7 @@ use App\Http\Requests\COVID19InsertAmbulance;
 use App\Http\Requests\COVID19InsertEvent;
 use App\Http\Requests\COVID19InsertPatient;
 use App\Http\Requests\COVID19InsertSIEMAmbulance;
-use App\Http\Requests\COVID19InsertTeam;
+use App\Http\Requests\COVID19InsertTeamMember;
 use App\Http\Requests\COVID19NewCase;
 use App\Http\Requests\COVID19UpdateActivationMean;
 use App\Http\Requests\COVID19UpdateAMBActivationStatus;
@@ -23,37 +23,37 @@ use App\Http\Requests\COVID19UpdateBaseExitStatus;
 use App\Http\Requests\COVID19UpdateBaseReturnStatus;
 use App\Http\Requests\COVID19UpdateCODULocalization;
 use App\Http\Requests\COVID19UpdateCODUNumber;
-use App\Http\Requests\COVID19UpdateConfirmed;
 use App\Http\Requests\COVID19UpdateCounty;
 use App\Http\Requests\COVID19UpdateDepartureFromDestinationStatus;
 use App\Http\Requests\COVID19UpdateDepartureFromSceneStatus;
 use App\Http\Requests\COVID19UpdateDestination;
 use App\Http\Requests\COVID19UpdateDistrict;
-use App\Http\Requests\COVID19UpdateDoB;
 use App\Http\Requests\COVID19UpdateDoctorResponsibleOnDestination;
 use App\Http\Requests\COVID19UpdateDoctorResponsibleOnScene;
-use App\Http\Requests\COVID19UpdateDriverAge;
-use App\Http\Requests\COVID19UpdateDriverContact;
-use App\Http\Requests\COVID19UpdateDriverName;
-use App\Http\Requests\COVID19UpdateFirstName;
-use App\Http\Requests\COVID19UpdateInvasiveCare;
-use App\Http\Requests\COVID19UpdateLastName;
 use App\Http\Requests\COVID19UpdateNotes;
 use App\Http\Requests\COVID19UpdateOnSceneUnits;
 use App\Http\Requests\COVID19UpdateParish;
 use App\Http\Requests\COVID19UpdateRef;
-use App\Http\Requests\COVID19UpdateRescuerAge;
-use App\Http\Requests\COVID19UpdateRescuerContact;
-use App\Http\Requests\COVID19UpdateRescuerName;
-use App\Http\Requests\COVID19UpdateRNU;
 use App\Http\Requests\COVID19UpdateSALOPActivationStatus;
-use App\Http\Requests\COVID19UpdateSex;
 use App\Http\Requests\COVID19UpdateSource;
 use App\Http\Requests\COVID19UpdateStreet;
-use App\Http\Requests\COVID19UpdateSuspect;
-use App\Http\Requests\COVID19UpdateSuspectValidation;
 use App\Http\Requests\COVID19UpdateTotalDistance;
 use App\Http\Requests\COVID19RemoveObservation;
+use App\Http\Requests\COVID19RemovePatient;
+use App\Http\Requests\COVID19RemoveTeamMember;
+use App\Http\Requests\COVID19UpdatePatientConfirmed;
+use App\Http\Requests\COVID19UpdatePatientDoB;
+use App\Http\Requests\COVID19UpdatePatientFirstname;
+use App\Http\Requests\COVID19UpdatePatientInvasiveCare;
+use App\Http\Requests\COVID19UpdatePatientLastname;
+use App\Http\Requests\COVID19UpdatePatientRNU;
+use App\Http\Requests\COVID19UpdatePatientSex;
+use App\Http\Requests\COVID19UpdatePatientSuspect;
+use App\Http\Requests\COVID19UpdatePatientSuspectValidation;
+use App\Http\Requests\COVID19UpdateTeamMemberAge;
+use App\Http\Requests\COVID19UpdateTeamMemberContact;
+use App\Http\Requests\COVID19UpdateTeamMemberName;
+use App\Http\Requests\COVID19UpdateTeamMemberType;
 use App\Notifications\COVID19AmbulanceSlackNotification;
 use App\Notifications\COVID19AmbulanceNexmoNotification;
 use Carbon\Carbon;
@@ -86,6 +86,20 @@ class COVID19CaseController extends Controller
         return response()->json($case);
     }
 
+    public function getPatients($id)
+    {
+        $case = COVID19Case::find($id);
+        $patients = $case->patients;
+        return response()->json($patients);
+    }
+
+    public function getTeamMembers($id)
+    {
+        $case = COVID19Case::find($id);
+        $team_members = $case->team_members;
+        return response()->json($team_members);
+    }
+
     public function getOperators($id)
     {
         $case = COVID19Case::find($id);
@@ -111,7 +125,7 @@ class COVID19CaseController extends Controller
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->addPatientInformation($validated['rnu'], $validated['firstname'], $validated['lastname'], $validated['sex'], $validated['DoB'], $validated['suspect'], $validated['suspect_validation'], $validated['confirmed'], $validated['invasive_care']);
+        $case->addPatient($validated['rnu'], $validated['firstname'], $validated['lastname'], $validated['sex'], $validated['DoB'], $validated['suspect'], $validated['suspect_validation'], $validated['confirmed'], $validated['invasive_care']);
     }
 
     public function insertEvent(COVID19InsertEvent $request)
@@ -121,11 +135,18 @@ class COVID19CaseController extends Controller
         $case->addEventInformation($validated['street'], $validated['parish'], $validated['county'], $validated['district'], $validated['ref'], $validated['source'], null, null, $validated['destination'], null, null, $validated['doctor_responsible_on_scene'], $validated['doctor_responsible_on_destination'], $validated['on_scene_units'], $validated['total_distance']);
     }
 
-    public function insertTeam(COVID19InsertTeam $request)
+    public function insertTeamMember(COVID19InsertTeamMember $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->addTeamInformation($validated['driver_name'], $validated['driver_age'], $validated['driver_contact'], $validated['rescuer_name'], $validated['rescuer_age'], $validated['rescuer_contact']);
+        $case->addTeamMember($validated['name'], $validated['age'], $validated['contact'], $validated['type']);
+    }
+
+    public function removeTeamMember(COVID19RemoveTeamMember $request)
+    {
+        $validated = $request->validated();
+        $case      = COVID19Case::find($validated['id']);
+        $case->removeTeamMember($validated['team_member_id']);
     }
 
     public function insertAmbulance(COVID19InsertAmbulance $request)
@@ -155,7 +176,7 @@ class COVID19CaseController extends Controller
             $old_ambulance->first()->INOP(null);
             $message = "*ATIVAÇÃO COVID-19 | '.$old_ambulance->structure.' ANULADA*";
             $old_ambulance->notify(new COVID19AmbulanceSlackNotification($message));
-            Notification::send($ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceNexmoNotification($message));
+            Notification::send($old_ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceNexmoNotification($message));
         }
         $case->statusActivation(Carbon::now());
         $case->addVehicleInformation($validated['structure'], $validated['vehicle_identification'], $validated['vehicle_type']);
@@ -188,67 +209,74 @@ class COVID19CaseController extends Controller
         $case->updateActivationMean($validated['activation_mean']);
     }
 
-    public function updateRNU(COVID19UpdateRNU $request)
+    public function updatePatientRNU(COVID19UpdatePatientRNU $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateRNU($validated['rnu']);
+        $case->updatePatientRNU($validated['patient_id'],$validated['rnu']);
     }
 
-    public function updateLastName(COVID19UpdateLastName $request)
+    public function updatePatientFirstName(COVID19UpdatePatientFirstname $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateLastName($validated['lastname']);
+        $case->updatePatientFirstname($validated['patient_id'],$validated['firstname']);
     }
 
-    public function updateFirstName(COVID19UpdateFirstName $request)
+    public function updatePatientLastname(COVID19UpdatePatientLastname $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateFirstName($validated['firstname']);
+        $case->updatePatientLastname($validated['patient_id'],$validated['lastname']);
     }
 
-    public function updateSex(COVID19UpdateSex $request)
+    public function updatePatientSex(COVID19UpdatePatientSex $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateSex($validated['sex']);
+        $case->updatePatientSex($validated['patient_id'],$validated['sex']);
     }
 
-    public function updateDoB(COVID19UpdateDoB $request)
+    public function updatePatientDoB(COVID19UpdatePatientDoB $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateDoB($validated['dob']);
+        $case->updatePatientDoB($validated['patient_id'],$validated['dob']);
     }
 
-    public function updateSuspect(COVID19UpdateSuspect $request)
+    public function updatePatientSuspect(COVID19UpdatePatientSuspect $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateSuspect($validated['suspect']);
+        $case->updatePatientSuspect($validated['patient_id'],$validated['suspect']);
     }
 
-    public function updateSuspectValidation(COVID19UpdateSuspectValidation $request)
+    public function updatePatientSuspectValidation(COVID19UpdatePatientSuspectValidation $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateSuspectValidation($validated['suspect_validation']);
+        $case->updatePatientSuspectValidation($validated['patient_id'],$validated['suspect_validation']);
     }
 
-    public function updateConfirmed(COVID19UpdateConfirmed $request)
+    public function updateConfirmed(COVID19UpdatePatientConfirmed $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateConfirmed($validated['confirmed']);
+        $case->updatePatientConfirmed($validated['patient_id'],$validated['confirmed']);
     }
 
-    public function updateInvasiveCare(COVID19UpdateInvasiveCare $request)
+    public function updatePatientInvasiveCare(COVID19UpdatePatientInvasiveCare $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateInvasiveCare($validated['invasive_care']);
+        $case->updatePatientInvasiveCare($validated['patient_id'],$validated['invasive_care']);
+    }
+
+    public function removePatient(COVID19RemovePatient $request)
+    {
+        $validated = $request->validated();
+        $case      = COVID19Case::find($validated['id']);
+        $case->removePatient($validated['patient_id']);
     }
 
     public function updateStreet(COVID19UpdateStreet $request)
@@ -328,46 +356,32 @@ class COVID19CaseController extends Controller
         $case->updateTotalDistance($validated['total_distance']);
     }
 
-    public function updateDriverName(COVID19UpdateDriverName $request)
+    public function updateTeamMemberName(COVID19UpdateTeamMemberName $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateDriverName($validated['driver_name']);
+        $case->updateTeamMemberName($validated['team_member_id'],$validated['name']);
     }
 
-    public function updateDriverAge(COVID19UpdateDriverAge $request)
+    public function updateTeamMemberAge(COVID19UpdateTeamMemberAge $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateDriverAge($validated['driver_age']);
+        $case->updateTeamMemberAge($validated['team_member_id'],$validated['age']);
     }
 
-    public function updateDriverContact(COVID19UpdateDriverContact $request)
+    public function updateTeamMemberContact(COVID19UpdateTeamMemberContact $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateDriverContact($validated['driver_contact']);
+        $case->COVID19UpdateTeamMemberContact($validated['team_member_id'],$validated['contact']);
     }
 
-    public function updateRescuerName(COVID19UpdateRescuerName $request)
+    public function updateTeamMemberType(COVID19UpdateTeamMemberType $request)
     {
         $validated = $request->validated();
         $case      = COVID19Case::find($validated['id']);
-        $case->updateRescuerName($validated['rescuer_name']);
-    }
-
-    public function updateRescuerAge(COVID19UpdateRescuerAge $request)
-    {
-        $validated = $request->validated();
-        $case      = COVID19Case::find($validated['id']);
-        $case->updateRescuerAge($validated['rescuer_age']);
-    }
-
-    public function updateRescuerContact(COVID19UpdateRescuerContact $request)
-    {
-        $validated = $request->validated();
-        $case      = COVID19Case::find($validated['id']);
-        $case->updateRescuerContact($validated['rescuer_contact']);
+        $case->updateTeamMemberType($validated['team_member_id'],$validated['type']);
     }
 
     public function updateSALOPActivationStatus(COVID19UpdateSALOPActivationStatus $request)
@@ -450,8 +464,8 @@ class COVID19CaseController extends Controller
     public function removeObservation(COVID19RemoveObservation $request)
     {
         $validated = $request->validated();
-        $observation      = COVID19CaseObservation::find($validated['id']);
-        $observation->remove(Auth::user()->id);
+        $case      = COVID19Case::find($validated['id']);
+        $case->removeObservation($validated['observation_id']);
     }
 
     public function cancel(COVID19CancelCase $request)

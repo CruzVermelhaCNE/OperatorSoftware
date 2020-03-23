@@ -14,7 +14,8 @@ class COVID19RemoveObservation extends FormRequest
     public function rules()
     {
         return [
-            "id" => ['required', 'exists:covid19_case_observations'],
+            "id" => ['required', 'exists:covid19_cases'],
+            "observation_id" => ['required', 'exists:covid19_case_observations'],            
         ];
     }
 }

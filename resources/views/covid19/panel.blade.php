@@ -140,8 +140,6 @@
                             <th>Identificação de Viatura</th>
                             <th>Origem</th>
                             <th>Destino</th>
-                            <th>Nome Condutor</th>
-                            <th>Nome Socorrista</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -155,8 +153,6 @@
                             <td>{{$case->vehicle_identification}}</td>
                             <td>{{$case->complete_source()}}</td>
                             <td>{{$case->destination}}</td>
-                            <td>{{$case->driver_name}}</td>
-                            <td>{{$case->rescuer_name}}</td>
                             <td><a href="#" onclick="openCase({{$case->id}})">Abrir</a></td>
                         </tr>
                         @endforeach
@@ -731,131 +727,27 @@
                 <div id="case_team">
                     <h4>Dados Equipa</h4>
                     <div id="occorrence_team">
-                        <h5>Condutor</h5>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div id="team_driver_name_display">
-                                    <p><b>Nome:</b> <a href="#" onclick="updateTeamDriverName()"
-                                            id="team_driver_name">destino</a></p>
-                                </div>
-                                <div id="team_driver_name_edit" class="form-inline" style="display:none;">
-                                    <p><b>Nome:</b> <input autocomplete="off" type="text"
-                                            id="team_driver_name_edit_input" class="form-control" placeholder="Nome"> <a
-                                            href="#" onclick="cancelUpdateTeamDriverName()">Cancelar</a> <a href="#"
-                                            onclick="submitUpdateTeamDriverName()">Atualizar</a></p>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div id="team_driver_age_display">
-                                    <p><b>Idade:</b> <a href="#" onclick="updateTeamDriverAge()"
-                                            id="team_driver_age">destino</a></p>
-                                </div>
-                                <div id="team_driver_age_edit" class="form-inline" style="display:none;">
-                                    <p><b>Idade:</b> <input autocomplete="off" type="text"
-                                            id="team_driver_age_edit_input" class="form-control" placeholder="Idade"> <a
-                                            href="#" onclick="cancelUpdateTeamDriverAge()">Cancelar</a> <a href="#"
-                                            onclick="submitUpdateTeamDriverAge()">Atualizar</a></p>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div id="team_driver_contact_display">
-                                    <p><b>Contacto:</b> <a href="#" onclick="updateTeamDriverContact()"
-                                            id="team_driver_contact">contacto</a></p>
-                                </div>
-                                <div id="team_driver_contact_edit" class="form-inline" style="display:none;">
-                                    <p><b>Contacto:</b> <input autocomplete="off" type="text"
-                                            id="team_driver_contact_edit_input" class="form-control"
-                                            placeholder="Contacto"> <a href="#"
-                                            onclick="cancelUpdateTeamDriverContact()">Cancelar</a> <a href="#"
-                                            onclick="submitUpdateTeamDriverContact()">Atualizar</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <h5>Socorrista</h5>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div id="team_rescuer_name_display">
-                                    <p><b>Nome:</b> <a href="#" onclick="updateTeamRescuerName()"
-                                            id="team_rescuer_name">destino</a></p>
-                                </div>
-                                <div id="team_rescuer_name_edit" class="form-inline" style="display:none;">
-                                    <p><b>Nome:</b> <input autocomplete="off" type="text"
-                                            id="team_rescuer_name_edit_input" class="form-control" placeholder="Nome">
-                                        <a href="#" onclick="cancelUpdateTeamRescuerName()">Cancelar</a> <a href="#"
-                                            onclick="submitUpdateTeamRescuerName()">Atualizar</a></p>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div id="team_rescuer_age_display">
-                                    <p><b>Idade:</b> <a href="#" onclick="updateTeamRescuerAge()"
-                                            id="team_rescuer_age">destino</a></p>
-                                </div>
-                                <div id="team_rescuer_age_edit" class="form-inline" style="display:none;">
-                                    <p><b>Idade:</b> <input autocomplete="off" type="text"
-                                            id="team_rescuer_age_edit_input" class="form-control" placeholder="Idade">
-                                        <a href="#" onclick="cancelUpdateTeamRescuerAge()">Cancelar</a> <a href="#"
-                                            onclick="submitUpdateTeamRescuerAge()">Atualizar</a></p>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div id="team_rescuer_contact_display">
-                                    <p><b>Contacto:</b> <a href="#" onclick="updateTeamRescuerContact()"
-                                            id="team_rescuer_contact">contacto</a></p>
-                                </div>
-                                <div id="team_rescuer_contact_edit" class="form-inline" style="display:none;">
-                                    <p><b>Contacto:</b> <input autocomplete="off" type="text"
-                                            id="team_rescuer_contact_edit_input" class="form-control"
-                                            placeholder="Contacto"> <a href="#"
-                                            onclick="cancelUpdateTeamRescuerContact()">Cancelar</a> <a href="#"
-                                            onclick="submitUpdateTeamRescuerContact()">Atualizar</a></p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div id="occorrence_team_create" style="display:none">
-                        <div id="occorence_team_create_validate">
-                            <button type="button" class="btn btn-primary" onclick="openTeamInsert()">Anexar Dados
-                                Equipa</button>
+                    <hr />
+                    <h6>Adicionar Membro de Equipa</h6>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="case_team_name" placeholder="Nome">
                         </div>
-                        <div id="occorence_team_create_insert" style="display: none">
-                            <h5>Condutor</h5>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p><b>Nome:</b> <input autocomplete="off" type="text"
-                                            id="occorence_team_create_driver_name" class="form-control"
-                                            placeholder="Nome"></p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p><b>Idade:</b> <input autocomplete="off" type="text"
-                                            id="occorence_team_create_driver_age" class="form-control"
-                                            placeholder="Idade"></p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p><b>Contacto:</b><input autocomplete="off" type="text"
-                                            id="occorence_team_create_driver_contact" class="form-control"
-                                            placeholder="Contacto"></p>
-                                </div>
-                            </div>
-                            <h5>Socorrista</h5>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p><b>Nome:</b> <input autocomplete="off" type="text"
-                                            id="occorence_team_create_rescuer_name" class="form-control"
-                                            placeholder="Nome"></p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p><b>Idade:</b> <input autocomplete="off" type="text"
-                                            id="occorence_team_create_rescuer_age" class="form-control"
-                                            placeholder="Idade"></p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p><b>Contacto:</b> <input autocomplete="off" type="text"
-                                            id="occorence_team_create_rescuer_contact" class="form-control"
-                                            placeholder="Contacto"></p>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-warning" onclick="cancelTeamInsert()">Cancelar</button>
-                            <button type="button" class="btn btn-primary" onclick="submitTeamInsert()">Guardar</button>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="case_team_age" placeholder="Idade">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="case_team_contact" placeholder="Idade">
+                        </div>
+                        <div class="col-sm-auto">
+                            <select class="form-control" id="case_team_type" placeholder="Tipo">
+                                <option value="Condutor">Condutor</option>
+                                <option value="Socorrista">Socorrista</option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary" onclick="addTeamMember()">Adicionar</button>
                         </div>
                     </div>
                     <hr />
@@ -863,240 +755,82 @@
                 <div id="case_patient">
                     <h4>Dados Vitima</h4>
                     <div id="occorrence_patient">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div id="patient_information_RNU_display">
-                                    <p><b>Nº RNU:</b> <a href="#" onclick="updatePatientInformationRNU()"
-                                            id="patient_information_RNU">RNU</a></p>
-                                </div>
-                                <div id="patient_information_RNU_edit" class="form-inline" style="display:none;">
-                                    <p><b>Nº RNU:</b> <input autocomplete="off" type="number"
-                                            id="patient_information_RNU_edit_input" class="form-control"
-                                            placeholder="Nº RNU"> <a href="#"
-                                            onclick="cancelUpdatePatientInformationRNU()">Cancelar</a> <a href="#"
-                                            onclick="submitUpdatePatientInformationRNU()">Atualizar</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div id="patient_information_firstname_display">
-                                    <p><b>Nome Próprio (2 primeiras consoantes):</b> <a href="#"
-                                            onclick="updatePatientInformationFirstname()"
-                                            id="patient_information_firstname">BCD</a></p>
-                                </div>
-                                <div id="patient_information_firstname_edit" class="form-inline" style="display:none;">
-                                    <p><b>Nome Próprio (2 primeiras consoantes):</b> <input autocomplete="off"
-                                            type="text" id="patient_information_firstname_edit_input"
-                                            class="form-control" placeholder="2 primeiras consoantes"><a href="#"
-                                            onclick="cancelUpdatePatientInformationFirstname()">Cancelar</a> <a href="#"
-                                            onclick="submitUpdatePatientInformationFirstname()">Atualizar</a></p>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div id="patient_information_lastname_display">
-                                    <p><b>Último Apelido (3 primeiras consoantes):</b> <a href="#"
-                                            onclick="updatePatientInformationLastname()"
-                                            id="patient_information_lastname">BCD</a></p>
-                                </div>
-                                <div id="patient_information_lastname_edit" class="form-inline" style="display:none;">
-                                    <p><b>Último Apelido (3 primeiras consoantes):</b> <input autocomplete="off"
-                                            type="text" id="patient_information_lastname_edit_input"
-                                            class="form-control" placeholder="3 primeiras consoantes"> <a href="#"
-                                            onclick="cancelUpdatePatientInformationLastname()">Cancelar</a> <a href="#"
-                                            onclick="submitUpdatePatientInformationLastname()">Atualizar</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div id="patient_information_sex_display">
-                                    <p><b>Género:</b> <a href="#" onclick="updatePatientInformationSex()"
-                                            id="patient_information_sex">Masculino/Feminino</a></p>
-                                </div>
-                                <div id="patient_information_sex_edit" class="form-inline" style="display:none;">
-                                    <p><b>Género:</b> <select autocomplete="off" class="form-control"
-                                            id="patient_information_sex_edit_input">
-                                            <option value="">Sem Informação</option>
-                                            <option value="0">Masculino</option>
-                                            <option value="1">Feminino</option>
-                                        </select><a href="#" onclick="cancelUpdatePatientInformationSex()">Cancelar</a>
-                                        <a href="#" onclick="submitUpdatePatientInformationSex()">Atualizar</a></p>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div id="patient_information_DoB_display">
-                                    <p><b>Data de Nascimento:</b> <a href="#" onclick="updatePatientInformationDoB()"
-                                            id="patient_information_DoB">AAAA/MM/DD</a></p>
-                                </div>
-                                <div id="patient_information_DoB_edit" class="form-inline" style="display:none;">
-                                    <p><b>Data de Nascimento:</b> <input autocomplete="off" type="date"
-                                            id="patient_information_DoB_edit_input" class="form-control"></p><a href="#"
-                                        onclick="cancelUpdatePatientInformationDoB()">Cancelar</a> <a href="#"
-                                        onclick="submitUpdatePatientInformationDoB()">Atualizar</a></p>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <p><b>Idade:</b> <span id="patient_information_age">XX</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div id="patient_information_suspect_display">
-                                    <p><b>Caso Suspeito COVID-19:</b> <a href="#"
-                                            onclick="updatePatientInformationSuspect()"
-                                            id="patient_information_suspect">Sim/Não</a></p>
-                                </div>
-                                <div id="patient_information_suspect_edit" class="form-inline" style="display:none;">
-                                    <p><b>Caso Suspeito COVID-19:</b> <select autocomplete="off" class="form-control"
-                                            id="patient_information_suspect_edit_input">
-                                            <option value="1">Sim</option>
-                                            <option value="0">Não</option>
-                                        </select></p><a href="#"
-                                        onclick="cancelUpdatePatientInformationSuspect()">Cancelar</a> <a href="#"
-                                        onclick="submitUpdatePatientInformationSuspect()">Atualizar</a></p>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div id="patient_information_suspect_validation_display">
-                                    <p><b>Validação:</b> <a href="#"
-                                            onclick="updatePatientInformationSuspectValidation()"
-                                            id="patient_information_suspect_validation">CODU/Equipa/Hospital</a></p>
-                                </div>
-                                <div id="patient_information_suspect_validation_edit" class="form-inline"
-                                    style="display:none;">
-                                    <p><b>Validação:</b> <select autocomplete="off" class="form-control"
-                                            id="patient_information_suspect_validation_edit_input">
-                                            <option value="">Sem Informação</option>
-                                            <option value="CODU">CODU</option>
-                                            <option value="Equipa">Equipa</option>
-                                            <option value="Hospital">Hospital</option>
-                                        </select></p><a href="#"
-                                        onclick="cancelUpdatePatientInformationSuspectValidation()">Cancelar</a> <a
-                                        href="#"
-                                        onclick="submitUpdatePatientInformationSuspectValidation()">Atualizar</a></p>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div id="patient_information_confirmed_display">
-                                    <p><b>Caso Confirmado COVID-19:</b> <a href="#"
-                                            onclick="updatePatientInformationConfirmed()"
-                                            id="patient_information_confirmed">Sim/Não</a></p>
-                                </div>
-                                <div id="patient_information_confirmed_edit" class="form-inline" style="display:none;">
-                                    <p><b>Caso Confirmado COVID-19:</b> <select autocomplete="off" class="form-control"
-                                            id="patient_information_confirmed_edit_input">
-                                            <option value="">Sem Informação</option>
-                                            <option value="1">Sim</option>
-                                            <option value="0">Não</option>
-                                        </select></p><a href="#"
-                                        onclick="cancelUpdatePatientInformationConfirmed()">Cancelar</a> <a href="#"
-                                        onclick="submitUpdatePatientInformationConfirmed()">Atualizar</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div id="patient_information_invasive_care_display">
-                                    <p><b>Realizados cuidados invasivos:</b> <a href="#"
-                                            onclick="updatePatientInformationInvasiveCare()"
-                                            id="patient_information_invasive_care">Sim/Não</a></p>
-                                </div>
-                                <div id="patient_information_invasive_care_edit" class="form-inline"
-                                    style="display:none;">
-                                    <p><b>Realizados cuidados invasivos:</b> <select autocomplete="off"
-                                            class="form-control" id="patient_information_invasive_care_edit_input">
-                                            <option value="">Sem Informação</option>
-                                            <option value="1">Sim</option>
-                                            <option value="0">Não</option>
-                                        </select></p><a href="#"
-                                        onclick="cancelUpdatePatientInformationInvasiveCare()">Cancelar</a> <a href="#"
-                                        onclick="submitUpdatePatientInformationInvasiveCare()">Atualizar</a></p>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
-                    <div id="occorrence_patient_create" style="display:none">
-                        <div id="occorence_patient_create_validate">
-                            <button type="button" class="btn btn-primary" onclick="openPatientInsert()">Anexar Dados
-                                Vitima</button>
+                    <h6>Adicionar Vitima</h6>
+                    <div class="form-row align-items-center">
+                        <h6>Deixar em branco para registar sem informação</h6>
+                        <div class="row">
+                            <div class="col-sm-12 form-inline">
+                                <p><b>Nº RNU:</b> <input autocomplete="off" type="number" id="case_patient_rnu"
+                                        class="form-control" placeholder="Nº RNU">
+                                </p>
+                            </div>
                         </div>
-                        <div id="occorence_patient_create_insert" style="display: none">
-                            <h6>Deixar em branco para registar sem informação</h6>
-                            <div class="row">
-                                <div class="col-sm-12 form-inline">
-                                    <p><b>Nº RNU:</b> <input autocomplete="off" type="number"
-                                            id="occorence_patient_create_rnu" class="form-control" placeholder="Nº RNU">
-                                    </p>
-                                </div>
+                        <div class="row">
+                            <div class="col-sm-6 form-inline">
+                                <p><b>Nome Próprio (2 primeiras consoantes):</b> <input autocomplete="off" type="text"
+                                        id="case_patient_firstname" class="form-control"
+                                        placeholder="2 primeiras consoantes"></p>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6 form-inline">
-                                    <p><b>Nome Próprio (2 primeiras consoantes):</b> <input autocomplete="off"
-                                            type="text" id="occorence_patient_create_firstname" class="form-control"
-                                            placeholder="2 primeiras consoantes"></p>
-                                </div>
-                                <div class="col-sm-6 form-inline">
-                                    <p><b>Último Apelido (3 primeiras consoantes):</b> <input autocomplete="off"
-                                            type="text" id="occorence_patient_create_lastname" class="form-control"
-                                            placeholder="3 primeiras consoantes"></p>
-                                </div>
+                            <div class="col-sm-6 form-inline">
+                                <p><b>Último Apelido (3 primeiras consoantes):</b> <input autocomplete="off" type="text"
+                                        id="case_patient_lastname" class="form-control"
+                                        placeholder="3 primeiras consoantes"></p>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6 form-inline">
-                                    <p><b>Género:</b> <select autocomplete="off" class="form-control"
-                                            id="occorence_patient_create_genero">
-                                            <option value="">Sem Informação</option>
-                                            <option value="0">Masculino</option>
-                                            <option value="1">Feminino</option>
-                                        </select></p>
-                                </div>
-                                <div class="col-sm-6 form-inline">
-                                    <p><b>Data de Nascimento:</b> <input autocomplete="off" type="date"
-                                            id="occorence_patient_create_DoB" class="form-control"></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3 form-inline">
-                                    <p><b>Caso Suspeito COVID-19:</b> <select autocomplete="off" class="form-control"
-                                            id="occorence_patient_create_suspect">
-                                            <option value="1">Sim</option>
-                                            <option value="0">Não</option>
-                                        </select></p>
-                                </div>
-                                <div class="col-sm-3 form-inline">
-                                    <p><b>Validação:</b> <select autocomplete="off" class="form-control"
-                                            id="occorence_patient_create_suspect_validation">
-                                            <option value="">Sem Informação</option>
-                                            <option value="CODU">CODU</option>
-                                            <option value="Equipa">Equipa</option>
-                                            <option value="Hospital">Hospital</option>
-                                        </select></p>
-                                </div>
-                                <div class="col-sm-6 form-inline">
-                                    <p><b>Caso Confirmado COVID-19:</b> <select autocomplete="off" class="form-control"
-                                            id="occorence_patient_create_confirmed">
-                                            <option value="">Sem Informação</option>
-                                            <option value="1">Sim</option>
-                                            <option value="0">Não</option>
-                                        </select></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 form-inline">
-                                    <p><b>Realizados cuidados invasivos:</b><select autocomplete="off"
-                                            class="form-control" id="occorence_patient_create_invasive_care">
-                                            <option value="">Sem Informação</option>
-                                            <option value="1">Sim</option>
-                                            <option value="0">Não</option>
-                                        </select></p>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-warning"
-                                onclick="cancelPatientInsert()">Cancelar</button>
-                            <button type="button" class="btn btn-primary"
-                                onclick="submitPatientInsert()">Guardar</button>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-6 form-inline">
+                                <p><b>Género:</b> <select autocomplete="off" class="form-control"
+                                        id="case_patient_genero">
+                                        <option value="">Sem Informação</option>
+                                        <option value="0">Masculino</option>
+                                        <option value="1">Feminino</option>
+                                    </select></p>
+                            </div>
+                            <div class="col-sm-6 form-inline">
+                                <p><b>Data de Nascimento:</b> <input autocomplete="off" type="date"
+                                        id="case_patient_DoB" class="form-control"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 form-inline">
+                                <p><b>Caso Suspeito COVID-19:</b> <select autocomplete="off" class="form-control"
+                                        id="case_patient_suspect">
+                                        <option value="1">Sim</option>
+                                        <option value="0">Não</option>
+                                    </select></p>
+                            </div>
+                            <div class="col-sm-3 form-inline">
+                                <p><b>Validação:</b> <select autocomplete="off" class="form-control"
+                                        id="case_patient_validation">
+                                        <option value="">Sem Informação</option>
+                                        <option value="CODU">CODU</option>
+                                        <option value="Equipa">Equipa</option>
+                                        <option value="Hospital">Hospital</option>
+                                    </select></p>
+                            </div>
+                            <div class="col-sm-6 form-inline">
+                                <p><b>Caso Confirmado COVID-19:</b> <select autocomplete="off" class="form-control"
+                                        id="case_patient_confirmed">
+                                        <option value="">Sem Informação</option>
+                                        <option value="1">Sim</option>
+                                        <option value="0">Não</option>
+                                    </select></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 form-inline">
+                                <p><b>Realizados cuidados invasivos:</b><select autocomplete="off" class="form-control"
+                                        id="case_patient_invasive_care">
+                                        <option value="">Sem Informação</option>
+                                        <option value="1">Sim</option>
+                                        <option value="0">Não</option>
+                                    </select></p>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="addNewPatient()">Adicionar
+                            Vitima</button>
                     </div>
                 </div>
                 <hr />
@@ -1212,7 +946,8 @@
                     <h6>Adicionar Contacto</h6>
                     <div class="form-row align-items-center">
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="ambulance_contacts_contact" placeholder="Número">
+                            <input type="text" class="form-control" id="ambulance_contacts_contact"
+                                placeholder="Número">
                         </div>
                         <div class="col-sm-3">
                             <input type="text" class="form-control" id="ambulance_contacts_name" placeholder="Nome">
@@ -1326,6 +1061,203 @@
             </div>
         </div>
     </div>
+</script>
+
+<script type="covid19/template" id="patient_template">
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="case_patient_RNU_display{id}">
+                <p><b>Nº RNU:</b> <a href="#" onclick="updatePatientRNU({id})">{RNU}</a></p>
+            </div>
+            <div id="case_patient_RNU_edit{id}" class="form-inline" style="display:none;">
+                <p><b>Nº RNU:</b> <input autocomplete="off" type="number"
+                        id="case_patient_RNU_edit_input{id}" class="form-control"
+                        placeholder="Nº RNU" value="{RNU}"> <a href="#"
+                        onclick="cancelUpdatePatientRNU({id})">Cancelar</a> <a href="#"
+                        onclick="submitUpdatePatientRNU({id})">Atualizar</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="case_patient_firstname_display{id}">
+                <p><b>Nome Próprio (2 primeiras consoantes):</b> <a href="#" onclick="updatePatientFirstname({id})">{firstname}</a></p>
+            </div>
+            <div id="case_patient_firstname_edit{id}" class="form-inline" style="display:none;">
+                <p><b>Nome Próprio (2 primeiras consoantes):</b> <input autocomplete="off"
+                        type="text" id="case_patient_firstname_edit_input{id}"
+                        class="form-control" placeholder="2 primeiras consoantes" value="{firstname}"><a href="#"
+                        onclick="cancelUpdatePatientFirstname({id})">Cancelar</a> <a href="#"
+                        onclick="submitUpdatePatientFirstname({id})">Atualizar</a></p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div id="case_patient_lastname_display{id}">
+                <p><b>Último Apelido (3 primeiras consoantes):</b> <a href="#" onclick="updatePatientLastname({id})">{lastname}</a></p>
+            </div>
+            <div id="case_patient_lastname_edit{id}" class="form-inline" style="display:none;">
+                <p><b>Último Apelido (3 primeiras consoantes):</b> <input autocomplete="off"
+                        type="text" id="case_patient_lastname_edit_input{id}"
+                        class="form-control" placeholder="3 primeiras consoantes" value="{lastname}"> <a href="#"
+                        onclick="cancelUpdatePatientLastname({id})">Cancelar</a> <a href="#"
+                        onclick="submitUpdatePatientLastname({id})">Atualizar</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="case_patient_sex_display{id}">
+                <p><b>Género:</b> <a href="#" onclick="updatePatientSex({id})">{sex}</a></p>
+            </div>
+            <div id="case_patient_sex_edit{id}" class="form-inline" style="display:none;">
+                <p><b>Género:</b> <select autocomplete="off" class="form-control"
+                        id="case_patient_sex_edit_input{id}">
+                        <option value="">Sem Informação</option>
+                        <option value="0">Masculino</option>
+                        <option value="1">Feminino</option>
+                    </select><a href="#" onclick="cancelUpdatePatientSex({id})">Cancelar</a>
+                    <a href="#" onclick="submitUpdatePatientSex({id})">Atualizar</a></p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div id="case_patient_DoB_display{id}">
+                <p><b>Data de Nascimento:</b> <a href="#" onclick="updatePatientDoB()">{DoB}</a></p>
+            </div>
+            <div id="case_patient_DoB_edit{id}" class="form-inline" style="display:none;">
+                <p><b>Data de Nascimento:</b> <input autocomplete="off" type="date"
+                        id="case_patient_DoB_edit_input{id}" class="form-control"></p><a href="#"
+                    onclick="cancelUpdatePatientDoB({id})">Cancelar</a> <a href="#"
+                    onclick="submitUpdatePatientDoB({id})">Atualizar</a></p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <p><b>Idade:</b> {age}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div id="case_patient_suspect_display{id}">
+                <p><b>Caso Suspeito COVID-19:</b> <a href="#" onclick="updatePatientSuspect({id})">{suspect}</a></p>
+            </div>
+            <div id="case_patient_suspect_edit{id}" class="form-inline" style="display:none;">
+                <p><b>Caso Suspeito COVID-19:</b> <select autocomplete="off" class="form-control"
+                        id="case_patient_suspect_edit_input{id}" value="{suspect}">
+                        <option value="1">Sim</option>
+                        <option value="0">Não</option>
+                    </select></p><a href="#"
+                    onclick="cancelUpdatePatientSuspect({id})">Cancelar</a> <a href="#"
+                    onclick="submitUpdatePatientSuspect({id})">Atualizar</a></p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div id="case_patient_suspect_validation_display{id}">
+                <p><b>Validação:</b> <a href="#"
+                        onclick="updatePatientSuspectValidation({id})"
+                        id="case_patient_suspect_validation">{validation}</a></p>
+            </div>
+            <div id="case_patient_suspect_validation_edit{id}" class="form-inline"
+                style="display:none;">
+                <p><b>Validação:</b> <select autocomplete="off" class="form-control"
+                        id="case_patient_suspect_validation_edit_input{id}" value="{validation}">
+                        <option value="">Sem Informação</option>
+                        <option value="CODU">CODU</option>
+                        <option value="Equipa">Equipa</option>
+                        <option value="Hospital">Hospital</option>
+                    </select></p><a href="#"
+                    onclick="cancelUpdatePatientSuspectValidation({id})">Cancelar</a> <a
+                    href="#"
+                    onclick="submitUpdatePatientSuspectValidation({id})">Atualizar</a></p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div id="case_patient_confirmed_display{id}">
+                <p><b>Caso Confirmado COVID-19:</b> <a href="#" onclick="updatePatientConfirmed({id})">{confirmed}</a></p>
+            </div>
+            <div id="case_patient_confirmed_edit{id}" class="form-inline" style="display:none;">
+                <p><b>Caso Confirmado COVID-19:</b> <select autocomplete="off" class="form-control"
+                        id="case_patient_confirmed_edit_input" value="{confirmed}">
+                        <option value="">Sem Informação</option>
+                        <option value="1">Sim</option>
+                        <option value="0">Não</option>
+                    </select></p><a href="#"
+                    onclick="cancelUpdatePatientConfirmed({id})">Cancelar</a> <a href="#"
+                    onclick="submitUpdatePatientConfirmed({id})">Atualizar</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="case_patient_invasive_care_display{id}">
+                <p><b>Realizados cuidados invasivos:</b> <a href="#"
+                        onclick="updatePatientInvasiveCare({id})">{invasive_care}</a></p>
+            </div>
+            <div id="case_patient_invasive_care_edit{id}" class="form-inline"
+                style="display:none;">
+                <p><b>Realizados cuidados invasivos:</b> <select autocomplete="off"
+                        class="form-control" id="case_patient_invasive_care_edit_input{id}" value="{invasive_care}">
+                        <option value="">Sem Informação</option>
+                        <option value="1">Sim</option>
+                        <option value="0">Não</option>
+                    </select></p><a href="#"
+                    onclick="cancelUpdatePatientInvasiveCare({id})">Cancelar</a> <a href="#"
+                    onclick="submitUpdatePatientInvasiveCare({id})">Atualizar</a></p>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-danger" onclick="removePatient({id})">Remover Vitima</button>
+</script>
+
+<script type="covid19/template" id="team_member_template">
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="team_member_name_display{id}">
+                <p><b>Nome:</b> <a href="#" onclick="updateTeamMemberName({id})">{name}</a></p>
+            </div>
+            <div id="team_member_name_edit{id}" class="form-inline" style="display:none;">
+                <p><b>Nome:</b> <input autocomplete="off" type="text"
+                        id="team_driver_name_edit_input{id}" class="form-control" placeholder="Nome" value={name}> <a
+                        href="#" onclick="cancelUpdateTeamMemberName({id})">Cancelar</a> <a href="#"
+                        onclick="submitUpdateTeamMemberName({id})">Atualizar</a></p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div id="team_member_age_display{id}">
+                <p><b>Idade:</b> <a href="#" onclick="updateTeamMemberAge({id})">{age}</a></p>
+            </div>
+            <div id="team_member_age_edit{id}" class="form-inline" style="display:none;">
+                <p><b>Idade:</b> <input autocomplete="off" type="text"
+                        id="team_member_age_edit_input{id}" class="form-control" placeholder="Idade" value="{age}"> <a
+                        href="#" onclick="cancelUpdateTeamMemberAge({id})">Cancelar</a> <a href="#"
+                        onclick="submitUpdateTeamMemberAge({id})">Atualizar</a></p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div id="team_member_contact_display{id}">
+                <p><b>Contacto:</b> <a href="#" onclick="updateTeamMemberContact({id})">{contact}</a></p>
+            </div>
+            <div id="team_member_contact_edit{id}" class="form-inline" style="display:none;">
+                <p><b>Contacto:</b> <input autocomplete="off" type="text"
+                        id="team_member_contact_edit_input{id}" class="form-control"
+                        placeholder="Contacto" value="{contact}"> <a href="#"
+                        onclick="cancelUpdateTeamMemberContact({id})">Cancelar</a> <a href="#"
+                        onclick="submitUpdateTeamMemberContact({id})">Atualizar</a></p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div id="team_member_type_display{id}">
+                <p><b>Tipo:</b> <a href="#" onclick="updateTeamMemberType({id})">{type}</a></p>
+            </div>
+            <div id="team_member_type_edit{id}" class="form-inline" style="display:none;">
+                <p><b>Tipo:</b> <select class="form-control" id="team_member_type_edit_input{id}" placeholder="Tipo" value="{type}">
+                    <option value="Condutor">Condutor</option>
+                    <option value="Socorrista">Socorrista</option>
+                </select> <a href="#"
+                        onclick="cancelUpdateTeamMemberType({id})">Cancelar</a> <a href="#"
+                        onclick="submitUpdateTeamMemberType({id})">Atualizar</a></p>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-danger" onclick="removeTeamMember({id})">Remover Membro da Equipa</button>
 </script>
 
 <script>
@@ -1461,7 +1393,7 @@
     }
 
     function createActiveAmbulance(ambulance) {
-        axios.get("{{route('covid19.case','')}}/"+ambulance.case_id)
+        axios.get("{{route('covid19.case','')}}/"+ambulance.current_case)
             .then(function (response) {
                 if(response.data.street == null) {
                     response.data.street = "Sem Rua";
@@ -1486,7 +1418,7 @@
                 template = template.split("{region}").join(ambulance.region);
                 template = template.split("{vehicle_identification}").join(ambulance.vehicle_identification);
                 template = template.split("{status_text}").join(getStatusTextFromNumber(ambulance.status));
-                template = template.split("{case_id}").join(ambulance.case_id);
+                template = template.split("{case_id}").join(ambulance.current_case);
                 template = template.split("{codu_number}").join(response.data.CODU_number);
                 template = template.split("{source}").join(complete_source);
                 template = template.split("{destination}").join(response.data.destination);
@@ -1527,7 +1459,7 @@
     }
 
     function updateActiveAmbulance(ambulance,old_status) {
-        axios.get("{{route('covid19.case','')}}/"+ambulance.case_id)
+        axios.get("{{route('covid19.case','')}}/"+ambulance.current_case)
             .then(function (response) {
                 updateOnHoldAmbulance(ambulance,old_status);
                 if(response.data.street == null) {
@@ -1689,56 +1621,7 @@
                         response.data.CODU_localization = "Sem Localização";
                         break;
                 }
-                if(response.data.RNU == null) {
-                    response.data.RNU = "Sem Informação";
-                }
-                if(response.data.lastname == null) {
-                    response.data.lastname = "Sem Informação";
-                }
-                if(response.data.firstname == null) {
-                    response.data.firstname = "Sem Informação";
-                }
 
-                if(response.data.sex == null) {
-                    response.data.sex = "Sem Informação";
-                }
-                else if(response.data.sex == 0) {
-                    response.data.sex = "Masculino";
-                }
-                else {
-                    response.data.sex = "Feminino";
-                }
-
-                if(response.data.DoB == null) {
-                    response.data.DoB = "Sem Informação";
-                    response.data.age = "Sem Informação";
-                }
-                else {
-                    let DoB_date = new Date(response.data.DoB);
-                    response.data.age = _calculateAge(DoB_date);
-                }
-
-                if(response.data.suspect == null) {
-                    response.data.suspect = "Sem Informação";
-                }
-                else {
-                    response.data.suspect = response.data.suspect ? "Sim":"Não";
-                }
-                if(response.data.suspect_validation == null) {
-                    response.data.suspect_validation = "Sem Informação";
-                }
-                if(response.data.confirmed == null) {
-                    response.data.confirmed = "Sem Informação";
-                }
-                else {
-                    response.data.confirmed = response.data.confirmed ? "Sim":"Não";
-                }
-                if(response.data.invasive_care == null) {
-                    response.data.invasive_care = "Sem Informação";
-                }
-                else {
-                    response.data.invasive_care = response.data.invasive_care ? "Sim":"Não";
-                }
 
                 if(response.data.street == null) {
                     response.data.street = "Sem Informação";
@@ -1812,39 +1695,11 @@
                 if(response.data.status_available == null) {
                     response.data.status_available = "Sem Informação";
                 }
-                if(response.data.driver_name == null) {
-                    response.data.driver_name = "Sem Informação";
-                }
-                if(response.data.driver_age == null) {
-                    response.data.driver_age = "Sem Informação";
-                }
-                if(response.data.driver_contact == null) {
-                    response.data.driver_contact = "Sem Informação";
-                }
-                if(response.data.rescuer_name == null) {
-                    response.data.rescuer_name = "Sem Informação";
-                }
-                if(response.data.rescuer_age == null) {
-                    response.data.rescuer_age = "Sem Informação";
-                }
-                if(response.data.rescuer_contact == null) {
-                    response.data.rescuer_contact = "Sem Informação";
-                }
                 
                 $("#case_id").html(case_id);
                 $("#activation_information_CODU_number").html(response.data.CODU_number);
                 $("#activation_information_CODU_localization").html(response.data.CODU_localization);
                 $("#activation_information_activation_mean").html(response.data.activation_mean);
-                $("#patient_information_RNU").html(response.data.RNU);
-                $("#patient_information_lastname").html(response.data.lastname);
-                $("#patient_information_firstname").html(response.data.firstname);
-                $("#patient_information_sex").html(response.data.sex);
-                $("#patient_information_DoB").html(response.data.DoB);
-                $("#patient_information_age").html(response.data.age);
-                $("#patient_information_suspect").html(response.data.suspect);
-                $("#patient_information_suspect_validation").html(response.data.suspect_validation);
-                $("#patient_information_confirmed").html(response.data.confirmed);
-                $("#patient_information_invasive_care").html(response.data.invasive_care);
                 $("#event_street").html(response.data.street);
                 $("#event_parish").html(response.data.parish);
                 $("#event_county").html(response.data.county);
@@ -1856,12 +1711,6 @@
                 $("#event_doctor_responsible_on_destination").html(response.data.doctor_responsible_on_destination);
                 $("#event_on_scene_units").html(response.data.on_scene_units);
                 $("#event_total_distance").html(response.data.total_distance);
-                $("#team_driver_name").html(response.data.driver_name);
-                $("#team_driver_age").html(response.data.driver_age);
-                $("#team_driver_contact").html(response.data.driver_contact);
-                $("#team_rescuer_name").html(response.data.rescuer_name);
-                $("#team_rescuer_age").html(response.data.rescuer_age);
-                $("#team_rescuer_contact").html(response.data.rescuer_contact);
                 $("#ambulance_structure").html(response.data.structure);
                 $("#ambulance_vehicle_identification").html(response.data.vehicle_identification);
                 $("#ambulance_vehicle_type").html(response.data.vehicle_type);
@@ -1883,15 +1732,6 @@
                 else {
                     $("#occorrence_data_create").hide();
                     $("#occorrence_data").show();
-                }
-
-                if(response.data.driver_name == "Sem Informação" && response.data.rescuer_name == "Sem Informação") {
-                    $("#occorrence_team").hide();
-                    $("#occorrence_team_create").show();
-                }
-                else {
-                    $("#occorrence_team").show();
-                    $("#occorrence_team_create").hide();
                 }
 
                 $("#status_AMB_activation_display").hide();
@@ -1960,18 +1800,6 @@
                     $("#status_departure_from_destination_display").show();
                     $("#status_base_return_display").show();
                     $("#status_available_display").show();
-                    $("#occorrence_team").show();
-                    $("#occorrence_team_create").hide();
-                }
-                 
-
-                if(response.data.suspect == "Sem Informação") {
-                    $("#occorrence_patient").hide();
-                    $("#occorrence_patient_create").show();
-                }
-                else {
-                    $("#occorrence_patient").show();
-                    $("#occorrence_patient_create").hide();
                 }
 
                 if(cases_history) {
@@ -1984,15 +1812,11 @@
                     $("#status_departure_from_destination_display").show();
                     $("#status_base_return_display").show();
                     $("#status_available_display").show();
-                    $("#occorrence_patient").show();
-                    $("#occorrence_patient_create").hide();
                     $("#occorrence_ambulance_create").hide();
                     $("#occorrence_ambulance").show();
                     $("#case_team").show();
                     $("#occorrence_data_create").hide();
                     $("#occorrence_data").show();
-                    $("#occorrence_team_create").hide();
-                    $("#occorrence_team").show();
                 }
 
                 if(response.data.status_available != "Sem Informação") {
@@ -2001,6 +1825,56 @@
                 else {
                     $("#case_notes").show();
                 }
+
+                axios.get("{{route('covid19.case_patients','')}}/"+case_id)
+                    .then(function (response) {
+                        $("#occorrence_patient").html("<p>Sem Dados de Vitimas</p>");
+                        if(response.data.length > 0) {
+                            $("#occorrence_patient").html("");
+                        }
+                        response.data.forEach(patient => {
+                            let template = $("#patient_template").html();
+                            template = template.split("{id}").join(patient.id);
+                            template = template.split("{RNU}").join(patient.RNU);
+                            template = template.split("{firstname}").join(patient.firstname);
+                            template = template.split("{lastname}").join(patient.lastname);
+                            template = template.split("{sex}").join(patient.sex);
+                            template = template.split("{DoB}").join(patient.DoB);
+                            let DoB_date = new Date(patient.DoB);
+                            let age = _calculateAge(DoB_date);
+                            template = template.split("{suspect}").join(patient.suspect);
+                            template = template.split("{validation}").join(patient.suspect_validation);
+                            template = template.split("{confirmed}").join(patient.confirmed);
+                            template = template.split("{invasive_care}").join(patient.invasive_care);
+                            $("#occorrence_patient").append(template);
+                        });
+                        $("#case").modal('show');
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    })
+
+
+                axios.get("{{route('covid19.case_team_members','')}}/"+case_id)
+                    .then(function (response) {
+                        $("#occorrence_team").html("<p>Sem Membros de Equipa</p>");
+                        if(response.data.length > 0) {
+                            $("#occorrence_team").html("");
+                        }
+                        response.data.forEach(team_member => {
+                            let template = $("#team_member_template").html();
+                            template = template.split("{id}").join(team_member.id);
+                            template = template.split("{name}").join(team_member.name);
+                            template = template.split("{age}").join(team_member.age);
+                            template = template.split("{contact}").join(team_member.contact);
+                            template = template.split("{type}").join(team_member.type);
+                            $("#occorrence_team").append(template);
+                        });
+                        $("#case").modal('show');
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    })
 
                 axios.get("{{route('covid19.case_operators','')}}/"+case_id)
                     .then(function (response) {
@@ -2111,9 +1985,9 @@
                     $("#ambulance-available-button").show();
                     $("#ambulance-on-base-button").show();
                 }
-                if(response.data.case_id != null) {
+                if(response.data.current_case != null) {
                     $("#ambulance-open-case-button").show();
-                    $("#ambulance-open-case-button").attr("onclick","closeAmbulance();openCase("+response.data.case_id+")");
+                    $("#ambulance-open-case-button").attr("onclick","closeAmbulance();openCase("+response.data.current_case+")");
                 }
                 axios.get("{{route('covid19.ambulance_contacts','')}}/"+ambulance_id)
                     .then(function (response) {
@@ -2290,51 +2164,7 @@
 
     }
 
-    function submitTeamInsert() {
-        let id = $("#case_id").html();
-        let driver_name = $("#occorence_team_create_driver_name").val();
-        let driver_age = $("#occorence_team_create_driver_age").val();
-        let driver_contact = $("#occorence_team_create_driver_contact").val();
-        let rescuer_name = $("#occorence_team_create_rescuer_name").val();
-        let rescuer_age = $("#occorence_team_create_rescuer_age").val();
-        let rescuer_contact = $("#occorence_team_create_rescuer_contact").val();
-        if(driver_name == "") {
-            driver_name = null;
-        }
-        if(driver_age == "") {
-            driver_age = null;
-        }
-        if(driver_contact == "") {
-            driver_contact = null;
-        }
-        if(rescuer_name == "") {
-            rescuer_name = null;
-        }
-        if(rescuer_age == "") {
-            rescuer_age = null;
-        }
-        if(rescuer_contact == "") {
-            rescuer_contact = null;
-        }
-        axios.post("{{route('covid19.insertTeam')}}", {
-            id: id,
-            driver_name: driver_name,
-            driver_age: driver_age,
-            driver_contact: driver_contact,
-            rescuer_name: rescuer_name,
-            rescuer_age: rescuer_age,
-            rescuer_contact: rescuer_contact
-        })
-        .then(function (response) {
-            cancelTeamInsert();
-            closeCase();
-            openCase(id);
-        })
-        .catch(function (error) {
-            alert(error);
-        });
 
-    }
 
     function cancelPatientInsert() {
         $("#occorence_patient_create_validate").show();
@@ -2344,11 +2174,6 @@
     function cancelDataInsert() {
         $("#occorence_data_create_validate").show();
         $("#occorence_data_create_insert").hide();
-    }
-
-    function cancelTeamInsert() {
-        $("#occorence_team_create_validate").show();
-        $("#occorence_team_create_insert").hide();
     }
 
     $('#activation_information_CODU_number_update_sem_numero').change(function() {
@@ -2393,8 +2218,8 @@
         $("#nova_ocorrencia_localizacao_codu").val("1");
         $("#nova_ocorrencia_localizacao_codu").prop( "disabled", false );
         $("#nova_ocorrencia_sem_localizacao").prop( "checked", false );
-        $("#nova_ocorrencia_activation_mean").val();
-        $("#nova_ocorrencia_activation_mean_specify").val();
+        $("#nova_ocorrencia_activation_mean").val("");
+        $("#nova_ocorrencia_activation_mean_specify").val()"";
         axios.post("{{route('covid19.newCase')}}", {
             CODU_number: CODU_number,
             CODU_localization: CODU_localization,
@@ -2530,30 +2355,26 @@
         });
     }
 
-    function updatePatientInformationRNU() {
-        $("#patient_information_RNU_display").hide();
-        $("#patient_information_RNU_edit").show();
+    function updatePatientInformationRNU(patient_id) {
+        $("#patient_information_RNU_display"+patient_id).hide();
+        $("#patient_information_RNU_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationRNU() {
-        $("#patient_information_RNU_edit").hide();
-        $("#patient_information_RNU_display").show();
+    function cancelUpdatePatientInformationRNU(patient_id) {
+        $("#patient_information_RNU_edit"+patient_id).hide();
+        $("#patient_information_RNU_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationRNU() {
+    function submitUpdatePatientInformationRNU(patient_id) {
         let id = $("#case_id").html();
-        let rnu = $("#patient_information_RNU_edit_input").val();
-        $("#patient_information_RNU_edit_input").val("");
+        let rnu = $("#patient_information_RNU_edit_input"+patient_id).val();
         if(rnu == "") {
-            $("#patient_information_RNU").html("Sem Informação");
             rnu = null;
         }
-        else {
-            $("#patient_information_RNU").html(rnu);
-        }
-        cancelUpdatePatientInformationRNU();
-        axios.post("{{route('covid19.updateRNU')}}", {
+        cancelUpdatePatientInformationRNU(patient_id);
+        axios.post("{{route('covid19.updatePatientRNU')}}", {
             id: id,
+            patient_id: patient_id,
             rnu: rnu,
         })
         .then(function (response) {
@@ -2564,30 +2385,27 @@
         });
     }
 
-    function updatePatientInformationFirstname() {
-        $("#patient_information_firstname_display").hide();
-        $("#patient_information_firstname_edit").show();
+    function updatePatientInformationFirstname(patient_id) {
+        $("#patient_information_firstname_display"+patient_id).hide();
+        $("#patient_information_firstname_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationFirstname() {
-        $("#patient_information_firstname_edit").hide();
-        $("#patient_information_firstname_display").show();
+    function cancelUpdatePatientInformationFirstname(patient_id) {
+        $("#patient_information_firstname_edit"+patient_id).hide();
+        $("#patient_information_firstname_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationFirstname() {
+    function submitUpdatePatientInformationFirstname(patient_id) {
         let id = $("#case_id").html();
-        let firstname = $("#patient_information_firstname_edit_input").val();
-        $("#patient_information_firstname_edit_input").val("");
+        let firstname = $("#patient_information_firstname_edit_input"+patient_id).val();
+        $("#patient_information_firstname_edit_input"+patient_id).val("");
         if(firstname == "") {
-            $("#patient_information_firstname").html("Sem Informação");
             firstname = null;
         }
-        else {
-            $("#patient_information_firstname").html(firstname);
-        }
-        cancelUpdatePatientInformationFirstname();
-        axios.post("{{route('covid19.updateFirstName')}}", {
+        cancelUpdatePatientInformationFirstname(patient_id);
+        axios.post("{{route('covid19.updatePatientFirstname')}}", {
             id: id,
+            patient_id: patient_id,
             firstname: firstname,
         })
         .then(function (response) {
@@ -2598,30 +2416,27 @@
         });
     }
 
-    function updatePatientInformationLastname() {
-        $("#patient_information_lastname_display").hide();
-        $("#patient_information_lastname_edit").show();
+    function updatePatientInformationLastname(patient_id) {
+        $("#patient_information_lastname_display"+patient_id).hide();
+        $("#patient_information_lastname_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationLastname() {
-        $("#patient_information_lastname_edit").hide();
-        $("#patient_information_lastname_display").show();
+    function cancelUpdatePatientInformationLastname(patient_id) {
+        $("#patient_information_lastname_edit"+patient_id).hide();
+        $("#patient_information_lastname_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationLastname() {
+    function submitUpdatePatientInformationLastname(patient_id) {
         let id = $("#case_id").html();
-        let lastname = $("#patient_information_lastname_edit_input").val();
-        $("#patient_information_lastname_edit_input").val("");
+        let lastname = $("#patient_information_lastname_edit_input"+patient_id).val();
+        $("#patient_information_lastname_edit_input"+patient_id).val("");
         if(lastname == "") {
-            $("#patient_information_lastname").html("Sem Informação");
             lastname = null;
         }
-        else {
-            $("#patient_information_lastname").html(lastname);
-        }
-        cancelUpdatePatientInformationLastname();
-        axios.post("{{route('covid19.updateLastName')}}", {
+        cancelUpdatePatientInformationLastname(patient_id);
+        axios.post("{{route('covid19.updatePatientLastname')}}", {
             id: id,
+            patient_id: patient_id,
             lastname: lastname,
         })
         .then(function (response) {
@@ -2632,35 +2447,29 @@
         });
     }
 
-    function updatePatientInformationSex() {
-        $("#patient_information_sex_display").hide();
-        $("#patient_information_sex_edit").show();
+    function updatePatientInformationSex(patient_id) {
+        $("#patient_information_sex_display"+patient_id).hide();
+        $("#patient_information_sex_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationSex() {
-        $("#patient_information_sex_edit").hide();
-        $("#patient_information_sex_display").show();
+    function cancelUpdatePatientInformationSex(patient_id) {
+        $("#patient_information_sex_edit"+patient_id).hide();
+        $("#patient_information_sex_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationSex() {
+    function submitUpdatePatientInformationSex(patient_id) {
         let id = $("#case_id").html();
-        let sex = $("#patient_information_sex_edit_input").val();
-        $("#patient_information_sex_edit_input").val("");
+        let sex = $("#patient_information_sex_edit_input"+patient_id).val();
+        $("#patient_information_sex_edit_input"+patient_id).val("");
         let sex_display = "";
         if(sex == "") {
             sex = null;
-            sex_display = "Sem Informação";
-        }
-        else if(sex == 0) {
-            sex_display = "Masculino";
-        }
-        else {
-            sex_display = "Feminino";
         }
         $("#patient_information_sex").html(sex_display);
-        cancelUpdatePatientInformationSex();
-        axios.post("{{route('covid19.updateSex')}}", {
+        cancelUpdatePatientInformationSex(patient_id);
+        axios.post("{{route('covid19.updatePatientSex')}}", {
             id: id,
+            patient_id: patient_id,
             sex: sex,
         })
         .then(function (response) {
@@ -2671,33 +2480,27 @@
         });
     }
 
-    function updatePatientInformationDoB() {
-        $("#patient_information_DoB_display").hide();
-        $("#patient_information_DoB_edit").show();
+    function updatePatientInformationDoB(patient_id) {
+        $("#patient_information_DoB_display"+patient_id).hide();
+        $("#patient_information_DoB_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationDoB() {
-        $("#patient_information_DoB_edit").hide();
-        $("#patient_information_DoB_display").show();
+    function cancelUpdatePatientInformationDoB(patient_id) {
+        $("#patient_information_DoB_edit"+patient_id).hide();
+        $("#patient_information_DoB_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationDoB() {
+    function submitUpdatePatientInformationDoB(patient_id) {
         let id = $("#case_id").html();
-        let DoB = $("#patient_information_DoB_edit_input").val();
-        $("#patient_information_DoB_edit_input").val("");
+        let DoB = $("#patient_information_DoB_edit_input"+patient_id).val();
+        $("#patient_information_DoB_edit_input"+patient_id).val("");
         if(DoB == "") {
-            $("#patient_information_DoB").html("Sem Informação");
-            $("#patient_information_age").html("Sem Informação");
             DoB = null;
         }
-        else {
-            let DoB_date = new Date(DoB);
-            $("#patient_information_DoB").html(DoB);
-            $("#patient_information_age").html(_calculateAge(DoB_date));            
-        }
-        cancelUpdatePatientInformationDoB();
-        axios.post("{{route('covid19.updateDoB')}}", {
+        cancelUpdatePatientInformationDoB(patient_id);
+        axios.post("{{route('covid19.updatePatientDoB')}}", {
             id: id,
+            patient_id: patient_id,
             dob: DoB,
         })
         .then(function (response) {
@@ -2708,29 +2511,24 @@
         });
     }
 
-    function updatePatientInformationSuspect() {
-        $("#patient_information_suspect_display").hide();
-        $("#patient_information_suspect_edit").show();
+    function updatePatientInformationSuspect(patient_id) {
+        $("#patient_information_suspect_display"+patient_id).hide();
+        $("#patient_information_suspect_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationSuspect() {
-        $("#patient_information_suspect_edit").hide();
-        $("#patient_information_suspect_display").show();
+    function cancelUpdatePatientInformationSuspect(patient_id) {
+        $("#patient_information_suspect_edit"+patient_id).hide();
+        $("#patient_information_suspect_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationSuspect() {
+    function submitUpdatePatientInformationSuspect(patient_id) {
         let id = $("#case_id").html();
-        let suspect = $("#patient_information_suspect_edit_input").val();
-        $("#patient_information_suspect_edit_input").val("");
-        if(suspect == "1") {
-            $("#patient_information_suspect").html("Sim");
-        }
-        else {
-            $("#patient_information_suspect").html("Não");
-        }        
-        cancelUpdatePatientInformationSuspect();
-        axios.post("{{route('covid19.updateSuspect')}}", {
+        let suspect = $("#patient_information_suspect_edit_input"+patient_id).val();
+        $("#patient_information_suspect_edit_input"+patient_id).val("");  
+        cancelUpdatePatientInformationSuspect(patient_id);
+        axios.post("{{route('covid19.updatePatientSuspect')}}", {
             id: id,
+            patient_id: patient_id,
             suspect: suspect,
         })
         .then(function (response) {
@@ -2741,30 +2539,27 @@
         });
     }
 
-    function updatePatientInformationSuspectValidation() {
-        $("#patient_information_suspect_validation_display").hide();
-        $("#patient_information_suspect_validation_edit").show();
+    function updatePatientInformationSuspectValidation(patient_id) {
+        $("#patient_information_suspect_validation_display"+patient_id).hide();
+        $("#patient_information_suspect_validation_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationSuspectValidation() {
-        $("#patient_information_suspect_validation_edit").hide();
-        $("#patient_information_suspect_validation_display").show();
+    function cancelUpdatePatientInformationSuspectValidation(patient_id) {
+        $("#patient_information_suspect_validation_edit"+patient_id).hide();
+        $("#patient_information_suspect_validation_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationSuspectValidation() {
+    function submitUpdatePatientInformationSuspectValidation(patient_id) {
         let id = $("#case_id").html();
-        let suspect_validation = $("#patient_information_suspect_validation_edit_input").val();
-        $("#patient_information_suspect_validation_edit_input").val("");
+        let suspect_validation = $("#patient_information_suspect_validation_edit_input"+patient_id).val();
+        $("#patient_information_suspect_validation_edit_input"+patient_id).val("");
         if(suspect_validation == "") {
-            $("#patient_information_suspect_validation").html("Sem Informação");
             suspect_validation = null;
-        }
-        else {
-            $("#patient_information_suspect_validation").html(suspect_validation);
-        }        
-        cancelUpdatePatientInformationSuspectValidation();
-        axios.post("{{route('covid19.updateSuspectValidation')}}", {
+        }   
+        cancelUpdatePatientInformationSuspectValidation(patient_id);
+        axios.post("{{route('covid19.updatePatientSuspectValidation')}}", {
             id: id,
+            patient_id: patient_id,
             suspect_validation: suspect_validation,
         })
         .then(function (response) {
@@ -2775,33 +2570,27 @@
         });
     }
 
-    function updatePatientInformationConfirmed() {
-        $("#patient_information_confirmed_display").hide();
-        $("#patient_information_confirmed_edit").show();
+    function updatePatientInformationConfirmed(patient_id) {
+        $("#patient_information_confirmed_display"+patient_id).hide();
+        $("#patient_information_confirmed_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationConfirmed() {
-        $("#patient_information_confirmed_edit").hide();
-        $("#patient_information_confirmed_display").show();
+    function cancelUpdatePatientInformationConfirmed(patient_id) {
+        $("#patient_information_confirmed_edit"+patient_id).hide();
+        $("#patient_information_confirmed_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationConfirmed() {
+    function submitUpdatePatientInformationConfirmed(patient_id) {
         let id = $("#case_id").html();
-        let confirmed = $("#patient_information_confirmed_edit_input").val();
-        $("#patient_information_confirmed_edit_input").val("");
+        let confirmed = $("#patient_information_confirmed_edit_input"+patient_id).val();
+        $("#patient_information_confirmed_edit_input"+patient_id).val("");
         if(confirmed == "") {
-            $("#patient_information_confirmed").html("Sem Informação");
             confirmed = null;
-        }
-        else if (confirmed == "1"){
-            $("#patient_information_confirmed").html("Sim");        
-        }
-        else {
-            $("#patient_information_confirmed").html("Não");
-        }      
-        cancelUpdatePatientInformationConfirmed();
-        axios.post("{{route('covid19.updateConfirmed')}}", {
+        }   
+        cancelUpdatePatientInformationConfirmed(patient_id);
+        axios.post("{{route('covid19.updatePatientConfirmed')}}", {
             id: id,
+            patient_id: patient_id,
             confirmed: confirmed,
         })
         .then(function (response) {
@@ -2812,34 +2601,42 @@
         });
     }
 
-    function updatePatientInformationInvasiveCare() {
-        $("#patient_information_invasive_care_display").hide();
-        $("#patient_information_invasive_care_edit").show();
+    function updatePatientInformationInvasiveCare(patient_id) {
+        $("#patient_information_invasive_care_display"+patient_id).hide();
+        $("#patient_information_invasive_care_edit"+patient_id).show();
     }
 
-    function cancelUpdatePatientInformationInvasiveCare() {
-        $("#patient_information_invasive_care_edit").hide();
-        $("#patient_information_invasive_care_display").show();
+    function cancelUpdatePatientInformationInvasiveCare(patient_id) {
+        $("#patient_information_invasive_care_edit"+patient_id).hide();
+        $("#patient_information_invasive_care_display"+patient_id).show();
     }
 
-    function submitUpdatePatientInformationInvasiveCare() {
+    function submitUpdatePatientInformationInvasiveCare(patient_id) {
         let id = $("#case_id").html();
-        let invasive_care = $("#patient_information_invasive_care_edit_input").val();
-        $("#patient_information_invasive_care_edit_input").val("");
+        let invasive_care = $("#patient_information_invasive_care_edit_input"+patient_id).val();
+        $("#patient_information_invasive_care_edit_input"+patient_id+patient_id).val("");
         if(invasive_care == "") {
-            $("#patient_information_invasive_care").html("Sem Informação");
             invasive_care = null;
-        }
-        else if (invasive_care == "1"){
-            $("#patient_information_invasive_care").html("Sim");
-        }
-        else {
-            $("#patient_information_invasive_care").html("Não");
-        }      
-        cancelUpdatePatientInformationInvasiveCare();
-        axios.post("{{route('covid19.updateInvasiveCare')}}", {
+        }    
+        cancelUpdatePatientInformationInvasiveCare(patient_id);
+        axios.post("{{route('covid19.updatePatientInvasiveCare')}}", {
             id: id,
+            patient_id: patient_id,
             invasive_care: invasive_care,
+        })
+        .then(function (response) {
+            
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    }
+
+    function removePatient(patient_id) {
+        let case_id = $("#case_id").html();
+        axios.post("{{route('covid19.removePatient')}}", {
+            id: case_id,
+            patient_id: patient_id,
         })
         .then(function (response) {
             
@@ -3214,210 +3011,6 @@
         axios.post("{{route('covid19.updateTotalDistance')}}", {
             id: id,
             total_distance: total_distance,
-        })
-        .then(function (response) {
-            
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-    }
-
-    function updateTeamDriverName() {
-        $("#team_driver_name_display").hide();
-        $("#team_driver_name_edit").show();
-    }
-
-    function cancelUpdateTeamDriverName() {
-        $("#team_driver_name_edit").hide();
-        $("#team_driver_name_display").show();
-    }
-
-    function submitUpdateTeamDriverName() {
-        let id = $("#case_id").html();
-        let driver_name = $("#team_driver_name_edit_input").val();
-        $("#team_driver_name_edit_input").val("");
-        if(driver_name == "") {
-            $("#team_driver_name").html("Sem Informação");
-            driver_name = null;
-        }
-        else {
-            $("#team_driver_name").html(driver_name);
-        }
-        cancelUpdateTeamDriverName();
-        axios.post("{{route('covid19.updateDriverName')}}", {
-            id: id,
-            driver_name: driver_name,
-        })
-        .then(function (response) {
-            
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-    }
-
-    function updateTeamDriverAge() {
-        $("#team_driver_age_display").hide();
-        $("#team_driver_age_edit").show();
-    }
-
-    function cancelUpdateTeamDriverAge() {
-        $("#team_driver_age_edit").hide();
-        $("#team_driver_age_display").show();
-    }
-
-    function submitUpdateTeamDriverAge() {
-        let id = $("#case_id").html();
-        let driver_age = $("#team_driver_age_edit_input").val();
-        $("#team_driver_age_edit_input").val("");
-        if(driver_age == "") {
-            $("#team_driver_age").html("Sem Informação");
-            driver_age = null;
-        }
-        else {
-            $("#team_driver_age").html(driver_age);
-        }
-        cancelUpdateTeamDriverAge();
-        axios.post("{{route('covid19.updateDriverAge')}}", {
-            id: id,
-            driver_age: driver_age,
-        })
-        .then(function (response) {
-            
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-    }
-
-    function updateTeamDriverContact() {
-        $("#team_driver_contact_display").hide();
-        $("#team_driver_contact_edit").show();
-    }
-
-    function cancelUpdateTeamDriverContact() {
-        $("#team_driver_contact_edit").hide();
-        $("#team_driver_contact_display").show();
-    }
-
-    function submitUpdateTeamDriverContact() {
-        let id = $("#case_id").html();
-        let driver_contact = $("#team_driver_contact_edit_input").val();
-        $("#team_driver_contact_edit_input").val("");
-        if(driver_contact == "") {
-            $("#team_driver_contact").html("Sem Informação");
-            driver_contact = null;
-        }
-        else {
-            $("#team_driver_contact").html(driver_contact);
-        }
-        cancelUpdateTeamDriverContact();
-        axios.post("{{route('covid19.updateDriverContact')}}", {
-            id: id,
-            driver_contact: driver_contact,
-        })
-        .then(function (response) {
-            
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-    }
-
-    function updateTeamRescuerName() {
-        $("#team_rescuer_name_display").hide();
-        $("#team_rescuer_name_edit").show();
-    }
-
-    function cancelUpdateTeamRescuerName() {
-        $("#team_rescuer_name_edit").hide();
-        $("#team_rescuer_name_display").show();
-    }
-
-    function submitUpdateTeamRescuerName() {
-        let id = $("#case_id").html();
-        let rescuer_name = $("#team_rescuer_name_edit_input").val();
-        $("#team_rescuer_name_edit_input").val("");
-        if(rescuer_name == "") {
-            $("#team_rescuer_name").html("Sem Informação");
-            rescuer_name = null;
-        }
-        else {
-            $("#team_rescuer_name").html(rescuer_name);
-        }
-        cancelUpdateTeamRescuerName();
-        axios.post("{{route('covid19.updateRescuerName')}}", {
-            id: id,
-            rescuer_name: rescuer_name,
-        })
-        .then(function (response) {
-            
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-    }
-
-    function updateTeamRescuerAge() {
-        $("#team_rescuer_age_display").hide();
-        $("#team_rescuer_age_edit").show();
-    }
-
-    function cancelUpdateTeamRescuerAge() {
-        $("#team_rescuer_age_edit").hide();
-        $("#team_rescuer_age_display").show();
-    }
-
-    function submitUpdateTeamRescuerAge() {
-        let id = $("#case_id").html();
-        let rescuer_age = $("#team_rescuer_age_edit_input").val();
-        $("#team_rescuer_age_edit_input").val("");
-        if(rescuer_age == "") {
-            $("#team_rescuer_age").html("Sem Informação");
-            rescuer_age = null;
-        }
-        else {
-            $("#team_rescuer_age").html(rescuer_age);
-        }
-        cancelUpdateTeamRescuerAge();
-        axios.post("{{route('covid19.updateRescuerAge')}}", {
-            id: id,
-            rescuer_age: rescuer_age,
-        })
-        .then(function (response) {
-            
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-    }
-
-    function updateTeamRescuerContact() {
-        $("#team_rescuer_contact_display").hide();
-        $("#team_rescuer_contact_edit").show();
-    }
-
-    function cancelUpdateTeamRescuerContact() {
-        $("#team_rescuer_contact_edit").hide();
-        $("#team_rescuer_contact_display").show();
-    }
-
-    function submitUpdateTeamRescuerContact() {
-        let id = $("#case_id").html();
-        let rescuer_contact = $("#team_rescuer_contact_edit_input").val();
-        $("#team_rescuer_contact_edit_input").val("");
-        if(rescuer_contact == "") {
-            $("#team_rescuer_contact").html("Sem Informação");
-            rescuer_contact = null;
-        }
-        else {
-            $("#team_rescuer_contact").html(rescuer_contact);
-        }
-        cancelUpdateTeamRescuerContact();
-        axios.post("{{route('covid19.updateRescuerContact')}}", {
-            id: id,
-            rescuer_contact: rescuer_contact,
         })
         .then(function (response) {
             
@@ -4079,11 +3672,164 @@
     function removeObservation(id) {
         let case_id = $("#case_id").html();
         axios.post("{{route('covid19.removeObservation')}}", {
-            id: id
+            id: case_id,
+            observation_id: id
         })
         .then(function (response) {
             closeCase();
             openCase(case_id);
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    }
+
+    function addTeamMember() {
+        let id = $("#case_id").html();
+        let name = $("#case_team_name").val();
+        let age = $("#case_team_age").val();
+        let contact = $("#case_team_contact").val();
+        let type = $("#case_team_type").val();
+        $("#case_team_name").val("");
+        $("#case_team_age").val("");
+        $("#case_team_contact").val("");
+        $("#case_team_type").val("Condutor");
+        axios.post("{{route('covid19.addTeamMember')}}", {
+            id: id,
+            name: name,
+            age: age,
+            contact: contact,
+            type: type
+        })
+        .then(function (response) {
+            closeAmbulance();
+            openAmbulance(id);
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    }
+
+    function updateTeamMemberName(id) {
+        $("#team_member_name_display"+id).hide();
+        $("#team_member_name_edit"+id).show();
+    }
+
+    function cancelUpdateTeamMemberName(id) {
+        $("#team_member_name_edit"+id).hide();
+        $("#team_member_name_display"+id).show();
+    }
+
+    function submitUpdateTeamMemberName(id) {
+        let case_id = $("#case_id").html();
+        let name = $("#team_member_name_edit_input"+id).val();
+        $("#team_member_name_edit_input"+id).val("");
+        cancelUpdateTeamMemberName(id);
+        axios.post("{{route('covid19.updateTeamMemberName')}}", {
+            id: case_id,
+            team_member_id: id,
+            name: name,
+        })
+        .then(function (response) {
+            
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    }
+
+    function updateTeamMemberAge(id) {
+        $("#team_member_age_display"+id).hide();
+        $("#team_member_age_edit"+id).show();
+    }
+
+    function cancelUpdateTeamMemberAge(id) {
+        $("#team_member_age_edit"+id).hide();
+        $("#team_member_age_display"+id).show();
+    }
+
+    function submitUpdateTeamMemberAge(id) {
+        let case_id = $("#case_id").html();
+        let age = $("#team_member_age_edit_input"+id).val();
+        $("#team_member_age_edit_input"+id).val("");
+        cancelUpdateTeamMemberAge(id);
+        axios.post("{{route('covid19.updateTeamMemberAge')}}", {
+            id: case_id,
+            team_member_id: id,
+            age: age,
+        })
+        .then(function (response) {
+            
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    }
+
+    function updateTeamMemberContact(id) {
+        $("#team_member_contact_display"+id).hide();
+        $("#team_member_contact_edit"+id).show();
+    }
+
+    function cancelUpdateTeamMemberContact(id) {
+        $("#team_member_contact_edit"+id).hide();
+        $("#team_member_contact_display"+id).show();
+    }
+
+    function submitUpdateTeamMemberContact(id) {
+        let case_id = $("#case_id").html();
+        let contact = $("#team_member_contact_edit_input"+id).val();
+        $("#team_member_contact_edit_input"+id).val("");
+        cancelUpdateTeamMemberContact(id);
+        axios.post("{{route('covid19.updateTeamMemberContact')}}", {
+            id: case_id,
+            team_member_id: id,
+            contact: contact,
+        })
+        .then(function (response) {
+            
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    }
+
+    function updateTeamMemberType(id) {
+        $("#team_member_type_display"+id).hide();
+        $("#team_member_type_edit"+id).show();
+    }
+
+    function cancelUpdateTeamMemberType(id) {
+        $("#team_member_type_edit"+id).hide();
+        $("#team_member_type_display"+id).show();
+    }
+
+    function submitUpdateTeamMemberType(id) {
+        let case_id = $("#case_id").html();
+        let type = $("#team_member_type_edit_input"+id).val();
+        $("#team_member_type_edit_input"+id).val("Condutor");
+        cancelUpdateTeamMemberType(id);
+        axios.post("{{route('covid19.updateTeamMemberType')}}", {
+            id: case_id,
+            team_member_id: id,
+            type: type,
+        })
+        .then(function (response) {
+            
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    }
+
+    function removeTeamMember(team_member_id) {
+        let case_id = $("#case_id").html();
+        axios.post("{{route('covid19.removeTeamMember')}}", {
+            id: case_id,
+            team_member_id: team_member_id,
+        })
+        .then(function (response) {
+            
         })
         .catch(function (error) {
             alert(error);
@@ -4113,14 +3859,14 @@
         });
     }
 
-    function removeContact(id) {
+    function removeContact(contact_id) {
         let ambulance_id = $("#ambulance_id").html();
         axios.post("{{route('covid19.removeContact')}}", {
-            id: id
+            id: ambulance_id,
+            contact_id: contact_id,
         })
         .then(function (response) {
-            closeAmbulance();
-            openAmbulance(ambulance_id);
+            
         })
         .catch(function (error) {
             alert(error);
