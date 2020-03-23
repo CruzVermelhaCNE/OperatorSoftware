@@ -4084,7 +4084,7 @@
             $.get('https://nominatim.openstreetmap.org/search?format=json&q='+address, function(data){
                 console.log(data);
                 if(data[0]) {
-                    source_map.panTo(new L.LatLng(data[0].lat, data[0].lon));
+                    source_map.panTo(new L.LatLng(parseFloat(data[0].lat), parseFloat(data[0].lon)));
                 }
             });
         });
@@ -4092,7 +4092,7 @@
             let address = $("#case_destination_map_search").val();
             $.get('https://nominatim.openstreetmap.org/search?format=json&q='+address, function(data){
                 if(data[0]) {
-                    source_map.panTo(new L.LatLng(data[0].lat, data[0].lon));
+                    destination_map.panTo(new L.LatLng(parseFloat(data[0].lat), parseFloat(data[0].lon)));
                 }
             });
         });
