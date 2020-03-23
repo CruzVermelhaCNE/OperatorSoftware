@@ -747,7 +747,7 @@
                             </select>
                         </div>
                         <div class="col-auto">
-                            <button type="submit" class="btn btn-primary" onclick="addTeamMember()">Adicionar</button>
+                            <button type="submit" class="btn btn-primary" onclick="insertTeamMember()">Adicionar</button>
                         </div>
                     </div>
                     <hr />
@@ -3684,7 +3684,7 @@
         });
     }
 
-    function addTeamMember() {
+    function insertTeamMember() {
         let id = $("#case_id").html();
         let name = $("#case_team_name").val();
         let age = $("#case_team_age").val();
@@ -3694,7 +3694,7 @@
         $("#case_team_age").val("");
         $("#case_team_contact").val("");
         $("#case_team_type").val("Condutor");
-        axios.post("{{route('covid19.addTeamMember')}}", {
+        axios.post("{{route('covid19.insertTeamMember')}}", {
             id: id,
             name: name,
             age: age,
