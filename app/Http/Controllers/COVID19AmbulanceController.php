@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 
 use App\COVID19Ambulance;
 use App\COVID19AmbulanceTeamMember;
-use App\COVID19CasePatient;
 use App\Http\Requests\COVID19AddContact;
+use App\Http\Requests\COVID19GetTeamMember;
 use App\Http\Requests\COVID19NewAmbulance;
 use App\Http\Requests\COVID19RemoveContact;
 use App\Http\Requests\COVID19UpdateAmbulanceActivePrevention;
@@ -29,7 +29,7 @@ class COVID19AmbulanceController extends Controller
         foreach ($ambulances as $key => $ambulance) {
             $current_case = $ambulance->cases->where('status_available', '=', null)->last();
             if ($current_case) {
-                if (!$current_case->trashed()) {
+                if (! $current_case->trashed()) {
                     $ambulances[$key]->current_case = $current_case->case_id;
                 } else {
                     $ambulances[$key]->current_case = null;
@@ -47,7 +47,7 @@ class COVID19AmbulanceController extends Controller
         if ($ambulance) {
             $current_case = $ambulance->cases->where('status_available', '=', null)->last();
             if ($current_case) {
-                if (!$current_case->trashed()) {
+                if (! $current_case->trashed()) {
                     $ambulance->current_case = $current_case->case_id;
                 } else {
                     $ambulance->current_case = null;
@@ -65,9 +65,20 @@ class COVID19AmbulanceController extends Controller
         return response()->json($ambulance->contacts);
     }
 
-    public function getTeamMembers($id) {
-        $team_members = COVID19AmbulanceTeamMember::all()->where('ambulance_id','=',$id)->sortByDesc('id')->groupBy('name')->keys();
+    public function getTeamMembers($id)
+    {
+        $team_members = COVID19AmbulanceTeamMember::where('ambulance_id', '=', $id)->sortByDesc('id')->groupBy('name')->keys();
         return response()->json($team_members);
+    }
+
+    public function getTeamMember(COVID19GetTeamMember $request)
+    {
+        $validated = $request->validated();
+        $team_member = COVID19AmbulanceTeamMember::where([
+            ['ambulance_id','=',$validated['id']],
+            ['name','=',$validated['name']],
+        ])->sortByDesc('id')->groupBy('name')->first();
+        return response()->json($team_member);
     }
 
     public function INOP(COVID19UpdateAmbulanceStatus $request)

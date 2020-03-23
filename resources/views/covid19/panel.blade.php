@@ -1584,6 +1584,21 @@
                 }
             }
         });
+
+        $( "#case_team_name" ).blur(function() {
+            let ambulance_id = $("#case_team_name").data('ambulance-id');
+            let name = $("#case_team_name").val();
+            axios.post("{{route('covid19.ambulance_team_member','')}}/"+ambulance_id, {
+                id: ambulance_id,
+                name: name,
+            })
+            .then(function (response) {
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+        });
         fetchInitialOpenCases();
         fetchInitialAmbulances();
         
@@ -1633,6 +1648,7 @@
         let case_id = id;
         axios.get("{{route('covid19.case','')}}/"+case_id)
             .then(function (response) {
+                let ambulance_id = response.data.ambulance_id;
                 if (response.data.CODU_number == null) {
                     response.data.CODU_number = "Sem Número";
                 }
@@ -1915,16 +1931,18 @@
                         alert(error);
                     })
 
-                axios.get("{{route('covid19.ambulance_team_members','')}}/"+response.data.ambulance_id)
-                    .then(function (response) {
-                        $( "#case_team_name" ).autocomplete({
-                            source: response.data
-                        });
-                    })
-                    .catch(function (error) {
-                        alert(error);
-                    })
-                    
+                if(ambulance_id != null) {
+                    axios.get("{{route('covid19.ambulance_team_members','')}}/"+ambulance_id)
+                        .then(function (response) {
+                            $( "#case_team_name" ).data('ambulance-id',ambulance_id);
+                            $( "#case_team_name" ).autocomplete({
+                                source: response.data
+                            });
+                        })
+                        .catch(function (error) {
+                            alert(error);
+                        })
+                }
 
                 axios.get("{{route('covid19.case_operators','')}}/"+case_id)
                     .then(function (response) {
