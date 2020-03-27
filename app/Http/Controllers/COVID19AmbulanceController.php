@@ -38,7 +38,7 @@ class COVID19AmbulanceController extends Controller
                 $ambulance->current_case = null;
             }
         }*/
-        dd($ambulances);
+        dd($ambulances->toArray());
         return response()->json($ambulances);
     }
 
