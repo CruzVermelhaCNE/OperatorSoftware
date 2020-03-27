@@ -1184,7 +1184,7 @@
         </div>
         <div class="col-sm-3">
             <div id="case_patient_DoB_display{id}">
-                <p><b>Data de Nascimento:</b> <a href="#" onclick="updatePatientDoB()">{DoB}</a></p>
+                <p><b>Data de Nascimento:</b> <a href="#" onclick="updatePatientDoB({id})">{DoB}</a></p>
             </div>
             <div id="case_patient_DoB_edit{id}" class="form-inline" style="display:none;">
                 <p><b>Data de Nascimento:</b> <input autocomplete="off" type="date"
