@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class COVID19Ambulance extends Model
 {
     use Notifiable;
+
     /** STATUS
      * 0: INOP
      * 1: DISPONIVEL
@@ -27,11 +28,14 @@ class COVID19Ambulance extends Model
      */
     protected $table = 'covid19_ambulances';
 
+    protected $appends = 'current_case';
+
     protected $dispatchesEvents = [
         'saved' => COVID19AmbulanceSaved::class,
     ];
 
-    public function routeNotificationForSlack() {
+    public function routeNotificationForSlack()
+    {
         return env('SLACK_WEBHOOK_URL');
     }
 
@@ -57,10 +61,26 @@ class COVID19Ambulance extends Model
 
     public function cases()
     {
-        return $this->hasMany(COVID19AmbulanceCase::class,"ambulance_id","id");
+        return $this->hasMany(COVID19AmbulanceCase::class, 'ambulance_id', 'id');
     }
 
-    public function forceUpdate() {
+    public function getCurrentCaseAttribute()
+    {
+        $current_case = $this->cases->where('status_available', '=', null)->last();
+        if ($current_case) {
+            if (!$current_case->trashed()) {
+                $current_case = $current_case->case_id;
+            } else {
+                $current_case = null;
+            }
+        } else {
+            $current_case = null;
+        }
+        return $current_case;
+    }
+
+    public function forceUpdate()
+    {
         event(new COVID19UpdateAmbulance($this));
     }
 
@@ -73,7 +93,7 @@ class COVID19Ambulance extends Model
 
     public function removeContact($contact_id)
     {
-        $contact   = COVID19AmbulanceContact::find($contact_id);
+        $contact = COVID19AmbulanceContact::find($contact_id);
         $contact->delete();
         $this->forceUpdate();
     }
@@ -164,7 +184,7 @@ class COVID19Ambulance extends Model
         $this->predicted_available                  = $predicted_available;
         $this->updated_by                           = Auth::user()->id;
         $this->save();
-        COVID19AmbulanceCase::createAmbulanceCase($this->id,$case_id);
+        COVID19AmbulanceCase::createAmbulanceCase($this->id, $case_id);
         $this->case->addVehicleInformation($this->structure, $this->vehicle_identification, 1);
         $this->case->statusActivation(Carbon::now());
         $this->forceUpdate();

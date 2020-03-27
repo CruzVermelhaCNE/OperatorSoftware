@@ -32,6 +32,7 @@ class COVID19Case extends Model
     use SoftDeletes;
     use Notifiable;
     protected $table = 'covid19_cases';
+    protected $appends = ['ambulance_id'];
 
     protected $dispatchesEvents = [
         'saved' => COVID19CaseSaved::class,
@@ -57,6 +58,15 @@ class COVID19Case extends Model
     public function team_members()
     {
         return $this->hasMany(COVID19AmbulanceTeamMember::class,"case_id","id");
+    }
+
+    public function getAmbulanceIDAttribute() {
+        $ambulance =  $this->ambulance->first();
+        $ambulance_id = null;
+        if($ambulance) {
+            $ambulance_id = $ambulance->ambulance_id;
+        }
+        return $ambulance_id; 
     }
 
     public function forceUpdate() {
