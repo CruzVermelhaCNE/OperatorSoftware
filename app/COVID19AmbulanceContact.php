@@ -21,7 +21,7 @@ class COVID19AmbulanceContact extends Model
         $new_contact->save();
     }
 
-    public function routeNotificationForNexmo($notification)
+    public function getFullNumber()
     {
         return '351' . $this->contact;
     }

@@ -55,7 +55,7 @@ use App\Http\Requests\COVID19UpdateTeamMemberContact;
 use App\Http\Requests\COVID19UpdateTeamMemberName;
 use App\Http\Requests\COVID19UpdateTeamMemberType;
 use App\Notifications\COVID19AmbulanceSlackNotification;
-use App\Notifications\COVID19AmbulanceNexmoNotification;
+use App\Notifications\COVID19AmbulanceSMSNotification;
 use Carbon\Carbon;
 use Notification;
 use Illuminate\Support\Facades\Auth;
@@ -159,12 +159,12 @@ class COVID19CaseController extends Controller
             $old_ambulance->first()->statusINOP(null);
             $message = "*ATIVAÇÃO COVID-19 | ".$old_ambulance->structure." ANULADA*";
             $old_ambulance->notify(new COVID19AmbulanceSlackNotification($message));
-           //Notification::send($old_ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceNexmoNotification($message));
+           Notification::send($old_ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceSMSNotification($message));
         }
         $ambulance->activate($case->id, null, null, null, null, null, null, null);
         $message = "*ATIVAÇÃO COVID-19 | ".$ambulance->structure."*\nOrigem: ".$case->complete_source()."\n".$case->source."\nDestino: ".$case->destination."\nCODU: ".($case->CODU_number == null? "Sem Número": $case->CODU_number);
         $ambulance->notify(new COVID19AmbulanceSlackNotification($message));
-        //Notification::send($ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceNexmoNotification($message));
+        Notification::send($ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceSMSNotification($message));
     }
 
     public function insertSIEMAmbulance(COVID19InsertSIEMAmbulance $request)
@@ -176,7 +176,7 @@ class COVID19CaseController extends Controller
             $old_ambulance->first()->INOP(null);
             $message = "*ATIVAÇÃO COVID-19 | $old_ambulance->structure ANULADA*";
             $old_ambulance->notify(new COVID19AmbulanceSlackNotification($message));
-            //Notification::send($old_ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceNexmoNotification($message));
+            Notification::send($old_ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceSMSNotification($message));
         }
         $case->statusActivation(Carbon::now());
         $case->addVehicleInformation($validated['structure'], $validated['vehicle_identification'], $validated['vehicle_type']);
@@ -476,7 +476,7 @@ class COVID19CaseController extends Controller
         if ($old_ambulance) {
             $message = "*ATIVAÇÃO COVID-19 | $old_ambulance->structure ANULADA*";
             $old_ambulance->notify(new COVID19AmbulanceSlackNotification($message));
-            //Notification::send($old_ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceNexmoNotification($message));
+            Notification::send($old_ambulance->contacts()->where('sms','=',true)->get(), new COVID19AmbulanceSMSNotification($message));
             $old_ambulance->statusINOP(null);
         }
         if (! $case->trashed()) {
