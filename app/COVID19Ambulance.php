@@ -66,7 +66,7 @@ class COVID19Ambulance extends Model
 
     public function getCurrentCaseAttribute()
     {
-        $current_case = $this->cases->where('status_available', '=', null)->last();
+        /*$current_case = $this->cases->where('status_available', '=', null)->last();
         if ($current_case) {
             if (!$current_case->trashed()) {
                 $current_case = $current_case->case_id;
@@ -76,7 +76,8 @@ class COVID19Ambulance extends Model
         } else {
             $current_case = null;
         }
-        return $current_case;
+        return $current_case;*/
+        return null;
     }
 
     public function forceUpdate()
