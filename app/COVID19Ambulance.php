@@ -28,7 +28,7 @@ class COVID19Ambulance extends Model
      */
     protected $table = 'covid19_ambulances';
 
-    protected $appends = 'current_case';
+    protected $appends = ['current_case'];
 
     protected $dispatchesEvents = [
         'saved' => COVID19AmbulanceSaved::class,
@@ -66,7 +66,7 @@ class COVID19Ambulance extends Model
 
     public function getCurrentCaseAttribute()
     {
-        /*$current_case = $this->cases->where('status_available', '=', null)->last();
+        $current_case = $this->cases->where('status_available', '=', null)->last();
         if ($current_case) {
             if (!$current_case->trashed()) {
                 $current_case = $current_case->case_id;
@@ -76,8 +76,7 @@ class COVID19Ambulance extends Model
         } else {
             $current_case = null;
         }
-        return $current_case;*/
-        return null;
+        return $current_case;
     }
 
     public function forceUpdate()

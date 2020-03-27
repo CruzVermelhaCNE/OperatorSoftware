@@ -26,19 +26,6 @@ class COVID19AmbulanceController extends Controller
     public function getAmbulances()
     {
         $ambulances = COVID19Ambulance::all();
-        /*foreach ($ambulances as $key => $ambulance) {
-            $current_case = $ambulance->cases->where('status_available', '=', null)->last();
-            if ($current_case) {
-                if (! $current_case->trashed()) {
-                    $ambulances[$key]->current_case = $current_case->case_id;
-                } else {
-                    $ambulances[$key]->current_case = null;
-                }
-            } else {
-                $ambulance->current_case = null;
-            }
-        }*/
-        dd($ambulances->toArray());
         return response()->json($ambulances);
     }
 
