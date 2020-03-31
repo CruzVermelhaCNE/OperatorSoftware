@@ -7,12 +7,14 @@ use App\Events\COVID19AmbulanceSaved;
 use App\Events\COVID19UpdateAmbulance;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 
 class COVID19Ambulance extends Model
 {
     use Notifiable;
+    use SoftDeletes;
 
     /** STATUS
      * 0: INOP
@@ -68,7 +70,7 @@ class COVID19Ambulance extends Model
     {
         $current_case = $this->cases->where('status_available', '=', null)->last();
         if ($current_case) {
-            if (!$current_case->trashed()) {
+            if (! $current_case->trashed()) {
                 $current_case = $current_case->case_id;
             } else {
                 $current_case = null;
