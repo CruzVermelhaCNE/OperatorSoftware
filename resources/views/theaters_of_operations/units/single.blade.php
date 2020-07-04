@@ -568,10 +568,10 @@
             console.log(response.data);
             let template = $("#template_geotracking_edit").html();
             template = template.split("-1").join(response.data.id);
-            template = template.split("[[TYPE]]").join(response.data.type || "");
+            template = template.split("[[SYSTEM]]").join(response.data.system || "");
             template = template.split("[[EXTERNAL_ID]]").join(response.data.external_id || "");  
             $('#geotracking_edit .modal-content').html(template);
-            $("#geotracking_edit_system").val(response.data.type);
+            $("#geotracking_edit_system").val(response.data.system);
             open_geotracking_id = id;
             $("#geotracking_edit form").submit(function(e) {
                 e.preventDefault(); // avoid to execute the actual submit of the form.
