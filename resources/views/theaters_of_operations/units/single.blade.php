@@ -253,7 +253,7 @@
                 </button>
             </div>
             <form
-                action="{{route('theaters_of_operations.units.createGeoTracking',["id" => $unit->theater_of_operations->id, "unit_id" => $unit->id])}}"
+                action="{{route('theaters_of_operations.units.createGeotracking',["id" => $unit->theater_of_operations->id, "unit_id" => $unit->id])}}"
                 method="POST">
                 @csrf
                 <div class="modal-body">
