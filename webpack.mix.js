@@ -18,4 +18,4 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/dashboard.scss', 'public/css')
     .sass('resources/sass/theaters_of_operations.scss', 'public/css')
-    .js('resources/js/laravel-echo-setup.js', 'public/js');
+    .js('resources/js/laravel-echo-setup.js', 'public/js').version();
