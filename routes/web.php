@@ -21,12 +21,13 @@ Auth::routes([
 
 Broadcast::routes();
 
-Route::get('/', function () {
-    if (Auth::user()) {
-        return redirect()->route('panel.fop2');
-    }
-    return view('login');
-})->name('homepage');
+Route::domain('salop.emergenciacvp.pt')->group(function () {
+    Route::get('/', function () {
+        if (Auth::user()) {
+            return redirect()->route('panel.fop2');
+        }
+        return view('login');
+    })->name('homepage');
 
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
@@ -159,6 +160,7 @@ Route::get('/', function () {
     Route::prefix('actions')->name('actions.')->middleware('auth')->group(function () {
         Route::get('open_door', 'GDSAPI@openDoor')->name('open_door');
     });
+});
 
 Route::domain('goi.emergenciacvp.pt')->name('theaters_of_operations.')->middleware('auth')->group(function () {
     Route::get('/', 'TheatersOfOperationsPanelController@index')->name('index');
