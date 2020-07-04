@@ -17,7 +17,7 @@ class TheaterOfOperationsUnit extends Model
     private const CACHE_BRIEF_TIMETAPE         = 'TheaterOfOperations_Units_Brief_TimeTape_';
     private const CACHE_CREWS                  = 'TheaterOfOperations_Units_Crews_';
     private const CACHE_COMMUNICATION_CHANNELS = 'TheaterOfOperations_Units_Communication_Channels_';
-
+    private const CACHE_GEOTRACKING            = 'TheaterOfOperations_Units_Geotracking_';
 
     public const STATUS_INOP                  = 0;
     public const STATUS_BASE                  = 1;
@@ -239,6 +239,40 @@ class TheaterOfOperationsUnit extends Model
             $data = Cache::get(self::CACHE_COMMUNICATION_CHANNELS.$this->id);
         } else {
             $data = $this->generateComunicationChannels();
+        }
+        return $data;
+    }
+
+    public function generateGeotracking()
+    {
+        $geotracking = $this->geotracking;
+        $array       = [];
+        foreach ($geotracking as $single_geotracking) {
+            $array[] = [
+                $single_geotracking->system,
+                $single_geotracking->external_id,
+                $single_geotracking->id,
+            ];
+        }
+        $data = \json_encode($array);
+        Cache::put(self::CACHE_GEOTRACKING.$this->id, $data);
+        return $data;
+    }
+
+    public function resetGeotracking()
+    {
+        if (Cache::has(self::CACHE_GEOTRACKING.$this->id)) {
+            Cache::pull(self::CACHE_GEOTRACKING.$this->id);
+        }
+    }
+
+    public function getGeotracking()
+    {
+        $data = '';
+        if (Cache::has(self::CACHE_GEOTRACKING.$this->id)) {
+            $data = Cache::get(self::CACHE_GEOTRACKING.$this->id);
+        } else {
+            $data = $this->generateGeotracking();
         }
         return $data;
     }

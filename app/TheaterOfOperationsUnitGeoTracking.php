@@ -17,6 +17,11 @@ class TheaterOfOperationsUnitGeoTracking extends Model
         return $theater_of_operations_unit_geotracking;
     }
 
+    public function updateSystem($system) {
+        $this->system = $system;
+        $this->save();
+    }
+
     public function updateExternalID($external_id)
     {
         $this->external_id = $external_id;

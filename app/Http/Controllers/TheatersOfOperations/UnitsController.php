@@ -7,13 +7,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TheaterOfOperationsUnitAssignToPOI;
 use App\Http\Requests\TheaterOfOperationsUnitCreate;
 use App\Http\Requests\TheaterOfOperationsUnitCreateCommunicationChannel;
+use App\Http\Requests\TheaterOfOperationsUnitCreateGeotracking;
 use App\Http\Requests\TheaterOfOperationsUnitEdit;
 use App\Http\Requests\TheaterOfOperationsUnitUpdateCommunicationChannel;
+use App\Http\Requests\TheaterOfOperationsUnitUpdateGeotracking;
 use App\Http\Requests\TheaterOfOperationsUnitUpdateObservations;
 use App\Http\Requests\TheaterOfOperationsUnitUpdateStatus;
 use App\TheaterOfOperationsEventVictim;
 use App\TheaterOfOperationsUnit;
 use App\TheaterOfOperationsUnitCommunications;
+use App\TheaterOfOperationsUnitGeoTracking;
 use Carbon\Carbon;
 
 class UnitsController extends Controller
@@ -96,6 +99,51 @@ class UnitsController extends Controller
         $communication_channel = TheaterOfOperationsUnitCommunications::findOrFail($communication_channel_id);
         $communication_channel->delete();
         $communication_channel->unit->resetCommunicationChannels();
+        return response('');
+    }
+
+    public function getGeotracking($id, $unit_id)
+    {
+        $unit = TheaterOfOperationsUnit::findOrFail($unit_id);
+        $data = $unit->getGeotracking();
+        return response($data);
+    }
+
+    public function createGeotracking($id, $unit_id, TheaterOfOperationsUnitCreateGeotracking $request)
+    {
+        $validated   = $request->validated();
+        $unit        = TheaterOfOperationsUnit::findOrFail($unit_id);
+        $geotracking = TheaterOfOperationsUnitGeoTracking::create($unit_id, $validated['system'], '');
+        $geotracking->updateExternalID($validated['external_id']);
+        $unit->resetGeotracking();
+        return response('');
+    }
+
+    public function getGeotrackingSingle($id, $unit_id, $geotracking_id)
+    {
+        $geotracking = TheaterOfOperationsUnitGeoTracking::findOrFail($geotracking_id);
+        return response()->json($geotracking);
+    }
+
+    public function updateGeotracking($id, $unit_id, $geotracking_id, TheaterOfOperationsUnitUpdateGeotracking $request)
+    {
+        $geotracking = TheaterOfOperationsUnitGeoTracking::findOrFail($geotracking_id);
+        $validated   = $request->validated();
+        if ($geotracking->system != $validated['system']) {
+            $geotracking->updateSystem($validated['type']);
+        }
+        if ($geotracking->external_id != $validated['external_id']) {
+            $geotracking->updateExternalID($validated['external_id']);
+        }
+        $geotracking->unit->resetGeotracking();
+        return response('');
+    }
+
+    public function removeGeotracking($id, $unit_id, $geotracking_id)
+    {
+        $geotracking = TheaterOfOperationsUnitGeoTracking::findOrFail($geotracking_id);
+        $geotracking->delete();
+        $geotracking->unit->resetGeotracking();
         return response('');
     }
 

@@ -243,6 +243,51 @@
         </div>
     </div>
 </div>
+<div id="geotracking_create" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title">Adicionar Georeferênciação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form
+                action="{{route('theaters_of_operations.units.createGeoTracking',["id" => $unit->theater_of_operations->id, "unit_id" => $unit->id])}}"
+                method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Sistema</label>
+                                <select class="form-control" name="system">
+                                    <option value="Wialon" selected>Wialon</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>External ID</label>
+                                <input class="form-control" type="text" placeholder="External ID" name="external_id"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="geotracking_edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark">
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('javascript')
@@ -285,6 +330,43 @@
     </div>
 </form>
 </script>
+
+<script type="text/template" id="template_geotracking_edit">
+    <div class="modal-header">
+        <h5 class="modal-title">Editar Georeferênciação</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form
+        action="{{route('theaters_of_operations.units.geotracking.update',["id" => $unit->theater_of_operations->id, "unit_id" => $unit->id, "geotracking_id" => "-1"])}}"
+        method="POST">
+        @csrf
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>Tipo</label>
+                        <select class="form-control" name="system" id="geotracking_edit_system">
+                            <option value="Wialon" selected>Wialon</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>Tracking ID</label>
+                        <input class="form-control" type="text" placeholder="External ID" name="external" value="[[EXTERNAL_ID]]"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#0" onclick="removeGeotracking(-1)" class="btn btn-danger">Remover</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+    </script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
@@ -373,6 +455,7 @@
             list_communication_channels_table.ajax.reload();  
         });
     });
+    
 
     let open_communication_channel_id = -1;
     function editCommunicationChannel(id) {
@@ -408,6 +491,84 @@
         axios.get(url).then(function (response) {
             $("#communications_edit").modal('hide');
             list_communication_channels_table.ajax.reload();
+        });
+    }
+
+    let list_geotracking_table = $('#list_geotracking').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese.json"
+        },
+        "ajax": {
+            "url": "{{route('theaters_of_operations.units.getGeotracking',['id'=>$unit->theater_of_operations->id,'unit_id'=>$unit->id])}}",
+            "dataSrc": ""
+        },
+        "order": [[ 0, "desc" ]],
+        "sort":     false,
+        "paging":   false,
+        "info":     false,
+        "searching": false,
+        "columnDefs": [{
+            "targets": -1,
+            "data": null,
+            "defaultContent": "<a href='#0' data-action='edit'>Editar</a>"
+        }]
+    });
+    $('#list_geotracking tbody').on( 'click', 'a', function () {
+        var data = list_geotracking_table.row($(this).parents('tr')).data();
+        let action = $(this).data('action');
+        if(action == "edit"){
+            editGeotracking(data[2]);
+        }
+    });
+
+    $("#geotracking_create form").submit(function(e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+        var form = $(this);
+        var url = form.attr('action');
+
+        axios.post(url, form.serialize())
+        .then(function (response) {
+            $("#geotracking_create").modal('hide');
+            list_geotracking_table.ajax.reload();
+        });
+    });
+    
+
+    let open_geotracking_id = -1;
+    function editGeotracking(id) {
+        axios.get("{{route('theaters_of_operations.units.geotracking.get',['id'=>$unit->theater_of_operations->id,'unit_id'=>$unit->id,'geotracking_id'=>''])}}/"+id)
+        .then(function (response) {
+            console.log(response.data);
+            let template = $("#template_geotracking_edit").html();
+            template = template.split("-1").join(response.data.id);
+            template = template.split("[[TYPE]]").join(response.data.type || "");
+            template = template.split("[[EXTERNAL_ID]]").join(response.data.external_id || "");  
+            $('#geotracking_edit .modal-content').html(template);
+            $("#geotracking_edit_system").val(response.data.type);
+            open_geotracking_id = id;
+            $("#geotracking_edit form").submit(function(e) {
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+                
+                var form = $(this);
+                var url = form.attr('action');
+                
+                axios.post(url, form.serialize())
+                .then(function (response) {
+                    $("#geotracking_edit").modal('hide');
+                    list_geotracking_table.ajax.reload();
+                });
+            });
+            $('#geotracking_edit').modal();
+        });
+    }
+
+    function removeGeotracking(id) {
+        let url = "{{route('theaters_of_operations.units.geotracking.remove',["id" => $unit->theater_of_operations->id, "unit_id" => $unit->id, "geotracking_id" => "-1"])}}";
+        url = url.split("-1").join(id);
+        axios.get(url).then(function (response) {
+            $("#geotracking_edit").modal('hide');
+            list_geotracking_table.ajax.reload();
         });
     }
 
