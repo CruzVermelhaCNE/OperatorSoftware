@@ -35,7 +35,7 @@
     <div class="col-3 px-0 py-0">
         <div id="rightsidebar">
         </div>
-    </div>->>
+    </div>-->
 </div>
 @endsection
 
