@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -4889,7 +4889,7 @@ if (typeof WebSocket !== 'undefined') {
 
 if (typeof window === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(/*! ws */ 3);
+    NodeWebSocket = __webpack_require__(/*! ws */ 4);
   } catch (e) { }
 }
 
@@ -12074,19 +12074,19 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!**************************************************!*\
   !*** multi ./resources/js/laravel-echo-setup.js ***!
   \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Projectos\Cruz Vermelha\OperatorSoftware\resources\js\laravel-echo-setup.js */"./resources/js/laravel-echo-setup.js");
+module.exports = __webpack_require__(/*! D:\Projectos\CruzVermelha\OperatorSoftware\resources\js\laravel-echo-setup.js */"./resources/js/laravel-echo-setup.js");
 
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!********************!*\
   !*** ws (ignored) ***!
   \********************/

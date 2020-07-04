@@ -6,7 +6,7 @@ try {
 
     require('bootstrap');
     require('datatables.net-bs4');
-
+    require('select2');
 } catch (e) {}
 
 /**

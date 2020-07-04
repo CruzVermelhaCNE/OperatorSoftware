@@ -1,0 +1,142 @@
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~select2/src/scss/core';
+@import '~@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4';
+
+body {
+    font-size: .875rem;
+    color: white;
+    background-color: #232930;
+}
+
+.feather {
+    width: 35px;
+    height: 35px;
+    vertical-align: text-bottom;
+    text-align: center;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    /* Behind the navbar */
+    padding: 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    width: 65px;
+}
+
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    height: 100vh;
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #ddd;
+}
+
+.sidebar .nav-link .feather {
+    color: #fff;
+}
+
+.sidebar .nav-link.active {
+    color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+    color: inherit;
+}
+
+.sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+.sidebar .bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+/*
+ * Utilities
+ */
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* 
+ * Content
+ */
+
+.content {
+    margin-left: 70px;
+    height: 100vh;
+    width: calc(100vw - 70px);
+}
+
+.marker {
+    display: block;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+
+.mapboxgl-ctrl-styles {
+    display: flex;
+
+    button {
+        width: auto;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+
+        &+button {
+            border: none;
+        }
+
+        &.-active {
+            background: #f5f5f5;
+        }
+    }
+}
+
+a.mapboxgl-ctrl-logo {
+    float: right;
+    margin: 0 !important;
+    margin-top: 27px !important;
+}
+
+a.mapboxgl-ctrl-logo-cne {
+    width: 50px;
+    height: 50px;
+    display: block;
+    background-image: url('/img/CNE_small.png');
+    float: left;
+}
+
+
+/* Select 2 Dark Mode */
+
+.select2-container {
+    color: #495057;
+}

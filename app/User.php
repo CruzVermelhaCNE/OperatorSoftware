@@ -42,24 +42,25 @@ class User extends Authenticatable
         return $this->hasMany('App\Permission');
     }
 
-    public function getRanksAttribute($value) {
-        $ranks = "";
+    public function getRanksAttribute($value)
+    {
+        $ranks       = '';
         $permissions = $this->permissions->toArray();
         foreach ($permissions as $key => $permission) {
-            if($permission["permission"] == 1) {
-                $ranks .= "Gestor";
+            if ($permission['permission'] == 1) {
+                $ranks .= 'Gestor';
+            } elseif ($permission['permission'] == 2) {
+                $ranks .= 'Administrador';
+            } elseif ($permission['permission'] == 3) {
+                $ranks .= 'COVID19';
+            } elseif ($permission['permission'] == 4) {
+                $ranks .= 'Teatros de Operações';
             }
-            elseif ($permission["permission"] == 2) {
-                $ranks .= "Administrador";
-            }
-            elseif ($permission["permission"] == 3) {
-                $ranks .= "COVID19";
-            }
-            $ranks .= ", ";
+            $ranks .= ', ';
         }
-        $ranks = substr_replace($ranks ,"", -2);
-        if($ranks == "") {
-            return "Sem Cargos";
+        $ranks = \substr_replace($ranks, '', -2);
+        if ($ranks == '') {
+            return 'Sem Cargos';
         }
         return $ranks;
     }
@@ -69,18 +70,19 @@ class User extends Authenticatable
         return $this->hasMany('App\UserExtension');
     }
 
-    public function getAllExtensionsAttribute($value) {
-        $all_extensions = "";
-        $extensions = $this->extensions->toArray();
+    public function getAllExtensionsAttribute($value)
+    {
+        $all_extensions = '';
+        $extensions     = $this->extensions->toArray();
         foreach ($extensions as $key => $extension) {
-            $extension = Extension::where('id','=',$extension["extension_id"])->first();
-            if($extension) {
-                $all_extensions .= $extension->number.", ";
+            $extension = Extension::where('id', '=', $extension['extension_id'])->first();
+            if ($extension) {
+                $all_extensions .= $extension->number.', ';
             }
         }
-        $all_extensions = substr_replace($all_extensions ,"", -2);
-        if($all_extensions == "") {
-            return "Sem Extensões";
+        $all_extensions = \substr_replace($all_extensions, '', -2);
+        if ($all_extensions == '') {
+            return 'Sem Extensões';
         }
         return $all_extensions;
     }

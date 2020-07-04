@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2554,14 +2554,14 @@ $(document).ready(function () {//callNotifications();
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!*****************************************!*\
   !*** multi ./resources/js/dashboard.js ***!
   \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Projectos\Cruz Vermelha\OperatorSoftware\resources\js\dashboard.js */"./resources/js/dashboard.js");
+module.exports = __webpack_require__(/*! D:\Projectos\CruzVermelha\OperatorSoftware\resources\js\dashboard.js */"./resources/js/dashboard.js");
 
 
 /***/ })
