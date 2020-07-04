@@ -23,7 +23,7 @@ class CrewsController extends Controller
         return redirect()->route('theaters_of_operations.single', $validated['theater_of_operations_id']);
     }
 
-    public function single($id)
+    public function single($id, $crew_id)
     {
         $crew = TheaterOfOperationsCrew::withTrashed()->findOrFail($crew_id);
         return view('theaters_of_operations.crews.single', ['crew' => $crew]);
