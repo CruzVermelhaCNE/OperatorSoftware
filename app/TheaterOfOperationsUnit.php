@@ -266,7 +266,7 @@ class TheaterOfOperationsUnit extends Model
         $this->theater_of_operations_sector_id = $theater_of_operations_sector_id;
         $this->save();
         $this->load('poi');
-        $this->load('unit');
+        $this->load('theater_of_operations');
         if ($this->theater_of_operations_sector_id) {
             TheaterOfOperationsTimeTape::create('Unidade (#'.$this->id.'): Atribuida ao Sector '.$this->sector->name, $this->sector->theater_of_operations->id, null, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
             TheaterOfOperationsTimeTape::create('Unidade (#'.$this->id.'): Atribuida ao Sector', null, $theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
@@ -284,7 +284,7 @@ class TheaterOfOperationsUnit extends Model
         $this->theater_of_operations_poi_id = $theater_of_operations_poi_id;
         $this->save();
         $this->load('poi');
-        $this->load('unit');
+        $this->load('theater_of_operations');
         if ($this->theater_of_operations_poi_id) {
             TheaterOfOperationsTimeTape::create('Unidade (#'.$this->id.'): Atribuida ao  Ponto de Interesse '.$this->poi->name, $this->theater_of_operations_id, $this->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         }
