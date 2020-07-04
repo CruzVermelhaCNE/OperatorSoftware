@@ -268,13 +268,13 @@ Route::domain('goi.emergenciacvp.pt')->name('theaters_of_operations.')->middlewa
         Route::post('{unit_id}/edit', 'TheatersOfOperations\UnitsController@edit')->where(['unit_id', '[0-9]+']);
         Route::get('{unit_id}/demobilize', 'TheatersOfOperations\UnitsController@demobilize')->where(['unit_id', '[0-9]+'])->name('demobilize');
 
-        Route::prefix('{unit_id}/units')->where(['event_id', '[0-9]+'])->name('communication_channels.')->group(function () {
+        Route::prefix('{unit_id}/communication_channels')->where(['event_id', '[0-9]+'])->name('communication_channels.')->group(function () {
             Route::get('{communication_channel_id}/', 'TheatersOfOperations\UnitsController@getCommunicationChannel')->where(['communication_channel_id', '[0-9]+'])->name('get');
             Route::post('{communication_channel_id}/update', 'TheatersOfOperations\UnitsController@updateCommunicationChannel')->where(['communication_channel_id', '[0-9]+'])->name('update');
             Route::get('{communication_channel_id}/remove', 'TheatersOfOperations\UnitsController@removeCommunicationChannel')->where(['communication_channel_id', '[0-9]+'])->name('remove');
         });
 
-        Route::prefix('{unit_id}/units')->where(['event_id', '[0-9]+'])->name('geotracking.')->group(function () {
+        Route::prefix('{unit_id}/geotracking')->where(['event_id', '[0-9]+'])->name('geotracking.')->group(function () {
             Route::get('{geotracking_id}/', 'TheatersOfOperations\UnitsController@getGeotrackingSingle')->where(['geotracking_id', '[0-9]+'])->name('get');
             Route::post('{geotracking_id}/update', 'TheatersOfOperations\UnitsController@updateGeotracking')->where(['geotracking_id', '[0-9]+'])->name('update');
             Route::get('{geotracking_id}/remove', 'TheatersOfOperations\UnitsController@removeGeotracking')->where(['geotracking_id', '[0-9]+'])->name('remove');
