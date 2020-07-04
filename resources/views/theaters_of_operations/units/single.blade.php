@@ -184,6 +184,32 @@
         @endif
     </div>
     <div class="row">
+        <h4 style="text-align: center; width:100vw">Georeferênciação</h4>
+        <table id="list_geotracking" style="width:100%"
+            class="table table-sm table-dark table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Sistema</th>
+                    <th>ID Externo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Sistema</th>
+                    <th>ID Externo</th>
+                    <th>Ações</th>
+                </tr>
+            </tfoot>
+        </table>
+        @if(!$unit->isDemobilized())
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#geotracking_create">Adicionar
+            Georeferênciação</button>
+        @endif
+    </div>
+    <div class="row">
         <h4 style="text-align: center; width:100vw">Observações</h4>
         <div class="form-group" style="width:100vw">
             @if(!$unit->isDemobilized())
