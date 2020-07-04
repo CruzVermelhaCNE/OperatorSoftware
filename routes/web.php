@@ -163,6 +163,7 @@ Route::domain('salop.emergenciacvp.pt')->group(function () {
 });
 
 Route::domain('goi.emergenciacvp.pt')->name('theaters_of_operations.')->middleware('auth')->group(function () {
+    dd('here');
     Route::get('/', 'TheatersOfOperationsPanelController@index')->name('index');
     Route::get('map', 'TheatersOfOperationsPanelController@map')->name('map');
     Route::get('timetape', 'TheatersOfOperationsPanelController@timetape')->name('timetape');
