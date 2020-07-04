@@ -26,7 +26,7 @@
 
 @section('content')
 <div class="row px-0 py-0 mx-0 my-0">
-    <div class="col-9 px-0 py-0">
+    <div class="col-12 px-0 py-0">
         <div id="map"></div>
     </div>
     <!--<div class="col-9 px-0 py-0">
