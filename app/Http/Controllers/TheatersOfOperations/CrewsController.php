@@ -56,6 +56,7 @@ class CrewsController extends Controller
             $crew->updateObservations($validated['observations']);
         }
         $crew->theater_of_operations->resetCrewsListing();
+        $crew->unit->resetCrewsListing();
         return redirect()->route('theaters_of_operations.crews.single', ['id' => $crew->theater_of_operations->id, 'crew_id' => $crew->id]);
     }
 
@@ -99,6 +100,7 @@ class CrewsController extends Controller
     {
         $crew = TheaterOfOperationsCrew::findOrFail($crew_id);
         $crew->demobilize();
+        $crew->unit->resetCrewsListing();
         $crew->theater_of_operations->resetCrewsListing();
         return redirect()->route('theaters_of_operations.single', $crew->theater_of_operations->id);
     }
