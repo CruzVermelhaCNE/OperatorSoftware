@@ -25,7 +25,7 @@ class CrewsController extends Controller
 
     public function single($id)
     {
-        $crew = TheaterOfOperationsCrew::withTrashed()->findOrFail($id);
+        $crew = TheaterOfOperationsCrew::withTrashed()->findOrFail($crew_id);
         return view('theaters_of_operations.crews.single', ['crew' => $crew]);
     }
 
