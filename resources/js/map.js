@@ -293,7 +293,7 @@ class Map {
     getUnitsFeatures(callback) {
         let that = this;
         if (this.theater_of_operations_id == 0) {
-            axios.get("/goi/units_info")
+            axios.get("/units_info")
                 .then(function (response) {
                     let a1_features = [];
                     let a2_features = [];
@@ -456,7 +456,7 @@ class Map {
                     });
                 });
         } else {
-            axios.get("/goi/" + this.theater_of_operations_id + "/getUnits")
+            axios.get("/" + this.theater_of_operations_id + "/getUnits")
                 .then(function (response) {
                     let a1_features = [];
                     let a2_features = [];
@@ -1015,7 +1015,7 @@ class Map {
                 alert("Open Unit: " + e.features[0].properties.unit_id);
             }
             else {
-                document.location.href = "/goi/"+that.theater_of_operations_id+"/units/"+e.features[0].properties.unit_id;
+                document.location.href = "/"+that.theater_of_operations_id+"/units/"+e.features[0].properties.unit_id;
             }
         };
         this.mapbox_map.on('click', 'layer_icons_A1', this_function);
@@ -1034,7 +1034,7 @@ class Map {
     getEventsFeatures(callback) {
         let that = this;
         if (this.theater_of_operations_id == 0) {
-            axios.get("/goi/events_info")
+            axios.get("/events_info")
                 .then(function (response) {
                     let geral_features = [];
                     let cheia_features = [];
@@ -1085,7 +1085,7 @@ class Map {
                     });
                 });
         } else {
-            axios.get("/goi/"+this.theater_of_operations_id+"/getEvents")
+            axios.get("/"+this.theater_of_operations_id+"/getEvents")
                 .then(function (response) {
                     let geral_features = [];
                     let cheia_features = [];
@@ -1258,7 +1258,7 @@ class Map {
                 alert("Open Event: " + e.features[0].properties.event_id)
             }
             else {
-                document.location.href = "/goi/"+that.theater_of_operations_id+"/events/"+e.features[0].properties.event_id;
+                document.location.href = "/"+that.theater_of_operations_id+"/events/"+e.features[0].properties.event_id;
             }
         };
         this.mapbox_map.on('click', 'layer_events_Cheia', this_function);
@@ -1268,7 +1268,7 @@ class Map {
 
     getTOsFeatures(callback) {
         let that = this;
-        axios.get("/goi/info")
+        axios.get("/info")
             .then(function (response) {
                 let incendio_features = [];
                 response.data.forEach(to => {
@@ -1349,7 +1349,7 @@ class Map {
 
     getPOIsFeatures(callback) {
         let that = this;
-        axios.get("/goi/" + this.theater_of_operations_id + "/getPOIs")
+        axios.get("/" + this.theater_of_operations_id + "/getPOIs")
             .then(function (response) {
                 let geral_features = [];
                 let pc_features = [];
