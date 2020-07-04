@@ -36,7 +36,7 @@
             <p>Nº CDOS: {{$theater_of_operations->cdos}}</p>
             <p>Localização: {{$theater_of_operations->location}} (<a href="#map" onclick="centerMap()">Centrar</a>)</p>
             <p>Ocorrências Ativas: {{$theater_of_operations->getEvents()->count()}}</p>
-            <p>Unidades: {{$theater_of_operations->getUnits()->count()}}</p>
+            <p>Meios: {{$theater_of_operations->getUnits()->count()}}</p>
             <p>Operacionais: {{$theater_of_operations->getCrews()->count()}}</p>
             <p>Oficial de Ligação: @if ($theater_of_operations->coordination->where('role','=','Oficial de
                 Ligação')->first())
@@ -186,7 +186,7 @@
             @endif
     </div>
     <div class="row">
-        <h4 style="text-align: center; width:100vw">Unidades</h4>
+        <h4 style="text-align: center; width:100vw">Meios</h4>
         <table id="list_units" style="width:100%" class="table table-sm table-dark table-striped table-bordered">
             <thead>
                 <tr>
@@ -215,7 +215,7 @@
         </table>
         @if(!$theater_of_operations->trashed())
         <a href="{{route('theaters_of_operations.units.create',$theater_of_operations->id)}}"
-            class="btn btn-secondary">Adicionar Unidade</a>
+            class="btn btn-secondary">Adicionar Meio</a>
             @endif
     </div>
     <div class="row">
