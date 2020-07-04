@@ -7,9 +7,9 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
 <style>
     #map {
-        height: 65vh;
+        height: 100vh;
     }
-    #rightsidebar {
+    /*#rightsidebar {
         float: right;
         width: calc(100% - 5px);
         background-color: #343a40;
@@ -20,7 +20,7 @@
         margin-top: 5px !important;
         height: calc(35vh - 5px);
         background-color:#343a40;
-    }
+    }*/
 </style>
 @endsection
 
