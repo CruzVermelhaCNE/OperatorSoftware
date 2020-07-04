@@ -7,6 +7,7 @@ class TheatersOfOperationsPanelController extends Controller
 {
     public function index()
     {
+        dd('here');
         return redirect()->route('theaters_of_operations.map');
     }
 
