@@ -77,7 +77,7 @@ class Map {
         this.center_lat = center_lat;
         this.center_long = center_long;
 
-        mapboxgl.accessToken = 'pk.eyJ1IjoiY290ZW1lcm8iLCJhIjoiY2pnNTlwa3dsMW9tbzMzbG9kdTF2eGlpYyJ9.srSmaCCOglGJKXScC3KEiQ';
+        mapboxgl.accessToken = 'pk.eyJ1IjoiY290ZW1lcm8iLCJhIjoiY2tjODF1d2QwMTdiaDJzbzB4aWFyamt6OSJ9.w6EjJ_JXQ8B6ESKZqKwP-w';
 
         this.mapbox_map = new mapboxgl.Map({
             container: this.map_id,
