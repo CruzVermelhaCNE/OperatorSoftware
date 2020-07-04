@@ -21,7 +21,7 @@ Auth::routes([
 
 Broadcast::routes();
 
-Route::domain('painel.salop')->group(function () {
+Route::domain('salop.emergenciacvp.pt')->group(function () {
     Route::get('/', function () {
         if (Auth::user()) {
             return redirect()->route('panel.fop2');
