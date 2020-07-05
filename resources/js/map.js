@@ -88,14 +88,15 @@ class Map {
         this.mapbox_map.addControl(new StylesControl({
             "onChange": function () {
                 if (that.theater_of_operations_id == 0) {
+                    that.createPOIs();
                     that.createUnits();
                     that.createEvents();
                     that.createTOs();
                     that.loadIcons();
                 } else {
                     that.createPOIs();
-                    that.createTOUnits();
-                    that.createTOEvents();
+                    that.createUnits();
+                    that.createEvents();
                     that.loadIcons();
                 }
             }
@@ -105,6 +106,7 @@ class Map {
         this.mapbox_map.addControl(new mapboxgl.ScaleControl(), 'bottom-right');
         this.mapbox_map.on('load', function () {
             if (that.theater_of_operations_id == 0) {
+                that.createPOIs();
                 that.createUnits();
                 that.createEvents();
                 that.createTOs();
@@ -1362,126 +1364,251 @@ class Map {
 
     getPOIsFeatures(callback) {
         let that = this;
-        axios.get("/" + this.theater_of_operations_id + "/getPOIs")
-            .then(function (response) {
-                let geral_features = [];
-                let pc_features = [];
-                let zcap_features = [];
-                let zcr_features = [];
-                let logistica_features = [];
-                let pma_features = [];
-                let antena_features = [];
-                let satelite_features = [];
-                response.data.forEach(poi => {
-                    if (poi[3] == "POI Geral") {
-                        geral_features.push({
-                            'type': 'Feature',
-                            'properties': {
-                                'name': poi[0],
-                                'poi_id': poi[6],
-                            },
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [poi[5], poi[4]]
-                            }
-                        });
-                    } else if (poi[3] == "PC") {
-                        pc_features.push({
-                            'type': 'Feature',
-                            'properties': {
-                                'name': poi[0],
-                                'poi_id': poi[6],
-                            },
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [poi[5], poi[4]]
-                            }
-                        });
-                    } else if (poi[3] == "ZCAP") {
-                        zcap_features.push({
-                            'type': 'Feature',
-                            'properties': {
-                                'name': poi[0],
-                                'poi_id': poi[6],
-                            },
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [poi[5], poi[4]]
-                            }
-                        });
-                    } else if (poi[3] == "ZCR") {
-                        zcr_features.push({
-                            'type': 'Feature',
-                            'properties': {
-                                'name': poi[0],
-                                'poi_id': poi[6],
-                            },
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [poi[5], poi[4]]
-                            }
-                        });
-                    } else if (poi[3] == "Logística") {
-                        logistica_features.push({
-                            'type': 'Feature',
-                            'properties': {
-                                'name': poi[0],
-                                'poi_id': poi[6],
-                            },
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [poi[5], poi[4]]
-                            }
-                        });
-                    } else if (poi[3] == "PMA") {
-                        pma_features.push({
-                            'type': 'Feature',
-                            'properties': {
-                                'name': poi[0],
-                                'poi_id': poi[6],
-                            },
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [poi[5], poi[4]]
-                            }
-                        });
-                    } else if (poi[3] == "Antena") {
-                        antena_features.push({
-                            'type': 'Feature',
-                            'properties': {
-                                'name': poi[0],
-                                'poi_id': poi[6],
-                            },
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [poi[5], poi[4]]
-                            }
-                        });
-                    } else if (poi[3] == "Satélite") {
-                        satelite_features.push({
-                            'type': 'Feature',
-                            'properties': {
-                                'name': poi[0],
-                                'poi_id': poi[6],
-                            },
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [poi[5], poi[4]]
-                            }
-                        });
-                    }
+        if (this.theater_of_operations_id == 0) {
+            axios.get("/pois_info")
+                .then(function (response) {
+                    let geral_features = [];
+                    let pc_features = [];
+                    let zcap_features = [];
+                    let zcr_features = [];
+                    let logistica_features = [];
+                    let pma_features = [];
+                    let antena_features = [];
+                    let satelite_features = [];
+                    response.data.forEach(poi => {
+                        if (poi[3] == "POI Geral") {
+                            geral_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "PC") {
+                            pc_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "ZCAP") {
+                            zcap_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "ZCR") {
+                            zcr_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "Logística") {
+                            logistica_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "PMA") {
+                            pma_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "Antena") {
+                            antena_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "Satélite") {
+                            satelite_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        }
+                    });
+                    callback({
+                        "geral": geral_features,
+                        "pc": pc_features,
+                        "zcap": zcap_features,
+                        "zcr": zcr_features,
+                        "logistica": logistica_features,
+                        "pma": pma_features,
+                        "antena": antena_features,
+                        "satelite": satelite_features,
+                    });
                 });
-                callback({
-                    "geral": geral_features,
-                    "pc": pc_features,
-                    "zcap": zcap_features,
-                    "zcr": zcr_features,
-                    "logistica": logistica_features,
-                    "pma": pma_features,
-                    "antena": antena_features,
-                    "satelite": satelite_features,
+
+        } else {
+            axios.get("/" + this.theater_of_operations_id + "/getPOIs")
+                .then(function (response) {
+                    let geral_features = [];
+                    let pc_features = [];
+                    let zcap_features = [];
+                    let zcr_features = [];
+                    let logistica_features = [];
+                    let pma_features = [];
+                    let antena_features = [];
+                    let satelite_features = [];
+                    response.data.forEach(poi => {
+                        if (poi[3] == "POI Geral") {
+                            geral_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "PC") {
+                            pc_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "ZCAP") {
+                            zcap_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "ZCR") {
+                            zcr_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "Logística") {
+                            logistica_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "PMA") {
+                            pma_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "Antena") {
+                            antena_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        } else if (poi[3] == "Satélite") {
+                            satelite_features.push({
+                                'type': 'Feature',
+                                'properties': {
+                                    'name': poi[0],
+                                    'poi_id': poi[6],
+                                },
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [poi[5], poi[4]]
+                                }
+                            });
+                        }
+                    });
+                    callback({
+                        "geral": geral_features,
+                        "pc": pc_features,
+                        "zcap": zcap_features,
+                        "zcr": zcr_features,
+                        "logistica": logistica_features,
+                        "pma": pma_features,
+                        "antena": antena_features,
+                        "satelite": satelite_features,
+                    });
                 });
-            });
+
+        }
     }
 
     createPOIs(addSources = true, createLayer = true) {

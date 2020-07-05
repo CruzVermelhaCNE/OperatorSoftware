@@ -258,7 +258,7 @@ function () {
     this.center_zoom = center_zoom;
     this.center_lat = center_lat;
     this.center_long = center_long;
-    mapboxgl.accessToken = 'pk.eyJ1IjoiY290ZW1lcm8iLCJhIjoiY2pnNTlwa3dsMW9tbzMzbG9kdTF2eGlpYyJ9.srSmaCCOglGJKXScC3KEiQ';
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY290ZW1lcm8iLCJhIjoiY2tjODF1d2QwMTdiaDJzbzB4aWFyamt6OSJ9.w6EjJ_JXQ8B6ESKZqKwP-w';
     this.mapbox_map = new mapboxgl.Map({
       container: this.map_id,
       style: 'mapbox://styles/mapbox/dark-v10',
@@ -408,7 +408,7 @@ function () {
       var that = this;
 
       if (this.theater_of_operations_id == 0) {
-        axios.get("/goi/units_info").then(function (response) {
+        axios.get("/units_info").then(function (response) {
           var a1_features = [];
           var a2_features = [];
           var b_features = [];
@@ -570,7 +570,7 @@ function () {
           });
         });
       } else {
-        axios.get("/goi/" + this.theater_of_operations_id + "/getUnits").then(function (response) {
+        axios.get("/" + this.theater_of_operations_id + "/getUnits").then(function (response) {
           var a1_features = [];
           var a2_features = [];
           var b_features = [];
@@ -834,7 +834,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_A1',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -850,7 +851,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_A2',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -866,7 +868,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_B',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -882,7 +885,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_C',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -898,7 +902,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_VDTD',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -914,7 +919,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_TL',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -928,7 +934,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_CC',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -944,7 +951,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_CO',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -960,7 +968,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_LO',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -976,7 +985,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_LP',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -992,7 +1002,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_HELI',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
         }
@@ -1092,7 +1103,7 @@ function () {
           console.log(e.features[0]);
           alert("Open Unit: " + e.features[0].properties.unit_id);
         } else {
-          document.location.href = "/goi/" + that.theater_of_operations_id + "/units/" + e.features[0].properties.unit_id;
+          document.location.href = "/" + that.theater_of_operations_id + "/units/" + e.features[0].properties.unit_id;
         }
       };
 
@@ -1114,7 +1125,7 @@ function () {
       var that = this;
 
       if (this.theater_of_operations_id == 0) {
-        axios.get("/goi/events_info").then(function (response) {
+        axios.get("/events_info").then(function (response) {
           var geral_features = [];
           var cheia_features = [];
           var evacuacao_features = [];
@@ -1164,7 +1175,7 @@ function () {
           });
         });
       } else {
-        axios.get("/goi/" + this.theater_of_operations_id + "/getEvents").then(function (response) {
+        axios.get("/" + this.theater_of_operations_id + "/getEvents").then(function (response) {
           var geral_features = [];
           var cheia_features = [];
           var evacuacao_features = [];
@@ -1260,7 +1271,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_Cheia',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -1276,7 +1288,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_Evacuação',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -1292,7 +1305,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_OcorrênciaGeral',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
         }
@@ -1336,7 +1350,7 @@ function () {
           console.log(e.features[0]);
           alert("Open Event: " + e.features[0].properties.event_id);
         } else {
-          document.location.href = "/goi/" + that.theater_of_operations_id + "/events/" + e.features[0].properties.event_id;
+          document.location.href = "/" + that.theater_of_operations_id + "/events/" + e.features[0].properties.event_id;
         }
       };
 
@@ -1348,7 +1362,7 @@ function () {
     key: "getTOsFeatures",
     value: function getTOsFeatures(callback) {
       var that = this;
-      axios.get("/goi/info").then(function (response) {
+      axios.get("/info").then(function (response) {
         var incendio_features = [];
         response.data.forEach(function (to) {
           if (to["type"] == "Incêndio") {
@@ -1401,7 +1415,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_Incêndio',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
         }
@@ -1433,7 +1448,7 @@ function () {
     key: "getPOIsFeatures",
     value: function getPOIsFeatures(callback) {
       var that = this;
-      axios.get("/goi/" + this.theater_of_operations_id + "/getPOIs").then(function (response) {
+      axios.get("/" + this.theater_of_operations_id + "/getPOIs").then(function (response) {
         var geral_features = [];
         var pc_features = [];
         var zcap_features = [];
@@ -1633,7 +1648,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_POIGeral',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -1649,7 +1665,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_PC',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -1665,7 +1682,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_ZCAP',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -1681,7 +1699,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_ZCR',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -1697,7 +1716,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_Logistica',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -1713,7 +1733,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_PMA',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -1729,7 +1750,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_Antena',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
           that.mapbox_map.addLayer({
@@ -1745,7 +1767,8 @@ function () {
               'text-anchor': 'bottom',
               'text-field': '{name}',
               'icon-image': 'icon_Satelite',
-              'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 0.5]
+              'icon-size': ['interpolate', ['linear'], ['zoom'], 5, 0.25, 10, 0.5, 15, 1],
+              'icon-allow-overlap': true
             }
           });
         }

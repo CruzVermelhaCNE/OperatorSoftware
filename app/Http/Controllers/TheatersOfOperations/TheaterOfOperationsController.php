@@ -65,6 +65,12 @@ class TheaterOfOperationsController extends Controller
         return response()->json($events);
     }
 
+    public function pois_info()
+    {
+        $pois = TheaterOfOperationsPOI::join('theater_of_operations','theater_of_operations_id','=','theater_of_operations.id')->where('theater_of_operations.deleted_at','=',null)->get();
+        return response()->json($pois);
+    }
+
     public function edit($id)
     {
         $theater_of_operations = TheaterOfOperations::findOrFail($id);
