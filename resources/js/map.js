@@ -108,12 +108,20 @@ class Map {
             that.createPOIs();
             that.createUnits();
             that.createEvents();
-            setInterval(that.updatePOIs, 5000);
-            setInterval(that.updateUnits, 5000);
-            setInterval(that.updateEvents, 5000);
+            setInterval(function () {
+                that.updatePOIs();
+            }, 5000);
+            setInterval(function () {
+                that.updateUnits();
+            }, 5000);
+            setInterval(function () {
+                that.updateEvents();
+            }, 5000);
             if (that.theater_of_operations_id == 0) {
                 that.createTOs();
-                setInterval(that.updateTOs, 5000);                            
+                setInterval(function () {
+                    that.updateTOs();
+                }, 5000);
                 that.prepareClickableTOs();
             }
             that.loadIcons();
@@ -2025,6 +2033,7 @@ class Map {
     }
 
     prepareClickablePOIs() {
+        let that = this;
         let this_function = function (e) {
             console.log("Click on POI: " + e.features[0].properties.poi_id)
         }
@@ -2057,7 +2066,7 @@ class Map {
         this.mapbox_map.on('mouseenter', 'layer_icons_Antena', cursor_enter_function);
         this.mapbox_map.on('mouseleave', 'layer_icons_Antena', cursor_leave_function);
         this.mapbox_map.on('mouseenter', 'layer_icons_Satelite', cursor_enter_function);
-        this.mapbox_map.on('mouseleave', 'layer_icons_Satelite', cursor_leave_function);        
+        this.mapbox_map.on('mouseleave', 'layer_icons_Satelite', cursor_leave_function);
     }
 
     zoomOn(lat, long, zoom) {
