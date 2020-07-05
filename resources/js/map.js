@@ -1376,100 +1376,100 @@ class Map {
                     let antena_features = [];
                     let satelite_features = [];
                     response.data.forEach(poi => {
-                        if (poi[3] == "POI Geral") {
+                        if (poi["symbol"] == "POI Geral") {
                             geral_features.push({
                                 'type': 'Feature',
                                 'properties': {
-                                    'name': poi[0],
-                                    'poi_id': poi[6],
+                                    'name': poi["name"],
+                                    'poi_id': poi["id"],
                                 },
                                 'geometry': {
                                     'type': 'Point',
-                                    'coordinates': [poi[5], poi[4]]
+                                    'coordinates': [poi["long"], poi["lat"]]
                                 }
                             });
-                        } else if (poi[3] == "PC") {
+                        } else if (poi["symbol"] == "PC") {
                             pc_features.push({
                                 'type': 'Feature',
                                 'properties': {
-                                    'name': poi[0],
-                                    'poi_id': poi[6],
+                                    'name': poi["name"],
+                                    'poi_id': poi["id"],
                                 },
                                 'geometry': {
                                     'type': 'Point',
-                                    'coordinates': [poi[5], poi[4]]
+                                    'coordinates': [poi["long"], poi["lat"]]
                                 }
                             });
-                        } else if (poi[3] == "ZCAP") {
+                        } else if (poi["symbol"] == "ZCAP") {
                             zcap_features.push({
                                 'type': 'Feature',
                                 'properties': {
-                                    'name': poi[0],
-                                    'poi_id': poi[6],
+                                    'name': poi["name"],
+                                    'poi_id': poi["id"],
                                 },
                                 'geometry': {
                                     'type': 'Point',
-                                    'coordinates': [poi[5], poi[4]]
+                                    'coordinates': [poi["long"], poi["lat"]]
                                 }
                             });
-                        } else if (poi[3] == "ZCR") {
+                        } else if (poi["symbol"] == "ZCR") {
                             zcr_features.push({
                                 'type': 'Feature',
                                 'properties': {
-                                    'name': poi[0],
-                                    'poi_id': poi[6],
+                                    'name': poi["name"],
+                                    'poi_id': poi["id"],
                                 },
                                 'geometry': {
                                     'type': 'Point',
-                                    'coordinates': [poi[5], poi[4]]
+                                    'coordinates': [poi["long"], poi["lat"]]
                                 }
                             });
-                        } else if (poi[3] == "Logística") {
+                        } else if (poi["symbol"] == "Logística") {
                             logistica_features.push({
                                 'type': 'Feature',
                                 'properties': {
-                                    'name': poi[0],
-                                    'poi_id': poi[6],
+                                    'name': poi["name"],
+                                    'poi_id': poi["id"],
                                 },
                                 'geometry': {
                                     'type': 'Point',
-                                    'coordinates': [poi[5], poi[4]]
+                                    'coordinates': [poi["long"], poi["lat"]]
                                 }
                             });
-                        } else if (poi[3] == "PMA") {
+                        } else if (poi["symbol"] == "PMA") {
                             pma_features.push({
                                 'type': 'Feature',
                                 'properties': {
-                                    'name': poi[0],
-                                    'poi_id': poi[6],
+                                    'name': poi["name"],
+                                    'poi_id': poi["id"],
                                 },
                                 'geometry': {
                                     'type': 'Point',
-                                    'coordinates': [poi[5], poi[4]]
+                                    'coordinates': [poi["long"], poi["lat"]]
                                 }
                             });
-                        } else if (poi[3] == "Antena") {
+                        } else if (poi["symbol"] == "Antena") {
                             antena_features.push({
                                 'type': 'Feature',
                                 'properties': {
-                                    'name': poi[0],
-                                    'poi_id': poi[6],
+                                    'name': poi["name"],
+                                    'poi_id': poi["id"],
                                 },
                                 'geometry': {
                                     'type': 'Point',
-                                    'coordinates': [poi[5], poi[4]]
+                                    'coordinates': [poi["long"], poi["lat"]]
                                 }
                             });
-                        } else if (poi[3] == "Satélite") {
+                        } else if (poi["symbol"] == "Satélite") {
                             satelite_features.push({
                                 'type': 'Feature',
                                 'properties': {
-                                    'name': poi[0],
-                                    'poi_id': poi[6],
+                                    'name': poi["name"],
+                                    'poi_id': poi["id"],
                                 },
                                 'geometry': {
                                     'type': 'Point',
-                                    'coordinates': [poi[5], poi[4]]
+                                    'coordinates': [poi["long"], poi["lat"]]
                                 }
                             });
                         }
