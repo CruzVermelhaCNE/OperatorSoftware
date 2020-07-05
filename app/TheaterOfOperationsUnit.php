@@ -83,7 +83,10 @@ class TheaterOfOperationsUnit extends Model
     public function getLatAttribute()
     {
         if ($this->geotracking->count() != 0) {
-            return $this->geotracking->first()->lat;
+            $lat = $this->geotracking->first()->lat;
+            if ($lat) {
+                return $lat;
+            }
         }
         if ($this->active_event) {
             return $this->active_event->lat;
@@ -97,7 +100,10 @@ class TheaterOfOperationsUnit extends Model
     public function getLongAttribute()
     {
         if ($this->geotracking->count() != 0) {
-            return $this->geotracking->first()->long;
+            $long = $this->geotracking->first()->long;
+            if ($long) {
+                return $long;
+            }
         }
         if ($this->active_event) {
             return $this->active_event->long;
