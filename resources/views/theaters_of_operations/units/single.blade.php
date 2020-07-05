@@ -398,7 +398,7 @@
 <script src="https://cdn.datatables.net/plug-ins/1.10.20/sorting/datetime-moment.js"></script>
 <script src="{{ mix('js/map.js') }}"></script>
 <script>
-    let map = new Map({{$unit->theater_of_operations->id}}, 'map', 11, {{$unit->lat}}, {{$unit->long}});
+    let map = new Map({{$unit->theater_of_operations->id}}, 'map', 13, {{$unit->lat}}, {{$unit->long}});
     $.fn.dataTable.moment( 'HH:mm DD/MM/YYYY' );
     let list_timetape_table = $('#list_timetape').DataTable({
         "language": {
