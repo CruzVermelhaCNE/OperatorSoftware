@@ -40,6 +40,7 @@ class RunWialonFetcher extends Command
      */
     public function handle()
     {
+        echo("Running wialon fetcher\n");
         $response = Http::get('https://hst-api.wialon.com/wialon/ajax.html', [
             'svc'    => 'token/login',
             'params' => \json_encode(['token' => ENV('WIALON_TOKEN')]),
