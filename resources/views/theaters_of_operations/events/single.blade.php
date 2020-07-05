@@ -737,7 +737,7 @@
                 });
             });
             var typingTimer;
-            var doneTypingInterval = 1000;
+            var doneTypingInterval = 250;
             var $input_victim = $('#victim_observations');
 
             $input_victim.on('blur', function () {
@@ -879,7 +879,7 @@
 @if(!$event->isFinished())
 <script>
     var typingTimer;
-    var doneTypingInterval = 1000;
+    var doneTypingInterval = 250;
     var $input = $('#observations');
 
     $input.on('blur', function () {

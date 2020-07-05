@@ -171,7 +171,7 @@
 @if(!$crew->trashed())
 <script>
     var typingTimer;
-    var doneTypingInterval = 1000;
+    var doneTypingInterval = 250;
     var $input = $('#observations');
 
     $input.on('blur', function () {
