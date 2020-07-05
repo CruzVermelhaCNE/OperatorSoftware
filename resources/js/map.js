@@ -718,7 +718,10 @@ class Map {
 
                         'icon-image': 'icon_A1',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -742,7 +745,10 @@ class Map {
 
                         'icon-image': 'icon_A2',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -766,7 +772,10 @@ class Map {
 
                         'icon-image': 'icon_B',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -790,7 +799,10 @@ class Map {
 
                         'icon-image': 'icon_C',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -814,7 +826,10 @@ class Map {
 
                         'icon-image': 'icon_VDTD',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -838,7 +853,10 @@ class Map {
 
                         'icon-image': 'icon_TL',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -860,7 +878,10 @@ class Map {
 
                         'icon-image': 'icon_CC',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -884,7 +905,10 @@ class Map {
 
                         'icon-image': 'icon_CO',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -908,7 +932,10 @@ class Map {
 
                         'icon-image': 'icon_LO',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -932,7 +959,10 @@ class Map {
 
                         'icon-image': 'icon_LP',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -954,7 +984,10 @@ class Map {
                         'text-field': '{name}',
                         'icon-image': 'icon_HELI',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1220,7 +1253,10 @@ class Map {
                         'text-field': '{name}',
                         'icon-image': 'icon_Cheia',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1242,7 +1278,10 @@ class Map {
                         'text-field': '{name}',
                         'icon-image': 'icon_Evacuação',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1264,7 +1303,10 @@ class Map {
                         'text-field': '{name}',
                         'icon-image': 'icon_OcorrênciaGeral',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1371,7 +1413,10 @@ class Map {
                         'text-field': '{name}',
                         'icon-image': 'icon_Incêndio',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1730,7 +1775,10 @@ class Map {
 
                         'icon-image': 'icon_POIGeral',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1754,7 +1802,10 @@ class Map {
 
                         'icon-image': 'icon_PC',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1778,7 +1829,10 @@ class Map {
 
                         'icon-image': 'icon_ZCAP',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1802,7 +1856,10 @@ class Map {
 
                         'icon-image': 'icon_ZCR',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1826,7 +1883,10 @@ class Map {
 
                         'icon-image': 'icon_Logistica',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1850,7 +1910,10 @@ class Map {
 
                         'icon-image': 'icon_PMA',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1874,7 +1937,10 @@ class Map {
 
                         'icon-image': 'icon_Antena',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
@@ -1898,7 +1964,10 @@ class Map {
 
                         'icon-image': 'icon_Satelite',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.25, 7, 0.5, 13, 1
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'text-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
                         ],
                         'icon-allow-overlap': true,
                         'text-allow-overlap': true,
