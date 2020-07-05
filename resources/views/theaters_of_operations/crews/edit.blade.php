@@ -39,40 +39,41 @@
         <div class="form-group">
             <label>Nome</label>
             <input type="text" class="form-control" placeholder="Nome" name="name" @if ($crew) value="{{$crew->name}}"
-                @endif>
+                @else value="{{old('name')}}" @endif>
         </div>
         <div class="form-group">
             <label>Contacto</label>
             <input type="text" class="form-control" placeholder="Contacto" name="contact" @if ($crew)
-                value="{{$crew->contact}}" @endif>
+                value="{{$crew->contact}}" @else value="{{old('contact')}}" @endif>
         </div>
         <div class="form-group">
             <label>Idade</label>
             <input type="text" class="form-control" placeholder="Idade" name="age" @if ($crew) value="{{$crew->age}}"
-                @endif>
+                @else value="{{old('age')}}" @endif>
         </div>
         <div class="form-group">
             <label>Formação</label>
             <select class="form-control" name="course">
-                <option value="TAT" @if ($crew) @if($crew->course == "TAT") selected @endif @endif>TAT</option>
-                <option value="TAS" @if ($crew) @if($crew->course == "TAS") selected @endif @endif>TAS</option>
-                <option value="Enfermeiro" @if ($crew) @if($crew->course == "Enfermeiro") selected @endif
+                <option value="TAT" @if ($crew) @if($crew->course == "TAT") selected @endif @else @if(old('course') == "TAT") selected @endif @endif>TAT</option>
+                <option value="TAS" @if ($crew) @if($crew->course == "TAS") selected @endif @else @if(old('course') == "TAS") selected @endif @endif>TAS</option>
+                <option value="Enfermeiro" @if ($crew) @if($crew->course == "Enfermeiro") selected @endif @else @if(old('course') == "Enfermeiro") selected @endif
                     @endif>Enfermeiro</option>
-                <option value="Médico" @if ($crew) @if($crew->course == "Médico") selected @endif @endif>Médico</option>
-                <option value="Psicólogo" @if ($crew) @if($crew->course == "Psicólogo") selected @endif @endif>Psicólogo
+                <option value="Médico" @if ($crew) @if($crew->course == "Médico") selected @endif @else @if(old('course') == "Médico") selected @endif @endif>Médico</option>
+                <option value="Psicólogo" @if ($crew) @if($crew->course == "Psicólogo") selected @endif @else @if(old('course') == "Psicólogo") selected @endif @endif>Psicólogo
                 </option>
             </select>
         </div>
         <div class="form-group">
             <label>Observações</label>
             <textarea class="form-control" placeholder="Observações" name="observations"
-                rows="3">@if ($crew){{$crew->observations}}@endif</textarea>
+                rows="3">@if ($crew){{$crew->observations}} @else {{old('observations')}} @endif</textarea>
         </div>
         <button type="submit" class="btn btn-secondary">{{$crew?"Guardar":"Criar"}}</button>
         @if ($theater_of_operations)
-        
+
         @if($crew)
-        <a class="btn btn-info" href="{{route('theaters_of_operations.crews.single',["id"=>$theater_of_operations->id,"crew_id" => $crew->id])}}">Voltar</a>
+        <a class="btn btn-info"
+            href="{{route('theaters_of_operations.crews.single',["id"=>$theater_of_operations->id,"crew_id" => $crew->id])}}">Voltar</a>
 
         @else
         <a class="btn btn-info" href="{{route('theaters_of_operations.single',$theater_of_operations->id)}}">Voltar</a>

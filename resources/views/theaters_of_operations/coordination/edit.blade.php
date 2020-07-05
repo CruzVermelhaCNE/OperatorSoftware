@@ -41,15 +41,15 @@
         <div class="form-group">
             <label>Nome</label>
             <input type="text" class="form-control" placeholder="Nome" name="name" @if ($coordination)
-                value="{{$coordination->name}}" @endif>
+                value="{{$coordination->name}}" @else value="{{old('name')}}"  @endif>
         </div>
         <div class="form-group">
             <label>Cargo</label>
             <select class="form-control" name="role">
                 <option value="Oficial de Ligação" @if ($coordination) @if($coordination->role == "Oficial de Ligação")
-                    selected @endif @endif>Oficial de Ligação</option>
+                    selected @endif @else @if(old('role') == "Oficial de Ligação") selected @endif @endif>Oficial de Ligação</option>
                 <option value="Coordenador" @if ($coordination) @if($coordination->role == "Coordenador") selected
-                    @endif @endif>Coordenador</option>
+                    @endif @if(old('role') == "Coordenador") selected @endif @endif>Coordenador</option>
             </select>
         </div>
         <div class="form-group">
@@ -60,7 +60,7 @@
         <div class="form-group">
             <label>Observações</label>
             <textarea class="form-control" placeholder="Observações" name="observations"
-                rows="3">@if ($coordination){{$coordination->observations}}@endif</textarea>
+        rows="3">@if ($coordination){{$coordination->observations}} @else {{old('observations')}}@endif</textarea>
         </div>
         <button type="submit" class="btn btn-secondary">{{$coordination?"Guardar":"Criar"}}</button>
         @if ($theater_of_operations)

@@ -42,22 +42,22 @@
             <label>Tipo</label>
             <select class="form-control" name="type">
                 <option value="SIRESP" @if ($communication_channel) @if($communication_channel->type == "SIRESP")
-                    selected @endif @endif>SIRESP</option>
+                    selected @endif @else @if (old("type") == "SIRESP") selected @endif @endif>SIRESP</option>
                 <option value="VHF" @if ($communication_channel) @if($communication_channel->type == "VHF") selected
-                    @endif @endif>VHF</option>
-                <option value="UHF" @if ($communication_channel) @if($communication_channel->type == "VHF") selected
-                    @endif @endif>UHF</option>
+                    @endif @else @if (old("type") == "VHF") selected @endif @endif>VHF</option>
+                <option value="UHF" @if ($communication_channel) @if($communication_channel->type == "UHF") selected
+                    @endif @else @if (old("type") == "UHF") selected @endif @endif>UHF</option>
             </select>
         </div>
         <div class="form-group">
             <label>Canal</label>
             <input type="text" class="form-control" placeholder="Canal" name="channel" @if ($communication_channel)
-                value="{{$communication_channel->channel}}" @endif>
+                value="{{$communication_channel->channel}}" @else value="{{old('channel')}}" @endif>
         </div>
         <div class="form-group">
             <label>Observações</label>
             <textarea class="form-control" placeholder="Observações" name="observations"
-                rows="3">@if ($communication_channel){{$communication_channel->observations}}@endif</textarea>
+                rows="3">@if ($communication_channel){{$communication_channel->observations}}@else {{old('observations')}}@endif</textarea>
         </div>
         <button type="submit" class="btn btn-secondary">{{$communication_channel?"Guardar":"Criar"}}</button>
         @if ($theater_of_operations)

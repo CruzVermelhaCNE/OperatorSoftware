@@ -40,41 +40,41 @@
         @endif
         <div class="form-group">
             <label>Nome</label>
-            <input type="text" class="form-control" placeholder="Nome" name="name" @if ($poi) value="{{$poi->name}}"
+        <input type="text" class="form-control" placeholder="Nome" name="name" @if ($poi) value="{{$poi->name}}" @else value="{{old('name')}}"
                 @endif>
         </div>
         <div class="form-group">
             <label>Simbolo</label>
             <select class="form-control" name="symbol">
-                <option value="POI Geral" @if ($poi) @if($poi->symbol == "POI Geral") selected @endif @endif>POI Geral</option>
-                <option value="PC" @if ($poi) @if($poi->symbol == "PC") selected @endif @endif>PC</option>
-                <option value="ZCAP" @if ($poi) @if($poi->symbol == "ZCAP") selected @endif @endif>ZCAP</option>
-                <option value="ZCR" @if ($poi) @if($poi->symbol == "ZCR") selected @endif @endif>ZCR</option>
-                <option value="Logística" @if ($poi) @if($poi->symbol == "Logística") selected @endif @endif>Logística</option>
-                <option value="PMA" @if ($poi) @if($poi->symbol == "PMA") selected @endif @endif>PMA</option>
-                <option value="Antena" @if ($poi) @if($poi->symbol == "Antena") selected @endif @endif>Antena</option>
-                <option value="Satélite" @if ($poi) @if($poi->symbol == "Satélite") selected @endif @endif>Satélite</option>
+                <option value="POI Geral" @if ($poi) @if($poi->symbol == "POI Geral") selected @endif @else @if(old('symbol') == "POI Geral") selected @endif @endif>POI Geral</option>
+                <option value="PC" @if ($poi) @if($poi->symbol == "PC") selected @endif @else @if(old('symbol') == "PC") selected @endif @endif>PC</option>
+                <option value="ZCAP" @if ($poi) @if($poi->symbol == "ZCAP") selected @endif @else @if(old('symbol') == "ZCAP") selected @endif @endif>ZCAP</option>
+                <option value="ZCR" @if ($poi) @if($poi->symbol == "ZCR") selected @endif @else @if(old('symbol') == "ZCR") selected @endif @endif>ZCR</option>
+                <option value="Logística" @if ($poi) @if($poi->symbol == "Logística") selected @endif @else @if(old('symbol') == "Logística") selected @endif @endif>Logística</option>
+                <option value="PMA" @if ($poi) @if($poi->symbol == "PMA") selected @endif @else @if(old('symbol') == "PMA") selected @endif @endif>PMA</option>
+                <option value="Antena" @if ($poi) @if($poi->symbol == "Antena") selected @endif @else @if(old('symbol') == "Antena") selected @endif @endif>Antena</option>
+                <option value="Satélite" @if ($poi) @if($poi->symbol == "Satélite") selected @endif @else @if(old('symbol') == "Satélite") selected @endif @endif>Satélite</option>
             </select>
         </div>
         <div class="form-group">
             <label>Observações</label>
             <textarea class="form-control" placeholder="Observações" name="observations"
-                rows="3">@if ($poi){{$poi->observations}}@endif</textarea>
+                rows="3">@if ($poi){{$poi->observations}} @else {{old('observations')}} @endif</textarea>
         </div>
         <div class="form-group">
             <label>Localização</label>
             <input type="text" class="form-control" placeholder="Localização" name="location" @if ($poi)
-                value="{{$poi->location}}" @endif>
+                value="{{$poi->location}}" @else value="{{old('location')}}" @endif>
         </div>
         <div class="form-group">
             <label>Latitude</label>
-            <input type="text" class="form-control" placeholder="Latitude" name="lat" @if ($poi) value="{{$poi->lat}}"
+            <input type="text" class="form-control" placeholder="Latitude" name="lat" @if ($poi) value="{{$poi->lat}}" @else value="{{old('lat')}}"
                 @endif>
         </div>
         <div class="form-group">
             <label>Longitude</label>
             <input type="text" class="form-control" placeholder="Longitude" name="long" @if ($poi)
-                value="{{$poi->long}}" @endif>
+                value="{{$poi->long}}" @else value="{{old('long')}}" @endif>
         </div>
         <button type="submit" class="btn btn-secondary">{{$poi?"Guardar":"Criar"}}</button>
         @if ($theater_of_operations)
