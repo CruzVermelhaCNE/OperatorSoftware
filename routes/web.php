@@ -179,6 +179,10 @@ Route::domain('goi.emergenciacvp.pt')->name('theaters_of_operations.')->middlewa
     Route::get('units_info', 'TheatersOfOperations\TheaterOfOperationsController@units_info')->name('units_info');
     Route::get('events_info', 'TheatersOfOperations\TheaterOfOperationsController@events_info')->name('events_info');
     Route::get('pois_info', 'TheatersOfOperations\TheaterOfOperationsController@pois_info')->name('pois_info');
+    Route::get('unit/{unit_id}', 'TheatersOfOperations\TheaterOfOperationsController@unit_redirect')->where(['unit_id', '[0-9]+']);
+    Route::get('event/{event_id}', 'TheatersOfOperations\TheaterOfOperationsController@unit_redirect')->where(['event_id', '[0-9]+']);
+    Route::get('poi/{poi_id}', 'TheatersOfOperations\TheaterOfOperationsController@unit_redirect')->where(['poi_id', '[0-9]+']);
+
 
 
     Route::get('{id}/', 'TheatersOfOperations\TheaterOfOperationsController@single')->where(['id', '[0-9]+'])->name('single');

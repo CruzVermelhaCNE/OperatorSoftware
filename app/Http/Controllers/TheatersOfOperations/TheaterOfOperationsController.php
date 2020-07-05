@@ -47,6 +47,24 @@ class TheaterOfOperationsController extends Controller
         return view('theaters_of_operations.single', ['theater_of_operations' => $theater_of_operations]);
     }
 
+    public function unit_redirect($unit_id)
+    {
+        $unit = TheaterOfOperationsUnit::findOrFail($unit_id);
+        return redirect()->route('theaters_of_operations.units.single',['id' => $unit->theater_of_operations->id, 'unit_id' => $unit_id]);
+    }
+
+    public function event_redirect($event_id)
+    {
+        $event = TheaterOfOperationsEvent::findOrFail($event_id);
+        return redirect()->route('theaters_of_operations.event.single',['id' => $event->theater_of_operations->id, 'event_id' => $event_id]);
+    }
+
+    public function poi_redirect($poi_id)
+    {
+        $poi = TheaterOfOperationsPOI::findOrFail($poi_id);
+        return redirect()->route('theaters_of_operations.single',['id' => $poi->theater_of_operations->id]);
+    }
+
     public function info()
     {
         $theater_of_operations = TheaterOfOperations::all();

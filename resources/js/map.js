@@ -1039,12 +1039,7 @@ class Map {
     prepareClickableUnits() {
         let that = this;
         let this_function = function (e) {
-            if (that.theater_of_operations_id == 0) {
-                console.log(e.features[0]);
-                alert("Open Unit: " + e.features[0].properties.unit_id);
-            } else {
-                document.location.href = "/" + that.theater_of_operations_id + "/units/" + e.features[0].properties.unit_id;
-            }
+            window.open('/unit' + e.features[0].properties.unit_id);
         };
         let cursor_enter_function = function () {
             that.mapbox_map.getCanvas().style.cursor = 'pointer'
@@ -1315,12 +1310,7 @@ class Map {
     prepareClickableEvents() {
         let that = this;
         let this_function = function (e) {
-            if (that.theater_of_operations_id == 0) {
-                console.log(e.features[0]);
-                alert("Open Event: " + e.features[0].properties.event_id)
-            } else {
-                document.location.href = "/" + that.theater_of_operations_id + "/events/" + e.features[0].properties.event_id;
-            }
+            window.open('/event' + e.features[0].properties.event_id);
         };
         let cursor_enter_function = function () {
             that.mapbox_map.getCanvas().style.cursor = 'pointer'
@@ -1418,8 +1408,7 @@ class Map {
     prepareClickableTOs() {
         let that = this;
         let this_function = function (e) {
-            console.log(e.features[0]);
-            alert("Open TO: " + e.features[0].properties.to_id)
+            window.open('/' + e.features[0].properties.to_id);
         };
         let cursor_enter_function = function () {
             that.mapbox_map.getCanvas().style.cursor = 'pointer'
@@ -1988,7 +1977,7 @@ class Map {
     prepareClickablePOIs() {
         let that = this;
         let this_function = function (e) {
-            console.log("Click on POI: " + e.features[0].properties.poi_id)
+            window.open('/poi/' + e.features[0].properties.poi_id);
         }
         let cursor_enter_function = function () {
             that.mapbox_map.getCanvas().style.cursor = 'pointer'
