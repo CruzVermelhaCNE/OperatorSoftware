@@ -126,7 +126,7 @@
         @endif
     </div>
     <div class="row">
-        <h4 style="text-align: center;width:100vw;">Unidades</a></h4>
+        <h4 style="text-align: center;width:100vw;">Meios</a></h4>
         <table id="list_units" style="width:100%" class="table table-sm table-dark table-striped table-bordered">
             <thead>
                 <tr>
@@ -151,7 +151,7 @@
         </table>
         @if(!$event->isFinished())
         <hr style="text-align: center;width:100vw;" />
-        <h6 style="text-align: center;width:100vw;">Accionar Unidade</h6>
+        <h6 style="text-align: center;width:100vw;">Accionar Meio</h6>
         <form style="width:100vw;" method="POST"
             action="{{route('theaters_of_operations.events.deployUnit',['id' => $event->theater_of_operations->id, 'event_id' => $event->id])}}">
             @csrf
@@ -246,9 +246,9 @@
                 @endif
             </div>
             <div class="col-6">
-                <h4>Unidade Atribuida</h4>
+                <h4>Meio Atribuida</h4>
                 <p>Nome: [[EVENT_UNIT_NAME]]</p>
-                <a href="#0" class="btn btn-primary" onclick="openUnit([[EVENT_UNIT_ID]])" id="event_unit_open" style="display:none;margin-bottom:1vh;">Abrir Unidade</a>
+                <a href="#0" class="btn btn-primary" onclick="openUnit([[EVENT_UNIT_ID]])" id="event_unit_open" style="display:none;margin-bottom:1vh;">Abrir Meio</a>
                 @if (!$event->isFinished())
                 <form method="POST" action="{{route('theaters_of_operations.events.victims.assignUnit',['id'=>$event->theater_of_operations->id,'event_id'=>$event->id,'victim_id'=>'-1'])}}">
                     @csrf
@@ -425,7 +425,7 @@
 </script>
 <script type="text/template" id="template_unit">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Unidade [[NAME]]</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Meio [[NAME]]</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -455,7 +455,7 @@
                         </div>
                     </div>
                 </form>
-                <a href="{{route('theaters_of_operations.units.single',['id'=>$event->theater_of_operations->id,'unit_id' => ''])}}/-2" class="btn btn-primary">Abrir Unidade</a>
+                <a href="{{route('theaters_of_operations.units.single',['id'=>$event->theater_of_operations->id,'unit_id' => ''])}}/-2" class="btn btn-primary">Abrir Meio</a>
             </div>
             <div class="col-6">
                 <h4>Horas</h4>

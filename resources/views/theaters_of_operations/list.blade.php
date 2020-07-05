@@ -17,7 +17,7 @@
                 <th>Tipo</th>
                 <th>Nivel</th>
                 <th>Ocorrências Ativas</th>
-                <th>Unidades</th>
+                <th>Meios</th>
                 <th>Operacionais</th>
                 <th>Ações</th>
             </tr>
@@ -30,7 +30,7 @@
                 <th>Tipo</th>
                 <th>Nivel</th>
                 <th>Ocorrências Ativas</th>
-                <th>Unidades</th>
+                <th>Meios</th>
                 <th>Operacionais</th>
                 <th>Ações</th>
             </tr>
@@ -46,7 +46,7 @@
                 <th>Tipo</th>
                 <th>Nivel</th>
                 <th>Ocorrências Ativas</th>
-                <th>Unidades</th>
+                <th>Meios</th>
                 <th>Operacionais</th>
                 <th>Ações</th>
             </tr>
@@ -59,7 +59,7 @@
                 <th>Tipo</th>
                 <th>Nivel</th>
                 <th>Ocorrências Ativas</th>
-                <th>Unidades</th>
+                <th>Meios</th>
                 <th>Operacionais</th>
                 <th>Ações</th>
             </tr>

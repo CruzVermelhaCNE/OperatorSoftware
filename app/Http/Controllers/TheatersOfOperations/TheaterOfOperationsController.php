@@ -147,7 +147,7 @@ class TheaterOfOperationsController extends Controller
         $theater_of_operations = TheaterOfOperations::withTrashed()->findOrFail($id);
         if (! $theater_of_operations->trashed()) {
             if ($theater_of_operations->getUnits()->where('status', '!=', TheaterOfOperationsUnit::STATUS_DEMOBILIZED)->count() > 0) {
-                return redirect()->back()->withErrors(['msg', 'Ainda existem unidades mobilizadas neste TO']);
+                return redirect()->back()->withErrors(['msg', 'Ainda existem Meios mobilizadas neste TO']);
             }
             if ($theater_of_operations->getCrews()->count() > 0) {
                 return redirect()->back()->withErrors(['msg', 'Ainda existe tripulação mobilizada neste TO']);

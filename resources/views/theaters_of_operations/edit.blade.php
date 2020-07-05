@@ -13,6 +13,15 @@
 @section('content')
 <div class="container">
     <h2>Teatro de Operações</h2>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form method="POST" action="{{$theater_of_operations?route('theaters_of_operations.edit',['id'=>$theater_of_operations->id]):route('theaters_of_operations.create')}}">
         @csrf
         <div class="form-group">

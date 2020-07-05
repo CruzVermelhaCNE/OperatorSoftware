@@ -1,6 +1,6 @@
 @extends('theaters_of_operations/layouts/panel')
 
-@section('pageTitle', 'Unidade '.$unit->tail_number?$unit->tail_number:$unit->plate)
+@section('pageTitle', 'Meio '.$unit->tail_number?$unit->tail_number:$unit->plate)
 
 @section('style')
 @parent
@@ -29,7 +29,7 @@
 @section('content')
 <div class="container">
     <div style="text-align: center">
-        <h2>Unidade - {{$unit->tail_number?$unit->tail_number:$unit->plate}}</h2>
+        <h2>Meio - {{$unit->tail_number?$unit->tail_number:$unit->plate}}</h2>
         <h4>{{$unit->type}} - {{$unit->structure}}</h4>
     </div>
     @if ($errors->any())
@@ -51,7 +51,7 @@
             @if (!$unit->isDemobilized())
             <p>No TO {{$unit->created_at->locale('pt_PT')->diffForHumans()}}</p>
             <a href="{{route('theaters_of_operations.units.demobilize',["id" => $unit->theater_of_operations->id, "unit_id" => $unit->id])}}"
-                class="btn btn-danger">Desmobilizar Unidade</a>
+                class="btn btn-danger">Desmobilizar Meio</a>
             @else
             <p>Esteve no TO {{$unit->deleted_at->locale('pt_PT')->diffForHumans($unit->created_at)}}</p>
             @endif
@@ -108,7 +108,7 @@
         </div>
         <div class="col-sm-6">
             <div id="map"></div>
-            <a href="#map" onclick="centerMap()" class="btn btn-info">Centrar na Unidade</a>
+            <a href="#map" onclick="centerMap()" class="btn btn-info">Centrar na Meio</a>
         </div>
     </div>
     <div class="row">

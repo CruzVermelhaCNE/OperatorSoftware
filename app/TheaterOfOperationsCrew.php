@@ -126,7 +126,7 @@ class TheaterOfOperationsCrew extends Model
     public function assignToPOI($theater_of_operations_poi_id)
     {
         if ($this->unit) {
-            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida da Unidade '.$this->unit->tail_number, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida da Meio '.$this->unit->tail_number, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
             $this->unit->resetCrews();
 
             $this->theater_of_operations_unit_id = null;
@@ -146,7 +146,7 @@ class TheaterOfOperationsCrew extends Model
     public function assignToUnit($theater_of_operations_unit_id)
     {
         if ($this->unit) {
-            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida da Unidade '.$this->unit->tail_number, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida da Meio '.$this->unit->tail_number, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
             $this->unit->resetCrews();
             $this->theater_of_operations_unit_id = null;
         }
@@ -158,7 +158,7 @@ class TheaterOfOperationsCrew extends Model
         $this->save();
         $this->load('poi');
         $this->load('unit');
-        $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida à Unidade '.($this->unit->tail_number?$this->unit->tail_number:$this->unit->plate), TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida à Meio '.($this->unit->tail_number?$this->unit->tail_number:$this->unit->plate), TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         $this->theater_of_operations->resetCrewsListing();
     }
 
@@ -211,7 +211,7 @@ class TheaterOfOperationsCrew extends Model
             $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida do Ponto de Interesse - '.$this->poi->name, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         }
         if ($this->unit) {
-            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida da Unidade '.$this->unit->tail_number, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida da Meio '.$this->unit->tail_number, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         }
         $this->insertToTimeTape('Operacional (#'.$this->id.'): Desmobilizada', TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         $this->delete();

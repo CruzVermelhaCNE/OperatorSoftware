@@ -1,9 +1,9 @@
 @extends('theaters_of_operations/layouts/panel')
 
 @if ($unit)
-@section('pageTitle', 'Editar Unidade')
+@section('pageTitle', 'Editar Meio')
 @else
-@section('pageTitle', 'Criar Unidade')
+@section('pageTitle', 'Criar Meio')
 @endif
 
 @section('style')
@@ -12,7 +12,7 @@
 
 @section('content')
 <div class="container">
-    <h2>Unidade</h2>
+    <h2>Meio</h2>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -39,23 +39,34 @@
         <div class="form-group">
             <label>Tipo</label>
             <select class="form-control" name="type">
-                <option value="A1" @if ($unit) @if($unit->type == "A1") selected @endif @else @if(old('type') == "A1") selected @endif @endif>A1</option>
-                <option value="A2" @if ($unit) @if($unit->type == "A2") selected @endif @else @if(old('type') == "A2") selected @endif @endif>A2</option>
-                <option value="B" @if ($unit) @if($unit->type == "B") selected @endif @else @if(old('type') == "B") selected @endif @endif>B</option>
-                <option value="C" @if ($unit) @if($unit->type == "C") selected @endif @else @if(old('type') == "C") selected @endif @endif>C</option>
-                <option value="VDTD" @if ($unit) @if($unit->type == "VDTD") selected @endif @else @if(old('type') == "VDTD") selected @endif @endif>VDTD</option>
-                <option value="TL" @if ($unit) @if($unit->type == "TL") selected @endif @else @if(old('type') == "TL") selected @endif @endif>TL</option>
-                <option value="CC" @if ($unit) @if($unit->type == "CC") selected @endif @else @if(old('type') == "CC") selected @endif @endif>CC</option>
-                <option value="CO" @if ($unit) @if($unit->type == "CO") selected @endif @else @if(old('type') == "CO") selected @endif @endif>CO</option>
-                <option value="LO" @if ($unit) @if($unit->type == "LO") selected @endif @else @if(old('type') == "LO") selected @endif @endif>LO</option>
-                <option value="LP" @if ($unit) @if($unit->type == "LP") selected @endif @else @if(old('type') == "LP") selected @endif @endif>LP</option>
-                <option value="HELI" @if ($unit) @if($unit->type == "HELI") selected @endif @else @if(old('type') == "HELI") selected @endif @endif>HELI</option>
+                <option value="A1" @if ($unit) @if($unit->type == "A1") selected @endif @else @if(old('type') == "A1")
+                    selected @endif @endif>A1</option>
+                <option value="A2" @if ($unit) @if($unit->type == "A2") selected @endif @else @if(old('type') == "A2")
+                    selected @endif @endif>A2</option>
+                <option value="B" @if ($unit) @if($unit->type == "B") selected @endif @else @if(old('type') == "B")
+                    selected @endif @endif>B</option>
+                <option value="C" @if ($unit) @if($unit->type == "C") selected @endif @else @if(old('type') == "C")
+                    selected @endif @endif>C</option>
+                <option value="VDTD" @if ($unit) @if($unit->type == "VDTD") selected @endif @else @if(old('type') ==
+                    "VDTD") selected @endif @endif>VDTD</option>
+                <option value="TL" @if ($unit) @if($unit->type == "TL") selected @endif @else @if(old('type') == "TL")
+                    selected @endif @endif>TL</option>
+                <option value="CC" @if ($unit) @if($unit->type == "CC") selected @endif @else @if(old('type') == "CC")
+                    selected @endif @endif>CC</option>
+                <option value="CO" @if ($unit) @if($unit->type == "CO") selected @endif @else @if(old('type') == "CO")
+                    selected @endif @endif>CO</option>
+                <option value="LO" @if ($unit) @if($unit->type == "LO") selected @endif @else @if(old('type') == "LO")
+                    selected @endif @endif>LO</option>
+                <option value="LP" @if ($unit) @if($unit->type == "LP") selected @endif @else @if(old('type') == "LP")
+                    selected @endif @endif>LP</option>
+                <option value="HELI" @if ($unit) @if($unit->type == "HELI") selected @endif @else @if(old('type') ==
+                    "HELI") selected @endif @endif>HELI</option>
             </select>
         </div>
         <div class="form-group">
             <label>Matricula</label>
-            <input type="text" class="form-control" placeholder="Matricula" name="plate" @if ($unit) value="{{$unit->plate}}" @else value="{{old('type')}}"
-                @endif>
+            <input type="text" class="form-control" placeholder="Matricula" name="plate" @if ($unit)
+                value="{{$unit->plate}}" @else value="{{old('type')}}" @endif>
         </div>
         <div class="form-group">
             <label>Nº de Cauda</label>
@@ -83,9 +94,10 @@
                 value="{{$unit->base_long}}" @else {{old('base_long')}} @endif>
         </div>
         <button type="submit" class="btn btn-secondary">{{$unit?"Guardar":"Criar"}}</button>
-        @if ($theater_of_operations)        
+        @if ($theater_of_operations)
         @if($unit)
-        <a class="btn btn-info" href="{{route('theaters_of_operations.units.single',["id"=>$theater_of_operations->id,"unit_id" => $unit->id])}}">Voltar</a>
+        <a class="btn btn-info"
+            href="{{route('theaters_of_operations.units.single',["id"=>$theater_of_operations->id,"unit_id" => $unit->id])}}">Voltar</a>
         @else
         <a class="btn btn-info" href="{{route('theaters_of_operations.single',$theater_of_operations->id)}}">Voltar</a>
         @endif

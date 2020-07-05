@@ -54,14 +54,14 @@
                 class="btn btn-info">Abrir TO</a>
             @if ($crew->unit)
             <a href="{{route('theaters_of_operations.units.single',["id" => $crew->theater_of_operations->id, "unit_id" => $crew->unit->id])}}"
-                class="btn btn-info">Abrir Unidade</a>
+                class="btn btn-info">Abrir Meio</a>
             @endif
             @if(!$crew->theater_of_operations->trashed())
             <a href="{{route('theaters_of_operations.crews.edit',["id" => $crew->theater_of_operations->id, "crew_id" => $crew->id])}}"
                 class="btn btn-dark">Editar</a>
             @if(!$crew->trashed())
             <h2>Destacar</h2>
-            <h5>Unidades</h5>
+            <h5>Meios</h5>
             <form
                 action="{{route('theaters_of_operations.crews.assignToUnit',["id" => $crew->theater_of_operations->id, "crew_id" => $crew->id])}}"
                 method="POST">

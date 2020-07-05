@@ -21,7 +21,7 @@
                     <span data-feather="bell"></span>
                 </a>
             </li>
-            <li class="nav-item" title="Unidades">
+            <li class="nav-item" title="Meios">
                 <a class="nav-link" href="{{ route('theaters_of_operations.index') }}">
                     <span data-feather="users"></span>
                 </a>
