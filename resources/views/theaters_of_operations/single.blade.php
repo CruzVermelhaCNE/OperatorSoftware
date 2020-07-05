@@ -338,7 +338,7 @@
     });
     $('#list_coordination tbody').on( 'click', 'a', function () {
         var data = list_coordination_table.row($(this).parents('tr')).data();
-        let url = "{{route('theaters_of_operations.coordination.edit',['id' => $theater_of_operations->id, 'poi_id' => '-1'])}}/";
+        let url = "{{route('theaters_of_operations.coordination.edit',['id' => $theater_of_operations->id, 'coordination_id' => '-1'])}}/";
             url = url.replace("-1",data[4]);
         window.open(url);
     });
