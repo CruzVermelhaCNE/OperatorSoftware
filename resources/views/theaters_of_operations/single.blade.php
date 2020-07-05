@@ -404,7 +404,9 @@
             map.zoomOn(data[5],data[6],15);
         }
         else if(action == "open"){
-            window.open("{{route('theaters_of_operations.events.single',['id'=>$theater_of_operations->id,'event_id' => ''])}}/"+data[7]);
+            let url = "{{route('theaters_of_operations.events.single',['id'=>$theater_of_operations->id,'event_id' => '-1'])}}";
+            url = url.split("-1").join(data[7]);
+            window.open(url);
         }
     });
 
