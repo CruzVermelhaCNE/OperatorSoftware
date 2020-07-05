@@ -17,7 +17,8 @@ class TheaterOfOperationsUnitGeoTracking extends Model
         return $theater_of_operations_unit_geotracking;
     }
 
-    public function updateSystem($system) {
+    public function updateSystem($system)
+    {
         $this->system = $system;
         $this->save();
     }
@@ -33,6 +34,15 @@ class TheaterOfOperationsUnitGeoTracking extends Model
     {
         $this->observations = $observations;
         $this->save();
+        return $this;
+    }
+
+    public function updateGPSLocation($lat, $long)
+    {
+        $this->lat  = $lat;
+        $this->long = $long;
+        $this->save();
+        $this->unit->theater_of_operations->resetUnitsListing();
         return $this;
     }
 
