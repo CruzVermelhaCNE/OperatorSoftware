@@ -1324,7 +1324,7 @@ class Map {
                     'features': features["cheia"]
                 }
             });
-            that.mapbox_map.getSource('events_Evacuacao').setData({
+            that.mapbox_map.getSource('events_Evacuação').setData({
                 'type': 'geojson',
                 'data': {
                     'type': 'FeatureCollection',
