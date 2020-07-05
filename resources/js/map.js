@@ -720,8 +720,9 @@ class Map {
 
                         'icon-image': 'icon_A1',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
                         ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -740,8 +741,9 @@ class Map {
 
                         'icon-image': 'icon_A2',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -760,8 +762,9 @@ class Map {
 
                         'icon-image': 'icon_B',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -780,8 +783,9 @@ class Map {
 
                         'icon-image': 'icon_C',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -800,8 +804,9 @@ class Map {
 
                         'icon-image': 'icon_VDTD',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -820,8 +825,9 @@ class Map {
 
                         'icon-image': 'icon_TL',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -838,8 +844,9 @@ class Map {
 
                         'icon-image': 'icon_CC',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -858,8 +865,9 @@ class Map {
 
                         'icon-image': 'icon_CO',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -878,8 +886,9 @@ class Map {
 
                         'icon-image': 'icon_LO',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -898,8 +907,9 @@ class Map {
 
                         'icon-image': 'icon_LP',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -916,8 +926,9 @@ class Map {
                         'text-field': '{name}',
                         'icon-image': 'icon_HELI',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
             }
@@ -1010,12 +1021,11 @@ class Map {
     prepareClickableUnits() {
         let that = this;
         let this_function = function (e) {
-            if(that.theater_of_operations_id == 0) {
+            if (that.theater_of_operations_id == 0) {
                 console.log(e.features[0]);
                 alert("Open Unit: " + e.features[0].properties.unit_id);
-            }
-            else {
-                document.location.href = "/"+that.theater_of_operations_id+"/units/"+e.features[0].properties.unit_id;
+            } else {
+                document.location.href = "/" + that.theater_of_operations_id + "/units/" + e.features[0].properties.unit_id;
             }
         };
         this.mapbox_map.on('click', 'layer_icons_A1', this_function);
@@ -1085,7 +1095,7 @@ class Map {
                     });
                 });
         } else {
-            axios.get("/"+this.theater_of_operations_id+"/getEvents")
+            axios.get("/" + this.theater_of_operations_id + "/getEvents")
                 .then(function (response) {
                     let geral_features = [];
                     let cheia_features = [];
@@ -1179,8 +1189,9 @@ class Map {
                         'text-field': '{name}',
                         'icon-image': 'icon_Cheia',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1197,8 +1208,9 @@ class Map {
                         'text-field': '{name}',
                         'icon-image': 'icon_Evacuação',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1215,8 +1227,9 @@ class Map {
                         'text-field': '{name}',
                         'icon-image': 'icon_OcorrênciaGeral',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
             }
@@ -1253,12 +1266,11 @@ class Map {
     prepareClickableEvents() {
         let that = this;
         let this_function = function (e) {
-            if(that.theater_of_operations_id == 0) {
+            if (that.theater_of_operations_id == 0) {
                 console.log(e.features[0]);
                 alert("Open Event: " + e.features[0].properties.event_id)
-            }
-            else {
-                document.location.href = "/"+that.theater_of_operations_id+"/events/"+e.features[0].properties.event_id;
+            } else {
+                document.location.href = "/" + that.theater_of_operations_id + "/events/" + e.features[0].properties.event_id;
             }
         };
         this.mapbox_map.on('click', 'layer_events_Cheia', this_function);
@@ -1319,8 +1331,9 @@ class Map {
                         'text-field': '{name}',
                         'icon-image': 'icon_Incêndio',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
             }
@@ -1549,8 +1562,9 @@ class Map {
 
                         'icon-image': 'icon_POIGeral',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1569,8 +1583,9 @@ class Map {
 
                         'icon-image': 'icon_PC',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1589,8 +1604,9 @@ class Map {
 
                         'icon-image': 'icon_ZCAP',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1609,8 +1625,9 @@ class Map {
 
                         'icon-image': 'icon_ZCR',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1629,8 +1646,9 @@ class Map {
 
                         'icon-image': 'icon_Logistica',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1649,8 +1667,9 @@ class Map {
 
                         'icon-image': 'icon_PMA',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1669,8 +1688,9 @@ class Map {
 
                         'icon-image': 'icon_Antena',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1689,8 +1709,9 @@ class Map {
 
                         'icon-image': 'icon_Satelite',
                         'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 10, 1, 15, 0.5
-                        ]
+                            ['zoom'], 5, 0.25, 10, 0.5, 15, 1
+                        ],
+                        'icon-allow-overlap': true,
                     }
                 });
             }
