@@ -721,6 +721,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -742,6 +745,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -763,6 +769,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -784,6 +793,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -805,6 +817,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -826,6 +841,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -845,6 +863,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -866,6 +887,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -887,6 +911,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -908,6 +935,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -927,6 +957,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
             }
@@ -1190,6 +1223,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1209,6 +1245,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1228,6 +1267,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
             }
@@ -1332,6 +1374,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
             }
@@ -1688,6 +1733,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1709,6 +1757,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1730,6 +1781,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1751,6 +1805,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1772,6 +1829,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1793,6 +1853,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1814,6 +1877,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
                 that.mapbox_map.addLayer({
@@ -1835,6 +1901,9 @@ class Map {
                             ['zoom'], 5, 0.25, 7, 0.5, 13, 1
                         ],
                         'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
                     }
                 });
             }
