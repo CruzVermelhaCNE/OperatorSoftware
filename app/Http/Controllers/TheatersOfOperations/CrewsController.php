@@ -100,8 +100,6 @@ class CrewsController extends Controller
     {
         $crew = TheaterOfOperationsCrew::findOrFail($crew_id);
         $crew->demobilize();
-        $crew->unit->resetCrewsListing();
-        $crew->theater_of_operations->resetCrewsListing();
         return redirect()->route('theaters_of_operations.single', $crew->theater_of_operations->id);
     }
 }
