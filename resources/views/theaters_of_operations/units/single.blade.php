@@ -185,8 +185,7 @@
     </div>
     <div class="row">
         <h4 style="text-align: center; width:100vw">Georeferênciação</h4>
-        <table id="list_geotracking" style="width:100%"
-            class="table table-sm table-dark table-striped table-bordered">
+        <table id="list_geotracking" style="width:100%" class="table table-sm table-dark table-striped table-bordered">
             <thead>
                 <tr>
                     <th>Sistema</th>
@@ -295,7 +294,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>External ID</label>
-                                <input class="form-control" type="text" placeholder="External ID" name="external_id"/>
+                                <input class="form-control" type="text" placeholder="External ID" name="external_id" />
                             </div>
                         </div>
                     </div>
@@ -319,7 +318,7 @@
 @section('javascript')
 @parent
 <script type="text/template" id="template_communications_edit">
-<div class="modal-header">
+    <div class="modal-header">
     <h5 class="modal-title">Editar Comunicações</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -438,7 +437,9 @@
         var data = list_crews_table.row($(this).parents('tr')).data();
         let action = $(this).data('action');
         if(action == "open"){
-            window.open("{{route('theaters_of_operations.crews.single',['id'=>$unit->theater_of_operations->id,'crew_id' => ''])}}/"+data[9]);
+            let url = "{{route('theaters_of_operations.crews.single',['id'=>$unit->theater_of_operations->id,'crew_id' => '-1'])}}";
+            url = url.split("-1").join(data[9]);
+            window.open(url);
         }
     });
 
@@ -485,7 +486,9 @@
 
     let open_communication_channel_id = -1;
     function editCommunicationChannel(id) {
-        axios.get("{{route('theaters_of_operations.units.communication_channels.get',['id'=>$unit->theater_of_operations->id,'unit_id'=>$unit->id,'communication_channel_id'=>''])}}/"+id)
+        let url = "{{route('theaters_of_operations.units.communication_channels.get',['id'=>$unit->theater_of_operations->id,'unit_id'=>$unit->id,'communication_channel_id'=>'-1'])}}";
+            url = url.split("-1").join(id);
+        axios.get(url)
         .then(function (response) {
             console.log(response.data);
             let template = $("#template_communications_edit").html();
@@ -563,7 +566,9 @@
 
     let open_geotracking_id = -1;
     function editGeotracking(id) {
-        axios.get("{{route('theaters_of_operations.units.geotracking.get',['id'=>$unit->theater_of_operations->id,'unit_id'=>$unit->id,'geotracking_id'=>''])}}/"+id)
+        let url = "{{route('theaters_of_operations.units.geotracking.get',['id'=>$unit->theater_of_operations->id,'unit_id'=>$unit->id,'geotracking_id'=>'-1'])}}";
+            url = url.split("-1").join(id);
+        axios.get(url)
         .then(function (response) {
             console.log(response.data);
             let template = $("#template_geotracking_edit").html();
