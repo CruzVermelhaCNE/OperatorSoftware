@@ -22,7 +22,7 @@ class TheaterOfOperationsEdit extends FormRequest
             'lat'              => ['required', 'numeric'],
             'long'             => ['required', 'numeric'],
             'level'            => ['required', 'string'],
-            'observations'     => ['required', 'string'],
+            'observations'     => ['nullable', 'string'],
             'cdos'             => ['nullable', 'string'],
         ];
     }
