@@ -1039,7 +1039,7 @@ class Map {
     prepareClickableUnits() {
         let that = this;
         let this_function = function (e) {
-            window.open('/unit' + e.features[0].properties.unit_id);
+            window.open('/unit/' + e.features[0].properties.unit_id);
         };
         let cursor_enter_function = function () {
             that.mapbox_map.getCanvas().style.cursor = 'pointer'
@@ -1310,7 +1310,7 @@ class Map {
     prepareClickableEvents() {
         let that = this;
         let this_function = function (e) {
-            window.open('/event' + e.features[0].properties.event_id);
+            window.open('/event/' + e.features[0].properties.event_id);
         };
         let cursor_enter_function = function () {
             that.mapbox_map.getCanvas().style.cursor = 'pointer'
