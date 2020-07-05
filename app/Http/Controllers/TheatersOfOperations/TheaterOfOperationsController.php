@@ -50,19 +50,19 @@ class TheaterOfOperationsController extends Controller
     public function unit_redirect($unit_id)
     {
         $unit = TheaterOfOperationsUnit::findOrFail($unit_id);
-        return redirect()->route('theaters_of_operations.units.single',['id' => $unit->theater_of_operations->id, 'unit_id' => $unit_id]);
+        return redirect()->route('theaters_of_operations.units.single', ['id' => $unit->theater_of_operations->id, 'unit_id' => $unit_id]);
     }
 
     public function event_redirect($event_id)
     {
         $event = TheaterOfOperationsEvent::findOrFail($event_id);
-        return redirect()->route('theaters_of_operations.event.single',['id' => $event->theater_of_operations->id, 'event_id' => $event_id]);
+        return redirect()->route('theaters_of_operations.event.single', ['id' => $event->theater_of_operations->id, 'event_id' => $event_id]);
     }
 
     public function poi_redirect($poi_id)
     {
         $poi = TheaterOfOperationsPOI::findOrFail($poi_id);
-        return redirect()->route('theaters_of_operations.single',['id' => $poi->theater_of_operations->id]);
+        return redirect()->route('theaters_of_operations.single', ['id' => $poi->theater_of_operations->id]);
     }
 
     public function info()
@@ -85,7 +85,7 @@ class TheaterOfOperationsController extends Controller
 
     public function pois_info()
     {
-        $pois = TheaterOfOperationsPOI::join('theater_of_operations','theater_of_operations_id','=','theater_of_operations.id')->where('theater_of_operations.deleted_at','=',null)->get(["theater_of_operations_pois.id","theater_of_operations_pois.name","theater_of_operations_pois.symbol","theater_of_operations_pois.lat","theater_of_operations_pois.long"]);
+        $pois = TheaterOfOperationsPOI::join('theater_of_operations', 'theater_of_operations_id', '=', 'theater_of_operations.id')->where('theater_of_operations.deleted_at', '=', null)->get(['theater_of_operations_pois.id','theater_of_operations_pois.name','theater_of_operations_pois.symbol','theater_of_operations_pois.lat','theater_of_operations_pois.long']);
         return response()->json($pois);
     }
 
