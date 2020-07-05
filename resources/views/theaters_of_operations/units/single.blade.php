@@ -380,7 +380,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label>ID Externo</label>
-                        <input class="form-control" type="text" placeholder="External ID" name="external_id" value="[[EXTERNAL_ID]]"/>
+                        <input class="form-control" type="text" placeholder="ID Externo" name="external_id" value="[[EXTERNAL_ID]]"/>
                     </div>
                 </div>
             </div>

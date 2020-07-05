@@ -135,7 +135,6 @@ class TheaterOfOperationsUnit extends Model
                 }
             }
         }
-
         if ($event_to_return == null) {
             $event_to_return = $active_events->first();
         }

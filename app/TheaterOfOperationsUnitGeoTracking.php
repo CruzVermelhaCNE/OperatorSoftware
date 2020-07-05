@@ -53,6 +53,6 @@ class TheaterOfOperationsUnitGeoTracking extends Model
 
     public function unit()
     {
-        return $this->hasOne(TheaterOfOperationsUnit::class, 'theater_of_operations_unit_id', 'id');
+        return $this->belongsTo(TheaterOfOperationsUnit::class, 'theater_of_operations_unit_id', 'id');
     }
 }
