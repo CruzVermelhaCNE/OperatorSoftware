@@ -105,24 +105,20 @@ class Map {
         this.mapbox_map.addControl(new mapboxgl.NavigationControl());
         this.mapbox_map.addControl(new mapboxgl.ScaleControl(), 'bottom-right');
         this.mapbox_map.on('load', function () {
+            that.createPOIs();
+            that.createUnits();
+            that.createEvents();
+            setInterval(that.updatePOIs, 5000);
+            setInterval(that.updateUnits, 5000);
+            setInterval(that.updateEvents, 5000);
             if (that.theater_of_operations_id == 0) {
-                that.createPOIs();
-                that.createUnits();
-                that.createEvents();
                 that.createTOs();
-                that.loadIcons();
-                that.prepareClickableUnits();
-                that.prepareClickableEvents();
-                that.prepareClickableTOs();
-            } else {
-                that.createPOIs();
-                that.createUnits();
-                that.createEvents();
-                that.loadIcons();
-                that.prepareClickableUnits();
-                that.prepareClickableEvents();
-                that.prepareClickablePOIs();
+                setInterval(that.updateTOs, 5000);
             }
+            that.loadIcons();
+            that.prepareClickableUnits();
+            that.prepareClickableEvents();
+            that.prepareClickableTOs();
         });
         $(".mapboxgl-ctrl .mapboxgl-ctrl-logo").closest('div').prepend('<a class="mapboxgl-ctrl-logo-cne" target="_blank" rel="noopener nofollow" href="https://emergenciacvp.pt/" aria-label="CNE CVP logo"></a>');
     }
