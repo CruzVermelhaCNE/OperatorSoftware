@@ -436,7 +436,9 @@
             map.zoomOn(data[6],data[7],15);
         }
         else if(action == "open"){
-            window.open("{{route('theaters_of_operations.units.single',['id'=>$theater_of_operations->id,'unit_id' => ''])}}/"+data[8]);
+            let url = "{{route('theaters_of_operations.units.single',['id'=>$theater_of_operations->id,'unit_id' => '-1'])}}";
+            url = url.split("-1").join(data[8]);
+            window.open(url);
         }
     });
 
@@ -466,7 +468,9 @@
             map.zoomOn(data[6],data[7],15);
         }
         else if(action == "open"){
-            window.open("{{route('theaters_of_operations.crews.single',['id'=>$theater_of_operations->id,'crew_id' => ''])}}/"+data[10]);
+            let url = "{{route('theaters_of_operations.crews.single',['id'=>$theater_of_operations->id,'crew_id' => '-1'])}}";
+            url = url.split("-1").join(data[10]);
+            window.open(url);
         }
     });
 
@@ -494,7 +498,9 @@
     $('#list_communication_channels tbody').on( 'click', 'a', function () {
         var data = list_communication_channels_table.row($(this).parents('tr')).data();
         let action = $(this).data('action');
-        window.open("{{route('theaters_of_operations.communication_channels.edit',['id' => $theater_of_operations->id, 'communication_channel_id' => ''])}}/"+data[3]);
+        let url = "{{route('theaters_of_operations.communication_channels.edit',['id' => $theater_of_operations->id, 'communication_channel_id' => '-1'])}}";
+        url = url.split("-1").join(data[3]);
+        window.open(url);
     });
 
 
