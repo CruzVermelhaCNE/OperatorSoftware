@@ -17,8 +17,8 @@ class TheaterOfOperationsUnitCreate extends FormRequest
         return [
             'theater_of_operations_id' => ['required', 'exists:theater_of_operations,id'],
             'type'                     => ['required', 'string'],
-            'plate'                    => ['required', 'string'],
-            'tail_number'              => ['required', 'string'],
+            'plate'                    => ['nullable', 'string'],
+            'tail_number'              => ['nullable', 'string'],
             'observations'             => ['nullable', 'string'],
             'structure'                => ['required', 'string'],
             'base_lat'                 => ['required', 'string'],

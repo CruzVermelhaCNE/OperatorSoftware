@@ -19,7 +19,7 @@ class TheaterOfOperationsCoordinationEdit extends FormRequest
             'name'         => ['required', 'string'],
             'role'         => ['required', 'string'],
             'contact'      => ['required', 'numeric'],
-            'observations' => ['required', 'string'],
+            'observations' => ['nullable', 'string'],
         ];
     }
 }

@@ -18,7 +18,7 @@ class TheaterOfOperationsPOIEdit extends FormRequest
             'id'           => ['nullable', 'exists:theater_of_operations_pois,id'],
             'name'         => ['required', 'string'],
             'symbol'       => ['required', 'string'],
-            'observations' => ['required', 'string'],
+            'observations' => ['nullable', 'string'],
             'location'     => ['required', 'string'],
             'lat'          => ['required', 'numeric'],
             'long'         => ['required', 'numeric'],

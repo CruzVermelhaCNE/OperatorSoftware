@@ -17,10 +17,10 @@ class TheaterOfOperationsCrewEdit extends FormRequest
         return [
             'id'           => ['required', 'exists:theater_of_operations_crews,id'],
             'name'         => ['required', 'string'],
-            'contact'      => ['required', 'string'],
-            'age'          => ['required', 'string'],
+            'contact'      => ['nullable', 'string'],
+            'age'          => ['nullable', 'string'],
             'course'       => ['required', 'string'],
-            'observations' => ['required', 'string'],
+            'observations' => ['nullable', 'string'],
         ];
     }
 }

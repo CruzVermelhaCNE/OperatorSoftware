@@ -19,7 +19,7 @@ class TheaterOfOperationsEventCreate extends FormRequest
             'codu'                     => ['nullable', 'string'],
             'cdos'                     => ['nullable', 'string'],
             'type'                     => ['required', 'string'],
-            'observations'             => ['required', 'string'],
+            'observations'             => ['nullable', 'string'],
             'location'                 => ['required', 'string'],
             'lat'                      => ['required', 'numeric'],
             'long'                     => ['required', 'numeric'],

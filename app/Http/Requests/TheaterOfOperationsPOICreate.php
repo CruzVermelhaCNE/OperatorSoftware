@@ -19,7 +19,7 @@ class TheaterOfOperationsPOICreate extends FormRequest
             'theater_of_operations_sector_id' => ['nullable', 'exists:theater_of_operations_sectors,id'],
             'name'                            => ['required', 'string'],
             'symbol'                          => ['required', 'string'],
-            'observations'                    => ['required', 'string'],
+            'observations'                    => ['nullable', 'string'],
             'location'                        => ['required', 'string'],
             'lat'                             => ['required', 'numeric'],
             'long'                            => ['required', 'numeric'],
