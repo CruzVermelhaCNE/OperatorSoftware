@@ -113,12 +113,13 @@ class Map {
             setInterval(that.updateEvents, 5000);
             if (that.theater_of_operations_id == 0) {
                 that.createTOs();
-                setInterval(that.updateTOs, 5000);
+                setInterval(that.updateTOs, 5000);                            
+                that.prepareClickableTOs();
             }
             that.loadIcons();
             that.prepareClickableUnits();
             that.prepareClickableEvents();
-            that.prepareClickableTOs();
+            that.prepareClickablePOIs();
         });
         $(".mapboxgl-ctrl .mapboxgl-ctrl-logo").closest('div').prepend('<a class="mapboxgl-ctrl-logo-cne" target="_blank" rel="noopener nofollow" href="https://emergenciacvp.pt/" aria-label="CNE CVP logo"></a>');
     }
@@ -1059,6 +1060,12 @@ class Map {
                 document.location.href = "/" + that.theater_of_operations_id + "/units/" + e.features[0].properties.unit_id;
             }
         };
+        let cursor_enter_function = function () {
+            that.mapbox_map.getCanvas().style.cursor = 'pointer'
+        }
+        let cursor_leave_function = function () {
+            that.mapbox_map.getCanvas().style.cursor = ''
+        }
         this.mapbox_map.on('click', 'layer_icons_A1', this_function);
         this.mapbox_map.on('click', 'layer_icons_A2', this_function);
         this.mapbox_map.on('click', 'layer_icons_B', this_function);
@@ -1070,6 +1077,29 @@ class Map {
         this.mapbox_map.on('click', 'layer_icons_LO', this_function);
         this.mapbox_map.on('click', 'layer_icons_LP', this_function);
         this.mapbox_map.on('click', 'layer_icons_HELI', this_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_A1', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_A1', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_A2', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_A2', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_B', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_B', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_C', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_C', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_VDTD', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_VDTD', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_TL', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_TL', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_CC', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_CC', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_CP', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_CP', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_LO', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_LO', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_LP', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_LP', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_HELI', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_HELI', cursor_leave_function);
+
     }
 
     getEventsFeatures(callback) {
@@ -1313,9 +1343,21 @@ class Map {
                 document.location.href = "/" + that.theater_of_operations_id + "/events/" + e.features[0].properties.event_id;
             }
         };
+        let cursor_enter_function = function () {
+            that.mapbox_map.getCanvas().style.cursor = 'pointer'
+        }
+        let cursor_leave_function = function () {
+            that.mapbox_map.getCanvas().style.cursor = ''
+        }
         this.mapbox_map.on('click', 'layer_events_Cheia', this_function);
         this.mapbox_map.on('click', 'layer_events_Evacuação', this_function);
         this.mapbox_map.on('click', 'layer_events_Geral', this_function);
+        this.mapbox_map.on('mouseenter', 'layer_events_Cheia', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_events_Cheia', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_events_Evacuação', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_events_Evacuação', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_events_Geral', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_events_Geral', cursor_leave_function);
     }
 
     getTOsFeatures(callback) {
@@ -1397,10 +1439,20 @@ class Map {
     }
 
     prepareClickableTOs() {
-        this.mapbox_map.on('click', 'layer_icons_Incêndio', function (e) {
+        let that = this;
+        let this_function = function (e) {
             console.log(e.features[0]);
             alert("Open TO: " + e.features[0].properties.to_id)
-        });
+        };
+        let cursor_enter_function = function () {
+            that.mapbox_map.getCanvas().style.cursor = 'pointer'
+        }
+        let cursor_leave_function = function () {
+            that.mapbox_map.getCanvas().style.cursor = ''
+        }
+        this.mapbox_map.on('click', 'layer_icons_Incêndio', this_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_Incêndio', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_Incêndio', cursor_leave_function);
     }
 
     getPOIsFeatures(callback) {
@@ -1976,6 +2028,12 @@ class Map {
         let this_function = function (e) {
             console.log("Click on POI: " + e.features[0].properties.poi_id)
         }
+        let cursor_enter_function = function () {
+            that.mapbox_map.getCanvas().style.cursor = 'pointer'
+        }
+        let cursor_leave_function = function () {
+            that.mapbox_map.getCanvas().style.cursor = ''
+        }
         this.mapbox_map.on('click', 'layer_icons_POIGeral', this_function);
         this.mapbox_map.on('click', 'layer_icons_PC', this_function);
         this.mapbox_map.on('click', 'layer_icons_ZCAP', this_function);
@@ -1984,6 +2042,22 @@ class Map {
         this.mapbox_map.on('click', 'layer_icons_PMA', this_function);
         this.mapbox_map.on('click', 'layer_icons_Antena', this_function);
         this.mapbox_map.on('click', 'layer_icons_Satelite', this_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_POIGeral', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_POIGeral', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_PC', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_PC', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_ZCAP', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_ZCAP', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_ZCR', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_ZCR', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_Logistica', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_Logistica', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_PMA', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_PMA', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_Antena', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_Antena', cursor_leave_function);
+        this.mapbox_map.on('mouseenter', 'layer_icons_Satelite', cursor_enter_function);
+        this.mapbox_map.on('mouseleave', 'layer_icons_Satelite', cursor_leave_function);        
     }
 
     zoomOn(lat, long, zoom) {
