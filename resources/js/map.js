@@ -117,9 +117,9 @@ class Map {
                 that.prepareClickableTOs();
             }
             that.loadIcons();
+            that.prepareClickablePOIs();
             that.prepareClickableUnits();
             that.prepareClickableEvents();
-            that.prepareClickablePOIs();
         });
         $(".mapboxgl-ctrl .mapboxgl-ctrl-logo").closest('div').prepend('<a class="mapboxgl-ctrl-logo-cne" target="_blank" rel="noopener nofollow" href="https://emergenciacvp.pt/" aria-label="CNE CVP logo"></a>');
     }
