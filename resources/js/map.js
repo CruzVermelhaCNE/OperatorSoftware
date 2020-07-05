@@ -979,81 +979,59 @@ class Map {
         let that = this;
         this.getUnitsFeatures(function (features) {
             that.mapbox_map.getSource('icons_A1').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["a1"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["a1"]
+
             });
             that.mapbox_map.getSource('icons_A2').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["a2"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["a2"]
+
             });
             that.mapbox_map.getSource('icons_B').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["b"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["b"]
+
             });
             that.mapbox_map.getSource('icons_C').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["c"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["c"]
+
             });
             that.mapbox_map.getSource('icons_VDTD').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["vdtd"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["vdtd"]
+
             });
             that.mapbox_map.getSource('icons_TL').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["tl"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["tl"]
+
             });
             that.mapbox_map.getSource('icons_CC').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["cc"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["cc"]
+
             });
             that.mapbox_map.getSource('icons_CO').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["co"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["co"]
+
             });
             that.mapbox_map.getSource('icons_LO').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["lo"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["lo"]
+
             });
             that.mapbox_map.getSource('icons_LP').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["lp"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["lp"]
+
             });
             that.mapbox_map.getSource('icons_HELI').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["heli"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["heli"]
+
             });
         });
     }
@@ -1318,25 +1296,18 @@ class Map {
         let that = this;
         let features = this.getEventsFeatures(function (features) {
             that.mapbox_map.getSource('events_Cheia').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["cheia"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["cheia"]
+
             });
             that.mapbox_map.getSource('events_Evacuação').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["evacuacao"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["evacuacao"]
+
             });
             that.mapbox_map.getSource('events_Geral').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["geral"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["geral"]
             });
         });
     }
@@ -1437,11 +1408,9 @@ class Map {
         let that = this;
         let features = this.getTOsFeatures(function (features) {
             that.mapbox_map.getSource('icons_Incêndio').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["incêndio"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["incêndio"]
+
             });
         });
     }
@@ -1974,60 +1943,44 @@ class Map {
         let that = this;
         let features = this.getPOIsFeatures(function (features) {
             that.mapbox_map.getSource('icons_POIGeral').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["geral"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["geral"]
+
             });
             that.mapbox_map.getSource('icons_PC').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["pc"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["pc"]
+
             });
             that.mapbox_map.getSource('icons_ZCAP').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["zcap"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["zcap"]
+
             });
             that.mapbox_map.getSource('icons_ZCR').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["zcr"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["zcr"]
+
             });
             that.mapbox_map.getSource('icons_Logistica').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["logistica"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["logistica"]
+
             });
             that.mapbox_map.getSource('icons_PMA').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["pma"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["pma"]
+
             });
             that.mapbox_map.getSource('icons_Antena').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["antena"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["antena"]
+
             });
             that.mapbox_map.getSource('icons_Satelite').setData({
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': features["satelite"]
-                }
+                'type': 'FeatureCollection',
+                'features': features["satelite"]
+
             });
         });
     }
