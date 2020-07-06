@@ -53,7 +53,8 @@
             <a href="{{route('theaters_of_operations.units.demobilize',["id" => $unit->theater_of_operations->id, "unit_id" => $unit->id])}}"
                 class="btn btn-danger">Desmobilizar Meio</a>
             @else
-            <p>Esteve no TO {{$unit->deleted_at->locale('pt_PT')->diffForHumans($unit->created_at)}}</p>
+            <p>Desmobilizado: {{$unit->demobilized_at}}</p>
+            <p>Esteve no TO {{$unit->demobilized_at->locale('pt_PT')->diffForHumans($unit->created_at)}}</p>
             @endif
             <a href="{{route('theaters_of_operations.single',["id" => $unit->theater_of_operations->id])}}"
                 class="btn btn-info">Abrir TO</a>

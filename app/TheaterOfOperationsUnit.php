@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
@@ -12,6 +13,10 @@ class TheaterOfOperationsUnit extends Model
         'status_text',
         'lat',
         'long',
+    ];
+
+    protected $dates = [
+        'demobilized_at',
     ];
 
     private const CACHE_BRIEF_TIMETAPE         = 'TheaterOfOperations_Units_Brief_TimeTape_';
@@ -425,7 +430,8 @@ class TheaterOfOperationsUnit extends Model
         }
         TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Desmobilizada', $this->theater_of_operations_id, $this->major_sector_id);
         $this->resetBriefTimeTape();
-        $this->status = self::STATUS_DEMOBILIZED;
+        $this->status         = self::STATUS_DEMOBILIZED;
+        $this->demobilized_at = Carbon::now();
         $this->save();
         $this->theater_of_operations->resetUnitsListing();
     }
