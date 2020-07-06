@@ -49,12 +49,12 @@
             <p>Status: {{$unit->status_text}}</p>
             <p>Localização: {{$unit->deployment}}</p>
             @if (!$unit->isDemobilized())
-            <p>No TO há {{$unit->created_at->locale('pt_PT')->diffInHours()}}:{{$unit->created_at->locale('pt_PT')->diff()->format('%I:%S')}}</p>
+            <p>No TO há {{$unit->created_at->locale('pt_PT')->diffInHours()}}h{{$unit->created_at->locale('pt_PT')->diff()->format('%Im%Ss')}}</p>
             <a href="{{route('theaters_of_operations.units.demobilize',["id" => $unit->theater_of_operations->id, "unit_id" => $unit->id])}}"
                 class="btn btn-danger">Desmobilizar Meio</a>
             @else
             <p>Desmobilizado: {{$unit->demobilized_at}}</p>
-            <p>Esteve no TO {{$unit->demobilized_at->locale('pt_PT')->diffInHours($unit->created_at)}}:{{$unit->demobilized_at->locale('pt_PT')->diff($unit->created_at)->format('%I:%S')}}</p>
+            <p>Esteve no TO {{$unit->demobilized_at->locale('pt_PT')->diffInHours($unit->created_at)}}h{{$unit->demobilized_at->locale('pt_PT')->diff($unit->created_at)->format('%Im%Ss')}}</p>
             @endif
             <a href="{{route('theaters_of_operations.single',["id" => $unit->theater_of_operations->id])}}"
                 class="btn btn-info">Abrir TO</a>
