@@ -73,7 +73,7 @@ class TheaterOfOperationsController extends Controller
 
     public function units_info()
     {
-        $units = TheaterOfOperationsUnit::all(['id','type','plate','tail_number']);
+        $units = TheaterOfOperationsUnit::where('status', '!=', TheaterOfOperationsUnit::STATUS_DEMOBILIZED)->get(['id','type','plate','tail_number']);
         return response()->json($units);
     }
 
