@@ -427,7 +427,7 @@ class TheaterOfOperationsUnit extends Model
         $this->resetBriefTimeTape();
         $this->status = self::STATUS_DEMOBILIZED;
         $this->save();
-        $this->theater_of_operations->resetCrews();
+        $this->theater_of_operations->resetUnitsListing();
     }
 
     public function theater_of_operations()
