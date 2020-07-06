@@ -117,7 +117,12 @@ class TheaterOfOperations extends Model
 
     public function getUnits()
     {
-        $units = $this->units;
+        $units = null;
+        if ($this->trashed()) {
+            $units = $this->units;
+        } else {
+            $units = $this->units()->where('status', '!=', TheaterOfOperationsUnit::STATUS_DEMOBILIZED)->get();
+        }
         foreach ($this->sectors as $sector) {
             $units = $units->concat($sector->units);
         }
@@ -126,7 +131,11 @@ class TheaterOfOperations extends Model
 
     public function getCrews()
     {
-        return $this->crews;
+        if ($this->trashed()) {
+            return $this->crews()->withTrashed()->get();
+        } else {
+            return $this->crews;
+        }
     }
 
     public function getEvents()
@@ -480,12 +489,16 @@ class TheaterOfOperations extends Model
     {
         TheaterOfOperationsTimeTape::create('Ocorrência Major: '.$this->name.' ('.$this->type.') encerrado', $this->id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         $this->delete();
+        $this->resetCrewsListing();
+        $this->resetUnitsListing();
     }
 
     public function reopen()
     {
         TheaterOfOperationsTimeTape::create('Ocorrência Major: '.$this->name.' ('.$this->type.') reaberto', $this->id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         $this->restore();
+        $this->resetCrewsListing();
+        $this->resetUnitsListing();
     }
 
     public function time_tape()
