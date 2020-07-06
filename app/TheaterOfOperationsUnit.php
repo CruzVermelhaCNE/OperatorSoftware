@@ -420,7 +420,7 @@ class TheaterOfOperationsUnit extends Model
 
     public function demobilize()
     {
-        foreach ($this->crew as $crew) {
+        foreach ($this->crews as $crew) {
             $crew->demobilize();
         }
         TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Desmobilizada', $this->theater_of_operations_id, $this->major_sector_id);
