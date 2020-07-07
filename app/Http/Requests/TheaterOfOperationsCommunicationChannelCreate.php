@@ -19,7 +19,7 @@ class TheaterOfOperationsCommunicationChannelCreate extends FormRequest
             'theater_of_operations_sector_id' => ['nullable', 'exists:theater_of_operations_sectors,id'],
             'type'                            => ['required', 'string'],
             'channel'                         => ['required', 'string'],
-            'observations'                    => ['required', 'string'],
+            'observations'                    => ['nullable', 'string'],
         ];
     }
 }

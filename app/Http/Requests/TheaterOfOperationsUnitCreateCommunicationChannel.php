@@ -16,7 +16,7 @@ class TheaterOfOperationsUnitCreateCommunicationChannel extends FormRequest
     {
         return [
             'type'         => ['required', 'string'],
-            'observations' => ['required', 'string'],
+            'observations' => ['nullable', 'string'],
         ];
     }
 }

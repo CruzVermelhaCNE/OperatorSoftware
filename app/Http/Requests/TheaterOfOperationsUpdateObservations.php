@@ -16,7 +16,7 @@ class TheaterOfOperationsUpdateObservations extends FormRequest
     {
         return [
             'id'           => ['nullable', 'exists:theater_of_operations,id'],
-            'observations' => ['required', 'string'],
+            'observations' => ['nullable', 'string'],
         ];
     }
 }

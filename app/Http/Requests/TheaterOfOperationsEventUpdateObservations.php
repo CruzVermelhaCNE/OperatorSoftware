@@ -15,7 +15,7 @@ class TheaterOfOperationsEventUpdateObservations extends FormRequest
     public function rules()
     {
         return [
-            'observations' => ['required', 'string'],
+            'observations' => ['nullable', 'string'],
         ];
     }
 }
