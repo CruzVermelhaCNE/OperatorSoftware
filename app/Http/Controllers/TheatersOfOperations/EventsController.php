@@ -29,9 +29,9 @@ class EventsController extends Controller
         return redirect()->route('theaters_of_operations.single', $validated['theater_of_operations_id']);
     }
 
-    public function single($id)
+    public function single($id, $event_id)
     {
-        $event           = TheaterOfOperationsEvent::findOrFail($id);
+        $event           = TheaterOfOperationsEvent::findOrFail($event_id);
         $available_units = null;
         if (! $event->isFinished()) {
             $available_units = TheaterOfOperationsUnit::whereIn('status', [TheaterOfOperationsUnit::STATUS_BASE,TheaterOfOperationsUnit::STATUS_ON_WAY_TO_BASE])->get();
