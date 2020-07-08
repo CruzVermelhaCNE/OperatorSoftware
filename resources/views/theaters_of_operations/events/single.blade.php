@@ -455,7 +455,7 @@
                         </div>
                     </div>
                 </form>
-                <a href="{{route('theaters_of_operations.units.single',['id'=>$event->theater_of_operations->id,'unit_id' => ''])}}/-2" class="btn btn-primary">Abrir Meio</a>
+                <a href="{{route('theaters_of_operations.units.single',['id'=>$event->theater_of_operations->id,'unit_id' => '-2'])}}" class="btn btn-primary">Abrir Meio</a>
             </div>
             <div class="col-6">
                 <h4>Horas</h4>
