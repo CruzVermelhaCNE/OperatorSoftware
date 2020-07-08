@@ -48,7 +48,7 @@
         </div>
         <div class="form-group">
             <label>Tipo</label>
-            <select class="form-control" name="type">
+            <select class="form-control" name="type" id="type_selector">
                 <option value="ACD" @if ($event) @if($event->type == "ACD") selected @endif @else @if(old('type') == "ACD") selected @endif @endif>ACD - Acidente</option>
                 <option value="AEC" @if ($event) @if($event->type == "AEC") selected @endif @else @if(old('type') == "AEC") selected @endif @endif>AEC - Alteração Estado de Consciência</option>
                 <option value="AFO" @if ($event) @if($event->type == "AFO") selected @endif @else @if(old('type') == "AFO") selected @endif @endif>AFO - Afogament</option>
@@ -115,4 +115,15 @@
         @endif
     </form>
 </div>
+@endsection
+
+@section('javascript')
+@parent
+<script>
+    $(document).ready(function() {
+        $('#type_selector').select2({
+            theme: 'bootstrap4',
+        });
+    });
+</script>
 @endsection
