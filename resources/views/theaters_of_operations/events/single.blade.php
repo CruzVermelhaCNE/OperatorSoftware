@@ -645,9 +645,10 @@
     function openVictim(id) {
         closeAllVictimModals();
         closeAllUnitModals();
-        axios.get("{{route('theaters_of_operations.events.victims.get',['id'=>$event->theater_of_operations->id,'event_id'=>$event->id,'victim_id'=>''])}}/"+id)
+        let url = "{{route('theaters_of_operations.events.victims.get',['id'=>$event->theater_of_operations->id,'event_id'=>$event->id,'victim_id'=>'-2'])}}";
+        url = template.split("-2").join(id);
+        axios.get(url)
         .then(function (response) {
-            console.log(response);
             let template = $("#template_victim").html();
             let event_unit_id = null;
             let event_unit_name = null;
