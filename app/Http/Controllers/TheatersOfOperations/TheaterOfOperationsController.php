@@ -79,7 +79,7 @@ class TheaterOfOperationsController extends Controller
 
     public function events_info()
     {
-        $events = TheaterOfOperationsEvent::whereIn('status', [TheaterOfOperationsEvent::STATUS_DISPATCH,TheaterOfOperationsEvent::STATUS_ON_GOING,TheaterOfOperationsEvent::STATUS_IN_CONCLUSION,TheaterOfOperationsEvent::STATUS_FINISHED])->get(['id','type','location','lat','long']);
+        $events = TheaterOfOperationsEvent::whereIn('status', [TheaterOfOperationsEvent::STATUS_DISPATCH,TheaterOfOperationsEvent::STATUS_ON_GOING,TheaterOfOperationsEvent::STATUS_IN_CONCLUSION])->get(['id','type','location','lat','long']);
         return response()->json($events);
     }
 
