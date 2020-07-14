@@ -51,7 +51,7 @@
             <select class="form-control" name="type" id="type_selector">
                 <option value="ACD" @if ($event) @if($event->type == "ACD") selected @endif @else @if(old('type') == "ACD") selected @endif @endif>ACD - Acidente</option>
                 <option value="AEC" @if ($event) @if($event->type == "AEC") selected @endif @else @if(old('type') == "AEC") selected @endif @endif>AEC - Alteração Estado de Consciência</option>
-                <option value="AFO" @if ($event) @if($event->type == "AFO") selected @endif @else @if(old('type') == "AFO") selected @endif @endif>AFO - Afogament</option>
+                <option value="AFO" @if ($event) @if($event->type == "AFO") selected @endif @else @if(old('type') == "AFO") selected @endif @endif>AFO - Afogamento</option>
                 <option value="AGR" @if ($event) @if($event->type == "AGR") selected @endif @else @if(old('type') == "AGR") selected @endif @endif>AGR - Agressão</option>
                 <option value="ALR" @if ($event) @if($event->type == "ALR") selected @endif @else @if(old('type') == "ALR") selected @endif @endif>ALR - Alergias</option>
                 <option value="CAP" @if ($event) @if($event->type == "CAP") selected @endif @else @if(old('type') == "CAP") selected @endif @endif>CAP - CAPCI</option>
@@ -61,7 +61,7 @@
                 <option value="CNV" @if ($event) @if($event->type == "CNV") selected @endif @else @if(old('type') == "CNV") selected @endif @endif>CNV - Convulsões</option>
                 <option value="CPX" @if ($event) @if($event->type == "CPX") selected @endif @else @if(old('type') == "CPX") selected @endif @endif>CPX - Ocorrências Complexas</option>
                 <option value="CRI" @if ($event) @if($event->type == "CRI") selected @endif @else @if(old('type') == "CRI") selected @endif @endif>CRI - Criança</option>
-                <option value="DAU" @if ($event) @if($event->type == "DAU") selected @endif @else @if(old('type') == "DAU") selected @endif @endif>DAU - Dor Adbominal</option>
+                <option value="DAU" @if ($event) @if($event->type == "DAU") selected @endif @else @if(old('type') == "DAU") selected @endif @endif>DAU - Dor Abdominal</option>
                 <option value="DCT" @if ($event) @if($event->type == "DCT") selected @endif @else @if(old('type') == "DCT") selected @endif @endif>DCT - Dor Costas</option>
                 <option value="DIA" @if ($event) @if($event->type == "DIA") selected @endif @else @if(old('type') == "DIA") selected @endif @endif>DIA - Diabetes</option>
                 <option value="DIS" @if ($event) @if($event->type == "DIS") selected @endif @else @if(old('type') == "DIS") selected @endif @endif>DIS - Dispneia</option>
