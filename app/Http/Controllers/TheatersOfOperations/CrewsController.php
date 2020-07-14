@@ -18,7 +18,13 @@ class CrewsController extends Controller
     public function create(TheaterOfOperationsCrewCreate $request)
     {
         $validated = $request->validated();
-        $crew      = TheaterOfOperationsCrew::create($validated['name'], $validated['contact'], $validated['age'], $validated['course'], $validated['observations'], $validated['theater_of_operations_id']);
+        if ($validated['contact'] == '') {
+            $validated['contact'] = null;
+        }
+        if ($validated['age'] == '') {
+            $validated['age'] = null;
+        }
+        $crew = TheaterOfOperationsCrew::create($validated['name'], $validated['contact'], $validated['age'], $validated['course'], $validated['observations'], $validated['theater_of_operations_id']);
         $crew->theater_of_operations->resetCrewsListing();
         return redirect()->route('theaters_of_operations.single', $validated['theater_of_operations_id']);
     }
@@ -40,6 +46,12 @@ class CrewsController extends Controller
     {
         $validated = $request->validated();
         $crew      = TheaterOfOperationsCrew::findOrFail($validated['id']);
+        if ($validated['contact'] == '') {
+            $validated['contact'] = null;
+        }
+        if ($validated['age'] == '') {
+            $validated['age'] = null;
+        }
         if ($crew->name != $validated['name']) {
             $crew->updateName($validated['name']);
         }
