@@ -34,6 +34,6 @@ class TheaterOfOperationsEventUnitCrew extends Model
 
     public function crew()
     {
-        return $this->belongsTo(TheaterOfOperationsCrew::class, 'theater_of_operations_crew_id', 'id');
+        return $this->belongsTo(TheaterOfOperationsCrew::class, 'theater_of_operations_crew_id', 'id')->withTrashed();
     }
 }
