@@ -142,13 +142,6 @@ class Map {
             }
         );
         this.mapbox_map.loadImage(
-            '/img/map_icons/Cheia.png',
-            function (error, image) {
-                if (error) throw error;
-                that.mapbox_map.addImage('icon_Cheia', image);
-            }
-        );
-        this.mapbox_map.loadImage(
             '/img/map_icons/Evacuação.png',
             function (error, image) {
                 if (error) throw error;
@@ -1089,22 +1082,9 @@ class Map {
             axios.get("/events_info")
                 .then(function (response) {
                     let geral_features = [];
-                    let cheia_features = [];
                     let evacuacao_features = [];
                     response.data.forEach(event => {
-                        if (event["type"] == "CHE") {
-                            cheia_features.push({
-                                'type': 'Feature',
-                                'properties': {
-                                    'event_id': event["id"],
-                                    'name': (event["type"] + " - " + event["location"]),
-                                },
-                                'geometry': {
-                                    'type': 'Point',
-                                    'coordinates': [event["long"], event["lat"]]
-                                }
-                            });
-                        } else if (event["type"] == "EVA") {
+                        if (event["type"] == "EVA") {
                             evacuacao_features.push({
                                 'type': 'Feature',
                                 'properties': {
@@ -1132,7 +1112,6 @@ class Map {
                     });
                     callback({
                         "geral": geral_features,
-                        "cheia": cheia_features,
                         "evacuacao": evacuacao_features,
                     });
                 });
@@ -1140,22 +1119,9 @@ class Map {
             axios.get("/" + this.theater_of_operations_id + "/getEvents")
                 .then(function (response) {
                     let geral_features = [];
-                    let cheia_features = [];
                     let evacuacao_features = [];
                     response.data.forEach(event => {
-                        if (event[0] == "CHE") {
-                            cheia_features.push({
-                                'type': 'Feature',
-                                'properties': {
-                                    'event_id': event[7],
-                                    'name': (event[0] + " - " + event[1]),
-                                },
-                                'geometry': {
-                                    'type': 'Point',
-                                    'coordinates': [event[6], event[5]]
-                                }
-                            });
-                        } else if (event[0] == "EVA") {
+                        if (event[0] == "EVA") {
                             evacuacao_features.push({
                                 'type': 'Feature',
                                 'properties': {
@@ -1183,7 +1149,6 @@ class Map {
                     });
                     callback({
                         "geral": geral_features,
-                        "cheia": cheia_features,
                         "evacuacao": evacuacao_features,
                     });
                 });
@@ -1194,13 +1159,6 @@ class Map {
         let that = this;
         this.getEventsFeatures(function (features) {
             if (addSources) {
-                that.mapbox_map.addSource('events_Cheia', {
-                    'type': 'geojson',
-                    'data': {
-                        'type': 'FeatureCollection',
-                        'features': features["cheia"]
-                    }
-                });
                 that.mapbox_map.addSource('events_Evacuação', {
                     'type': 'geojson',
                     'data': {
@@ -1217,28 +1175,6 @@ class Map {
                 });
             }
             if (createLayer) {
-                that.mapbox_map.addLayer({
-                    'id': 'layer_events_Cheia',
-                    'type': 'symbol',
-                    'source': 'events_Cheia',
-                    'paint': {
-                        'text-halo-width': 2,
-                        'text-halo-color': "#ffffff",
-                        "text-color": "#a10000",
-                    },
-                    'layout': {
-                        'text-anchor': 'bottom',
-                        'text-field': '{name}',
-                        'icon-image': 'icon_Cheia',
-                        'icon-size': ['interpolate', ['linear'],
-                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
-                        ],
-                        'icon-allow-overlap': true,
-                        'text-allow-overlap': true,
-                        'icon-ignore-placement': true,
-                        'text-ignore-placement': true,
-                    }
-                });
                 that.mapbox_map.addLayer({
                     'id': 'layer_events_Evacuação',
                     'type': 'symbol',
@@ -1290,11 +1226,6 @@ class Map {
     updateEvents() {
         let that = this;
         let features = this.getEventsFeatures(function (features) {
-            that.mapbox_map.getSource('events_Cheia').setData({
-                'type': 'FeatureCollection',
-                'features': features["cheia"]
-
-            });
             that.mapbox_map.getSource('events_Evacuação').setData({
                 'type': 'FeatureCollection',
                 'features': features["evacuacao"]
@@ -1318,11 +1249,8 @@ class Map {
         let cursor_leave_function = function () {
             that.mapbox_map.getCanvas().style.cursor = ''
         }
-        this.mapbox_map.on('click', 'layer_events_Cheia', this_function);
         this.mapbox_map.on('click', 'layer_events_Evacuação', this_function);
         this.mapbox_map.on('click', 'layer_events_Geral', this_function);
-        this.mapbox_map.on('mouseenter', 'layer_events_Cheia', cursor_enter_function);
-        this.mapbox_map.on('mouseleave', 'layer_events_Cheia', cursor_leave_function);
         this.mapbox_map.on('mouseenter', 'layer_events_Evacuação', cursor_enter_function);
         this.mapbox_map.on('mouseleave', 'layer_events_Evacuação', cursor_leave_function);
         this.mapbox_map.on('mouseenter', 'layer_events_Geral', cursor_enter_function);

@@ -57,7 +57,6 @@
                 <option value="CAP" @if ($event) @if($event->type == "CAP") selected @endif @else @if(old('type') == "CAP") selected @endif @endif>CAP - CAPCI</option>
                 <option value="CDM" @if ($event) @if($event->type == "CDM") selected @endif @else @if(old('type') == "CDM") selected @endif @endif>CDM - CODU MAR</option>
                 <option value="CEF" @if ($event) @if($event->type == "CEF") selected @endif @else @if(old('type') == "CEF") selected @endif @endif>CEF - Cefaleias</option>
-                <option value="CHE" @if ($event) @if($event->type == "CHE") selected @endif @else @if(old('type') == "CHE") selected @endif @endif>CHE - Cheia</option>
                 <option value="CNV" @if ($event) @if($event->type == "CNV") selected @endif @else @if(old('type') == "CNV") selected @endif @endif>CNV - Convulsões</option>
                 <option value="CPX" @if ($event) @if($event->type == "CPX") selected @endif @else @if(old('type') == "CPX") selected @endif @endif>CPX - Ocorrências Complexas</option>
                 <option value="CRI" @if ($event) @if($event->type == "CRI") selected @endif @else @if(old('type') == "CRI") selected @endif @endif>CRI - Criança</option>
