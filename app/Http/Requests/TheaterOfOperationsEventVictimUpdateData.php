@@ -15,10 +15,10 @@ class TheaterOfOperationsEventVictimUpdateData extends FormRequest
     public function rules()
     {
         return [
-            'name'   => ['required', 'string'],
-            'age'    => ['required', 'numeric'],
-            'gender' => ['required', 'numeric'],
-            'sns'    => ['required', 'numeric'],
+            'name'   => ['nullable', 'string'],
+            'age'    => ['nullable', 'numeric'],
+            'gender' => ['nullable', 'numeric'],
+            'sns'    => ['nullable', 'numeric'],
         ];
     }
 }
