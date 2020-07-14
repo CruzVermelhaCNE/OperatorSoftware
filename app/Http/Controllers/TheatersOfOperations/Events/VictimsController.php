@@ -42,6 +42,12 @@ class VictimsController extends Controller
     {
         $victim    = TheaterOfOperationsEventVictim::findOrFail($victim_id);
         $validated = $request->validated();
+        if ($validated['age'] == '') {
+            $validated['age'] = null;
+        }
+        if ($validated['sns'] == '') {
+            $validated['sns'] = null;
+        }
         if ($victim->name != $validated['name']) {
             $victim->updateName($validated['name']);
             $victim->event->resetVictims();
