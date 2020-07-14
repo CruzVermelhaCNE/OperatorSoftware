@@ -646,7 +646,7 @@
         closeAllVictimModals();
         closeAllUnitModals();
         let url = "{{route('theaters_of_operations.events.victims.get',['id'=>$event->theater_of_operations->id,'event_id'=>$event->id,'victim_id'=>'-2'])}}";
-        url = template.split("-2").join(id);
+        url = url.split("-2").join(id);
         axios.get(url)
         .then(function (response) {
             let template = $("#template_victim").html();
@@ -783,7 +783,7 @@
         closeAllVictimModals();
         closeAllUnitModals();
         let url = "{{route('theaters_of_operations.events.units.get',['id'=>$event->theater_of_operations->id,'event_id'=>$event->id,'event_unit_id'=>'-2'])}}";
-        url = template.split("-2").join(id);
+        url = url.split("-2").join(id);
         axios.get(url)
         .then(function (response) {
             console.log(response.data);
