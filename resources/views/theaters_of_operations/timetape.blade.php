@@ -52,10 +52,14 @@
 
 @section('javascript')
 @parent
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/datetime-moment.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function() {
+        $.fn.dataTable.moment( 'YYYY-MM-DD HH:mm:ss' );
         $('#type_selector').select2({
             theme: 'bootstrap4',
         });
