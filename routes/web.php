@@ -165,7 +165,11 @@ Route::domain('salop.emergenciacvp.pt')->group(function () {
 Route::domain('goi.emergenciacvp.pt')->name('theaters_of_operations.')->middleware('auth')->group(function () {
     Route::get('/', 'TheatersOfOperationsPanelController@index')->name('index');
     Route::get('map', 'TheatersOfOperationsPanelController@map')->name('map');
-    Route::get('timetape', 'TheatersOfOperationsPanelController@timetape')->name('timetape');
+    Route::prefix('timetape')->name('timetape.')->group(function () {
+        Route::get('/', 'TheatersOfOperationsPanelController@timetape')->name('index');
+        Route::get('all', 'TheatersOfOperations\TimeTapeController@all')->name('all');
+    });
+
 
 
     Route::get('list', 'TheatersOfOperationsPanelController@list')->name('list');

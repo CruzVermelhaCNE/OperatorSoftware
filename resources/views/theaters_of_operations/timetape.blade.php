@@ -61,7 +61,10 @@
             theme: 'bootstrap4',
         });
         $("#timetape").dataTable( {
-            "sPaginationType": "scrolling"
+            "sPaginationType": "scrolling",
+            "ajax": {
+                "url": "{{ route('theaters_of_operations.timetape.all') }}"
+            }
         });
     });
 </script>

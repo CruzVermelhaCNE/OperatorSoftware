@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li class="nav-item" title="Fitas de Tempo">
-                <a class="nav-link" href="{{ route('theaters_of_operations.timetape') }}">
+                <a class="nav-link" href="{{ route('theaters_of_operations.timetape.index') }}">
                     <span data-feather="message-square"></span>
                 </a>
             </li>
