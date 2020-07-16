@@ -54,25 +54,18 @@
 @parent
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/plug-ins/1.10.21/pagination/scrolling.js"></script>
 <script>
     $(document).ready(function() {
         $('#type_selector').select2({
             theme: 'bootstrap4',
         });
         $("#timetape").dataTable( {
-            "sPaginationType": "scrolling",
             "ajax": {
                 "url": "{{ route('theaters_of_operations.timetape.all') }}",
-                "dataSrc": function (object) {
-                    object.forEach(element => {
-                        console.log(element);
-                    });
-                    return object;
-                }
+                "dataSrc": ""
             },
             "columns": [
-                { "data": "created_at" },
+                { "data": "date" },
                 { "data": "description" },
             ]
         });
