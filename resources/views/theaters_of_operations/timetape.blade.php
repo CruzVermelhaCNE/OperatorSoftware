@@ -71,7 +71,8 @@
             "columns": [
                 { "data": "date" },
                 { "data": "description" },
-            ]
+            ],
+            "order": [[ 0, "desc" ]]
         });
     });
 </script>
