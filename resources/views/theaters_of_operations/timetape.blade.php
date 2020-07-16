@@ -63,8 +63,13 @@
         $("#timetape").dataTable( {
             "sPaginationType": "scrolling",
             "ajax": {
-                "url": "{{ route('theaters_of_operations.timetape.all') }}"
-            }
+                "url": "{{ route('theaters_of_operations.timetape.all') }}",
+                "dataSrc": ""
+            },
+            "columns": [
+                { "data": "created_at" },
+                { "data": "description" },
+            ]
         });
     });
 </script>
