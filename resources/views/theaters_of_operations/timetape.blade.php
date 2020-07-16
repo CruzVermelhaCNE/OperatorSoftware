@@ -65,7 +65,9 @@
             "ajax": {
                 "url": "{{ route('theaters_of_operations.timetape.all') }}",
                 "dataSrc": function (object) {
-                    console.log(object);
+                    object.forEach(element => {
+                        console.log(element);
+                    });
                     return object;
                 }
             },
