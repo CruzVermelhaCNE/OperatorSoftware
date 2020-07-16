@@ -64,7 +64,10 @@
             "sPaginationType": "scrolling",
             "ajax": {
                 "url": "{{ route('theaters_of_operations.timetape.all') }}",
-                "dataSrc": ""
+                "dataSrc": function (object) {
+                    console.log(object);
+                    return object;
+                }
             },
             "columns": [
                 { "data": "created_at" },
