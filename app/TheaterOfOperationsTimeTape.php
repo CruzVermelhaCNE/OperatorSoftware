@@ -12,7 +12,12 @@ class TheaterOfOperationsTimeTape extends Model
     public const TYPE_CUSTOM            = 0;
     public const TYPE_MODIFICATION      = 1;
     public const TYPE_CREATION_DELETION = 2;
-    public const TYPE_UNIT_MOVEMENTS   = 3;
+    public const TYPE_UNIT_MOVEMENTS    = 3;
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
 
     public static function create($description, $theater_of_operations_id, $theater_of_operations_sector_id, $type = self::TYPE_MODIFICATION)
     {
