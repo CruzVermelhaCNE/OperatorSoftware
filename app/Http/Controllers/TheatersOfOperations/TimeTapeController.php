@@ -10,7 +10,7 @@ class TimeTapeController extends Controller
 {
     public function all()
     {
-        $timetapes = TheaterOfOperationsTimeTape::all()->sortByDesc('id')->values();
+        $timetapes = TheaterOfOperationsTimeTape::orderBy('id','DESC')->limit(250)->get()->values();
         return response()->json($timetapes);
     }
 }
