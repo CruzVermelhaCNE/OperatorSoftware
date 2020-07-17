@@ -216,6 +216,13 @@ Route::domain('goi.emergenciacvp.pt')->name('theaters_of_operations.')->middlewa
     Route::get('{id}/getCommunicationChannels', 'TheatersOfOperations\TheaterOfOperationsController@getCommunicationChannels')->where(['id', '[0-9]+'])->name('getCommunicationChannels');
     Route::post('{id}/updateObservations', 'TheatersOfOperations\TheaterOfOperationsController@updateObservations')->where(['id', '[0-9]+'])->name('updateObservations');
 
+    Route::prefix('{id}/objects')->where(['id', '[0-9]+'])->name('objects.')->group(function () {
+        Route::get('poi', 'TheatersOfOperations\TheaterOfOperationsController@poi_objects')->name('poi');
+        Route::get('event', 'TheatersOfOperations\TheaterOfOperationsController@event_objects')->name('event');
+        Route::get('unit', 'TheatersOfOperations\TheaterOfOperationsController@unit_objects')->name('unit');
+        Route::get('crew', 'TheatersOfOperations\TheaterOfOperationsController@crew_objects')->name('crew');
+    });
+
     /*Route::prefix('crews')->name('crews.')->group(function () {
         Route::get('/', 'TheatersOfOperations\CrewsController@index')->name('index');
     });

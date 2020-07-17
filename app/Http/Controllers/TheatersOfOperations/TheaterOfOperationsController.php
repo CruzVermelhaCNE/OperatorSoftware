@@ -307,4 +307,32 @@ class TheaterOfOperationsController extends Controller
         $communication_channel = TheaterOfOperationsCommunicationChannel::findOrFail($communication_channel_id);
         return view('theaters_of_operations.communication_channels.edit', ['communication_channel' => $communication_channel,'theater_of_operations' => $theater_of_operations]);
     }
+
+    public function poi_objects($id)
+    {
+        $theater_of_operations = TheaterOfOperations::findOrFail($id);
+        $objects               = $theater_of_operations->pois()->orderBy('id', 'DESC')->get();
+        return response()->json($objects);
+    }
+
+    public function event_objects($id)
+    {
+        $theater_of_operations = TheaterOfOperations::findOrFail($id);
+        $objects               = $theater_of_operations->events()->orderBy('id', 'DESC')->get();
+        return response()->json($objects);
+    }
+
+    public function unit_objects($id)
+    {
+        $theater_of_operations = TheaterOfOperations::findOrFail($id);
+        $objects               = $theater_of_operations->units()->orderBy('id', 'DESC')->get();
+        return response()->json($objects);
+    }
+
+    public function crew_objects($id)
+    {
+        $theater_of_operations = TheaterOfOperations::findOrFail($id);
+        $objects               = $theater_of_operations->crews()->orderBy('id', 'DESC')->get();
+        return response()->json($objects);
+    }
 }

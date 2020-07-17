@@ -334,43 +334,34 @@
         $("#object_selector").prop('disabled', true);
         $("#object_selector").html("<option></option>");
         switch (type) {
-            case "to":
-                $.get( "{{ route('theaters_of_operations.timetape.objects.to') }}", function( data ) {
-                    data.forEach(element => {
-                        let date = new Date(element.created_at);
-                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+appendLeadingZeroes(date.getDate()) + "-" + appendLeadingZeroes((date.getMonth() + 1)) + "-" + date.getFullYear()+"</option>");
-                    });
-                }, "json" );
-                break;
             case "poi":
-                $.get( "{{ route('theaters_of_operations.timetape.objects.poi') }}", function( data ) {
+                $.get( "{{route('theaters_of_operations.objects.poi',$theater_of_operations->id)}}", function( data ) {
                     data.forEach(element => {
-                        let to_date = new Date(element.theater_of_operations.created_at);
-                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+element.theater_of_operations.name+" - "+appendLeadingZeroes(to_date.getDate()) + "-" + appendLeadingZeroes((to_date.getMonth() + 1)) + "-" + to_date.getFullYear()+"</option>");
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" </option>");
                     });
                 }, "json" );
                 break;
             case "event":
-                $.get( "{{ route('theaters_of_operations.timetape.objects.event') }}", function( data ) {
+                $.get( "{{route('theaters_of_operations.objects.event',$theater_of_operations->id)}}", function( data ) {
                     data.forEach(element => {
                         let date = new Date(element.created_at);
-                        $("#object_selector").append("<option value='"+element.id+"'>"+element.location+" - "+element.theater_of_operations.name+" - "+appendLeadingZeroes(date.getDate()) + "-" + appendLeadingZeroes((date.getMonth() + 1)) + "-" + date.getFullYear()+"</option>");
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.location+"</option>");
                     });
                 }, "json" );
                 break;
             case "unit":
-                $.get( "{{ route('theaters_of_operations.timetape.objects.unit') }}", function( data ) {
+                $.get( "{{route('theaters_of_operations.objects.unit',$theater_of_operations->id)}}", function( data ) {
                     data.forEach(element => {
                         let to_date = new Date(element.theater_of_operations.created_at);
-                        $("#object_selector").append("<option value='"+element.id+"'>"+element.tail_number+" "+element.plate+" - "+element.theater_of_operations.name+" - "+appendLeadingZeroes(to_date.getDate()) + "-" + appendLeadingZeroes((to_date.getMonth() + 1)) + "-" + to_date.getFullYear()+"</option>");
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.tail_number+" "+element.plate+"</option>");
                     });
                 }, "json" );
                 break;
             case "crew":
-                $.get( "{{ route('theaters_of_operations.timetape.objects.crew') }}", function( data ) {
+                $.get( "{{route('theaters_of_operations.objects.crew',$theater_of_operations->id)}}", function( data ) {
                     data.forEach(element => {
                         let to_date = new Date(element.theater_of_operations.created_at);
-                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+element.theater_of_operations.name+" - "+appendLeadingZeroes(to_date.getDate()) + "-" + appendLeadingZeroes((to_date.getMonth() + 1)) + "-" + to_date.getFullYear()+"</option>");
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+"</option>");
                     });
                 }, "json" );
             default:
