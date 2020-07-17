@@ -8,6 +8,7 @@ use App\TheaterOfOperations;
 use App\TheaterOfOperationsEvent;
 use App\TheaterOfOperationsPOI;
 use App\TheaterOfOperationsTimeTape;
+use App\TheaterOfOperationsUnit;
 
 class TimeTapeController extends Controller
 {
@@ -35,6 +36,12 @@ class TimeTapeController extends Controller
         return response()->json($timetapes);
     }
 
+    public function unit($id)
+    {
+        $timetapes = TheaterOfOperationsTimeTape::where('description', 'LIKE', 'Meio (#'.$id.'):%')->orderBy('id', 'DESC')->get()->values();
+        return response()->json($timetapes);
+    }
+
     public function to_objects()
     {
         $objects = TheaterOfOperations::withTrashed()->orderBy('id', 'DESC')->get(['id','name','created_at']);
@@ -50,6 +57,12 @@ class TimeTapeController extends Controller
     public function event_objects()
     {
         $objects = TheaterOfOperationsEvent::with('theater_of_operations')->orderBy('id', 'DESC')->get();
+        return response()->json($objects);
+    }
+
+    public function unit_objects()
+    {
+        $objects = TheaterOfOperationsUnit::with('theater_of_operations')->orderBy('id', 'DESC')->get();
         return response()->json($objects);
     }
 }
