@@ -15,11 +15,11 @@
         <div class="form-group col-3">
             <label for="type_selector">Tipo</label>
             <select class="form-control" id="type_selector">
-                <option>Teatro de Operações</option>
-                <option>Ponto de Interesse</option>
-                <option>Evento</option>
-                <option>Meio</option>
-                <option>Operacional</option>
+                <option name="to">Teatro de Operações</option>
+                <option name="poi">Ponto de Interesse</option>
+                <option name="event">Evento</option>
+                <option name="unit">Meio</option>
+                <option name="crew">Operacional</option>
             </select>
         </div>
         <div class="form-group col-3">
@@ -74,6 +74,10 @@
             ],
             "order": [[ 0, "desc" ]]
         });
+    });
+    $( "#type_selector" ).change(function() {
+        let value = $(this).val();
+        console.log(value);
     });
 </script>
 @endsection
