@@ -16,11 +16,11 @@
             <label for="type_selector">Tipo</label>
             <select class="form-control" id="type_selector">
                 <option></option>
-                <option name="to">Teatro de Operações</option>
-                <option name="poi">Ponto de Interesse</option>
-                <option name="event">Evento</option>
-                <option name="unit">Meio</option>
-                <option name="crew">Operacional</option>
+                <option value="to">Teatro de Operações</option>
+                <option value="poi">Ponto de Interesse</option>
+                <option value="event">Evento</option>
+                <option value="unit">Meio</option>
+                <option value="crew">Operacional</option>
             </select>
         </div>
         <div class="form-group col-3">
