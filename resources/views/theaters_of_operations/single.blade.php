@@ -111,7 +111,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Descrição" name="description" autocomplete="off">
+                <input type="text" class="form-control" placeholder="Descrição" id="timetape_description" name="description" autocomplete="off">
             </div>
             <button type="submit" class="btn btn-secondary">Adicionar</button>
         </form>
@@ -331,10 +331,12 @@
     });
     function loadObjects(_type) {
         type = _type;
+        $("#timetape_description").prop('disabled', true);
         $("#object_selector").prop('disabled', true);
         $("#object_selector").html("<option></option>");
         switch (type) {
             case "to":
+                $("#timetape_description").prop('disabled', false);
                 return;
             case "poi":
                 $.get( "{{route('theaters_of_operations.objects.poi',$theater_of_operations->id)}}", function( data ) {
@@ -370,7 +372,17 @@
         $('#object_selector').select2({
             theme: 'bootstrap4',
         });
+        $("#object_selector").change(function() {
+            let value = $(this).val();
+            if(value) {
+                $("#timetape_description").prop('disabled', false);
+            }
+            else {
+                $("#timetape_description").prop('disabled', true);
+            }
+        });
     }
+
     let map = new Map({{$theater_of_operations->id}}, 'map', 11, {{$theater_of_operations->lat}}, {{$theater_of_operations->long}});
     $.fn.dataTable.moment( 'HH:mm DD/MM/YYYY' );
     let list_timetape_table = $('#list_timetape').DataTable({
