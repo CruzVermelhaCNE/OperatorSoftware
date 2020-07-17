@@ -11,6 +11,10 @@ class TheaterOfOperations extends Model
 {
     use SoftDeletes;
 
+    protected $dates = [
+        'created_at',
+    ];
+
     private const CACHE_ACTIVE                 = 'TheaterOfOperations_Active';
     private const CACHE_CONCLUDED              = 'TheaterOfOperations_Concluded';
     private const CACHE_BRIEF_TIMETAPE         = 'TheaterOfOperations_Brief_TimeTape_';

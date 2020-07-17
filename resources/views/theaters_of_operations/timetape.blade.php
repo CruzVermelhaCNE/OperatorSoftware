@@ -15,6 +15,7 @@
         <div class="form-group col-3">
             <label for="type_selector">Tipo</label>
             <select class="form-control" id="type_selector">
+                <option></option>
                 <option name="to">Teatro de Operações</option>
                 <option name="poi">Ponto de Interesse</option>
                 <option name="event">Evento</option>
@@ -77,7 +78,21 @@
     });
     $( "#type_selector" ).change(function() {
         let value = $(this).val();
-        console.log(value);
+        if(value) {
+            loadObjects(value);
+        }
     });
+
+    function loadObjects(type) {
+        switch (type) {
+            case "to":
+                $.get( "{{ route('theaters_of_operations.timetape.objects.to') }}", function( data ) {
+                    console.log(data);
+                }, "json" );
+                break;        
+            default:
+                break;
+        }
+    }
 </script>
 @endsection
