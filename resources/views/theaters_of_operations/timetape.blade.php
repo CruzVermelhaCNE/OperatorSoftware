@@ -111,6 +111,14 @@
                         $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+element.theater_of_operations.name+" - "+appendLeadingZeroes(to_date.getDate()) + "-" + appendLeadingZeroes((to_date.getMonth() + 1)) + "-" + to_date.getFullYear()+"</option>");
                     });
                 }, "json" );
+                break;
+            case "event":
+                $.get( "{{ route('theaters_of_operations.timetape.objects.event') }}", function( data ) {
+                    data.forEach(element => {
+                        let date = new Date(element.created_at);
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.location+" - "+element.theater_of_operations.name+" - "+appendLeadingZeroes(date.getDate()) + "-" + appendLeadingZeroes((date.getMonth() + 1)) + "-" + date.getFullYear()+"</option>");
+                    });
+                }, "json" );
                 break;         
             default:
                 break;

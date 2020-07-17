@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TheatersOfOperations;
 
 use App\Http\Controllers\Controller;
 use App\TheaterOfOperations;
+use App\TheaterOfOperationsEvent;
 use App\TheaterOfOperationsPOI;
 use App\TheaterOfOperationsTimeTape;
 
@@ -37,6 +38,12 @@ class TimeTapeController extends Controller
     public function poi_objects()
     {
         $objects = TheaterOfOperationsPOI::with('theater_of_operations')->orderBy('id', 'DESC')->get();
+        return response()->json($objects);
+    }
+
+    public function event_objects()
+    {
+        $objects = TheaterOfOperationsEvent::with('theater_of_operations')->orderBy('id', 'DESC')->get();
         return response()->json($objects);
     }
 }

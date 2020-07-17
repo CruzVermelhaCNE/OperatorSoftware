@@ -170,9 +170,11 @@ Route::domain('goi.emergenciacvp.pt')->name('theaters_of_operations.')->middlewa
         Route::get('all', 'TheatersOfOperations\TimeTapeController@all')->name('all');
         Route::get('to/{id}', 'TheatersOfOperations\TimeTapeController@to')->where(['id', '[0-9]+'])->name('to');
         Route::get('poi/{id}', 'TheatersOfOperations\TimeTapeController@poi')->where(['id', '[0-9]+'])->name('poi');
+        Route::get('event/{id}', 'TheatersOfOperations\TimeTapeController@event')->where(['id', '[0-9]+'])->name('event');
         Route::prefix('objects')->name('objects.')->group(function () {
             Route::get('to', 'TheatersOfOperations\TimeTapeController@to_objects')->name('to');
             Route::get('poi', 'TheatersOfOperations\TimeTapeController@poi_objects')->name('poi');
+            Route::get('event', 'TheatersOfOperations\TimeTapeController@event_objects')->name('event');
         });
     });
 
