@@ -91,6 +91,26 @@
         <form style="width:100vw;" method="POST"
             action="{{route('theaters_of_operations.addToTimeTape',['id' => $theater_of_operations->id])}}">
             @csrf
+                    <h4>Filtros</h4>
+            <div class="row">
+                <div class="form-group col-3">
+                    <label for="type_selector">Tipo</label>
+                    <select class="form-control" id="type_selector" name="type">
+                        <option></option>
+                        <option value="to">Teatro de Operações</option>
+                        <option value="poi">Ponto de Interesse</option>
+                        <option value="event">Ocorrências</option>
+                        <option value="unit">Meio</option>
+                        <option value="crew">Operacional</option>
+                    </select>
+                </div>
+                <div class="form-group col-3">
+                    <label for="object_selector">Objecto</label>
+                    <select class="form-control" id="object_selector" name="object" disabled>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Descrição" name="description" autocomplete="off">
             </div>
