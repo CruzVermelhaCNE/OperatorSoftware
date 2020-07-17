@@ -346,7 +346,6 @@
             case "event":
                 $.get( "{{route('theaters_of_operations.objects.event',$theater_of_operations->id)}}", function( data ) {
                     data.forEach(element => {
-                        let date = new Date(element.created_at);
                         $("#object_selector").append("<option value='"+element.id+"'>"+element.location+"</option>");
                     });
                 }, "json" );
@@ -354,7 +353,6 @@
             case "unit":
                 $.get( "{{route('theaters_of_operations.objects.unit',$theater_of_operations->id)}}", function( data ) {
                     data.forEach(element => {
-                        let to_date = new Date(element.theater_of_operations.created_at);
                         $("#object_selector").append("<option value='"+element.id+"'>"+element.tail_number+" "+element.plate+"</option>");
                     });
                 }, "json" );
@@ -362,7 +360,6 @@
             case "crew":
                 $.get( "{{route('theaters_of_operations.objects.crew',$theater_of_operations->id)}}", function( data ) {
                     data.forEach(element => {
-                        let to_date = new Date(element.theater_of_operations.created_at);
                         $("#object_selector").append("<option value='"+element.id+"'>"+element.name+"</option>");
                     });
                 }, "json" );
