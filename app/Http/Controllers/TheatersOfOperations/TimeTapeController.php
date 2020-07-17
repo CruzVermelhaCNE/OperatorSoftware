@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TheatersOfOperations;
 
 use App\Http\Controllers\Controller;
 use App\TheaterOfOperations;
+use App\TheaterOfOperationsCrew;
 use App\TheaterOfOperationsEvent;
 use App\TheaterOfOperationsPOI;
 use App\TheaterOfOperationsTimeTape;
@@ -42,6 +43,12 @@ class TimeTapeController extends Controller
         return response()->json($timetapes);
     }
 
+    public function crew($id)
+    {
+        $timetapes = TheaterOfOperationsTimeTape::where('description', 'LIKE', 'Operacional (#'.$id.'):%')->orderBy('id', 'DESC')->get()->values();
+        return response()->json($timetapes);
+    }
+
     public function to_objects()
     {
         $objects = TheaterOfOperations::withTrashed()->orderBy('id', 'DESC')->get(['id','name','created_at']);
@@ -63,6 +70,12 @@ class TimeTapeController extends Controller
     public function unit_objects()
     {
         $objects = TheaterOfOperationsUnit::with('theater_of_operations')->orderBy('id', 'DESC')->get();
+        return response()->json($objects);
+    }
+
+    public function crew_objects()
+    {
+        $objects = TheaterOfOperationsCrew::with('theater_of_operations')->orderBy('id', 'DESC')->get();
         return response()->json($objects);
     }
 }
