@@ -153,7 +153,7 @@ class TheaterOfOperationsController extends Controller
                 return redirect()->back()->withErrors(['msg', 'Ainda existe tripulação mobilizada neste TO']);
             }
             if ($theater_of_operations->getEvents()->where('status', '!=', TheaterOfOperationsEvent::STATUS_FINISHED)->count() > 0) {
-                return redirect()->back()->withErrors(['msg', 'Ainda existem eventos por fechar neste TO']);
+                return redirect()->back()->withErrors(['msg', 'Ainda existem ocorrências por fechar neste TO']);
             }
             $theater_of_operations->remove();
             TheaterOfOperations::resetActive();
