@@ -51,7 +51,7 @@ class TheaterOfOperationsEvent extends Model
         $theater_of_operations_event->theater_of_operations_id        = $theater_of_operations_id;
         $theater_of_operations_event->theater_of_operations_sector_id = $theater_of_operations_sector_id;
         $theater_of_operations_event->save();
-        TheaterOfOperationsTimeTape::create('Ocorrência (#'.$theater_of_operations_event->id.'): Ocorrência de tipo '.$type.' criado', $theater_of_operations_event->theater_of_operations_id, $theater_of_operations_event->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
+        TheaterOfOperationsTimeTape::create('Ocorrência (#'.$theater_of_operations_event->id.'): Ocorrência de tipo '.$type.' criada', $theater_of_operations_event->theater_of_operations_id, $theater_of_operations_event->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         return $theater_of_operations_event;
     }
 
