@@ -74,7 +74,7 @@
             loadTable("all");
         }
         else {
-            loadObjects(load_type);
+            $("#type_selector").val(load_type);
         }
     });
     $("#type_selector").change(function() {
@@ -149,7 +149,7 @@
             }
         });
         if(load_object !== null) {
-            loadTable(load_object);
+            $("#object_selector").val(load_object);
             load_object = null;
         }
     }
