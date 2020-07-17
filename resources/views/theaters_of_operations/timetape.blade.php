@@ -58,8 +58,8 @@
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/datetime-moment.js"></script>
 <script>
-    let type = null;
-    let table = null;
+    var type = null;
+    var table = null;
     $(document).ready(function() {
         $.fn.dataTable.moment( 'YYYY-MM-DD HH:mm:ss' );
         $('#type_selector').select2({
@@ -117,6 +117,7 @@
     }
 
     function loadTable(id) {
+        table.destroy();
         $('#timetape').empty();
         table = $("#timetape").dataTable( {
             "ajax": {
