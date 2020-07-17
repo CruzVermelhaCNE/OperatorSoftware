@@ -78,12 +78,14 @@
     });
     $( "#type_selector" ).change(function() {
         let value = $(this).val();
+        console.log(value);
         if(value) {
             loadObjects(value);
         }
     });
 
     function loadObjects(type) {
+        console.log(type);
         switch (type) {
             case "to":
                 $.get( "{{ route('theaters_of_operations.timetape.objects.to') }}", function( data ) {
