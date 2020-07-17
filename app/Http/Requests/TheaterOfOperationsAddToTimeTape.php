@@ -15,6 +15,8 @@ class TheaterOfOperationsAddToTimeTape extends FormRequest
     public function rules()
     {
         return [
+            'type'        => ['required','string'],
+            'object'      => ['nullable','string'],
             'description' => ['required', 'string'],
         ];
     }
