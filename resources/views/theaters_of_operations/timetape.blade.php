@@ -18,7 +18,7 @@
                 <option></option>
                 <option value="to">Teatro de Operações</option>
                 <option value="poi">Ponto de Interesse</option>
-                <option value="event">Evento</option>
+                <option value="event">Ocorrências</option>
                 <option value="unit">Meio</option>
                 <option value="crew">Operacional</option>
             </select>
