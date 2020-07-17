@@ -36,7 +36,7 @@ class TimeTapeController extends Controller
 
     public function poi_objects()
     {
-        $objects = TheaterOfOperationsPOI::with('theater_of_operations')->orderBy('id', 'DESC')->get(['id','name','created_at']);
+        $objects = TheaterOfOperationsPOI::with('theater_of_operations')->orderBy('id', 'DESC')->get();
         return response()->json($objects);
     }
 }
