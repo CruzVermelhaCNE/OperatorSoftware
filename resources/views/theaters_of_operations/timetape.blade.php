@@ -118,7 +118,7 @@
 
     function loadTable(id) {
         $('#timetape').DataTable().destroy();
-        $('#timetape').empty();
+        $('#timetape tbody').empty();
         table = $("#timetape").dataTable( {
             "ajax": {
                 "url": "{{ route('theaters_of_operations.timetape.index') }}/"+type+"/"+id,
