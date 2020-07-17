@@ -78,6 +78,7 @@
             "order": [[ 0, "desc" ]]
         });
         const urlParams = new URLSearchParams(window.location.search);
+        console.log(urlParams);
         let load_type = urlParams.get('type');
         load_object = urlParams.get('object');
         loadObjects(load_type);
