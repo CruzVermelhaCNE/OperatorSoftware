@@ -75,7 +75,7 @@ class TimeTapeController extends Controller
 
     public function crew_objects()
     {
-        $objects = TheaterOfOperationsCrew::with('theater_of_operations')->orderBy('id', 'DESC')->get();
+        $objects = TheaterOfOperationsCrew::withTrashed()->with('theater_of_operations')->orderBy('id', 'DESC')->get();
         return response()->json($objects);
     }
 }
