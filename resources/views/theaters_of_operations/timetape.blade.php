@@ -139,6 +139,9 @@
                 break;
         }
         $("#object_selector").prop('disabled', false);
+        $('#object_selector').select2({
+            theme: 'bootstrap4',
+        });
         $("#object_selector").change(function() {
             let value = $(this).val();
             if(value) {
