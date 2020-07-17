@@ -213,7 +213,7 @@ class TheaterOfOperationsCrew extends Model
         if ($this->unit) {
             $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida do Meio '.$this->unit->tail_number, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         }
-        $this->insertToTimeTape('Operacional (#'.$this->id.'): Desmobilizada', TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        $this->insertToTimeTape('Operacional (#'.$this->id.'): Desmobilizado', TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         $this->delete();
         $this->theater_of_operations->resetCrewsListing();
         $this->unit->resetCrews();

@@ -428,7 +428,7 @@ class TheaterOfOperationsUnit extends Model
         foreach ($this->crews as $crew) {
             $crew->demobilize();
         }
-        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Desmobilizada', $this->theater_of_operations_id, $this->major_sector_id);
+        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Desmobilizado', $this->theater_of_operations_id, $this->major_sector_id);
         $this->resetBriefTimeTape();
         $this->status         = self::STATUS_DEMOBILIZED;
         $this->demobilized_at = Carbon::now();
