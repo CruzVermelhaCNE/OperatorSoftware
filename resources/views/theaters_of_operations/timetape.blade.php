@@ -60,6 +60,7 @@
 <script>
     var type = null;
     var table = null;
+    var load_object = null;
     $(document).ready(function() {
         $.fn.dataTable.moment( 'YYYY-MM-DD HH:mm:ss' );
         $('#type_selector').select2({
@@ -76,6 +77,10 @@
             ],
             "order": [[ 0, "desc" ]]
         });
+        const urlParams = new URLSearchParams(window.location.search);
+        let load_type = urlParams.get('type');
+        load_object = urlParams.get('object');
+        loadObjects(load_type);
     });
     $("#type_selector").change(function() {
         let value = $(this).val();
@@ -148,6 +153,10 @@
                 loadTable(value);
             }
         });
+        if(load_object !== null) {
+            loadTable(load_object);
+            load_object = null;
+        }
     }
 
     function loadTable(id) {
