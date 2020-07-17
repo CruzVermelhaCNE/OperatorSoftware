@@ -70,22 +70,11 @@
         const urlParams = new URLSearchParams(window.location.search);
         let load_type = urlParams.get('type');
         load_object = urlParams.get('object');
-        console.log(load_type);
-        console.log(load_object);
-        loadObjects(load_type);
-        if(load_object === null) {
-            table_created = true;
-            table = $("#timetape").dataTable( {
-                "ajax": {
-                    "url": "{{ route('theaters_of_operations.timetape.all') }}",
-                    "dataSrc": ""
-                },
-                "columns": [
-                    { "data": "date" },
-                    { "data": "description" },
-                ],
-                "order": [[ 0, "desc" ]]
-            });
+        if(load_object == null) {
+            loadTable("all");
+        }
+        else {
+            loadObjects(load_type);
         }
     });
     $("#type_selector").change(function() {
@@ -173,17 +162,32 @@
             table_created = true;
         }
         $('#timetape tbody').empty();
-        table = $("#timetape").dataTable( {
-            "ajax": {
-                "url": "{{ route('theaters_of_operations.timetape.index') }}/"+type+"/"+id,
-                "dataSrc": ""
-            },
-            "columns": [
-                { "data": "date" },
-                { "data": "description" },
-            ],
-            "order": [[ 0, "desc" ]]
-        });
+        if(id != "all") {}
+            table = $("#timetape").dataTable( {
+                "ajax": {
+                    "url": "{{ route('theaters_of_operations.timetape.index') }}/"+type+"/"+id,
+                    "dataSrc": ""
+                },
+                "columns": [
+                    { "data": "date" },
+                    { "data": "description" },
+                ],
+                "order": [[ 0, "desc" ]]
+            });
+        }
+        else {
+            table = $("#timetape").dataTable( {
+                "ajax": {
+                    "url": "{{ route('theaters_of_operations.timetape.all') }}",
+                    "dataSrc": ""
+                },
+                "columns": [
+                    { "data": "date" },
+                    { "data": "description" },
+                ],
+                "order": [[ 0, "desc" ]]
+            });
+        }
     }  
     </script>
 @endsection
