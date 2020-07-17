@@ -334,6 +334,8 @@
         $("#object_selector").prop('disabled', true);
         $("#object_selector").html("<option></option>");
         switch (type) {
+            case "to":
+                return;
             case "poi":
                 $.get( "{{route('theaters_of_operations.objects.poi',$theater_of_operations->id)}}", function( data ) {
                     data.forEach(element => {

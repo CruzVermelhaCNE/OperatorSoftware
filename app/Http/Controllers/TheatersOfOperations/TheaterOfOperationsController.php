@@ -332,7 +332,7 @@ class TheaterOfOperationsController extends Controller
     public function crew_objects($id)
     {
         $theater_of_operations = TheaterOfOperations::findOrFail($id);
-        $objects               = $theater_of_operations->crews()->orderBy('id', 'DESC')->get();
+        $objects               = $theater_of_operations->crews()->withTrashed()->orderBy('id', 'DESC')->get();
         return response()->json($objects);
     }
 }
