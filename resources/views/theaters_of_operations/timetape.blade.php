@@ -66,23 +66,25 @@
         $('#type_selector').select2({
             theme: 'bootstrap4',
         });
-        table = $("#timetape").dataTable( {
-            "ajax": {
-                "url": "{{ route('theaters_of_operations.timetape.all') }}",
-                "dataSrc": ""
-            },
-            "columns": [
-                { "data": "date" },
-                { "data": "description" },
-            ],
-            "order": [[ 0, "desc" ]]
-        });
         const urlParams = new URLSearchParams(window.location.search);
         let load_type = urlParams.get('type');
         load_object = urlParams.get('object');
         console.log(load_type);
         console.log(load_object);
         loadObjects(load_type);
+        if(load_object === null) {
+            table = $("#timetape").dataTable( {
+                "ajax": {
+                    "url": "{{ route('theaters_of_operations.timetape.all') }}",
+                    "dataSrc": ""
+                },
+                "columns": [
+                    { "data": "date" },
+                    { "data": "description" },
+                ],
+                "order": [[ 0, "desc" ]]
+            });
+        }
     });
     $("#type_selector").change(function() {
         let value = $(this).val();
