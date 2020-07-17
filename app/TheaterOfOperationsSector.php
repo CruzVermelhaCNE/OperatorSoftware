@@ -20,7 +20,7 @@ class TheaterOfOperationsSector extends Model
         $theater_of_operations_sector->observations             = $observations;
         $theater_of_operations_sector->theater_of_operations_id = $theater_of_operations_id;
         $theater_of_operations_sector->save();
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: Sector '.$name.' criado', $theater_of_operations_id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: Sector '.$name.' criado', $theater_of_operations_id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         TheaterOfOperationsTimeTape::create('Sector: '.$name.' criado', null, $theater_of_operations_sector->id, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         return $theater_of_operations_sector;
     }
@@ -63,7 +63,7 @@ class TheaterOfOperationsSector extends Model
 
     public function remove()
     {
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: Sector '.$this->name.' removido', $this->theater_of_operations_id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: Sector '.$this->name.' removido', $this->theater_of_operations_id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         TheaterOfOperationsTimeTape::create('Sector: '.$this->name.' removido', null, $this->id, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         $this->delete();
     }

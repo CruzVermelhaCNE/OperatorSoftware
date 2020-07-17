@@ -29,9 +29,6 @@
                 <option></option>
             </select>
         </div>
-        <div class="form-group col-3">
-            <a href="#" class="btn btn-secondary" style="margin-top: 1.8rem;">Aplicar</a>
-        </div>
     </div>
     <hr />
     <table id="timetape" class="table table-sm table-dark table-striped table-bordered">
@@ -61,12 +58,14 @@
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/datetime-moment.js"></script>
 <script>
+    let type = null;
+    let table = null;
     $(document).ready(function() {
         $.fn.dataTable.moment( 'YYYY-MM-DD HH:mm:ss' );
         $('#type_selector').select2({
             theme: 'bootstrap4',
         });
-        $("#timetape").dataTable( {
+        table = $("#timetape").dataTable( {
             "ajax": {
                 "url": "{{ route('theaters_of_operations.timetape.all') }}",
                 "dataSrc": ""
@@ -78,9 +77,8 @@
             "order": [[ 0, "desc" ]]
         });
     });
-    $( "#type_selector" ).change(function() {
+    $("#type_selector").change(function() {
         let value = $(this).val();
-        console.log(value);
         if(value) {
             loadObjects(value);
         }
@@ -93,23 +91,45 @@
         return n
     }
 
-    function loadObjects(type) {
-        console.log(type);
+    function loadObjects(_type) {
+        type = _type;
+        $("#object_selector").prop('disabled', true);
+        $("#object_selector").html("<option></option>");
         switch (type) {
             case "to":
                 $.get( "{{ route('theaters_of_operations.timetape.objects.to') }}", function( data ) {
-                    $("#object_selector").prop('disabled', true);
-                    $("#object_selector").html("<option></option>");
                     data.forEach(element => {
                         let date = new Date(element.created_at);
                         $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+appendLeadingZeroes(date.getDate()) + "-" + appendLeadingZeroes((date.getMonth() + 1)) + "-" + date.getFullYear()+"</option>");
                     });
-                    $("#object_selector").prop('disabled', false);
                 }, "json" );
                 break;        
             default:
                 break;
         }
+        $("#object_selector").prop('disabled', false);
+        $("#object_selector").change(function() {
+            let value = $(this).val();
+            if(value) {
+                loadTable(value);
+            }
+        });
     }
-</script>
+    
+    function loadTable(id) {
+        table.destroy();
+        $("#timetape").html("");
+        table = $("#timetape").dataTable( {
+            "ajax": {
+                "url": "{{ route('theaters_of_operations.timetape.index') }}/"+type+"/"+id,
+                "dataSrc": ""
+            },
+            "columns": [
+                { "data": "date" },
+                { "data": "description" },
+            ],
+            "order": [[ 0, "desc" ]]
+        });
+    }  
+    </script>
 @endsection

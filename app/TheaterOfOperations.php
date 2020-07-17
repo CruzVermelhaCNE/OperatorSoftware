@@ -38,7 +38,7 @@ class TheaterOfOperations extends Model
         $theater_of_operations->observations     = $observations;
         $theater_of_operations->cdos             = $cdos;
         $theater_of_operations->save();
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: '.$name.' ('.$type.') criada pelo canal '.$creation_channel, $theater_of_operations->id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: '.$name.' ('.$type.') criada pelo canal '.$creation_channel, $theater_of_operations->id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         Cache::pull(self::CACHE_ACTIVE);
         return $theater_of_operations;
     }
@@ -419,7 +419,7 @@ class TheaterOfOperations extends Model
         $old        = $this->name;
         $this->name = $name;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: Nome atualizado de '.$old.' para '.$name, $this->id, null);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: Nome atualizado de '.$old.' para '.$name, $this->id, null);
         return $this;
     }
 
@@ -428,7 +428,7 @@ class TheaterOfOperations extends Model
         $old        = $this->type;
         $this->type = $type;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: Tipo atualizado de '.$old.' para '.$type, $this->id, null);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: Tipo atualizado de '.$old.' para '.$type, $this->id, null);
         return $this;
     }
 
@@ -437,7 +437,7 @@ class TheaterOfOperations extends Model
         $old                    = $this->creation_channel;
         $this->creation_channel = $creation_channel;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: Canal de criação atualizado de '.$old.' para '.$creation_channel, $this->id, null);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: Canal de criação atualizado de '.$old.' para '.$creation_channel, $this->id, null);
         return $this;
     }
 
@@ -446,7 +446,7 @@ class TheaterOfOperations extends Model
         $old            = $this->location;
         $this->location = $location;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: Localização atualizada de '.$old.' para '.$location, $this->id, null);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: Localização atualizada de '.$old.' para '.$location, $this->id, null);
         return $this;
     }
 
@@ -456,7 +456,7 @@ class TheaterOfOperations extends Model
         $this->lat  = $lat;
         $this->long = $long;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: Localização GPS atualizada de LatLong '.$old.' para LatLong '.$lat.' '.$long, $this->id, null);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: Localização GPS atualizada de LatLong '.$old.' para LatLong '.$lat.' '.$long, $this->id, null);
         return $this;
     }
 
@@ -465,7 +465,7 @@ class TheaterOfOperations extends Model
         $old         = $this->level;
         $this->level = $level;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: Nível atualizado de '.$old.' para '.$level, $this->id, null);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: Nível atualizado de '.$old.' para '.$level, $this->id, null);
         return $this;
     }
 
@@ -485,13 +485,13 @@ class TheaterOfOperations extends Model
         }
         $this->cdos = $cdos;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: Número CDOS atualizado de '.$old.' para '.$cdos, $this->id, null);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: Número CDOS atualizado de '.$old.' para '.$cdos, $this->id, null);
         return $this;
     }
 
     public function remove()
     {
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: '.$this->name.' ('.$this->type.') encerrado', $this->id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: '.$this->name.' ('.$this->type.') encerrado', $this->id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         $this->delete();
         $this->resetCrewsListing();
         $this->resetUnitsListing();
@@ -499,7 +499,7 @@ class TheaterOfOperations extends Model
 
     public function reopen()
     {
-        TheaterOfOperationsTimeTape::create('Ocorrência Major: '.$this->name.' ('.$this->type.') reaberto', $this->id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
+        TheaterOfOperationsTimeTape::create('Teatro de Operações: '.$this->name.' ('.$this->type.') reaberto', $this->id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         $this->restore();
         $this->resetCrewsListing();
         $this->resetUnitsListing();

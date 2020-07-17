@@ -168,6 +168,7 @@ Route::domain('goi.emergenciacvp.pt')->name('theaters_of_operations.')->middlewa
     Route::prefix('timetape')->name('timetape.')->group(function () {
         Route::get('/', 'TheatersOfOperationsPanelController@timetape')->name('index');
         Route::get('all', 'TheatersOfOperations\TimeTapeController@all')->name('all');
+        Route::get('to/{id}', 'TheatersOfOperations\TimeTapeController@to')->where(['id', '[0-9]+'])->name('to');
         Route::prefix('objects')->name('objects.')->group(function () {
             Route::get('to', 'TheatersOfOperations\TimeTapeController@to_objects')->name('to');
         });

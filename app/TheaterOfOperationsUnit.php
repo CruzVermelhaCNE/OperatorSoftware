@@ -70,7 +70,7 @@ class TheaterOfOperationsUnit extends Model
         $theater_of_operations_unit->base_long                = $base_long;
         $theater_of_operations_unit->theater_of_operations_id = $theater_of_operations_id;
         $theater_of_operations_unit->save();
-        TheaterOfOperationsTimeTape::create('Meio (#'.$theater_of_operations_unit->id.'): Atribuida à Ocorrência Major', $theater_of_operations_unit->theater_of_operations_id, $theater_of_operations_unit->major_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        TheaterOfOperationsTimeTape::create('Meio (#'.$theater_of_operations_unit->id.'): Atribuida à Teatro de Operações', $theater_of_operations_unit->theater_of_operations_id, $theater_of_operations_unit->major_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         return $theater_of_operations_unit;
     }
 
