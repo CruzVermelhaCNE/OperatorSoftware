@@ -86,6 +86,13 @@
         }
     });
 
+    function appendLeadingZeroes(n){
+        if(n <= 9){
+            return "0" + n;
+        }
+        return n
+    }
+
     function loadObjects(type) {
         console.log(type);
         switch (type) {
@@ -95,7 +102,7 @@
                     $("#object_selector").html("<option></option>");
                     data.forEach(element => {
                         let date = new Date(element.created_at);
-                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()+"</option>");
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+appendLeadingZeroes(date.getDate()) + "-" + appendLeadingZeroes((date.getMonth() + 1)) + "-" + date.getFullYear()+"</option>");
                     });
                     $("#object_selector").prop('disabled', false);
                 }, "json" );
