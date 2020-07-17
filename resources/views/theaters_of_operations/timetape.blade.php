@@ -162,7 +162,7 @@
             table_created = true;
         }
         $('#timetape tbody').empty();
-        if(id != "all") {}
+        if(id != "all") {
             table = $("#timetape").dataTable( {
                 "ajax": {
                     "url": "{{ route('theaters_of_operations.timetape.index') }}/"+type+"/"+id,
