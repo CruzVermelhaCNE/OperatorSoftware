@@ -103,7 +103,16 @@
                         $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+appendLeadingZeroes(date.getDate()) + "-" + appendLeadingZeroes((date.getMonth() + 1)) + "-" + date.getFullYear()+"</option>");
                     });
                 }, "json" );
-                break;        
+                break;
+            case "poi":
+                $.get( "{{ route('theaters_of_operations.timetape.objects.poi') }}", function( data ) {
+                    data.forEach(element => {
+                        console.log(element);
+                        let date = new Date(element.created_at);
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+element.theater_of_operations.name+"</option>");
+                    });
+                }, "json" );
+                break;         
             default:
                 break;
         }
