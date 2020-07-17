@@ -139,7 +139,7 @@ class TheaterOfOperationsCrew extends Model
         $this->save();
         $this->load('poi');
         $this->load('unit');
-        $this->insertToTimeTape('Operacional (#'.$this->id.'): Removido ao Ponto de Interesse - '.$this->poi->name, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        $this->insertToTimeTape('Operacional (#'.$this->id.'): Destacado para o Ponto de Interesse - '.$this->poi->name, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         $this->theater_of_operations->resetCrewsListing();
     }
 
@@ -158,7 +158,7 @@ class TheaterOfOperationsCrew extends Model
         $this->save();
         $this->load('poi');
         $this->load('unit');
-        $this->insertToTimeTape('Operacional (#'.$this->id.'): Removido do Meio '.($this->unit->tail_number?$this->unit->tail_number:$this->unit->plate), TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        $this->insertToTimeTape('Operacional (#'.$this->id.'): Destacado para o Meio '.($this->unit->tail_number?$this->unit->tail_number:$this->unit->plate), TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         $this->theater_of_operations->resetCrewsListing();
     }
 
