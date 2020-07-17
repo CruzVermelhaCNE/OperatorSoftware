@@ -29,6 +29,12 @@ class TimeTapeController extends Controller
         return response()->json($timetapes);
     }
 
+    public function event($id)
+    {
+        $timetapes = TheaterOfOperationsTimeTape::where('description', 'LIKE', 'Ocorrência (#'.$id.'):%')->orderBy('id', 'DESC')->get()->values();
+        return response()->json($timetapes);
+    }
+
     public function to_objects()
     {
         $objects = TheaterOfOperations::withTrashed()->orderBy('id', 'DESC')->get(['id','name','created_at']);
