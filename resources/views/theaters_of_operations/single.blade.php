@@ -68,7 +68,7 @@
         </div>
     </div>
     <div class="row">
-        <h4 style="text-align: center;width:100vw;">Fita do Tempo (Resumo) - <a href="{{route('theaters_of_operations.timetape.index', {'type'=>'to','object'=>$theater_of_operations->id})}}">Ver Todo</a></h4>
+        <h4 style="text-align: center;width:100vw;">Fita do Tempo (Resumo) - <a href="{{route('theaters_of_operations.timetape.index', ['type'=>'to','object'=>$theater_of_operations->id])}}">Ver Todo</a></h4>
         <table id="list_timetape" style="width:100%" class="table table-sm table-dark table-striped table-bordered">
             <thead>
                 <tr>
