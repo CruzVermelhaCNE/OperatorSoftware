@@ -321,6 +321,67 @@
 <script src="https://cdn.datatables.net/plug-ins/1.10.20/sorting/datetime-moment.js"></script>
 <script src="{{ mix('js/map.js') }}"></script>
 <script>
+    $('#type_selector').select2({
+        theme: 'bootstrap4',
+    });
+    $("#type_selector").change(function() {
+        let value = $(this).val();
+        if(value) {
+            loadObjects(value);
+        }
+    });
+    function loadObjects(_type) {
+        type = _type;
+        $("#object_selector").prop('disabled', true);
+        $("#object_selector").html("<option></option>");
+        switch (type) {
+            case "to":
+                $.get( "{{ route('theaters_of_operations.timetape.objects.to') }}", function( data ) {
+                    data.forEach(element => {
+                        let date = new Date(element.created_at);
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+appendLeadingZeroes(date.getDate()) + "-" + appendLeadingZeroes((date.getMonth() + 1)) + "-" + date.getFullYear()+"</option>");
+                    });
+                }, "json" );
+                break;
+            case "poi":
+                $.get( "{{ route('theaters_of_operations.timetape.objects.poi') }}", function( data ) {
+                    data.forEach(element => {
+                        let to_date = new Date(element.theater_of_operations.created_at);
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+element.theater_of_operations.name+" - "+appendLeadingZeroes(to_date.getDate()) + "-" + appendLeadingZeroes((to_date.getMonth() + 1)) + "-" + to_date.getFullYear()+"</option>");
+                    });
+                }, "json" );
+                break;
+            case "event":
+                $.get( "{{ route('theaters_of_operations.timetape.objects.event') }}", function( data ) {
+                    data.forEach(element => {
+                        let date = new Date(element.created_at);
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.location+" - "+element.theater_of_operations.name+" - "+appendLeadingZeroes(date.getDate()) + "-" + appendLeadingZeroes((date.getMonth() + 1)) + "-" + date.getFullYear()+"</option>");
+                    });
+                }, "json" );
+                break;
+            case "unit":
+                $.get( "{{ route('theaters_of_operations.timetape.objects.unit') }}", function( data ) {
+                    data.forEach(element => {
+                        let to_date = new Date(element.theater_of_operations.created_at);
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.tail_number+" "+element.plate+" - "+element.theater_of_operations.name+" - "+appendLeadingZeroes(to_date.getDate()) + "-" + appendLeadingZeroes((to_date.getMonth() + 1)) + "-" + to_date.getFullYear()+"</option>");
+                    });
+                }, "json" );
+                break;
+            case "crew":
+                $.get( "{{ route('theaters_of_operations.timetape.objects.crew') }}", function( data ) {
+                    data.forEach(element => {
+                        let to_date = new Date(element.theater_of_operations.created_at);
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+element.theater_of_operations.name+" - "+appendLeadingZeroes(to_date.getDate()) + "-" + appendLeadingZeroes((to_date.getMonth() + 1)) + "-" + to_date.getFullYear()+"</option>");
+                    });
+                }, "json" );
+            default:
+                break;
+        }
+        $("#object_selector").prop('disabled', false);
+        $('#object_selector').select2({
+            theme: 'bootstrap4',
+        });
+    }
     let map = new Map({{$theater_of_operations->id}}, 'map', 11, {{$theater_of_operations->lat}}, {{$theater_of_operations->long}});
     $.fn.dataTable.moment( 'HH:mm DD/MM/YYYY' );
     let list_timetape_table = $('#list_timetape').DataTable({
