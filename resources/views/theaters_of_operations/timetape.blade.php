@@ -61,6 +61,7 @@
     var type = null;
     var table = null;
     var load_object = null;
+    var table_created = false;
     $(document).ready(function() {
         $.fn.dataTable.moment( 'YYYY-MM-DD HH:mm:ss' );
         $('#type_selector').select2({
@@ -73,6 +74,7 @@
         console.log(load_object);
         loadObjects(load_type);
         if(load_object === null) {
+            table_created = true;
             table = $("#timetape").dataTable( {
                 "ajax": {
                     "url": "{{ route('theaters_of_operations.timetape.all') }}",
@@ -164,7 +166,12 @@
     }
 
     function loadTable(id) {
-        $('#timetape').DataTable().destroy();
+        if(table_created) {
+            $('#timetape').DataTable().destroy();
+        }
+        else {
+            table_created = true;
+        }
         $('#timetape tbody').empty();
         table = $("#timetape").dataTable( {
             "ajax": {
