@@ -17,7 +17,7 @@ class TimeTapeController extends Controller
 
     public function to_objects()
     {
-        $objects = TheaterOfOperations::all(['id','name','created_at']);
+        $objects = TheaterOfOperations::withTrashed()->all(['id','name','created_at']);
         return response()->json($objects);
     }
 }

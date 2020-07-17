@@ -25,7 +25,9 @@
         </div>
         <div class="form-group col-3">
             <label for="object_selector">Objecto</label>
-            <input type="number" min="0" step="1" class="form-control" id="object_selector" disabled>
+            <select class="form-control" id="object_selector" disabled>
+                <option></option>
+            </select>
         </div>
         <div class="form-group col-3">
             <a href="#" class="btn btn-secondary" style="margin-top: 1.8rem;">Aplicar</a>
@@ -89,7 +91,13 @@
         switch (type) {
             case "to":
                 $.get( "{{ route('theaters_of_operations.timetape.objects.to') }}", function( data ) {
-                    console.log(data);
+                    $("#object_selector").prop('disabled', true);
+                    $("#object_selector").html("<option></option>");
+                    data.forEach(element => {
+                        let date = new Date(element.created_at);
+                        $("#object_selector").append("<option value='"+element.id+"'>"+element.name+" - "+date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()+"</option>");
+                    });
+                    $("#object_selector").prop('disabled', false);
                 }, "json" );
                 break;        
             default:
