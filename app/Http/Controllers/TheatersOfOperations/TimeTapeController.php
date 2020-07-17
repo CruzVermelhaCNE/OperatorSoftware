@@ -17,7 +17,7 @@ class TimeTapeController extends Controller
 
     public function to_objects()
     {
-        $objects = TheaterOfOperations::withTrashed()->get(['id','name','created_at']);
+        $objects = TheaterOfOperations::withTrashed()->orderBy('id', 'DESC')->get(['id','name','created_at']);
         return response()->json($objects);
     }
 }
