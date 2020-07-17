@@ -117,7 +117,7 @@
     }
 
     function loadTable(id) {
-        table.destroy();
+        $('#timetape').DataTable().destroy();
         $('#timetape').empty();
         table = $("#timetape").dataTable( {
             "ajax": {
