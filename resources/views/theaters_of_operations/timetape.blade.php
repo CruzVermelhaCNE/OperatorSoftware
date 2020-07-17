@@ -78,9 +78,10 @@
             "order": [[ 0, "desc" ]]
         });
         const urlParams = new URLSearchParams(window.location.search);
-        console.log(urlParams);
         let load_type = urlParams.get('type');
         load_object = urlParams.get('object');
+        console.log(load_type);
+        console.log(load_object);
         loadObjects(load_type);
     });
     $("#type_selector").change(function() {
