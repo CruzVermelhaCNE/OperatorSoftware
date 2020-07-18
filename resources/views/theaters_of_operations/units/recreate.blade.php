@@ -31,6 +31,8 @@
                 @endforeach
             </select>
         </div>
+        <button type="submit" class="btn btn-secondary">Readicionar</button>
+        <a class="btn btn-info" href="{{route('theaters_of_operations.single',$theater_of_operations->id)}}">Voltar</a>
     </form>
 </div>
 @endsection
