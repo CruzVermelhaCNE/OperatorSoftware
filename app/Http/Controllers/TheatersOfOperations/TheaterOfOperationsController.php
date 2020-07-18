@@ -151,13 +151,16 @@ class TheaterOfOperationsController extends Controller
         if ($validated['type'] == 'to') {
             $description = 'Teatro de Operações: '.$validated['description'];
         } elseif ($validated['type'] == 'poi') {
-            $description = 'Ponto de Interesse (#'.$validated['object'].'): '.$validated['description'];
+            $poi         = TheaterOfOperationsPOI::find($validated['object']);
+            $description = 'Ponto de Interesse (#'.$validated['object'].'): '.($poi->name).' '.$validated['description'];
         } elseif ($validated['type'] == 'event') {
             $description = 'Ocorrência (#'.$validated['object'].'): '.$validated['description'];
         } elseif ($validated['type'] == 'unit') {
-            $description = 'Meio (#'.$validated['object'].'): '.$validated['description'];
+            $unit        = TheaterOfOperationsUnit::find($validated['object']);
+            $description = 'Meio (#'.$validated['object'].'): '.($unit->tail_number?$unit->tail_number:$unit->plate).' '.$validated['description'];
         } elseif ($validated['type'] == 'crew') {
-            $description = 'Operacional (#'.$validated['object'].'): '.$validated['description'];
+            $crew        = TheaterOfOperationsCrew::find($validated['object']);
+            $description = 'Operacional (#'.$validated['object'].'): '.($crew->name).' '.$validated['description'];
         }
         TheaterOfOperationsTimeTape::create($description, $theater_of_operations->id, null, TheaterOfOperationsTimeTape::TYPE_CUSTOM);
         return redirect()->route('theaters_of_operations.single', $theater_of_operations->id);
