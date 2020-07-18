@@ -38,8 +38,7 @@
             <p>Ocorrências Ativas: {{$theater_of_operations->getEvents()->count()}}</p>
             <p>Meios: {{$theater_of_operations->getUnits()->count()}}</p>
             <p>Operacionais: {{$theater_of_operations->getCrews()->count()}}</p>
-            <p>Oficial de Ligação: @if ($theater_of_operations->coordination->where('role','=','Oficial de
-                Ligação')->first())
+            <p>Oficial de Ligação: @if ($theater_of_operations->coordination->where('role','=','Oficial de Ligação')->first())
                 {{$theater_of_operations->coordination->where('role','=','Oficial de Ligação')->first()->name}} -
                 {{$theater_of_operations->coordination->where('role','=','Oficial de Ligação')->first()->contact}}@else
                 N/A @endif</p>
