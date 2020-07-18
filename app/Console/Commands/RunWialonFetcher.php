@@ -51,12 +51,13 @@ class RunWialonFetcher extends Command
             $geotracking = TheaterOfOperationsUnitGeoTracking::query()->join('theater_of_operations_units', 'theater_of_operations_unit_id', '=', 'theater_of_operations_units.id')->where([['system','=','Wialon'],['theater_of_operations_units.status','!=',TheaterOfOperationsUnit::STATUS_DEMOBILIZED]])->get();
             foreach ($geotracking as $single_geotracking) {
                 $response = Http::get('https://hst-api.wialon.com/wialon/ajax.html', [
-                'svc'    => 'core/search_item',
-                'params' => \json_encode(['id' => $single_geotracking->external_id,'flags' => 1024]),
-                'sid'    => $sid,
-            ]);
+                    'svc'    => 'core/search_item',
+                    'params' => \json_encode(['id' => $single_geotracking->external_id,'flags' => 1024]),
+                    'sid'    => $sid,
+                ]);
                 $lat  = $response['item']['pos']['y'];
                 $long = $response['item']['pos']['x'];
+                echo($single_geotracking->tail_number.' - X:'.$lat.' Y:'.$long."\n");
                 if ($single_geotracking->lat != $lat || $single_geotracking->long != $long) {
                     $single_geotracking->updateGPSLocation($lat, $long);
                 }
