@@ -43,9 +43,11 @@ class TheaterOfOperationsSlackNotification extends Notification
             env('SLACK_WEBHOOK_URL'),
             [
                 'form_params' => [
-                    'channel'  => $notifiable->slack_channel,
-                    'username' => 'goi',
-                    'text'     => $this->message,
+                    'payload' => [
+                        'channel'  => $notifiable->slack_channel,
+                        'username' => 'goi',
+                        'text'     => $this->message,
+                    ],
                 ],
             ]
         );
