@@ -5,7 +5,7 @@ namespace App\Channels;
 
 use Illuminate\Notifications\Notification;
 
-class CNEChannel
+class CustomSlackChannel
 {
     /**
      * Send the given notification.
@@ -16,7 +16,7 @@ class CNEChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        $message = $notification->toCNE($notifiable);
+        $message = $notification->toCustomSlack($notifiable);
 
         // Send notification to the $notifiable instance...
     }
