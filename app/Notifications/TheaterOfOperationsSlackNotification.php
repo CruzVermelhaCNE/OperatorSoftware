@@ -6,7 +6,6 @@ namespace App\Notifications;
 use App\Channels\CustomSlackChannel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Http;
 
 class TheaterOfOperationsSlackNotification extends Notification
 {
@@ -40,13 +39,16 @@ class TheaterOfOperationsSlackNotification extends Notification
         \var_dump($notifiable->slack_channel);
         \var_dump($this->message);
         $client   = new \GuzzleHttp\Client();
-        $response = Http::post(env('SLACK_WEBHOOK_URL'), [
-            'payload' => [
-                'channel'  => $notifiable->slack_channel,
-                'username' => 'goi',
-                'text'     => $this->message,
-            ],
-        ]);
+        $response = $client->post(
+            env('SLACK_WEBHOOK_URL'),
+            [
+                'payload' => [
+                    'channel'  => $notifiable->slack_channel,
+                    'username' => 'goi',
+                    'text'     => $this->message,
+                ],
+            ]
+        );
         \var_dump($response);
         return null;
     }
