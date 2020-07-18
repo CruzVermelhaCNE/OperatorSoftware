@@ -58,9 +58,7 @@ class RunWialonFetcher extends Command
                 $lat  = $response['item']['pos']['y'];
                 $long = $response['item']['pos']['x'];
                 echo($single_geotracking->tail_number.' - X:'.$lat.' Y:'.$long."\n");
-                if ($single_geotracking->lat != $lat || $single_geotracking->long != $long) {
-                    $single_geotracking->updateGPSLocation($lat, $long);
-                }
+                $single_geotracking->updateGPSLocation($lat, $long);
             }
             \sleep(5);
         }
