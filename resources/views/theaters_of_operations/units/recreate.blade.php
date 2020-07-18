@@ -1,10 +1,8 @@
 @extends('theaters_of_operations/layouts/panel')
 
-@if ($unit)
-@section('pageTitle', 'Editar Meio')
-@else
-@section('pageTitle', 'Criar Meio')
-@endif
+
+@section('pageTitle', 'Readicionar Meio')
+
 
 @section('style')
 @parent
