@@ -30,10 +30,10 @@ class TheaterOfOperationsSlackNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['custom_slack'];
+        return ['cne'];
     }
 
-    public function toCustomSlack($notifiable)
+    public function toCNE($notifiable)
     {
         \var_dump($notifiable->slack_channel);
         \var_dump($this->message);
