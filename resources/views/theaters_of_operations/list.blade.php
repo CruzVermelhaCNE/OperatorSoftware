@@ -45,7 +45,7 @@
                 <th>Nome</th>
                 <th>Tipo</th>
                 <th>Nivel</th>
-                <th>Ocorrências Ativas</th>
+                <th>Ocorrências</th>
                 <th>Meios</th>
                 <th>Operacionais</th>
                 <th>Ações</th>
@@ -58,7 +58,7 @@
                 <th>Nome</th>
                 <th>Tipo</th>
                 <th>Nivel</th>
-                <th>Ocorrências Ativas</th>
+                <th>Ocorrências</th>
                 <th>Meios</th>
                 <th>Operacionais</th>
                 <th>Ações</th>
