@@ -39,12 +39,11 @@ class TheaterOfOperationsUnitGeoTracking extends Model
 
     public function updateGPSLocation($lat, $long)
     {
-        \var_dump($lat);
-        \var_dump($long);
         $this->lat  = $lat;
         $this->long = $long;
         $this->save();
         $this->unit->theater_of_operations->resetUnitsListing();
+        \var_dump($this);
         echo("Update GPS Location\n");
         return $this;
     }
