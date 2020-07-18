@@ -35,7 +35,7 @@
             <p>Canal de Criação: {{$theater_of_operations->creation_channel}}</p>
             <p>Nº CDOS: {{$theater_of_operations->cdos}}</p>
             <p>Localização: {{$theater_of_operations->location}} (<a href="#map" onclick="centerMap()">Centrar</a>)</p>
-            <p>Ocorrências Ativas: {{$theater_of_operations->getEvents()->where('status', '!=', 3)->count()}}</p>
+            <p>Ocorrências Ativas: {{$theater_of_operations->getActiveEvents()->count()}}</p>
             <p>Meios: {{$theater_of_operations->getUnits()->count()}}</p>
             <p>Operacionais: {{$theater_of_operations->getCrews()->count()}}</p>
             <p>Oficial de Ligação: @if ($theater_of_operations->coordination->where('role','=','Oficial de Ligação')->first())

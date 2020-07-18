@@ -55,7 +55,7 @@ class TheaterOfOperations extends Model
                 $theater_of_operations->name,
                 $theater_of_operations->type,
                 $theater_of_operations->level,
-                $theater_of_operations->getEvents()->where('status', '!=', TheaterOfOperationsEvent::STATUS_FINISHED)->count(),
+                $theater_of_operations->getActiveEvents()->count(),
                 $theater_of_operations->getUnits()->count(),
                 $theater_of_operations->getCrews()->count(),
                 $theater_of_operations->id,
@@ -152,6 +152,12 @@ class TheaterOfOperations extends Model
             $events = $events->concat($sector->events);
         }
         return $events;
+    }
+
+    public function getActiveEvents()
+    {
+        $events = $this->getEvents();
+        return $events->where('status', '!=', TheaterOfOperationsEvent::STATUS_FINISHED);
     }
 
     public function generateBriefTimeTape()
