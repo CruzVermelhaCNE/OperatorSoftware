@@ -69,7 +69,9 @@ class CrewsController extends Controller
             $crew->updateObservations($validated['observations']);
         }
         $crew->theater_of_operations->resetCrewsListing();
-        $crew->unit->resetCrewsListing();
+        if ($crew->unit) {
+            $crew->unit->resetCrews();
+        }
         return redirect()->route('theaters_of_operations.crews.single', ['id' => $crew->theater_of_operations->id, 'crew_id' => $crew->id]);
     }
 
