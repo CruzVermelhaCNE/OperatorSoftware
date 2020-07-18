@@ -263,7 +263,7 @@ class TheaterOfOperations extends Model
 
     public function generateEventsListing()
     {
-        $events = $this->getEvents();
+        $events = $this->getEvents()->where('status', '!=', TheaterOfOperationsEvent::STATUS_FINISHED);
         $array  = [];
         foreach ($events as $event) {
             $array[] = [
