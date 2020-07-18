@@ -36,8 +36,6 @@ class TheaterOfOperationsSlackNotification extends Notification
 
     public function toCustomSlack($notifiable)
     {
-        \var_dump($notifiable->slack_channel);
-        \var_dump($this->message);
         $client   = new \GuzzleHttp\Client();
         $response = $client->post(
             env('SLACK_WEBHOOK_URL'),
@@ -45,11 +43,10 @@ class TheaterOfOperationsSlackNotification extends Notification
                 \GuzzleHttp\RequestOptions::JSON => [
                     'channel'  => $notifiable->slack_channel,
                     'username' => 'goi',
-                    'text'     => 'tests',
+                    'text'     => $this->message,
                 ],
             ]
         );
-        \var_dump($response);
         return null;
     }
 
