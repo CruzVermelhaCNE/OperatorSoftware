@@ -185,11 +185,9 @@ class UnitsController extends Controller
 
     public function recreate(TheaterOfOperationsUnitRecreate $request)
     {
-        $validated    = $request->validated();
-        $unit         = TheaterOfOperationsUnit::find($validated['unit']);
-        $unit->status = TheaterOfOperationsUnit::STATUS_INOP;
-        $unit->save();
-        $unit->theater_of_operations->resetUnitsListing();
+        $validated = $request->validated();
+        $unit      = TheaterOfOperationsUnit::find($validated['unit']);
+        $unit->recreate();
         return redirect()->route('theaters_of_operations.units.single', ['id' => $unit->theater_of_operations->id, 'unit_id' => $unit->id]);
     }
 

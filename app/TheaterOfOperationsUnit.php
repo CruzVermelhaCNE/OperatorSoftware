@@ -74,6 +74,15 @@ class TheaterOfOperationsUnit extends Model
         return $theater_of_operations_unit;
     }
 
+    public function recreate()
+    {
+        $this->status = self::STATUS_INOP;
+        $this->save();
+        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Remobilizado', $this->theater_of_operations_id, $this->major_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        $this->resetBriefTimeTape();
+        $this->theater_of_operations->resetUnitsListing();
+    }
+
     public function getDeploymentAttribute()
     {
         if ($this->active_event) {
