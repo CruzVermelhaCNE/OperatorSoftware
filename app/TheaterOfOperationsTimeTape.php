@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Notifications\TheaterOfOperationsSlackNotification;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -33,6 +34,9 @@ class TheaterOfOperationsTimeTape extends Model
         $time_tape->save();
         if ($type == self::TYPE_CREATION_DELETION || $type == self::TYPE_CUSTOM) {
             $time_tape->theater_of_operations->resetBriefTimeTape();
+        }
+        if ($time_tape->theater_of_operations->slack_channel) {
+            $time_tape->theater_of_operations->notify((new TheaterOfOperationsSlackNotification($description)));
         }
         return $time_tape;
     }
