@@ -210,6 +210,6 @@ class TheaterOfOperationsEventVictim extends Model
 
     public function event_unit()
     {
-        return $this->belongsTo(TheaterOfOperationsEventUnit::class, 'theater_of_operations_event_unit_id', 'id');
+        return $this->belongsTo(TheaterOfOperationsEventUnit::class, 'theater_of_operations_event_id', 'id');
     }
 }
