@@ -276,7 +276,7 @@ class TheaterOfOperationsController extends Controller
     public function recreateUnit($id)
     {
         $theater_of_operations = TheaterOfOperations::findOrFail($id);
-        $deleted_units         = $theater_of_operations->units()->onlyTrashed()->get();
+        $deleted_units         = $theater_of_operations->units()->where('status', '=', TheaterOfOperationsUnit::STATUS_DEMOBILIZED)->get();
         return view('theaters_of_operations.units.recreate', ['deleted_units' => $deleted_units,'theater_of_operations' => $theater_of_operations]);
     }
 
