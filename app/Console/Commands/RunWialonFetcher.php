@@ -55,6 +55,7 @@ class RunWialonFetcher extends Command
                     'params' => \json_encode(['id' => $single_geotracking->external_id,'flags' => 1024]),
                     'sid'    => $sid,
                 ]);
+                \var_dump($response['item']['pos']);
                 $lat  = $response['item']['pos']['y'];
                 $long = $response['item']['pos']['x'];
                 echo($single_geotracking->tail_number.' - X:'.$lat.' Y:'.$long."\n");
