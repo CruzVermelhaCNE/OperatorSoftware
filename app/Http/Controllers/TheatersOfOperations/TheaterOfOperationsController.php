@@ -25,7 +25,10 @@ class TheaterOfOperationsController extends Controller
         if ($validated['cdos'] == '') {
             $validated['cdos'] = null;
         }
-        $theater_of_operations = TheaterOfOperations::create($validated['name'], $validated['type'], $validated['creation_channel'], $validated['location'], $validated['lat'], $validated['long'], $validated['level'], $validated['observations'], $validated['cdos']);
+        if ($validated['slack_channel'] == '') {
+            $validated['slack_channel'] = null;
+        }
+        $theater_of_operations = TheaterOfOperations::create($validated['name'], $validated['type'], $validated['creation_channel'], $validated['location'], $validated['lat'], $validated['long'], $validated['level'], $validated['observations'], $validated['cdos'], $validated['slack_channel']);
         return redirect()->route('theaters_of_operations.single', $theater_of_operations->id);
     }
 
@@ -102,6 +105,9 @@ class TheaterOfOperationsController extends Controller
         if ($validated['cdos'] == '') {
             $validated['cdos'] = null;
         }
+        if ($validated['slack_channel'] == '') {
+            $validated['slack_channel'] = null;
+        }
         if ($theater_of_operations->name != $validated['name']) {
             $theater_of_operations->updateName($validated['name']);
         }
@@ -116,6 +122,9 @@ class TheaterOfOperationsController extends Controller
         }
         if ($theater_of_operations->cdos != $validated['cdos']) {
             $theater_of_operations->updateCDOS($validated['cdos']);
+        }
+        if ($theater_of_operations->slack_channel != $validated['slack_channel']) {
+            $theater_of_operations->updateSlackChannel($validated['slack_channel']);
         }
         if ($theater_of_operations->observations != $validated['observations']) {
             $theater_of_operations->updateObservations($validated['observations']);

@@ -24,6 +24,7 @@ class TheaterOfOperationsEdit extends FormRequest
             'level'            => ['required', 'string'],
             'observations'     => ['nullable', 'string'],
             'cdos'             => ['nullable', 'string'],
+            'slack_channel'    => ['nullable', 'string'],
         ];
     }
 }

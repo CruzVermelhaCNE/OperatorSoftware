@@ -5,10 +5,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
 
 class TheaterOfOperations extends Model
 {
+    use Notifiable;
     use SoftDeletes;
 
     protected $dates = [
@@ -25,7 +27,7 @@ class TheaterOfOperations extends Model
     private const CACHE_EVENTS                 = 'TheaterOfOperations_Events_';
     private const CACHE_UNITS                  = 'TheaterOfOperations_Units_';
 
-    public static function create($name, $type, $creation_channel, $location, $lat, $long, $level, $observations, $cdos = null)
+    public static function create($name, $type, $creation_channel, $location, $lat, $long, $level, $observations, $cdos = null, $slack_channel = null)
     {
         $theater_of_operations                   = new TheaterOfOperations();
         $theater_of_operations->name             = $name;
@@ -37,6 +39,7 @@ class TheaterOfOperations extends Model
         $theater_of_operations->level            = $level;
         $theater_of_operations->observations     = $observations;
         $theater_of_operations->cdos             = $cdos;
+        $theater_of_operations->slack_channel    = $slack_channel;
         $theater_of_operations->save();
         TheaterOfOperationsTimeTape::create('Teatro de Operações: '.$name.' ('.$type.') criada pelo canal '.$creation_channel, $theater_of_operations->id, null, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         Cache::pull(self::CACHE_ACTIVE);
@@ -486,6 +489,17 @@ class TheaterOfOperations extends Model
         $this->cdos = $cdos;
         $this->save();
         TheaterOfOperationsTimeTape::create('Teatro de Operações: Número CDOS atualizado de '.$old.' para '.$cdos, $this->id, null);
+        return $this;
+    }
+
+    public function updateSlackChannel($slack_channel)
+    {
+        $old = $this->slack_channel;
+        if ($old == null) {
+            $old = 'N/A';
+        }
+        $this->slack_channel = $slack_channel;
+        $this->save();
         return $this;
     }
 

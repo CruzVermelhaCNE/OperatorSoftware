@@ -68,7 +68,11 @@
         </div>
         <div class="form-group">
             <label>Número CDOS (Opcional)</label>
-            <input type="text" class="form-control" placeholder="Número CDOS" name="cdos" @if ($theater_of_operations) value="{{$theater_of_operations->cdos}}" @else value="{{ old('location') }}" @endif>
+            <input type="text" class="form-control" placeholder="Número CDOS" name="cdos" @if ($theater_of_operations) value="{{$theater_of_operations->cdos}}" @else value="{{ old('cdos') }}" @endif>
+        </div>
+        <div class="form-group">
+            <label>Canal Slack (Opcional)</label>
+            <input type="text" class="form-control" placeholder="Canal Slack" name="slack_channel" @if ($theater_of_operations) value="{{$theater_of_operations->slack_channel}}" @else value="{{ old('slack_channel') }}" @endif>
         </div>
         <button type="submit" class="btn btn-secondary">{{$theater_of_operations?"Guardar":"Criar"}}</button>
         @if($theater_of_operations)
