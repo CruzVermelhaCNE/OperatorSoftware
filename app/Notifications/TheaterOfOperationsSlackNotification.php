@@ -42,10 +42,12 @@ class TheaterOfOperationsSlackNotification extends Notification
         $response = $client->post(
             env('SLACK_WEBHOOK_URL'),
             [
-                'payload' => [
-                    'channel'  => $notifiable->slack_channel,
-                    'username' => 'goi',
-                    'text'     => $this->message,
+                \GuzzleHttp\RequestOptions::JSON => [
+                    'payload' => [
+                        'channel'  => $notifiable->slack_channel,
+                        'username' => 'goi',
+                        'text'     => $this->message,
+                    ],
                 ],
             ]
         );
