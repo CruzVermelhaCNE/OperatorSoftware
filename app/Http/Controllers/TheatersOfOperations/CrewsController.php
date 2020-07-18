@@ -8,6 +8,7 @@ use App\Http\Requests\TheaterOfOperationsCrewAssignToPOI;
 use App\Http\Requests\TheaterOfOperationsCrewAssignToUnit;
 use App\Http\Requests\TheaterOfOperationsCrewCreate;
 use App\Http\Requests\TheaterOfOperationsCrewEdit;
+use App\Http\Requests\TheaterOfOperationsCrewRecreate;
 use App\Http\Requests\TheaterOfOperationsCrewUpdateObservations;
 use App\TheaterOfOperationsCrew;
 use App\TheaterOfOperationsEventUnitCrew;
@@ -70,6 +71,14 @@ class CrewsController extends Controller
         $crew->theater_of_operations->resetCrewsListing();
         $crew->unit->resetCrewsListing();
         return redirect()->route('theaters_of_operations.crews.single', ['id' => $crew->theater_of_operations->id, 'crew_id' => $crew->id]);
+    }
+
+    public function recreate(TheaterOfOperationsCrewRecreate $request)
+    {
+        $validated = $request->validated();
+        $crew      = TheaterOfOperationsUnit::withTrashed()->find($validated['crew']);
+        $crew->recreate();
+        return redirect()->route('theaters_of_operations.crews.single', ['id' => $unit->theater_of_operations->id, 'crew_id' => $crew->id]);
     }
 
     public function assignToPOI($id, $crew_id, TheaterOfOperationsCrewAssignToPOI $request)

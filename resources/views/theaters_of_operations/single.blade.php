@@ -270,6 +270,8 @@
         @if(!$theater_of_operations->trashed())
         <a href="{{route('theaters_of_operations.crews.create',$theater_of_operations->id)}}"
             class="btn btn-secondary">Adicionar Operacional</a>
+        <a href="{{route('theaters_of_operations.crews.recreate',$theater_of_operations->id)}}"
+             class="btn btn-secondary">Readicionar Operacional</a>   
             @endif
     </div>
     <div class="row">

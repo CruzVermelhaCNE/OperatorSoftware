@@ -316,6 +316,8 @@ Route::domain('goi.emergenciacvp.pt')->name('theaters_of_operations.')->middlewa
     Route::prefix('{id}/crews')->where(['id', '[0-9]+'])->name('crews.')->group(function () {
         Route::get('create', 'TheatersOfOperations\TheaterOfOperationsController@createCrew')->name('create');
         Route::post('create', 'TheatersOfOperations\CrewsController@create');
+        Route::get('recreate', 'TheatersOfOperations\TheaterOfOperationsController@recreateCrew')->name('recreate');
+        Route::post('recreate', 'TheatersOfOperations\CrewsController@recreate');
 
         Route::get('{crew_id}/', 'TheatersOfOperations\CrewsController@single')->where(['crew_id', '[0-9]+'])->name('single');
         Route::get('{crew_id}/getBriefTimeTape', 'TheatersOfOperations\CrewsController@getBriefTimeTape')->where(['crew_id', '[0-9]+'])->name('getBriefTimeTape');

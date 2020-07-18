@@ -300,6 +300,13 @@ class TheaterOfOperationsController extends Controller
         return view('theaters_of_operations.crews.edit', ['crew' => null,'theater_of_operations' => $theater_of_operations]);
     }
 
+    public function recreateCrew($id)
+    {
+        $theater_of_operations = TheaterOfOperations::findOrFail($id);
+        $deleted_crews         = $theater_of_operations->crews()->onlyTrashed()->get();
+        return view('theaters_of_operations.crews.recreate', ['deleted_crews' => $deleted_crews,'theater_of_operations' => $theater_of_operations]);
+    }
+
     public function editCrew($id, $crew_id)
     {
         $theater_of_operations = TheaterOfOperations::findOrFail($id);

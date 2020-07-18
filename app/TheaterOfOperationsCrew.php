@@ -36,6 +36,16 @@ class TheaterOfOperationsCrew extends Model
         return $theater_of_operations_crew;
     }
 
+    public function recreate()
+    {
+        $this->restore();
+        TheaterOfOperationsTimeTape::create('Operacional (#'.$this->id.'): Remobilizado', $this->theater_of_operations_id, $this->major_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        $this->theater_of_operations->resetCrewsListing();
+        if ($this->unit) {
+            $this->unit->resetCrews();
+        }
+    }
+
     private function insertToTimeTape($description, $type = TheaterOfOperationsTimeTape::TYPE_MODIFICATION)
     {
         $theater_of_operations_id        = null;
