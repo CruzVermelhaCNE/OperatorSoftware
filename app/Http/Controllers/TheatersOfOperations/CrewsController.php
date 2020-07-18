@@ -76,9 +76,9 @@ class CrewsController extends Controller
     public function recreate(TheaterOfOperationsCrewRecreate $request)
     {
         $validated = $request->validated();
-        $crew      = TheaterOfOperationsUnit::withTrashed()->find($validated['crew']);
+        $crew      = TheaterOfOperationsCrew::withTrashed()->find($validated['crew']);
         $crew->recreate();
-        return redirect()->route('theaters_of_operations.crews.single', ['id' => $unit->theater_of_operations->id, 'crew_id' => $crew->id]);
+        return redirect()->route('theaters_of_operations.crews.single', ['id' => $crew->theater_of_operations->id, 'crew_id' => $crew->id]);
     }
 
     public function assignToPOI($id, $crew_id, TheaterOfOperationsCrewAssignToPOI $request)
