@@ -62,7 +62,7 @@ class TheaterOfOperationsEventVictim extends Model
             case self::STATUS_ON_SCENE:
                 return $this->event->lat;
             case self::STATUS_ON_WAY_TO_DESTINATION:
-                return $this->unit->lat;
+                return $this->event_unit->unit->lat;
             case self::STATUS_ON_DESTINATION:
                 return $this->destination_lat;
         }
@@ -78,7 +78,7 @@ class TheaterOfOperationsEventVictim extends Model
             case self::STATUS_ON_SCENE:
                 return $this->event->long;
             case self::STATUS_ON_WAY_TO_DESTINATION:
-                return $this->unit->long;
+                return $this->event_unit->unit->long;
             case self::STATUS_ON_DESTINATION:
                 return $this->destination_long;
         }
