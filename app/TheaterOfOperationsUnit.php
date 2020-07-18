@@ -70,7 +70,7 @@ class TheaterOfOperationsUnit extends Model
         $theater_of_operations_unit->base_long                = $base_long;
         $theater_of_operations_unit->theater_of_operations_id = $theater_of_operations_id;
         $theater_of_operations_unit->save();
-        TheaterOfOperationsTimeTape::create('Meio (#'.$theater_of_operations_unit->id.'): Atribuida à Teatro de Operações', $theater_of_operations_unit->theater_of_operations_id, $theater_of_operations_unit->major_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        TheaterOfOperationsTimeTape::create('Meio (#'.$theater_of_operations_unit->id.'): '.($theater_of_operations_unit->tail_number?$theater_of_operations_unit->tail_number:$theater_of_operations_unit->plate).' - Atribuida à Teatro de Operações', $theater_of_operations_unit->theater_of_operations_id, $theater_of_operations_unit->major_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         return $theater_of_operations_unit;
     }
 
@@ -79,7 +79,7 @@ class TheaterOfOperationsUnit extends Model
         $this->status         = self::STATUS_INOP;
         $this->demobilized_at = null;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Remobilizado', $this->theater_of_operations_id, $this->major_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Remobilizado', $this->theater_of_operations_id, $this->major_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         $this->resetBriefTimeTape();
         $this->theater_of_operations->resetUnitsListing();
     }
@@ -316,11 +316,11 @@ class TheaterOfOperationsUnit extends Model
     public function assignToSector($theater_of_operations_sector_id)
     {
         if ($this->theater_of_operations_poi_id) {
-            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Removida do Ponto de Interesse '.$this->poi->name, $this->theater_of_operations_id, $this->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Removido do Ponto de Interesse '.$this->poi->name, $this->theater_of_operations_id, $this->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
             $this->theater_of_operations_poi_id = null;
         }
         if ($this->theater_of_operations_sector_id) {
-            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Removida do Sector', null, $this->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Removido do Sector', null, $this->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
             $this->theater_of_operations_sector_id = null;
         }
         $this->theater_of_operations_sector_id = $theater_of_operations_sector_id;
@@ -328,8 +328,8 @@ class TheaterOfOperationsUnit extends Model
         $this->load('poi');
         $this->load('theater_of_operations');
         if ($this->theater_of_operations_sector_id) {
-            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Atribuida ao Sector '.$this->sector->name, $this->sector->theater_of_operations->id, null, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
-            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Atribuida ao Sector', null, $theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Atribuido ao Sector '.$this->sector->name, $this->sector->theater_of_operations->id, null, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Atribuido ao Sector', null, $theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         }
         $this->resetBriefTimeTape();
         return $this;
@@ -338,7 +338,7 @@ class TheaterOfOperationsUnit extends Model
     public function assignToPOI($theater_of_operations_poi_id)
     {
         if ($this->theater_of_operations_poi_id) {
-            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Removida do Ponto de Interesse '.$this->poi->name, $this->theater_of_operations_id, $this->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Removido do Ponto de Interesse '.$this->poi->name, $this->theater_of_operations_id, $this->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
             $this->theater_of_operations_poi_id = null;
         }
         $this->theater_of_operations_poi_id = $theater_of_operations_poi_id;
@@ -346,7 +346,7 @@ class TheaterOfOperationsUnit extends Model
         $this->load('poi');
         $this->load('theater_of_operations');
         if ($this->theater_of_operations_poi_id) {
-            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Atribuida ao  Ponto de Interesse '.$this->poi->name, $this->theater_of_operations_id, $this->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Atribuido ao Ponto de Interesse '.$this->poi->name, $this->theater_of_operations_id, $this->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         }
         $this->resetBriefTimeTape();
         $this->theater_of_operations->resetUnitsListing();
@@ -358,7 +358,7 @@ class TheaterOfOperationsUnit extends Model
         $old        = $this->type;
         $this->type = $type;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Tipo atualizado de '.$old.' para '.$type, $this->theater_of_operations_id, $this->major_sector_id);
+        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Tipo atualizado de '.$old.' para '.$type, $this->theater_of_operations_id, $this->major_sector_id);
         $this->resetBriefTimeTape();
         $this->theater_of_operations->resetUnitsListing();
         return $this;
@@ -372,7 +372,7 @@ class TheaterOfOperationsUnit extends Model
         }
         $this->plate = $plate;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Matricula atualizada de '.$old.' para '.$plate, $this->theater_of_operations_id, $this->major_sector_id);
+        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Matricula atualizada de '.$old.' para '.$plate, $this->theater_of_operations_id, $this->major_sector_id);
         $this->resetBriefTimeTape();
         $this->theater_of_operations->resetUnitsListing();
         return $this;
@@ -386,7 +386,7 @@ class TheaterOfOperationsUnit extends Model
         }
         $this->tail_number = $tail_number;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Nº de Cauda atualizada de '.$old.' para '.$tail_number, $this->theater_of_operations_id, $this->major_sector_id);
+        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Nº de Cauda atualizada de '.$old.' para '.$tail_number, $this->theater_of_operations_id, $this->major_sector_id);
         $this->resetBriefTimeTape();
         $this->theater_of_operations->resetUnitsListing();
         return $this;
@@ -397,7 +397,7 @@ class TheaterOfOperationsUnit extends Model
         $old          = $this->status;
         $this->status = $status;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Status atualizado de '.self::getStatusTextFromNumber($old).' para '.self::getStatusTextFromNumber($status), $this->theater_of_operations_id, $this->major_sector_id);
+        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Status atualizado de '.self::getStatusTextFromNumber($old).' para '.self::getStatusTextFromNumber($status), $this->theater_of_operations_id, $this->major_sector_id);
         $this->resetBriefTimeTape();
         $this->theater_of_operations->resetUnitsListing();
         return $this;
@@ -416,7 +416,7 @@ class TheaterOfOperationsUnit extends Model
         $old             = $this->structure;
         $this->structure = $structure;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Estrutura atualizada de '.$old.' para '.$structure, $this->theater_of_operations_id, $this->major_sector_id);
+        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Estrutura atualizada de '.$old.' para '.$structure, $this->theater_of_operations_id, $this->major_sector_id);
         $this->resetBriefTimeTape();
         $this->theater_of_operations->resetUnitsListing();
         return $this;
@@ -428,7 +428,7 @@ class TheaterOfOperationsUnit extends Model
         $this->base_lat  = $base_lat;
         $this->base_long = $base_long;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Localização GPS da base atualizada de LatLong '.$old.' para '.$base_lat.' '.$base_long, $this->theater_of_operations_id, $this->major_sector_id);
+        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Localização GPS da base atualizada de LatLong '.$old.' para '.$base_lat.' '.$base_long, $this->theater_of_operations_id, $this->major_sector_id);
         $this->resetBriefTimeTape();
         return $this;
     }
@@ -438,7 +438,7 @@ class TheaterOfOperationsUnit extends Model
         foreach ($this->crews as $crew) {
             $crew->demobilize();
         }
-        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): Desmobilizado', $this->theater_of_operations_id, $this->major_sector_id);
+        TheaterOfOperationsTimeTape::create('Meio (#'.$this->id.'): '.($this->tail_number?$this->tail_number:$this->plate).' - Desmobilizado', $this->theater_of_operations_id, $this->major_sector_id);
         $this->resetBriefTimeTape();
         $this->status         = self::STATUS_DEMOBILIZED;
         $this->demobilized_at = Carbon::now();

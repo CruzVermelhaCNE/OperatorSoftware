@@ -34,7 +34,7 @@ class TheaterOfOperationsPOI extends Model
         $old        = $this->name;
         $this->name = $name;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Ponto de Interesse (#'.$this->id.'): Nome atualizado de '.$old.' para '.$name, $this->theater_of_operations_id, $this->theater_of_operations_sector_id);
+        TheaterOfOperationsTimeTape::create('Ponto de Interesse (#'.$this->id.'): '.$this->name.' - Nome atualizado de '.$old.' para '.$name, $this->theater_of_operations_id, $this->theater_of_operations_sector_id);
         return $this;
     }
 
@@ -43,7 +43,7 @@ class TheaterOfOperationsPOI extends Model
         $old            = $this->location;
         $this->location = $location;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Ponto de Interesse (#'.$this->id.'): Localização atualizada de '.$old.' para '.$location, $this->theater_of_operations_id, $this->theater_of_operations_sector_id);
+        TheaterOfOperationsTimeTape::create('Ponto de Interesse (#'.$this->id.'): '.$this->name.' - Localização atualizada de '.$old.' para '.$location, $this->theater_of_operations_id, $this->theater_of_operations_sector_id);
         return $this;
     }
 
@@ -53,7 +53,7 @@ class TheaterOfOperationsPOI extends Model
         $this->lat  = $lat;
         $this->long = $long;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Ponto de Interesse (#'.$this->id.'): Localização GPS atualizada de LatLong '.$old.' para LatLong '.$lat.' '.$long, $this->theater_of_operations_id, $this->theater_of_operations_sector_id);
+        TheaterOfOperationsTimeTape::create('Ponto de Interesse (#'.$this->id.'): '.$this->name.' - Localização GPS atualizada de LatLong '.$old.' para LatLong '.$lat.' '.$long, $this->theater_of_operations_id, $this->theater_of_operations_sector_id);
         return $this;
     }
 
@@ -62,7 +62,7 @@ class TheaterOfOperationsPOI extends Model
         $old          = $this->symbol;
         $this->symbol = $symbol;
         $this->save();
-        TheaterOfOperationsTimeTape::create('Ponto de Interesse (#'.$this->id.'): Simbolo atualizado de '.$old.' para '.$symbol, $this->theater_of_operations_id, $this->theater_of_operations_sector_id);
+        TheaterOfOperationsTimeTape::create('Ponto de Interesse (#'.$this->id.'): '.$this->name.' - Simbolo atualizado de '.$old.' para '.$symbol, $this->theater_of_operations_id, $this->theater_of_operations_sector_id);
         return $this;
     }
 
@@ -79,7 +79,7 @@ class TheaterOfOperationsPOI extends Model
         foreach ($this->units as $unit) {
             $unit->assignToPOI(null);
         }
-        TheaterOfOperationsTimeTape::create('Ponto de Interesse (#'.$this->id.'): '.$this->name.' removido', $this->theater_of_operations_id, $this->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
+        TheaterOfOperationsTimeTape::create('Ponto de Interesse (#'.$this->id.'): '.$this->name.' - '.$this->name.' removido', $this->theater_of_operations_id, $this->theater_of_operations_sector_id, TheaterOfOperationsTimeTape::TYPE_CREATION_DELETION);
         $this->delete();
     }
 

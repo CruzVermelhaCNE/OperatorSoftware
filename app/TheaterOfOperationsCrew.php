@@ -39,7 +39,7 @@ class TheaterOfOperationsCrew extends Model
     public function recreate()
     {
         $this->restore();
-        TheaterOfOperationsTimeTape::create('Operacional (#'.$this->id.'): Remobilizado', $this->theater_of_operations_id, $this->major_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        TheaterOfOperationsTimeTape::create('Operacional (#'.$this->id.'): '.$this->name.' - Remobilizado', $this->theater_of_operations_id, $this->major_sector_id, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         $this->theater_of_operations->resetCrewsListing();
         if ($this->unit) {
             $this->unit->resetCrews();
@@ -136,39 +136,39 @@ class TheaterOfOperationsCrew extends Model
     public function assignToPOI($theater_of_operations_poi_id)
     {
         if ($this->unit) {
-            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removido do Meio '.$this->unit->tail_number, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Removido do Meio '.($this->unit->tail_number?$this->unit->tail_number:$this->unit->plate), TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
             $this->unit->resetCrews();
 
             $this->theater_of_operations_unit_id = null;
         }
         if ($this->poi) {
-            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removido do Ponto de Interesse - '.$this->poi->name, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Removido do Ponto de Interesse - '.$this->poi->name, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
             $this->theater_of_operations_poi_id = null;
         }
         $this->theater_of_operations_poi_id = $theater_of_operations_poi_id;
         $this->save();
         $this->load('poi');
         $this->load('unit');
-        $this->insertToTimeTape('Operacional (#'.$this->id.'): Destacado para o Ponto de Interesse - '.$this->poi->name, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Destacado para o Ponto de Interesse - '.$this->poi->name, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         $this->theater_of_operations->resetCrewsListing();
     }
 
     public function assignToUnit($theater_of_operations_unit_id)
     {
         if ($this->unit) {
-            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removido da Meio '.$this->unit->tail_number, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Removido da Meio '.($this->unit->tail_number?$this->unit->tail_number:$this->unit->plate), TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
             $this->unit->resetCrews();
             $this->theater_of_operations_unit_id = null;
         }
         if ($this->poi) {
-            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removido do Ponto de Interesse - '.$this->poi->name, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Removido do Ponto de Interesse - '.$this->poi->name, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
             $this->theater_of_operations_poi_id = null;
         }
         $this->theater_of_operations_unit_id = $theater_of_operations_unit_id;
         $this->save();
         $this->load('poi');
         $this->load('unit');
-        $this->insertToTimeTape('Operacional (#'.$this->id.'): Destacado para o Meio '.($this->unit->tail_number?$this->unit->tail_number:$this->unit->plate), TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Destacado para o Meio '.($this->unit->tail_number?$this->unit->tail_number:$this->unit->plate), TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         $this->theater_of_operations->resetCrewsListing();
     }
 
@@ -177,7 +177,7 @@ class TheaterOfOperationsCrew extends Model
         $old        = $this->name;
         $this->name = $name;
         $this->save();
-        $this->insertToTimeTape('Operacional (#'.$this->id.'): Nome atualizado de '.$old.' para '.$name);
+        $this->insertToTimeTape('Operacional (#'.$this->id.'):  '.$this->name.' - Nome atualizado de '.$old.' para '.$name);
         return $this;
     }
 
@@ -186,7 +186,7 @@ class TheaterOfOperationsCrew extends Model
         $old           = $this->contact;
         $this->contact = $contact;
         $this->save();
-        $this->insertToTimeTape('Operacional (#'.$this->id.'): Contacto atualizado de '.$old.' para '.$contact);
+        $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Contacto atualizado de '.$old.' para '.$contact);
         return $this;
     }
 
@@ -195,7 +195,7 @@ class TheaterOfOperationsCrew extends Model
         $old       = $this->age;
         $this->age = $age;
         $this->save();
-        $this->insertToTimeTape('Operacional (#'.$this->id.'): Idade atualizada de '.$old.' para '.$age);
+        $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Idade atualizada de '.$old.' para '.$age);
         return $this;
     }
 
@@ -204,7 +204,7 @@ class TheaterOfOperationsCrew extends Model
         $old          = $this->course;
         $this->course = $course;
         $this->save();
-        $this->insertToTimeTape('Operacional (#'.$this->id.'): Formação atualizada de '.$old.' para '.$course);
+        $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Formação atualizada de '.$old.' para '.$course);
         return $this;
     }
 
@@ -218,12 +218,12 @@ class TheaterOfOperationsCrew extends Model
     public function demobilize()
     {
         if ($this->poi) {
-            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida do Ponto de Interesse - '.$this->poi->name, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Removido do Ponto de Interesse - '.$this->poi->name, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         }
         if ($this->unit) {
-            $this->insertToTimeTape('Operacional (#'.$this->id.'): Removida do Meio '.$this->unit->tail_number, TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+            $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Removida do Meio '.($this->unit->tail_number?$this->unit->tail_number:$this->unit->plate), TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         }
-        $this->insertToTimeTape('Operacional (#'.$this->id.'): Desmobilizado', TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
+        $this->insertToTimeTape('Operacional (#'.$this->id.'): '.$this->name.' - Desmobilizado', TheaterOfOperationsTimeTape::TYPE_UNIT_MOVEMENTS);
         $this->delete();
         $this->theater_of_operations->resetCrewsListing();
         $this->unit->resetCrews();
