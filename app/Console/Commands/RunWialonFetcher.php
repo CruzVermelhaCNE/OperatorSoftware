@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\TheaterOfOperationsUnit;
+use App\TheaterOfOperationsUnitGeoTracking;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class RunWialonFetcher extends Command
@@ -48,7 +48,7 @@ class RunWialonFetcher extends Command
         ]);
         $sid = $response['eid'];
         while (true) {
-            $geotracking = DB::table('theater_of_operations_unit_geo_trackings')->join('theater_of_operations_units', 'theater_of_operations_unit_id', '=', 'theater_of_operations_units.id')->where([['system','=','Wialon'],['theater_of_operations_units.status','!=',TheaterOfOperationsUnit::STATUS_DEMOBILIZED]])->get();
+            $geotracking = TheaterOfOperationsUnitGeoTracking::query()->join('theater_of_operations_units', 'theater_of_operations_unit_id', '=', 'theater_of_operations_units.id')->where([['system','=','Wialon'],['theater_of_operations_units.status','!=',TheaterOfOperationsUnit::STATUS_DEMOBILIZED]])->get();
             foreach ($geotracking as $single_geotracking) {
                 $response = Http::get('https://hst-api.wialon.com/wialon/ajax.html', [
                 'svc'    => 'core/search_item',
