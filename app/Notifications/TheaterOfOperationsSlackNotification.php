@@ -46,7 +46,7 @@ class TheaterOfOperationsSlackNotification extends Notification
                     'payload' => [
                         'channel'  => $notifiable->slack_channel,
                         'username' => 'goi',
-                        'text'     => $this->message,
+                        'text'     => 'tests',
                     ],
                 ],
             ]
