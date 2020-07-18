@@ -32,6 +32,7 @@
             <label>Tipo</label>
             <select class="form-control" name="type">
                 <option value="Incêndio" @if ($theater_of_operations) @if($theater_of_operations->type == "Incêndio") selected @endif @else @if (old("type") == "Incêndio") selected @endif @endif>Incêndio</option>
+                <option value="Reforço SIEM" @if ($theater_of_operations) @if($theater_of_operations->type == "Reforço SIEM") selected @endif @else @if (old("type") == "Reforço SIEM") selected @endif @endif>Reforço SIEM</option>
             </select>
         </div>
         <div class="form-group">

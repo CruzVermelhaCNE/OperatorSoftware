@@ -1261,7 +1261,8 @@ class Map {
         let that = this;
         axios.get("/info")
             .then(function (response) {
-                let incendio_features = [];
+                let geral_features = [];
+                let incendio_features = [];                
                 response.data.forEach(to => {
                     if (to["type"] == "Incêndio") {
                         incendio_features.push({
@@ -1276,8 +1277,22 @@ class Map {
                             }
                         });
                     }
+                    else {
+                        geral_features.push({
+                            'type': 'Feature',
+                            'properties': {
+                                'to_id': to["id"],
+                                'name': to["name"],
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [to["long"], to["lat"]]
+                            }
+                        });
+                    }
                 });
                 callback({
+                    "geral": geral_features,
                     "incêndio": incendio_features,
                 });
             });
@@ -1287,6 +1302,13 @@ class Map {
         let that = this;
         this.getTOsFeatures(function (features) {
             if (addSources) {
+                that.mapbox_map.addSource('icons_OcorrênciaGeral', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'FeatureCollection',
+                        'features': features["geral"]
+                    }
+                });
                 that.mapbox_map.addSource('icons_Incêndio', {
                     'type': 'geojson',
                     'data': {
@@ -1296,6 +1318,28 @@ class Map {
                 });
             }
             if (createLayer) {
+                that.mapbox_map.addLayer({
+                    'id': 'layer_icons_OcorrênciaGeral',
+                    'type': 'symbol',
+                    'source': 'icons_OcorrênciaGeral',
+                    'paint': {
+                        "text-color": "#a10000",
+                        'text-halo-width': 2,
+                        'text-halo-color': "#ffffff",
+                    },
+                    'layout': {
+                        'text-anchor': 'bottom',
+                        'text-field': '{name}',
+                        'icon-image': 'icon_OcorrênciaGeral',
+                        'icon-size': ['interpolate', ['linear'],
+                            ['zoom'], 5, 0.5, 7, 0.75, 13, 1
+                        ],
+                        'icon-allow-overlap': true,
+                        'text-allow-overlap': true,
+                        'icon-ignore-placement': true,
+                        'text-ignore-placement': true,
+                    }
+                });
                 that.mapbox_map.addLayer({
                     'id': 'layer_icons_Incêndio',
                     'type': 'symbol',
@@ -1325,6 +1369,11 @@ class Map {
     updateTOs() {
         let that = this;
         let features = this.getTOsFeatures(function (features) {
+            that.mapbox_map.getSource('icons_OcorrênciaGeral').setData({
+                'type': 'FeatureCollection',
+                'features': features["geral"]
+
+            });
             that.mapbox_map.getSource('icons_Incêndio').setData({
                 'type': 'FeatureCollection',
                 'features': features["incêndio"]
