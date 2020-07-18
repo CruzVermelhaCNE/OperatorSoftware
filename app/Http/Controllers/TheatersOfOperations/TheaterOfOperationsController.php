@@ -273,6 +273,13 @@ class TheaterOfOperationsController extends Controller
         return view('theaters_of_operations.units.edit', ['unit' => null,'theater_of_operations' => $theater_of_operations]);
     }
 
+    public function recreateUnit($id)
+    {
+        $theater_of_operations = TheaterOfOperations::findOrFail($id);
+        $deleted_units         = $theater_of_operations->units()->onlyTrashed()->get();
+        return view('theaters_of_operations.units.recreate', ['deleted_units' => $deleted_units,'theater_of_operations' => $theater_of_operations]);
+    }
+
     public function editUnit($id, $unit_id)
     {
         $theater_of_operations = TheaterOfOperations::findOrFail($id);

@@ -9,6 +9,7 @@ use App\Http\Requests\TheaterOfOperationsUnitCreate;
 use App\Http\Requests\TheaterOfOperationsUnitCreateCommunicationChannel;
 use App\Http\Requests\TheaterOfOperationsUnitCreateGeotracking;
 use App\Http\Requests\TheaterOfOperationsUnitEdit;
+use App\Http\Requests\TheaterOfOperationsUnitRecreate;
 use App\Http\Requests\TheaterOfOperationsUnitUpdateCommunicationChannel;
 use App\Http\Requests\TheaterOfOperationsUnitUpdateGeotracking;
 use App\Http\Requests\TheaterOfOperationsUnitUpdateObservations;
@@ -178,6 +179,15 @@ class UnitsController extends Controller
         if ($unit->base_lat != $validated['base_lat'] || $unit->base_long != $validated['base_long']) {
             $unit->updateBaseGPSLocation($validated['base_lat'], $validated['base_long']);
         }
+        $unit->theater_of_operations->resetUnitsListing();
+        return redirect()->route('theaters_of_operations.units.single', ['id' => $unit->theater_of_operations->id, 'unit_id' => $unit->id]);
+    }
+
+    public function recreate(TheaterOfOperationsUnitRecreate $request)
+    {
+        $validated = $request->validated();
+        $unit      = TheaterOfOperationsUnit::withTrashed()->find($validated['unit']);
+        $unit->restore();
         $unit->theater_of_operations->resetUnitsListing();
         return redirect()->route('theaters_of_operations.units.single', ['id' => $unit->theater_of_operations->id, 'unit_id' => $unit->id]);
     }

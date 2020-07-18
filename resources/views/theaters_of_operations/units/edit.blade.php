@@ -66,7 +66,7 @@
         <div class="form-group">
             <label>Matricula</label>
             <input type="text" class="form-control" placeholder="Matricula" name="plate" @if ($unit)
-                value="{{$unit->plate}}" @else value="{{old('type')}}" @endif>
+                value="{{$unit->plate}}" @else value="{{old('plate')}}" @endif>
         </div>
         <div class="form-group">
             <label>Nº de Cauda</label>
