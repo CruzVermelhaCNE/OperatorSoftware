@@ -43,11 +43,9 @@ class TheaterOfOperationsSlackNotification extends Notification
             env('SLACK_WEBHOOK_URL'),
             [
                 \GuzzleHttp\RequestOptions::JSON => [
-                    'payload' => [
-                        'channel'  => $notifiable->slack_channel,
-                        'username' => 'goi',
-                        'text'     => 'tests',
-                    ],
+                    'channel'  => $notifiable->slack_channel,
+                    'username' => 'goi',
+                    'text'     => 'tests',
                 ],
             ]
         );
