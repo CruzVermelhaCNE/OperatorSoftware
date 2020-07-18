@@ -43,6 +43,7 @@ class TheaterOfOperationsUnitGeoTracking extends Model
         $this->long = $long;
         $this->save();
         $this->unit->theater_of_operations->resetUnitsListing();
+        echo("Update GPS Location\n");
         return $this;
     }
 
