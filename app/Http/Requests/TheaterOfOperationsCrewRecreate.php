@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
@@ -7,16 +8,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class TheaterOfOperationsCrewRecreate extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -24,7 +15,8 @@ class TheaterOfOperationsCrewRecreate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'theater_of_operations_id' => ['required', 'exists:theater_of_operations,id'],
+            'crew'                     => ['required', 'exists:theater_of_operations_crews,id'],
         ];
     }
 }
