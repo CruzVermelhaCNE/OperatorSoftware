@@ -37,8 +37,8 @@ class TheaterOfOperationsSlackNotification extends Notification
     {
         \var_dump($notifiable->slack_channel);
         \var_dump($this->message);
-        $client = new \GuzzleHttp\Client();
-        $client->post(
+        $client   = new \GuzzleHttp\Client();
+        $response = $client->post(
             env('SLACK_WEBHOOK_URL'),
             [
                 'form_params' => [
@@ -48,6 +48,7 @@ class TheaterOfOperationsSlackNotification extends Notification
                 ],
             ]
         );
+        \var_dump($response);
         return null;
     }
 
