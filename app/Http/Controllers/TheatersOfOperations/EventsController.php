@@ -34,7 +34,7 @@ class EventsController extends Controller
         $event           = TheaterOfOperationsEvent::findOrFail($event_id);
         $available_units = null;
         if (! $event->isFinished()) {
-            $available_units = TheaterOfOperationsUnit::whereIn('status', [TheaterOfOperationsUnit::STATUS_BASE,TheaterOfOperationsUnit::STATUS_ON_WAY_TO_BASE])->get();
+            $available_units = TheaterOfOperationsUnit::whereIn('status', [TheaterOfOperationsUnit::STATUS_BASE,TheaterOfOperationsUnit::STATUS_ON_WAY_TO_BASE])->where('theater_of_operations_id', '=', $id)->get();
         }
         return view('theaters_of_operations.events.single', ['event' => $event, 'available_units' => $available_units]);
     }
