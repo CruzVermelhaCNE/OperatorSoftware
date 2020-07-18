@@ -255,7 +255,7 @@
                     <div class="input-group">
                         <select class="custom-select" id="victim_assign_unit" name="event_unit">
                             @foreach ($event->event_units as $event_unit)
-                            <option value="{{$event_unit->id}}">ABC {{$event_unit->unit->plate}}</option>
+                            <option value="{{$event_unit->id}}">@if ($event_unit->unit->tail_number) {{$event_unit->unit->tail_number}} @else {{$event_unit->unit->plate}} @endif</option>
                             @endforeach
                         </select>
                         <div class="input-group-append">
