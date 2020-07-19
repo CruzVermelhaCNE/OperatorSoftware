@@ -15,6 +15,7 @@ class TheaterOfOperations extends Model
 
     protected $dates = [
         'created_at',
+        'deleted_at',
     ];
 
     private const CACHE_ACTIVE                 = 'TheaterOfOperations_Active';
@@ -90,6 +91,8 @@ class TheaterOfOperations extends Model
         $array                  = [];
         foreach ($theaters_of_operations as $theater_of_operations) {
             $array[] = [
+                $theater_of_operations->created_at,
+                $theater_of_operations->deleted_at,
                 $theater_of_operations->name,
                 $theater_of_operations->type,
                 $theater_of_operations->level,

@@ -42,6 +42,8 @@
     <table id="list_concluded" class="table table-sm table-dark table-striped table-bordered">
         <thead>
             <tr>
+                <th>Inicio A</th>
+                <th>Fecho A</th>
                 <th>Nome</th>
                 <th>Tipo</th>
                 <th>Nivel</th>
@@ -55,6 +57,8 @@
         </tbody>
         <tfoot>
             <tr>
+                <th>Inicio A</th>
+                <th>Fecho A</th>
                 <th>Nome</th>
                 <th>Tipo</th>
                 <th>Nivel</th>
