@@ -42,8 +42,8 @@
     <table id="list_concluded" class="table table-sm table-dark table-striped table-bordered">
         <thead>
             <tr>
-                <th>Inicio A</th>
-                <th>Fecho A</th>
+                <th>Inicio</th>
+                <th>Fecho</th>
                 <th>Nome</th>
                 <th>Tipo</th>
                 <th>Nivel</th>
@@ -57,8 +57,8 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>Inicio A</th>
-                <th>Fecho A</th>
+                <th>Inicio</th>
+                <th>Fecho</th>
                 <th>Nome</th>
                 <th>Tipo</th>
                 <th>Nivel</th>
@@ -76,7 +76,10 @@
 @parent
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.20/sorting/datetime-moment.js"></script>
 <script>
+    $.fn.dataTable.moment( 'HH:mm DD/MM/YYYY' );
     $(document).ready(function() {
         let list_active_table = $('#list_active').DataTable({
             "lengthMenu": [[10, 20, -1], [10, 20, "Todos"]],
