@@ -146,7 +146,7 @@ class TheaterOfOperations extends Model
         } else {
             return $this->crews;
         }*/
-        return $this->crews()->withTrashed()->get();
+        return $this->crews()->withTrashed()->get()->sortBy('deleted_at');
     }
 
     public function getEvents()
