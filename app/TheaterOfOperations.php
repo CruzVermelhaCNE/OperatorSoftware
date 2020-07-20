@@ -128,11 +128,11 @@ class TheaterOfOperations extends Model
     public function getUnits()
     {
         $units = null;
-        if ($this->trashed()) {
+        /*if ($this->trashed()) {
             $units = $this->units;
-        } else {
-            $units = $this->units()->where('status', '!=', TheaterOfOperationsUnit::STATUS_DEMOBILIZED)->get();
-        }
+        } else {*/
+        $units = $units = $this->units;
+        //}
         foreach ($this->sectors as $sector) {
             $units = $units->concat($sector->units);
         }
@@ -272,7 +272,7 @@ class TheaterOfOperations extends Model
 
     public function generateEventsListing()
     {
-        $events = $this->getEvents()->where('status', '!=', TheaterOfOperationsEvent::STATUS_FINISHED);
+        $events = $this->getEvents();
         $array  = [];
         foreach ($events as $event) {
             $array[] = [
