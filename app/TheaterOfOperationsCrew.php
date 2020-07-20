@@ -102,14 +102,14 @@ class TheaterOfOperationsCrew extends Model
 
     public function getDeploymentAttribute()
     {
+        if ($this->trashed()) {
+            return 'Desmobilizado';
+        }
         if ($this->unit) {
             return $this->unit->tail_number;
         }
         if ($this->poi) {
             return $this->poi->name;
-        }
-        if ($this->trashed()) {
-            return 'Desmobilizado';
         }
         return 'Sem Destacamento';
     }
