@@ -131,7 +131,7 @@ class TheaterOfOperations extends Model
         /*if ($this->trashed()) {
             $units = $this->units;
         } else {*/
-        $units = $units = $this->units;
+        $units = $units = $this->units->sortBy('status');
         //}
         foreach ($this->sectors as $sector) {
             $units = $units->concat($sector->units);
