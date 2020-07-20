@@ -425,7 +425,7 @@
         var data = list_coordination_table.row($(this).parents('tr')).data();
         let url = "{{route('theaters_of_operations.coordination.edit',['id' => $theater_of_operations->id, 'coordination_id' => '-1'])}}/";
             url = url.replace("-1",data[4]);
-        window.open(url);
+        location.replace(url);
     });
 
     let list_pois_table = $('#list_pois').DataTable({
@@ -459,7 +459,7 @@
         else if(action == "edit"){
             let url = "{{route('theaters_of_operations.pois.edit',['id' => $theater_of_operations->id, 'poi_id' => '-1'])}}/";
             url = url.replace("-1",data[6]);
-            window.open(url);
+            location.replace(url);
         }
     });
 
@@ -491,7 +491,7 @@
         else if(action == "open"){
             let url = "{{route('theaters_of_operations.events.single',['id'=>$theater_of_operations->id,'event_id' => '-1'])}}";
             url = url.split("-1").join(data[7]);
-            window.open(url);
+            location.replace(url);
         }
     });
 
@@ -523,7 +523,7 @@
         else if(action == "open"){
             let url = "{{route('theaters_of_operations.units.single',['id'=>$theater_of_operations->id,'unit_id' => '-1'])}}";
             url = url.split("-1").join(data[8]);
-            window.open(url);
+            location.replace(url);
         }
     });
 
@@ -555,7 +555,7 @@
         else if(action == "open"){
             let url = "{{route('theaters_of_operations.crews.single',['id'=>$theater_of_operations->id,'crew_id' => '-1'])}}";
             url = url.split("-1").join(data[10]);
-            window.open(url);
+            location.replace(url);
         }
     });
 
@@ -585,7 +585,7 @@
         let action = $(this).data('action');
         let url = "{{route('theaters_of_operations.communication_channels.edit',['id' => $theater_of_operations->id, 'communication_channel_id' => '-1'])}}";
         url = url.split("-1").join(data[3]);
-        window.open(url);
+        location.replace(url);
     });
 
 

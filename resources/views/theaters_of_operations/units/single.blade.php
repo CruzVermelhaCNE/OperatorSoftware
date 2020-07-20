@@ -440,7 +440,7 @@
         if(action == "open"){
             let url = "{{route('theaters_of_operations.crews.single',['id'=>$unit->theater_of_operations->id,'crew_id' => '-1'])}}";
             url = url.split("-1").join(data[9]);
-            window.open(url);
+            location.replace(url);
         }
     });
 

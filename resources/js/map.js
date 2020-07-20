@@ -1032,7 +1032,7 @@ class Map {
     prepareClickableUnits() {
         let that = this;
         let this_function = function (e) {
-            window.open('/unit/' + e.features[0].properties.unit_id);
+            location.replace('/unit/' + e.features[0].properties.unit_id);
         };
         let cursor_enter_function = function () {
             that.mapbox_map.getCanvas().style.cursor = 'pointer'
@@ -1241,7 +1241,7 @@ class Map {
     prepareClickableEvents() {
         let that = this;
         let this_function = function (e) {
-            window.open('/event/' + e.features[0].properties.event_id);
+            location.replace('/event/' + e.features[0].properties.event_id);
         };
         let cursor_enter_function = function () {
             that.mapbox_map.getCanvas().style.cursor = 'pointer'
@@ -1385,7 +1385,7 @@ class Map {
     prepareClickableTOs() {
         let that = this;
         let this_function = function (e) {
-            window.open('/' + e.features[0].properties.to_id);
+            location.replace('/' + e.features[0].properties.to_id);
         };
         let cursor_enter_function = function () {
             that.mapbox_map.getCanvas().style.cursor = 'pointer'
@@ -1954,7 +1954,7 @@ class Map {
     prepareClickablePOIs() {
         let that = this;
         let this_function = function (e) {
-            window.open('/poi/' + e.features[0].properties.poi_id);
+            location.replace('/poi/' + e.features[0].properties.poi_id);
         }
         let cursor_enter_function = function () {
             that.mapbox_map.getCanvas().style.cursor = 'pointer'
