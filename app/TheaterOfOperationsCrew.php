@@ -108,6 +108,9 @@ class TheaterOfOperationsCrew extends Model
         if ($this->poi) {
             return $this->poi->name;
         }
+        if ($this->trashed()) {
+            return 'Desmobilizado';
+        }
         return 'Sem Destacamento';
     }
 

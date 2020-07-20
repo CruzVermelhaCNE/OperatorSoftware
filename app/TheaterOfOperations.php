@@ -141,11 +141,12 @@ class TheaterOfOperations extends Model
 
     public function getCrews()
     {
-        if ($this->trashed()) {
+        /*if ($this->trashed()) {
             return $this->crews()->withTrashed()->get();
         } else {
             return $this->crews;
-        }
+        }*/
+        return $this->crews()->withTrashed()->get();
     }
 
     public function getEvents()
