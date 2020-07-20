@@ -24,17 +24,6 @@
         </thead>
         <tbody>
         </tbody>
-        <tfoot>
-            <tr>
-                <th>Nome</th>
-                <th>Tipo</th>
-                <th>Nivel</th>
-                <th>Ocorrências Ativas</th>
-                <th>Meios</th>
-                <th>Operacionais</th>
-                <th>Ações</th>
-            </tr>
-        </tfoot>
     </table>
     <a href="{{route('theaters_of_operations.create')}}" class="btn btn-secondary">Criar Teatro de Operações</a>
     <hr />
@@ -55,19 +44,6 @@
         </thead>
         <tbody>
         </tbody>
-        <tfoot>
-            <tr>
-                <th>Inicio</th>
-                <th>Fecho</th>
-                <th>Nome</th>
-                <th>Tipo</th>
-                <th>Nivel</th>
-                <th>Ocorrências</th>
-                <th>Meios</th>
-                <th>Operacionais</th>
-                <th>Ações</th>
-            </tr>
-        </tfoot>
     </table>
 </div>
 @endsection

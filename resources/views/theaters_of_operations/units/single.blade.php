@@ -123,12 +123,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Data</th>
-                    <th>Descrição</th>
-                </tr>
-            </tfoot>
         </table>
     </div>
     <div class="row">
@@ -146,16 +140,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Nome</th>
-                    <th>Contacto</th>
-                    <th>Idade</th>
-                    <th>Formação</th>
-                    <th>Observações</th>
-                    <th>Ações</th>
-                </tr>
-            </tfoot>
         </table>
     </div>
     <div class="row">
@@ -171,13 +155,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Observações</th>
-                    <th>Ações</th>
-                </tr>
-            </tfoot>
         </table>
         @if(!$unit->isDemobilized())
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#communications_create">Adicionar
@@ -196,13 +173,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Sistema</th>
-                    <th>ID Externo</th>
-                    <th>Ações</th>
-                </tr>
-            </tfoot>
         </table>
         @if(!$unit->isDemobilized())
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#geotracking_create">Adicionar

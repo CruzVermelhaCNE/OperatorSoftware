@@ -77,12 +77,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Data</th>
-                    <th>Descrição</th>
-                </tr>
-            </tfoot>
         </table>
         @if(!$theater_of_operations->trashed())
         <hr style="text-align: center;width:100vw;" />
@@ -131,15 +125,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Nome</th>
-                    <th>Cargo</th>
-                    <th>Contacto</th>
-                    <th>Observações</th>
-                    <th>Ações</th>
-                </tr>
-            </tfoot>
         </table>
         @if(!$theater_of_operations->trashed())
         <a href="{{route('theaters_of_operations.coordination.create',$theater_of_operations->id)}}"
@@ -159,14 +144,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Nome</th>
-                    <th>Localização</th>
-                    <th>Observações</th>
-                    <th>Ações</th>
-                </tr>
-            </tfoot>
         </table>
         @if(!$theater_of_operations->trashed())
         <a href="{{route('theaters_of_operations.pois.create',$theater_of_operations->id)}}"
@@ -188,15 +165,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Localização</th>
-                    <th>CODU</th>
-                    <th>CDOS</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </tfoot>
         </table>
         @if(!$theater_of_operations->trashed())
         <a href="{{route('theaters_of_operations.events.create',$theater_of_operations->id)}}"
@@ -219,17 +187,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Nº de Cauda</th>
-                    <th>Matricula</th>
-                    <th>Estrutura</th>
-                    <th>Status</th>
-                    <th>Destacamento</th>
-                    <th>Ações</th>
-                </tr>
-            </tfoot>
         </table>
         @if(!$theater_of_operations->trashed())
         <a href="{{route('theaters_of_operations.units.create',$theater_of_operations->id)}}"
@@ -254,17 +211,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Nome</th>
-                    <th>Contacto</th>
-                    <th>Idade</th>
-                    <th>Formação</th>
-                    <th>Observações</th>
-                    <th>Destacamento</th>
-                    <th>Ações</th>
-                </tr>
-            </tfoot>
         </table>
         @if(!$theater_of_operations->trashed())
         <a href="{{route('theaters_of_operations.crews.create',$theater_of_operations->id)}}"
@@ -287,14 +233,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Canal</th>
-                    <th>Observações</th>
-                    <th>Ações</th>
-                </tr>
-            </tfoot>
         </table>
         @if(!$theater_of_operations->trashed())
         <a href="{{route('theaters_of_operations.communication_channels.create',$theater_of_operations->id)}}"

@@ -40,12 +40,6 @@
         </thead>
         <tbody>
         </tbody>
-        <tfoot>
-            <tr>
-                <th>Data</th>
-                <th>Descrição</th>
-            </tr>
-        </tfoot>
     </table>
 </div>
 @endsection

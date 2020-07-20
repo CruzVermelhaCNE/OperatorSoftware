@@ -88,12 +88,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Data</th>
-                    <th>Descrição</th>
-                </tr>
-            </tfoot>
         </table>
     </div>
     <div class="row">
@@ -110,15 +104,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Status</th>
-                    <th>Nome</th>
-                    <th>Idade</th>
-                    <th>Destino</th>
-                    <th>Acções</th>
-                </tr>
-            </tfoot>
         </table>
         @if(!$event->isFinished())
         <a href="{{route('theaters_of_operations.events.victims.create',["id" => $event->theater_of_operations->id, "event_id" => $event->id])}}"
@@ -139,15 +124,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Nº de Cauda</th>
-                    <th>Matricula</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </tfoot>
         </table>
         @if(!$event->isFinished())
         <hr style="text-align: center;width:100vw;" />
@@ -487,14 +463,6 @@
                     </thead>
                     <tbody>
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Contacto</th>
-                            <th>Idade</th>
-                            <th>Formação</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <div class="col-6">
@@ -510,14 +478,6 @@
                     </thead>
                     <tbody>
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Idade</th>
-                            <th>Destino</th>
-                            <th>Acções</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>
