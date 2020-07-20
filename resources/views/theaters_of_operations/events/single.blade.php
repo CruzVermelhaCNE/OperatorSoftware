@@ -61,7 +61,7 @@
                 <div class="input-group">
                     <select class="custom-select" name="status">
                         <option value="0" @if ($event->status == 0) selected @endif>Anulada</option>
-                        <option value="1" @if ($event->status == 1) selected @endif>Dispacho</option>
+                        <option value="1" @if ($event->status == 1) selected @endif>Despacho</option>
                         <option value="2" @if ($event->status == 2) selected @endif>A Decorrer</option>
                         <option value="3" @if ($event->status == 3) selected @endif>Em Conclusão</option>
                         <option value="4" @if ($event->status == 4) selected @endif>Terminada</option>
@@ -444,7 +444,7 @@
                     @csrf
                     <div class="input-group">
                         <select class="custom-select" id="unit_status" name="status">
-                            <option value="2">Dispacho</option>
+                            <option value="2">Despacho</option>
                             <option value="3">A Caminho do Local</option>
                             <option value="4">No Local</option>
                             <option value="5">A Caminho do Destino</option>

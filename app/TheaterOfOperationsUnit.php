@@ -42,7 +42,7 @@ class TheaterOfOperationsUnit extends Model
             case self::STATUS_BASE:
                 return 'Na Base';
             case self::STATUS_DISPATCHED:
-                return 'Dispacho';
+                return 'Despacho';
             case self::STATUS_ON_WAY_TO_SCENE:
                 return 'A Caminho do Local';
             case self::STATUS_ON_SCENE:
