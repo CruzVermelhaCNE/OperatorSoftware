@@ -368,7 +368,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <form metohd="POST" action="{{route('theaters_of_operations.events.victims.updateTimings',['id'=>$event->theater_of_operations->id,'event_id'=>$event->id,'victim_id'=>'-1'])}}">
+    <form method="POST" action="{{route('theaters_of_operations.events.victims.updateTimings',['id'=>$event->theater_of_operations->id,'event_id'=>$event->id,'victim_id'=>'-1'])}}">
         <div class="modal-body">
             @csrf
             <div class="victim_timings_canceled" style="display:none">
@@ -766,6 +766,7 @@
             template = template.split("[[ARRIVAL_ON_DESTINATION]]").join(response.data.timings.arrival_on_destination || ""); 
             template = template.split("[[DEPARTURE_FROM_DESTINATION]]").join(response.data.timings.departure_from_destination || ""); 
             template = template.split("[[AVAILABLE]]").join(response.data.timings.available || "");
+            template_unit_timings = template_unit_timings.split("-1").join(response.data.id);
             template_unit_timings = template_unit_timings.split("[[ACTIVATION]]").join((response.data.timings.activation || "").replace(" ","T")); 
             template_unit_timings = template_unit_timings.split("[[ON_WAY_TO_SCENE]]").join((response.data.timings.on_way_to_scene || "").replace(" ","T")); 
             template_unit_timings = template_unit_timings.split("[[ARRIVAL_ON_SCENE]]").join((response.data.timings.arrival_on_scene || "").replace(" ","T")); 
