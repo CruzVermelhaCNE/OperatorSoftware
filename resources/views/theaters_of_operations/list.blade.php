@@ -93,7 +93,7 @@
         });
         $('#list_concluded tbody').on( 'click', 'a', function () {
             var data = list_concluded_table.row($(this).parents('tr')).data();
-            location.replace("{{route('theaters_of_operations.single','')}}/"+data[6]);
+            location.replace("{{route('theaters_of_operations.single','')}}/"+data[8]);
         });
     });
 </script>
