@@ -1,0 +1,42 @@
+name: deploy
+
+on:
+  push:
+    branches: [ production ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.PUSH_TOKEN }}
+    - name: Set up Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - run: npm install
+    - run: npm run production
+    - name: Commit built assets
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git checkout -B deploy
+        git add -f public/
+        git commit -m "Build front-end assets"
+        git push -f origin deploy
+    - name: Deploy to production
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        script: 'cd ${{ secrets.SSH_DEPLOY_DIR }} && bash ./cicd/server_deployment_deploy.sh'    
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_USERNAME: "Github Deployments"
+        SLACK_TITLE: "goi.emergenciacvp.pt - production"
+        SLACK_MESSAGE: "Deployed latest code changes for goi.emergenciacvp.pt. You can access it at https://goi.emergenciacvp.pt"
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
