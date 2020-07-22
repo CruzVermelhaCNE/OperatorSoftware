@@ -456,7 +456,7 @@ class Map {
                     });
                 });
         } else {
-            axios.get("/" + this.theater_of_operations_id + "/getUnits")
+            axios.get("/" + this.theater_of_operations_id + "/getActiveUnits")
                 .then(function (response) {
                     let a1_features = [];
                     let a2_features = [];
@@ -1116,7 +1116,7 @@ class Map {
                     });
                 });
         } else {
-            axios.get("/" + this.theater_of_operations_id + "/getEvents")
+            axios.get("/" + this.theater_of_operations_id + "/getActiveEvents")
                 .then(function (response) {
                     let geral_features = [];
                     let evacuacao_features = [];
