@@ -259,6 +259,13 @@ class TheaterOfOperationsController extends Controller
         return response($data);
     }
 
+    public function getActiveEvents($id)
+    {
+        $theater_of_operations = TheaterOfOperations::withTrashed()->findOrFail($id);
+        $data                  = $theater_of_operations->getActiveEvents();
+        return response($data);
+    }
+
     public function createEvent($id)
     {
         $theater_of_operations = TheaterOfOperations::findOrFail($id);
@@ -276,6 +283,13 @@ class TheaterOfOperationsController extends Controller
     {
         $theater_of_operations = TheaterOfOperations::withTrashed()->findOrFail($id);
         $data                  = $theater_of_operations->getUnitsListing();
+        return response($data);
+    }
+
+    public function getActiveUnits($id)
+    {
+        $theater_of_operations = TheaterOfOperations::withTrashed()->findOrFail($id);
+        $data                  = $theater_of_operations->getActiveUnits();
         return response($data);
     }
 
@@ -303,6 +317,13 @@ class TheaterOfOperationsController extends Controller
     {
         $theater_of_operations = TheaterOfOperations::withTrashed()->findOrFail($id);
         $data                  = $theater_of_operations->getCrewsListing();
+        return response($data);
+    }
+
+    public function getActiveCrews($id)
+    {
+        $theater_of_operations = TheaterOfOperations::withTrashed()->findOrFail($id);
+        $data                  = $theater_of_operations->getActiveCrews();
         return response($data);
     }
 

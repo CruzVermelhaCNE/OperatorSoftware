@@ -211,8 +211,11 @@ Route::domain('goi.emergenciacvp.pt')->name('theaters_of_operations.')->middlewa
     Route::get('{id}/getCoordination', 'TheatersOfOperations\TheaterOfOperationsController@getCoordination')->where(['id', '[0-9]+'])->name('getCoordination');
     Route::get('{id}/getPOIs', 'TheatersOfOperations\TheaterOfOperationsController@getPOIs')->where(['id', '[0-9]+'])->name('getPOIs');
     Route::get('{id}/getEvents', 'TheatersOfOperations\TheaterOfOperationsController@getEvents')->where(['id', '[0-9]+'])->name('getEvents');
+    Route::get('{id}/getActiveEvents', 'TheatersOfOperations\TheaterOfOperationsController@getActiveEvents')->where(['id', '[0-9]+'])->name('getActiveEvents');
     Route::get('{id}/getUnits', 'TheatersOfOperations\TheaterOfOperationsController@getUnits')->where(['id', '[0-9]+'])->name('getUnits');
+    Route::get('{id}/getActiveUnits', 'TheatersOfOperations\TheaterOfOperationsController@getActiveUnits')->where(['id', '[0-9]+'])->name('getActiveUnits');
     Route::get('{id}/getCrews', 'TheatersOfOperations\TheaterOfOperationsController@getCrews')->where(['id', '[0-9]+'])->name('getCrews');
+    Route::get('{id}/getActiveCrews', 'TheatersOfOperations\TheaterOfOperationsController@getActiveCrews')->where(['id', '[0-9]+'])->name('getActiveCrews');
     Route::get('{id}/getCommunicationChannels', 'TheatersOfOperations\TheaterOfOperationsController@getCommunicationChannels')->where(['id', '[0-9]+'])->name('getCommunicationChannels');
     Route::post('{id}/updateObservations', 'TheatersOfOperations\TheaterOfOperationsController@updateObservations')->where(['id', '[0-9]+'])->name('updateObservations');
 

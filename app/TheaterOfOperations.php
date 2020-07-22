@@ -139,6 +139,12 @@ class TheaterOfOperations extends Model
         return $units;
     }
 
+    public function getActiveUnits()
+    {
+        $units = $this->getUnits();
+        return $units->where('status', '!=', TheaterOfOperationsUnit::STATUS_DEMOBILIZED);
+    }
+
     public function getCrews()
     {
         /*if ($this->trashed()) {
@@ -147,6 +153,12 @@ class TheaterOfOperations extends Model
             return $this->crews;
         }*/
         return $this->crews()->withTrashed()->get()->sortBy('deleted_at');
+    }
+
+    public function getActiveCrews()
+    {
+        $crews = $this->getCrews();
+        return $crews->where('deleted_at', '=', null);
     }
 
     public function getEvents()
