@@ -210,7 +210,8 @@
                             <div class="form-group">
                                 <label>Tipo</label>
                                 <select class="form-control" name="type">
-                                    <option value="SIRESP" selected>SIRESP</option>
+                                    <option value="Telemóvel" selected>Telemóvel</option>
+                                    <option value="SIRESP">SIRESP</option>
                                     <option value="VHF">VHF</option>
                                     <option value="UHF">UHF</option>
                                 </select>
@@ -305,7 +306,8 @@
                 <div class="form-group">
                     <label>Tipo</label>
                     <select class="form-control" name="type" id="communications_edit_type">
-                        <option value="SIRESP" selected>SIRESP</option>
+                        <option value="Telemóvel" selected>Telemóvel</option>
+                        <option value="SIRESP">SIRESP</option>
                         <option value="VHF">VHF</option>
                         <option value="UHF">UHF</option>
                     </select>
