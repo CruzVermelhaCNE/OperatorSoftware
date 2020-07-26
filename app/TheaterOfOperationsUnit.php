@@ -86,6 +86,9 @@ class TheaterOfOperationsUnit extends Model
 
     public function getDeploymentAttribute()
     {
+        if ($this->satatus == self::STATUS_DEMOBILIZED) {
+            return 'Desmobilizado';
+        }
         if ($this->active_event) {
             return 'Ocorrência #'.$this->active_event->id;
         }
