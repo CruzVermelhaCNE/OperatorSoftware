@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers\TheatersOfOperations;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TheaterOfOperationsEventCreate;
-use App\Http\Requests\TheaterOfOperationsEventDeployUnit;
-use App\Http\Requests\TheaterOfOperationsEventEdit;
-use App\Http\Requests\TheaterOfOperationsEventUpdateObservations;
-use App\Http\Requests\TheaterOfOperationsEventUpdateStatus;
+use App\Http\Requests\GOI\TheaterOfOperationsEventCreate;
+use App\Http\Requests\GOI\TheaterOfOperationsEventDeployUnit;
+use App\Http\Requests\GOI\TheaterOfOperationsEventEdit;
+use App\Http\Requests\GOI\TheaterOfOperationsEventUpdateObservations;
+use App\Http\Requests\GOI\TheaterOfOperationsEventUpdateStatus;
 use App\Models\TheaterOfOperationsEvent;
 use App\Models\TheaterOfOperationsEventUnit;
 use App\Models\TheaterOfOperationsUnit;

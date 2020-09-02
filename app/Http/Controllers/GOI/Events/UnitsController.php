@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\GOI\Events;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TheaterOfOperationsEventUnitUpdateTimings;
+use App\Http\Requests\GOI\TheaterOfOperationsEventUnitUpdateTimings;
 use App\Models\TheaterOfOperationsEventUnit;
 
 class UnitsController extends Controller

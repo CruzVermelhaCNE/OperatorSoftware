@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\GOI\Events;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TheaterOfOperationsEventVictimAssignUnit;
-use App\Http\Requests\TheaterOfOperationsEventVictimUpdateData;
-use App\Http\Requests\TheaterOfOperationsEventVictimUpdateDestination;
-use App\Http\Requests\TheaterOfOperationsEventVictimUpdateObservations;
-use App\Http\Requests\TheaterOfOperationsEventVictimUpdateStatus;
-use App\Http\Requests\TheaterOfOperationsEventVictimUpdateTimings;
+use App\Http\Requests\GOI\TheaterOfOperationsEventVictimAssignUnit;
+use App\Http\Requests\GOI\TheaterOfOperationsEventVictimUpdateData;
+use App\Http\Requests\GOI\TheaterOfOperationsEventVictimUpdateDestination;
+use App\Http\Requests\GOI\TheaterOfOperationsEventVictimUpdateObservations;
+use App\Http\Requests\GOI\TheaterOfOperationsEventVictimUpdateStatus;
+use App\Http\Requests\GOI\TheaterOfOperationsEventVictimUpdateTimings;
 use App\Models\TheaterOfOperationsEvent;
 use App\Models\TheaterOfOperationsEventVictim;
 use Carbon\Carbon;

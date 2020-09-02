@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\TheatersOfOperations;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TheaterOfOperationsCommunicationChannelCreate;
-use App\Http\Requests\TheaterOfOperationsCommunicationChannelEdit;
+use App\Http\Requests\GOI\TheaterOfOperationsCommunicationChannelCreate;
+use App\Http\Requests\GOI\TheaterOfOperationsCommunicationChannelEdit;
 use App\Models\TheaterOfOperationsCommunicationChannel;
 
 class CommunicationChannelsController extends Controller

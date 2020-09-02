@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\TheatersOfOperations;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TheaterOfOperationsPOICreate;
-use App\Http\Requests\TheaterOfOperationsPOIEdit;
+use App\Http\Requests\GOI\TheaterOfOperationsPOICreate;
+use App\Http\Requests\GOI\TheaterOfOperationsPOIEdit;
 use App\Models\TheaterOfOperationsPOI;
 
 class POIsController extends Controller

@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace App\Http\Controllers\TheatersOfOperations;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TheaterOfOperationsAddToTimeTape;
-use App\Http\Requests\TheaterOfOperationsCreate;
-use App\Http\Requests\TheaterOfOperationsEdit;
-use App\Http\Requests\TheaterOfOperationsUpdateObservations;
+use App\Http\Requests\GOI\TheaterOfOperationsAddToTimeTape;
+use App\Http\Requests\GOI\TheaterOfOperationsCreate;
+use App\Http\Requests\GOI\TheaterOfOperationsEdit;
+use App\Http\Requests\GOI\TheaterOfOperationsUpdateObservations;
 use App\Models\TheaterOfOperations;
 use App\Models\TheaterOfOperationsCommunicationChannel;
 use App\Models\TheaterOfOperationsCoordination;

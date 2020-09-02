@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\TheatersOfOperations;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TheaterOfOperationsCrewAssignToPOI;
-use App\Http\Requests\TheaterOfOperationsCrewAssignToUnit;
-use App\Http\Requests\TheaterOfOperationsCrewCreate;
-use App\Http\Requests\TheaterOfOperationsCrewEdit;
-use App\Http\Requests\TheaterOfOperationsCrewRecreate;
-use App\Http\Requests\TheaterOfOperationsCrewUpdateObservations;
+use App\Http\Requests\GOI\TheaterOfOperationsCrewAssignToPOI;
+use App\Http\Requests\GOI\TheaterOfOperationsCrewAssignToUnit;
+use App\Http\Requests\GOI\TheaterOfOperationsCrewCreate;
+use App\Http\Requests\GOI\TheaterOfOperationsCrewEdit;
+use App\Http\Requests\GOI\TheaterOfOperationsCrewRecreate;
+use App\Http\Requests\GOI\TheaterOfOperationsCrewUpdateObservations;
 use App\Models\TheaterOfOperationsCrew;
 use App\Models\TheaterOfOperationsEventUnitCrew;
 use App\Models\TheaterOfOperationsUnit;

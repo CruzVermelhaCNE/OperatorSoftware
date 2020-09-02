@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\TheatersOfOperations;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TheaterOfOperationsCoordinationCreate;
-use App\Http\Requests\TheaterOfOperationsCoordinationEdit;
+use App\Http\Requests\GOI\TheaterOfOperationsCoordinationCreate;
+use App\Http\Requests\GOI\TheaterOfOperationsCoordinationEdit;
 use App\Models\TheaterOfOperationsCoordination;
 
 class CoordinationController extends Controller
