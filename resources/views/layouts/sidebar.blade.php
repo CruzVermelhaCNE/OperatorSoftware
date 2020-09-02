@@ -34,7 +34,7 @@
         </h6>
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('theaters_of_operations.index') }}">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('goi.index') }}">
                     <span data-feather="map"></span>
                     Abrir
                 </a>
