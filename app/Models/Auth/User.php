@@ -55,6 +55,7 @@ class User extends Authenticatable
                 $ranks .= 'Administrador';
             } elseif ($permission['permission'] == 3) {
                 // Rank used for removed module
+                continue;
             } elseif ($permission['permission'] == 4) {
                 $ranks .= 'Teatros de Operações';
             }
