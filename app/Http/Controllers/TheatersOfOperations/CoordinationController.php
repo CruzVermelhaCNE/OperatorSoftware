@@ -6,7 +6,7 @@ namespace App\Http\Controllers\TheatersOfOperations;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TheaterOfOperationsCoordinationCreate;
 use App\Http\Requests\TheaterOfOperationsCoordinationEdit;
-use App\TheaterOfOperationsCoordination;
+use App\Models\TheaterOfOperationsCoordination;
 
 class CoordinationController extends Controller
 {

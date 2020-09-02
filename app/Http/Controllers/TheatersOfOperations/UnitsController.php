@@ -14,10 +14,10 @@ use App\Http\Requests\TheaterOfOperationsUnitUpdateCommunicationChannel;
 use App\Http\Requests\TheaterOfOperationsUnitUpdateGeotracking;
 use App\Http\Requests\TheaterOfOperationsUnitUpdateObservations;
 use App\Http\Requests\TheaterOfOperationsUnitUpdateStatus;
-use App\TheaterOfOperationsEventVictim;
-use App\TheaterOfOperationsUnit;
-use App\TheaterOfOperationsUnitCommunications;
-use App\TheaterOfOperationsUnitGeoTracking;
+use App\Models\TheaterOfOperationsEventVictim;
+use App\Models\TheaterOfOperationsUnit;
+use App\Models\TheaterOfOperationsUnitCommunications;
+use App\Models\TheaterOfOperationsUnitGeoTracking;
 use Carbon\Carbon;
 
 class UnitsController extends Controller

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Events;
 
-use App\COVID19Ambulance;
+use App\Models\COVID19Ambulance;
 use Illuminate\Queue\SerializesModels;
 
 class COVID19AmbulanceSaved

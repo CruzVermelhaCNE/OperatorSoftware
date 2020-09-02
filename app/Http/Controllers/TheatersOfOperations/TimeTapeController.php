@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\TheatersOfOperations;
 
 use App\Http\Controllers\Controller;
-use App\TheaterOfOperations;
-use App\TheaterOfOperationsCrew;
-use App\TheaterOfOperationsEvent;
-use App\TheaterOfOperationsPOI;
-use App\TheaterOfOperationsTimeTape;
-use App\TheaterOfOperationsUnit;
+use App\Models\TheaterOfOperations;
+use App\Models\TheaterOfOperationsCrew;
+use App\Models\TheaterOfOperationsEvent;
+use App\Models\TheaterOfOperationsPOI;
+use App\Models\TheaterOfOperationsTimeTape;
+use App\Models\TheaterOfOperationsUnit;
 
 class TimeTapeController extends Controller
 {

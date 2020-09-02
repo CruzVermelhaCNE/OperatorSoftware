@@ -5,7 +5,7 @@ namespace App\Http\Controllers\TheatersOfOperations\Events;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TheaterOfOperationsEventUnitUpdateTimings;
-use App\TheaterOfOperationsEventUnit;
+use App\Models\TheaterOfOperationsEventUnit;
 
 class UnitsController extends Controller
 {

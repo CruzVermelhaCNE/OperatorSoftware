@@ -8,14 +8,14 @@ use App\Http\Requests\TheaterOfOperationsAddToTimeTape;
 use App\Http\Requests\TheaterOfOperationsCreate;
 use App\Http\Requests\TheaterOfOperationsEdit;
 use App\Http\Requests\TheaterOfOperationsUpdateObservations;
-use App\TheaterOfOperations;
-use App\TheaterOfOperationsCommunicationChannel;
-use App\TheaterOfOperationsCoordination;
-use App\TheaterOfOperationsCrew;
-use App\TheaterOfOperationsEvent;
-use App\TheaterOfOperationsPOI;
-use App\TheaterOfOperationsTimeTape;
-use App\TheaterOfOperationsUnit;
+use App\Models\TheaterOfOperations;
+use App\Models\TheaterOfOperationsCommunicationChannel;
+use App\Models\TheaterOfOperationsCoordination;
+use App\Models\TheaterOfOperationsCrew;
+use App\Models\TheaterOfOperationsEvent;
+use App\Models\TheaterOfOperationsPOI;
+use App\Models\TheaterOfOperationsTimeTape;
+use App\Models\TheaterOfOperationsUnit;
 
 class TheaterOfOperationsController extends Controller
 {

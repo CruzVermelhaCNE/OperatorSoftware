@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\User;
-use App\Permission;
+use App\Models\User;
+use App\Models\Permission;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 

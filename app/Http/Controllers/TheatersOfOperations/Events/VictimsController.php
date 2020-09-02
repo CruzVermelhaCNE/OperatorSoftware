@@ -10,8 +10,8 @@ use App\Http\Requests\TheaterOfOperationsEventVictimUpdateDestination;
 use App\Http\Requests\TheaterOfOperationsEventVictimUpdateObservations;
 use App\Http\Requests\TheaterOfOperationsEventVictimUpdateStatus;
 use App\Http\Requests\TheaterOfOperationsEventVictimUpdateTimings;
-use App\TheaterOfOperationsEvent;
-use App\TheaterOfOperationsEventVictim;
+use App\Models\TheaterOfOperationsEvent;
+use App\Models\TheaterOfOperationsEventVictim;
 use Carbon\Carbon;
 
 class VictimsController extends Controller

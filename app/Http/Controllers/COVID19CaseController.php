@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\COVID19Ambulance;
-use App\COVID19Case;
-use App\COVID19CaseObservation;
+use App\Models\COVID19Ambulance;
+use App\Models\COVID19Case;
+use App\Models\COVID19CaseObservation;
 use App\Http\Requests\COVID19AddObservation;
 use App\Http\Requests\COVID19CancelCase;
 use App\Http\Requests\COVID19InsertAmbulance;

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Extension;
+use App\Models\User;
+use App\Models\Extension;
 use Auth;
 
 class AdministrationController extends Controller

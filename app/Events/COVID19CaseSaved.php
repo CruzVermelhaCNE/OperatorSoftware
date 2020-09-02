@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\COVID19Case;
+use App\Models\COVID19Case;
 use Illuminate\Queue\SerializesModels;
 
 class COVID19CaseSaved

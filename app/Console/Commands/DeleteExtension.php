@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Extension;
+use App\Models\Extension;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 

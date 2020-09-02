@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\COVID19Case;
+use App\Models\COVID19Case;
 use Illuminate\Support\Facades\Auth;
 
 class COVID19Controller extends Controller

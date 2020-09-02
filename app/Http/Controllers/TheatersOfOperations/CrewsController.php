@@ -10,9 +10,9 @@ use App\Http\Requests\TheaterOfOperationsCrewCreate;
 use App\Http\Requests\TheaterOfOperationsCrewEdit;
 use App\Http\Requests\TheaterOfOperationsCrewRecreate;
 use App\Http\Requests\TheaterOfOperationsCrewUpdateObservations;
-use App\TheaterOfOperationsCrew;
-use App\TheaterOfOperationsEventUnitCrew;
-use App\TheaterOfOperationsUnit;
+use App\Models\TheaterOfOperationsCrew;
+use App\Models\TheaterOfOperationsEventUnitCrew;
+use App\Models\TheaterOfOperationsUnit;
 
 class CrewsController extends Controller
 {

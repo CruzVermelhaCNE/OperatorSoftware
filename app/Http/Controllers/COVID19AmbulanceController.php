@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\COVID19Ambulance;
-use App\COVID19AmbulanceTeamMember;
+use App\Models\COVID19Ambulance;
+use App\Models\COVID19AmbulanceTeamMember;
 use App\Http\Requests\COVID19AddContact;
 use App\Http\Requests\COVID19GetTeamMember;
 use App\Http\Requests\COVID19NewAmbulance;
