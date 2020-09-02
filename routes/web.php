@@ -15,17 +15,12 @@ declare(strict_types=1);
 Broadcast::routes();
 
 Route::domain('auth.'.env('APP_DOMAIN'))->name('auth.')->group(function () {
-    Auth::routes([
-        'register' => false,
-        'reset'    => false,
-        'confirm'  => false,
-        'verify'   => false,
-    ]);
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::get('login/microsoft', 'Auth\LoginController@redirectToProvider')->name('microsoft');
+    Route::get('login/microsoft/callback', 'Auth\LoginController@handleProviderCallback');
     Route::middleware('auth')->group(function () {
-        Route::get('/', function () {
-            return redirect()->route('salop.fop2');
-        });
-        Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+        Route::get('/', 'Auth\LoginController@index')->name('index');
+        Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
     });
 });
 

@@ -29,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         COVID19CaseSaved::class => [
             COVID19SendCaseSaved::class,
         ],
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            'SocialiteProviders\\Microsoft\\MicrosoftExtendSocialite@handle',
+        ],
     ];
 
     /**

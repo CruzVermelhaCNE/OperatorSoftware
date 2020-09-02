@@ -4,21 +4,13 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
 
     /**
@@ -29,6 +21,39 @@ class LoginController extends Controller
     protected $redirectTo = '/';
 
     /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('microsoft')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $auth_user = Socialite::driver('microsoft')->user();
+
+        $user = User::updateOrCreate(
+            [
+                'email' => $auth_user->email,
+            ],
+            [
+                'microsoft_token' => $auth_user->token,
+                'name'            => $auth_user->name,
+            ]
+        );
+
+        Auth::login($user, true);
+        return redirect()->to('/'); // Redirect to a secure page
+    }
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -36,5 +61,15 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function index()
+    {
+        return redirect()->route('salop.fop2');
     }
 }
