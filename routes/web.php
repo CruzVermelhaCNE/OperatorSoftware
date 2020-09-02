@@ -42,11 +42,6 @@ Route::domain('salop.'.env('APP_DOMAIN'))->middleware(['auth'])->name('salop.')-
         return view('door_opener');
     })->name('door_opener');
 
-    Route::get('/change_password', function () {
-        return view('change_password');
-    })->name('change_password');
-    Route::post('/change_password', 'Auth\ChangePasswordController@changePassword')->name('change_password');
-
     Route::get('users', 'ManagementController@users')->name('users');
     Route::get('reports', 'ManagementController@reports')->name('reports');
     Route::get('extensions', 'AdministrationController@extensions')->name('extensions');

@@ -26,13 +26,6 @@
                     Video Porteiro
                 </a>
             </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.change_password') }}">
-                    <span data-feather="settings"></span>
-                    Mudar Password
-                </a>
-            </li>
         </ul>
 
         @if (Auth::user()->permissions->contains('permission',4))
