@@ -5,7 +5,7 @@
 @endsection
 
 @section('body')
-    @include('layouts/topbar')
+    @include('salop/layouts/topbar')
 
     <div class="container-fluid" style="height: calc( 100% - 3rem);">
       <div class="row"  style="height: 100%">
