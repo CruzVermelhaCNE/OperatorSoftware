@@ -24,7 +24,7 @@
 @section('body')
 <div class="text-center">
 
-    <form class="form-signin" action="{{ route('login') }}" method="POST">
+    <form class="form-signin" action="{{ route('auth.login') }}" method="POST">
         @csrf
         <img class="mb-4" src="/img/CNE.png" alt="Coordenação Nacional de Emergência - Cruz Vermelha Portuguesa"
             width="150" height="150">

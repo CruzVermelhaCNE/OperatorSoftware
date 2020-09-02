@@ -7,8 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Input;
-
 
 class ChangePasswordController extends Controller
 {
@@ -17,14 +15,14 @@ class ChangePasswordController extends Controller
         $user = Auth::user();
 
         $this->validate($request, [
-            'current_password'          => 'required',
-            'new_password'              => 'required|min:4',
+            'current_password' => 'required',
+            'new_password'     => 'required|min:4',
         ]);
 
         if (Hash::check($request->current_password, $user->password)) {
             $user->password = Hash::make($request->new_password);
             $user->save();
-            return redirect('/panel');
+            return redirect('/');
         }
     }
 }
