@@ -1,4 +1,4 @@
-@extends('layouts/bootstrap')
+@extends('salop/layouts/bootstrap')
 
 @section('pageTitle', 'Login')
 

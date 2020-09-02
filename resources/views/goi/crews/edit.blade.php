@@ -1,4 +1,4 @@
-@extends('theaters_of_operations/layouts/panel')
+@extends('goi/layouts/panel')
 
 @if ($crew)
 @section('pageTitle', 'Editar Operacional')

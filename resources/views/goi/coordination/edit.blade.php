@@ -1,4 +1,4 @@
-@extends('theaters_of_operations/layouts/panel')
+@extends('goi/layouts/panel')
 
 @if ($coordination)
 @section('pageTitle', 'Editar Coordenador')

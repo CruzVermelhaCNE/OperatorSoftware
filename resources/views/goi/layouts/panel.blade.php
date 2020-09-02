@@ -1,4 +1,4 @@
-@extends('theaters_of_operations/layouts/bootstrap')
+@extends('goi/layouts/bootstrap')
 
 @section('style')
 <link rel="stylesheet" href="{{ mix('css/theaters_of_operations.css') }}">

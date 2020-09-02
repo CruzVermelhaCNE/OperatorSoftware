@@ -1,4 +1,4 @@
-@extends('theaters_of_operations/layouts/panel')
+@extends('goi/layouts/panel')
 
 @section('pageTitle', 'Meio '.$unit->tail_number?$unit->tail_number:$unit->plate)
 

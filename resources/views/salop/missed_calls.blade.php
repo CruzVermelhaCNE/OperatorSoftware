@@ -1,4 +1,4 @@
-@extends('layouts/panel')
+@extends('salop/layouts/panel')
 
 @section('pageTitle', 'Chamadas Perdidas')
 

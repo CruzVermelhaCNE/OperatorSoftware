@@ -1,4 +1,4 @@
-@extends('theaters_of_operations/layouts/panel')
+@extends('goi/layouts/panel')
 
 @if ($unit)
 @section('pageTitle', 'Editar Meio')
