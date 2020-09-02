@@ -9,7 +9,7 @@
 
     <div class="container-fluid" style="height: calc( 100% - 3rem);">
       <div class="row"  style="height: 100%">
-        @include('layouts/sidebar')
+        @include('salop/layouts/sidebar')
 
         @yield('content')
       </div>

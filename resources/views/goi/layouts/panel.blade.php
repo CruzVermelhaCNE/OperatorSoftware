@@ -8,7 +8,7 @@
 @section('body')
 <div class="container-fluid">
     <div class="row" style="height: 100%">
-        @include('theaters_of_operations/layouts/sidebar')
+        @include('goi/layouts/sidebar')
         <div class="content">
             @yield('content')
         </div>
