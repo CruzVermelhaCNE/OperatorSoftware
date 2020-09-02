@@ -31,8 +31,8 @@
                     <span data-feather="terminal"></span>
                 </a>
             </li>-->
-            <li class="nav-item bottom" title="Voltar ao Painel">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.fop2') }}">
+            <li class="nav-item bottom" title="SALOP">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.index') }}">
                     <span data-feather="arrow-left"></span>
                 </a>
             </li>

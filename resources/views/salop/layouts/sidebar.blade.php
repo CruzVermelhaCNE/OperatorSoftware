@@ -2,9 +2,16 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.index') }}">
+                    <span data-feather="sliders"></span>
+                    Inicio
+                </a>
+            </li>
+            @can('accessSALOP')
+            <li class="nav-item">
                 <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.fop2') }}">
                     <span data-feather="sliders"></span>
-                    Painel
+                    Sistema de Telefones
                 </a>
             </li>
             <li class="nav-item">
@@ -26,9 +33,10 @@
                     Video Porteiro
                 </a>
             </li>
+            @endcan
         </ul>
 
-        @if (Auth::user()->permissions->contains('permission',4))
+        @can('accessGOI')
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Gestão Operacional Integrada</span>
         </h6>
@@ -40,9 +48,9 @@
                 </a>
             </li>
         </ul>
-        @endif
+        @endcan
 
-        @if (Auth::user()->permissions->contains('permission',1))
+        @can('isManager')
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Gestão</span>
         </h6>
@@ -60,9 +68,9 @@
                 </a>
             </li>
         </ul>
-        @endif
+        @endcan
 
-        @if (Auth::user()->permissions->contains('permission',2))
+        @can('isAdmin')
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Administração</span>
         </h6>
@@ -74,6 +82,6 @@
                 </a>
             </li>
         </ul>
-        @endif
+        @endcan
     </div>
 </nav>

@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect()->route('salop.fop2');
+            return redirect()->route('salop.index');
         }
 
         return $next($request);

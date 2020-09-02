@@ -11,10 +11,7 @@ class AdministrationController extends Controller
 {
     public function extensions()
     {
-        if (Auth::user()->permissions->contains('permission', 2)) {
-            $extensions = Extension::all();
-            return view('salop.extensions', ['extensions' => $extensions]);
-        }
-        return redirect()->route('salop.fop2');
+        $extensions = Extension::all();
+        return view('salop.extensions', ['extensions' => $extensions]);
     }
 }

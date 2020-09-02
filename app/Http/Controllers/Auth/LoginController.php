@@ -70,6 +70,6 @@ class LoginController extends Controller
 
     public function index()
     {
-        return redirect()->route('salop.fop2');
+        return redirect()->route('salop.index');
     }
 }

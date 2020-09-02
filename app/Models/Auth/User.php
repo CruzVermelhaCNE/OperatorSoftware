@@ -48,16 +48,20 @@ class User extends Authenticatable
     {
         $ranks       = '';
         $permissions = $this->permissions->toArray();
-        foreach ($permissions as $key => $permission) {
+        sort($permissions);
+        foreach ($permissions as $permission) {
             if ($permission['permission'] == 1) {
-                $ranks .= 'Gestor';
-            } elseif ($permission['permission'] == 2) {
                 $ranks .= 'Administrador';
+            } elseif ($permission['permission'] == 2) {
+                $ranks .= 'Gestor';
             } elseif ($permission['permission'] == 3) {
                 // Rank used for removed module
                 continue;
             } elseif ($permission['permission'] == 4) {
-                $ranks .= 'Teatros de Operações';
+                $ranks .= 'Gestão Operacional Integrada';
+            }
+            elseif ($permission['permission'] == 5) {
+                $ranks .= 'SALOP';
             }
             $ranks .= ', ';
         }

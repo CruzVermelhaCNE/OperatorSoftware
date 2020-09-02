@@ -24,25 +24,32 @@ Route::domain('auth.'.env('APP_DOMAIN'))->name('auth.')->group(function () {
 
 
 Route::domain('salop.'.env('APP_DOMAIN'))->middleware(['auth'])->name('salop.')->group(function () {
-    Route::get('/', 'SALOP\SALOPController@fop2')->name('fop2');
-    Route::get('missed_calls', 'SALOP\SALOPController@missed_calls')->name('missed_calls');
-    Route::get('callbacks', 'SALOP\SALOPController@callbacks')->name('callbacks');
-    Route::get('door_opener', 'SALOP\SALOPController@door_opener')->name('door_opener');
-    Route::get('users', 'SALOP\ManagementController@users')->name('users');
-    Route::get('reports', 'SALOP\ManagementController@reports')->name('reports');
-    Route::get('extensions', 'SALOP\AdministrationController@extensions')->name('extensions');
+    Route::get('/', 'SALOP\SALOPController@index')->name('index');
+    Route::middleware(['can:accessSALOP'])->group(function () {
+        Route::get('phones', 'SALOP\SALOPController@fop2')->name('fop2');
+        Route::get('missed_calls', 'SALOP\SALOPController@missed_calls')->name('missed_calls');
+        Route::get('callbacks', 'SALOP\SALOPController@callbacks')->name('callbacks');
+        Route::get('door_opener', 'SALOP\SALOPController@door_opener')->name('door_opener');
+    });
+    Route::middleware(['can:isManager'])->group(function () {
+        Route::get('users', 'SALOP\ManagementController@users')->name('users');
+        Route::get('reports', 'SALOP\ManagementController@reports')->name('reports');
+    });
+    Route::middleware(['can:isAdmin'])->group(function () {
+        Route::get('extensions', 'SALOP\AdministrationController@extensions')->name('extensions');
+    });
 
-    Route::prefix('data')->name('data.')->group(function () {
+    Route::prefix('data')->name('data.')->middleware(['can:accessSALOP'])->group(function () {
         Route::get('missed_calls.json', 'SALOP\CDRMissedCallsController@fetch')->name('missed_calls');
         Route::get('callbacks.json', 'SALOP\CDRBusyCallsController@fetch')->name('callbacks');
     });
 
-    Route::prefix('actions')->name('actions.')->group(function () {
+    Route::prefix('actions')->name('actions.')->middleware(['can:accessSALOP'])->group(function () {
         Route::get('open_door', 'SALOP\GDSAPI@openDoor')->name('open_door');
     });
 });
 
-Route::domain('goi.'.env('APP_DOMAIN'))->middleware(['auth'])->name('goi.')->group(function () {
+Route::domain('goi.'.env('APP_DOMAIN'))->middleware(['auth','can:accessGOI'])->name('goi.')->group(function () {
     Route::get('/', 'GOI\GOIController@index')->name('index');
     Route::get('map', 'GOI\GOIController@map')->name('map');
     Route::prefix('timetape')->name('timetape.')->group(function () {

@@ -7,6 +7,12 @@ use App\Http\Controllers\Controller;
 
 class SALOPController extends Controller
 {
+
+    public function index()
+    {
+        return view('salop.index');
+    }
+
     public function fop2()
     {
         return view('salop.fop2');
