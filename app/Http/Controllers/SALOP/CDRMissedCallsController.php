@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\SALOP;
 
 use App\Http\Controllers\Controller;
-use App\Models\CDR;
+use App\Models\SALOP\CDR;
 use Illuminate\Support\Carbon;
 
 class CDRMissedCallsController extends Controller
