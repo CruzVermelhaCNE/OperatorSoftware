@@ -12,51 +12,44 @@ declare(strict_types=1);
 |
 */
 
-Auth::routes([
-    'register' => false,
-    'reset'    => false,
-    'confirm'  => false,
-    'verify'   => false,
-]);
-
 Broadcast::routes();
 
-Route::domain('salop.emergenciacvp.pt')->group(function () {
-    Route::get('/', function () {
-        if (Auth::user()) {
-            return redirect()->route('panel.fop2');
-        }
-        return view('login');
-    })->name('homepage');
-
-    Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-
-    Route::prefix('panel')->name('panel.')->middleware('auth')->group(function () {
-        Route::get('/', function () {
-            return view('fop2');
-        })->name('fop2');
-
-        Route::get('/missed_calls', function () {
-            return view('missed_calls');
-        })->name('missed_calls');
-
-        Route::get('/callbacks', function () {
-            return view('callbacks');
-        })->name('callbacks');
-
-        Route::get('/door_opener', function () {
-            return view('door_opener');
-        })->name('door_opener');
-
-        Route::get('/change_password', function () {
-            return view('change_password');
-        })->name('change_password');
-        Route::post('/change_password', 'Auth\ChangePasswordController@changePassword')->name('change_password');
-
-        Route::get('users', 'ManagementController@users')->name('users');
-        Route::get('reports', 'ManagementController@reports')->name('reports');
-        Route::get('extensions', 'AdministrationController@extensions')->name('extensions');
+Route::domain('auth.'.env('APP_DOMAIN'))->name('auth.')->group(function () {
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::get('login/microsoft', 'Auth\LoginController@redirectToProvider')->name('microsoft');
+    Route::get('login/microsoft/callback', 'Auth\LoginController@handleProviderCallback');
+    Route::middleware('auth')->group(function () {
+        Route::get('/', 'Auth\LoginController@index')->name('index');
+        Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
     });
+});
+
+
+Route::domain('salop.'.env('APP_DOMAIN'))->middleware(['auth'])->name('salop.')->group(function () {
+    Route::get('/', function () {
+        return view('fop2');
+    })->name('fop2');
+
+    Route::get('/missed_calls', function () {
+        return view('missed_calls');
+    })->name('missed_calls');
+
+    Route::get('/callbacks', function () {
+        return view('callbacks');
+    })->name('callbacks');
+
+    Route::get('/door_opener', function () {
+        return view('door_opener');
+    })->name('door_opener');
+
+    Route::get('/change_password', function () {
+        return view('change_password');
+    })->name('change_password');
+    Route::post('/change_password', 'Auth\ChangePasswordController@changePassword')->name('change_password');
+
+    Route::get('users', 'ManagementController@users')->name('users');
+    Route::get('reports', 'ManagementController@reports')->name('reports');
+    Route::get('extensions', 'AdministrationController@extensions')->name('extensions');
 
     Route::prefix('covid19')->name('covid19.')->group(function () {
         Route::get('panel', 'COVID19Controller@panel')->name('panel');
@@ -152,17 +145,17 @@ Route::domain('salop.emergenciacvp.pt')->group(function () {
     });
 
 
-    Route::prefix('data')->name('data.')->middleware('auth')->group(function () {
+    Route::prefix('data')->name('data.')->group(function () {
         Route::get('missed_calls.json', 'CDRMissedCallsController@fetch')->name('missed_calls');
         Route::get('callbacks.json', 'CDRBusyCallsController@fetch')->name('callbacks');
     });
 
-    Route::prefix('actions')->name('actions.')->middleware('auth')->group(function () {
+    Route::prefix('actions')->name('actions.')->group(function () {
         Route::get('open_door', 'GDSAPI@openDoor')->name('open_door');
     });
 });
 
-Route::domain('goi.emergenciacvp.pt')->name('theaters_of_operations.')->middleware('auth')->group(function () {
+Route::domain('goi.'.env('APP_DOMAIN'))->middleware(['auth'])->name('theaters_of_operations.')->group(function () {
     Route::get('/', 'TheatersOfOperationsPanelController@index')->name('index');
     Route::get('map', 'TheatersOfOperationsPanelController@map')->name('map');
     Route::prefix('timetape')->name('timetape.')->group(function () {

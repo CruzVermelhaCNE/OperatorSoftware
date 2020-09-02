@@ -2,33 +2,33 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.fop2') }}">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.fop2') }}">
                     <span data-feather="sliders"></span>
                     Painel
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.missed_calls') }}">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.missed_calls') }}">
                     <span data-feather="phone-missed"></span>
                     Chamadas Perdidas
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.callbacks') }}">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.callbacks') }}">
                     <span data-feather="phone-call"></span>
                     Chamadas Por Devolver
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.door_opener') }}">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.door_opener') }}">
                     <span data-feather="video"></span>
                     Video Porteiro
                 </a>
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.change_password') }}">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.change_password') }}">
                     <span data-feather="settings"></span>
                     Mudar Password
                 </a>
@@ -55,13 +55,13 @@
         </h6>
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.users') }}">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.users') }}">
                     <span data-feather="user"></span>
                     Utilizadores
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.reports') }}">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.reports') }}">
                     <span data-feather="bar-chart-2"></span>
                     Relatórios
                 </a>
@@ -75,7 +75,7 @@
         </h6>
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.extensions') }}">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.extensions') }}">
                     <span data-feather="phone"></span>
                     Extensões
                 </a>

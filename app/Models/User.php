@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'microsoft_token',
     ];
 
     /**
@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function permissions()
     {
-        return $this->hasMany('App\Permission');
+        return $this->hasMany(Permission::class);
     }
 
     public function getRanksAttribute($value)
@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function extensions()
     {
-        return $this->hasMany('App\UserExtension');
+        return $this->hasMany(UserExtension::class);
     }
 
     public function getAllExtensionsAttribute($value)

@@ -8,7 +8,7 @@
         <div class="col-4 offset-4">
             <h1 class="text-center">Mudar Password</h1>
             <div class="text-center">
-                <form action="{{ route('panel.change_password') }}" method="POST">
+                <form action="{{ route('salop.change_password') }}" method="POST">
                     @csrf
                     <label for="inputPassword" class="sr-only">Password Atual</label>
                     <input type="password" id="inputCurrentPassword" class="form-control" placeholder="Password Atual" required="" name="current_password">

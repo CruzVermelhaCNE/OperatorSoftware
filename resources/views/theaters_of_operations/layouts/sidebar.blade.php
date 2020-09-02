@@ -32,7 +32,7 @@
                 </a>
             </li>-->
             <li class="nav-item bottom" title="Voltar ao Painel">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('panel.fop2') }}">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.fop2') }}">
                     <span data-feather="arrow-left"></span>
                 </a>
             </li>
