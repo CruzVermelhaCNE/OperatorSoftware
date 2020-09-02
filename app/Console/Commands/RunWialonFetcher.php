@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Models\TheaterOfOperationsUnit;
-use App\Models\TheaterOfOperationsUnitGeoTracking;
+use App\Models\GOI\TheaterOfOperationsUnit;
+use App\Models\GOI\TheaterOfOperationsUnitGeoTracking;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;

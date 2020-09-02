@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
+use App\Models\Auth\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 

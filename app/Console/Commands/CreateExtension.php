@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Extension;
+use App\Models\SALOP\Extension;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 
