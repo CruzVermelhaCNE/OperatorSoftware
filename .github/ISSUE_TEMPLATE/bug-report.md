@@ -2,7 +2,7 @@
 name: Bug Report
 about: Report a bug
 title: "[Fix]"
-labels: Fix, To Review
+labels: to review, fix
 assignees: Cotemero
 
 ---

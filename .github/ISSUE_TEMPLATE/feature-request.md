@@ -2,7 +2,7 @@
 name: Feature Request
 about: Request a new feature
 title: "[Feat]"
-labels: Feature, To Review
+labels: feat, to review
 assignees: Cotemero
 
 ---
