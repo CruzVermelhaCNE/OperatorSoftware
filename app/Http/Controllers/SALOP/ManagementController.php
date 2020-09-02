@@ -13,16 +13,16 @@ class ManagementController extends Controller
     {
         if (Auth::user()->permissions->contains('permission', 1)) {
             $users = User::all();
-            return view('users', ['users' => $users]);
+            return view('salop.users', ['users' => $users]);
         }
-        return redirect('/panel');
+        return redirect()->route('salop.fop2');
     }
 
     public function reports()
     {
         if (Auth::user()->permissions->contains('permission', 1)) {
-            return view('reports');
+            return view('salop.reports');
         }
-        return redirect('/panel');
+        return redirect()->route('salop.fop2');
     }
 }

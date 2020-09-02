@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\SALOP;
 
 use App\Http\Controllers\Controller;
-use App\Models\Extension;
+use App\Models\SALOP\Extension;
 use Auth;
 
 class AdministrationController extends Controller
@@ -13,8 +13,8 @@ class AdministrationController extends Controller
     {
         if (Auth::user()->permissions->contains('permission', 2)) {
             $extensions = Extension::all();
-            return view('extensions', ['extensions' => $extensions]);
+            return view('salop.extensions', ['extensions' => $extensions]);
         }
-        return redirect('/panel');
+        return redirect()->route('salop.fop2');
     }
 }
