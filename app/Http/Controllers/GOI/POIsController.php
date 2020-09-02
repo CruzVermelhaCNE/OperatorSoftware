@@ -6,7 +6,7 @@ namespace App\Http\Controllers\GOI;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GOI\TheaterOfOperationsPOICreate;
 use App\Http\Requests\GOI\TheaterOfOperationsPOIEdit;
-use App\Models\TheaterOfOperationsPOI;
+use App\Models\GOI\TheaterOfOperationsPOI;
 
 class POIsController extends Controller
 {

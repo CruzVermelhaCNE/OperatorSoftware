@@ -6,7 +6,7 @@ namespace App\Http\Controllers\GOI;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GOI\TheaterOfOperationsCommunicationChannelCreate;
 use App\Http\Requests\GOI\TheaterOfOperationsCommunicationChannelEdit;
-use App\Models\TheaterOfOperationsCommunicationChannel;
+use App\Models\GOI\TheaterOfOperationsCommunicationChannel;
 
 class CommunicationChannelsController extends Controller
 {

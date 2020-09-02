@@ -9,9 +9,9 @@ use App\Http\Requests\GOI\TheaterOfOperationsEventDeployUnit;
 use App\Http\Requests\GOI\TheaterOfOperationsEventEdit;
 use App\Http\Requests\GOI\TheaterOfOperationsEventUpdateObservations;
 use App\Http\Requests\GOI\TheaterOfOperationsEventUpdateStatus;
-use App\Models\TheaterOfOperationsEvent;
-use App\Models\TheaterOfOperationsEventUnit;
-use App\Models\TheaterOfOperationsUnit;
+use App\Models\GOI\TheaterOfOperationsEvent;
+use App\Models\GOI\TheaterOfOperationsEventUnit;
+use App\Models\GOI\TheaterOfOperationsUnit;
 
 class EventsController extends Controller
 {

@@ -6,7 +6,7 @@ namespace App\Http\Controllers\GOI;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GOI\TheaterOfOperationsCoordinationCreate;
 use App\Http\Requests\GOI\TheaterOfOperationsCoordinationEdit;
-use App\Models\TheaterOfOperationsCoordination;
+use App\Models\GOI\TheaterOfOperationsCoordination;
 
 class CoordinationController extends Controller
 {

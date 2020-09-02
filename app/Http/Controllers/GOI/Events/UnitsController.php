@@ -5,7 +5,7 @@ namespace App\Http\Controllers\GOI\Events;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GOI\TheaterOfOperationsEventUnitUpdateTimings;
-use App\Models\TheaterOfOperationsEventUnit;
+use App\Models\GOI\TheaterOfOperationsEventUnit;
 
 class UnitsController extends Controller
 {
