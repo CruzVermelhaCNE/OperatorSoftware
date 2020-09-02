@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers\TheatersOfOperations;
+namespace App\Http\Controllers\GOI;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GOI\TheaterOfOperationsCommunicationChannelCreate;
