@@ -1,9 +1,9 @@
 {
-    "/js/app.js": "/js/app.js?id=db2291a1b63395b9d21b",
-    "/css/app.css": "/css/app.css?id=d4e0a9c4f1d88efa5426",
-    "/css/dashboard.css": "/css/dashboard.css?id=64161383fc8e38704a41",
-    "/css/theaters_of_operations.css": "/css/theaters_of_operations.css?id=3f1d3eb5ac507f6fe0ae",
-    "/js/dashboard.js": "/js/dashboard.js?id=833f146d44ce1714ac75",
-    "/js/laravel-echo-setup.js": "/js/laravel-echo-setup.js?id=8fd4ce011d9a3f87dbbb",
-    "/js/map.js": "/js/map.js?id=42ac925e9b9a3c167368"
+    "/js/app.js": "/js/app.js?id=161add058ac23c54e642",
+    "/css/app.css": "/css/app.css?id=dd96148a50dfa03ebc7c",
+    "/css/dashboard.css": "/css/dashboard.css?id=68fcbbbe3d100e3fbbf6",
+    "/css/theaters_of_operations.css": "/css/theaters_of_operations.css?id=a9aef5854fa110296030",
+    "/js/dashboard.js": "/js/dashboard.js?id=2b33c4decc7d32d5f579",
+    "/js/laravel-echo-setup.js": "/js/laravel-echo-setup.js?id=54446e5ccc56e200fffe",
+    "/js/map.js": "/js/map.js?id=2c381a2115f9c67bfaf1"
 }
