@@ -8,12 +8,6 @@ use App\Models\Auth\User;
 
 class ManagementController extends Controller
 {
-    public function users()
-    {
-        $users = User::all();
-        return view('salop.users', ['users' => $users]);
-    }
-
     public function reports()
     {
         return view('salop.reports');

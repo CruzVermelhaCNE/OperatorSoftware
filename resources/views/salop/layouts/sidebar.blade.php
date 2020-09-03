@@ -3,7 +3,7 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.index') }}">
-                    <span data-feather="sliders"></span>
+                    <span data-feather="home"></span>
                     Inicio
                 </a>
             </li>
@@ -56,7 +56,7 @@
         </h6>
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
-                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.users') }}">
+                <a class="nav-link" target="_blank" rel="noopener noreferrer" href="{{ route('salop.users.index') }}">
                     <span data-feather="user"></span>
                     Utilizadores
                 </a>

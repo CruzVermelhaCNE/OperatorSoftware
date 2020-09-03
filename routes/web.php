@@ -32,7 +32,12 @@ Route::domain('salop.'.env('APP_DOMAIN'))->middleware(['auth'])->name('salop.')-
         Route::get('door_opener', 'SALOP\SALOPController@door_opener')->name('door_opener');
     });
     Route::middleware(['can:isManager'])->group(function () {
-        Route::get('users', 'SALOP\ManagementController@users')->name('users');
+        Route::prefix('users')->name('users.')->group(function () {
+            Route::get('/', 'SALOP\UsersController@index')->name('index');
+            Route::post('editPermissions', 'SALOP\UsersController@editPermissions')->name('editPermissions');
+            Route::post('editExtensions', 'SALOP\UsersController@editExtensions')->name('editExtensions');
+
+        });
         Route::get('reports', 'SALOP\ManagementController@reports')->name('reports');
     });
     Route::middleware(['can:isAdmin'])->group(function () {
