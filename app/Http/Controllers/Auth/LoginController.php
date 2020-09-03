@@ -50,7 +50,7 @@ class LoginController extends Controller
         );
 
         Auth::login($user, true);
-        return redirect()->to('/'); // Redirect to a secure page
+        return redirect()->route('auth.index'); // Redirect to a secure page
     }
 
     /**

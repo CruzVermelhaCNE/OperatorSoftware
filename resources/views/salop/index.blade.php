@@ -1,9 +1,9 @@
 @extends('salop/layouts/panel')
 
-@section('pageTitle', 'Relatórios')
+@section('pageTitle', 'Inicio')
 
 @section('content')
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
-    <h1 class="text-center">Desejo-te um bom trabalho {{Auth::user()->name}}</h1> 
+    <h3>Bem-vindo {{Auth::user()->name}}</h3> 
 </main>
 @endsection

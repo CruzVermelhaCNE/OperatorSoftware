@@ -11,6 +11,14 @@ class Permission extends Model
         'user_id', 'permission',
     ];
 
+    static public function create($user_id,$permissison_number) {
+        $permission = new Permission();
+        $permission->user_id = $user_id;
+        $permission->permission = $permissison_number;
+        $permission->save();
+        return $permission;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
