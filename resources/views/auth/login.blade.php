@@ -1,6 +1,6 @@
-@extends('salop/layouts/bootstrap')
+@extends('auth/layouts/bootstrap')
 
-@section('pageTitle', 'Login')
+@section('pageTitle', 'Autenticação')
 
 @section('style')
 <style>
@@ -21,13 +21,6 @@
 </style>
 @endsection
 
-@section('body')
-<div class="text-center">
-
-    <div class="form-signin">
-        <img class="mb-4" src="/img/CNE.png" alt="Coordenação Nacional de Emergência - Cruz Vermelha Portuguesa"
-            width="150" height="150">
-        <a href="{{route('auth.microsoft')}}"><img src="/img/signinms.png" /></a>
-    </div>
-</div>
+@section('app')
+    <Login microsoft-route="{{ route('auth.microsoft') }}"></Login>
 @endsection
