@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/auth/app.js', 'public/js/auth')
     //.scripts(['resources/js/map.js'], 'public/js/map.js')
     .js('resources/js/map.js', 'public/js')
     .js('resources/js/dashboard.js', 'public/js')
