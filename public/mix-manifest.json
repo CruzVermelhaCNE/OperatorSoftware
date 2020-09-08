@@ -1,10 +1,10 @@
 {
-    "/js/app.js": "/js/app.js?id=0bca82c6873f09da8d14",
+    "/js/app.js": "/js/app.js?id=c4bc506874975348950f",
     "/css/app.css": "/css/app.css?id=489a1a26e8d85bfbd219",
-    "/css/dashboard.css": "/css/dashboard.css?id=64161383fc8e38704a41",
+    "/css/dashboard.css": "/css/dashboard.css?id=31e1a2f2356f3e7aeb54",
     "/css/theaters_of_operations.css": "/css/theaters_of_operations.css?id=c5f53a359660a2bd6b3f",
-    "/js/auth/app.js": "/js/auth/app.js?id=7639a8fc63d867e4918a",
-    "/js/dashboard.js": "/js/dashboard.js?id=de3006beb69ac339f36f",
-    "/js/laravel-echo-setup.js": "/js/laravel-echo-setup.js?id=2d0bace29bd888ffa40f",
-    "/js/map.js": "/js/map.js?id=e3b028d19b01b6e7b21d"
+    "/js/auth/app.js": "/js/auth/app.js?id=64e4fab58633e3fc2feb",
+    "/js/laravel-echo-setup.js": "/js/laravel-echo-setup.js?id=097eab5e9b161b0f1464",
+    "/js/map.js": "/js/map.js?id=089569b32a9b209d1da5",
+    "/js/salop/app.js": "/js/salop/app.js?id=7f3a5ea8b5e100227241"
 }

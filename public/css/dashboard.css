@@ -1,5 +1,7 @@
 body {
   font-size: 0.875rem;
+  width: 100vw;
+  background-color: #232930;
 }
 
 .feather {
@@ -8,13 +10,16 @@ body {
   vertical-align: text-bottom;
 }
 
+main {
+  height: 100vh;
+}
+
 /*
  * Sidebar
  */
 
 .sidebar {
   position: fixed;
-  top: 3rem;
   bottom: 0;
   left: 0;
   z-index: 100;
@@ -26,9 +31,8 @@ body {
 .sidebar-sticky {
   position: -webkit-sticky;
   position: sticky;
-  top: 48px;
   /* Height of navbar */
-  height: calc(100vh - 48px);
+  height: 100vh;
   padding-top: 0.5rem;
   overflow-x: hidden;
   overflow-y: auto;
@@ -37,12 +41,12 @@ body {
 
 .sidebar .nav-link {
   font-weight: 500;
-  color: #333;
+  color: #aaa;
 }
 
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #999;
+.sidebar .nav-link:hover {
+  font-weight: 500;
+  color: #eee;
 }
 
 .sidebar .nav-link.active {
