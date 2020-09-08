@@ -2,13 +2,13 @@ name: deploy
 
 on:
   push:
-    branches: [ production ]
+    branches: [ deploy ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to production
+    - name: Deploy
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -20,6 +20,6 @@ jobs:
       uses: rtCamp/action-slack-notify@master
       env:
         SLACK_USERNAME: "Github Deployments"
-        SLACK_TITLE: "goi.emergenciacvp.pt - production"
-        SLACK_MESSAGE: "Deployed latest code changes for goi.emergenciacvp.pt. You can access it at https://goi.emergenciacvp.pt"
+        SLACK_TITLE: "salop.emergenciacvp.pt - production"
+        SLACK_MESSAGE: "Deployed latest code changes for salop.emergenciacvp.pt. You can access it at https://salop.emergenciacvp.pt"
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
