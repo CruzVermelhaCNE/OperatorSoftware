@@ -5,9 +5,9 @@ set -e
 
 (git push) || true
 
-git checkout production
+git checkout deploy
 git merge master
 
-git push origin production
+git push origin deploy
 
 git checkout master

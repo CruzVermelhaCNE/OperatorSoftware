@@ -27,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','permissions','extensions',
     ];
 
     /**
@@ -39,16 +39,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['permission_names','extension_numbers'];
+
     public function permissions()
     {
         return $this->hasMany(Permission::class);
     }
 
-    public function getRanksAttribute($value)
+    public function getPermissionNamesAttribute($value)
     {
         $ranks       = '';
         $permissions = $this->permissions->toArray();
-        sort($permissions);
+        \sort($permissions);
         foreach ($permissions as $permission) {
             if ($permission['permission'] == 1) {
                 $ranks .= 'Administrador';
@@ -59,17 +61,30 @@ class User extends Authenticatable
                 continue;
             } elseif ($permission['permission'] == 4) {
                 $ranks .= 'Gestão Operacional Integrada';
-            }
-            elseif ($permission['permission'] == 5) {
+            } elseif ($permission['permission'] == 5) {
                 $ranks .= 'SALOP';
             }
             $ranks .= ', ';
         }
         $ranks = \substr_replace($ranks, '', -2);
         if ($ranks == '') {
-            return 'Sem Cargos';
+            return 'Sem Permissões';
         }
         return $ranks;
+    }
+
+    public function getExtensionNumbersAttribute($value)
+    {
+        $extension_numbers = '';
+        $extensions        = $this->extensions;
+        foreach ($extensions as $extension_link) {
+            $extension_numbers .= $extension_link->extension->number.', ';
+        }
+        $extension_numbers = \substr_replace($extension_numbers, '', -2);
+        if ($extension_numbers == '') {
+            return 'Sem Extensões';
+        }
+        return $extension_numbers;
     }
 
     public function extensions()

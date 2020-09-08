@@ -9,6 +9,9 @@ echo "Deploying application ..."
 
     composer install --no-interaction --prefer-dist --optimize-autoloader
 
+    npm install
+    npm run production
+
     php artisan migrate --force
 
     php artisan queue:restart

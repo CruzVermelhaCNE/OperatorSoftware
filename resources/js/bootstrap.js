@@ -7,6 +7,8 @@ try {
     require('bootstrap');
     require('datatables.net-bs4');
     require('select2');
+    require('toastr');
+    window.feather = require('feather-icons');
 } catch (e) {}
 
 /**
@@ -18,6 +20,7 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.withCredentials = true;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -35,3 +38,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+$(document).ready(() => {
+    window.feather.replace();
+});

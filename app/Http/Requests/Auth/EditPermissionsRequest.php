@@ -1,6 +1,7 @@
 <?php
+declare(strict_types=1);
 
-namespace App\Http\Requests\SALOP;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,7 +15,6 @@ class EditPermissionsRequest extends FormRequest
     public function rules()
     {
         return [
-            'user'        => ['required', 'exists:users,id'],
             'permissions' => ['required', 'array'],
         ];
     }

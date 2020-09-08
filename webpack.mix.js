@@ -12,10 +12,11 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/auth/app.js', 'public/js/auth')
+    .js('resources/js/salop/app.js', 'public/js/salop')
     //.scripts(['resources/js/map.js'], 'public/js/map.js')
     .js('resources/js/map.js', 'public/js')
-    .js('resources/js/dashboard.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/dashboard.scss', 'public/css')
     .sass('resources/sass/theaters_of_operations.scss', 'public/css')
-    .js('resources/js/laravel-echo-setup.js', 'public/js').version();
+    .js('resources/js/laravel-echo-setup.js', 'public/js').sourceMaps().version();

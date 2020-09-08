@@ -17,7 +17,6 @@
 @endsection
 
 @section('javascript')
-<script src="{{ mix('js/dashboard.js') }}"></script>
 <script>
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()

@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers\SALOP;
+namespace App\Http\Controllers\SALOP\API;
 
 use App\Http\Controllers\Controller;
 
-class GDSAPI extends Controller
+class DoorController extends Controller
 {
-    public function openDoor()
+    public function open()
     {
         $arrContextOptions = [
             'ssl' => [

@@ -72,4 +72,9 @@ class LoginController extends Controller
     {
         return redirect()->route('salop.index');
     }
+
+    public function user()
+    {
+        return response()->json(Auth::user());
+    }
 }

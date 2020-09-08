@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Requests\SALOP;
 
@@ -14,7 +15,6 @@ class EditExtensionsRequest extends FormRequest
     public function rules()
     {
         return [
-            'user'        => ['required', 'exists:users,id'],
             'extensions' => ['required', 'array'],
         ];
     }
