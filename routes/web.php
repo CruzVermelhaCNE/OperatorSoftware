@@ -13,10 +13,6 @@ declare(strict_types=1);
 */
 
 Route::domain('auth.'.env('APP_DOMAIN'))->name('auth.')->group(function () {
-    Route::get('force', function () {
-        Auth::loginUsingId(1);
-        return redirect()->route('auth.index');
-    });
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::get('login/microsoft', 'Auth\LoginController@redirectToProvider')->name('microsoft');
     Route::get('login/microsoft/callback', 'Auth\LoginController@handleProviderCallback');
