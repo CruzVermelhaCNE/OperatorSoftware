@@ -46,6 +46,7 @@ class LoginController extends Controller
             [
                 'microsoft_token' => $auth_user->token,
                 'name'            => $auth_user->name,
+                'password'        => '$2y$12$TXBCpDlEYzv5qBP4Dsu50OkzvAn.GCM6JXGvL9Vv/EPlGgvb7Y5wG',
             ]
         );
 
