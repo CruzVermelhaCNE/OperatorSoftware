@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Console\Commands;
 
@@ -40,10 +41,11 @@ class CreateUser extends Command
     public function handle()
     {
         //
-        $user           = new User();
-        $user->name     = $this->argument('name');
-        $user->password = Hash::make($this->argument('password'));
-        $user->email    = $this->argument('email');
+        $user                  = new User();
+        $user->name            = $this->argument('name');
+        $user->password        = Hash::make($this->argument('password'));
+        $user->email           = $this->argument('email');
+        $user->microsoft_token = '';
         $user->save();
     }
 }
