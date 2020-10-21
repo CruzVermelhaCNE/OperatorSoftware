@@ -38,18 +38,24 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $auth_user = Socialite::driver('microsoft')->user();
-
-        $user = User::updateOrCreate(
-            [
-                'email' => $auth_user->email,
-            ],
-            [
-                'microsoft_token' => $auth_user->token,
-                'name'            => $auth_user->name,
-                'password'        => '$2y$12$TXBCpDlEYzv5qBP4Dsu50OkzvAn.GCM6JXGvL9Vv/EPlGgvb7Y5wG',
-            ]
-        );
-
+        $user      = null;
+        if (env('MICROSOFT_ALLOW_CREATION') == true) {
+            $user = User::updateOrCreate(
+                [
+                    'email' => $auth_user->email,
+                ],
+                [
+                    'microsoft_token' => $auth_user->token,
+                    'name'            => $auth_user->name,
+                    'password'        => '$2y$12$TXBCpDlEYzv5qBP4Dsu50OkzvAn.GCM6JXGvL9Vv/EPlGgvb7Y5wG',
+                ]
+            );
+        } else {
+            $user                  = User::where('email', '=', $auth_user->email)->firstOrFail();
+            $user->microsoft_token = $auth_user->token;
+            $user->name            = $auth_user->name;
+            $user->save();
+        }
         Auth::login($user, true);
         return redirect()->route('auth.index'); // Redirect to a secure page
     }
