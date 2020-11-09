@@ -6,7 +6,6 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
-
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -27,20 +26,24 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('isAdmin', function($user) {
+        Gate::define('isAdmin', function ($user) {
             return $user->permissions->contains('permission', 1);
         });
 
-        Gate::define('isManager', function($user) {
+        Gate::define('isManager', function ($user) {
             return $user->permissions->contains('permission', 2);
         });
 
-        Gate::define('accessGOI', function($user) {
+        Gate::define('accessGOI', function ($user) {
             return $user->permissions->contains('permission', 4);
         });
 
-        Gate::define('accessSALOP', function($user) {
+        Gate::define('accessSALOP', function ($user) {
             return $user->permissions->contains('permission', 5);
+        });
+
+        Gate::define('accessCOVID19', function ($user) {
+            return $user->permissions->contains('permission', 6) || $user->permissions->contains('permission', 7) || $user->permissions->contains('permission', 8);
         });
     }
 }

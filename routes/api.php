@@ -7,6 +7,7 @@ Route::middleware('auth:web')->domain('auth.'.env('APP_DOMAIN'))->group(function
         Route::prefix('permissions')->group(function () {
             Route::get('/accessSALOP', 'Auth\API\UserController@permissionsAccessSALOP');
             Route::get('/accessGOI', 'Auth\API\UserController@permissionsAccessGOI');
+            Route::get('/accessCOVID19', 'Auth\API\UserController@permissionsAccessCOVID19');
             Route::get('/isManager', 'Auth\API\UserController@permissionsIsManager');
             Route::get('/isAdmin', 'Auth\API\UserController@permissionsIsAdmin');
         });

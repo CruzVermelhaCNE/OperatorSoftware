@@ -43,6 +43,12 @@ class UserController extends Controller
         return $gate->allowed();
     }
 
+    public function permissionsAccessCOVID19()
+    {
+        $gate = Gate::inspect('accessCOVID19');
+        return $gate->allowed();
+    }
+
     public function permissionsIsManager()
     {
         $gate = Gate::inspect('isManager');

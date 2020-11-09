@@ -34,6 +34,13 @@
                         ]
                     },
                     @endcan
+                    @can('accessCOVID19')
+                    {
+                        header:'COVID-19', items: [
+                            {name:'Abrir', route:null, icon:'activity', external_route:'{{ route('covid19.index') }}'},
+                        ]
+                    },
+                    @endcan
                     @can('isManager')
                     {
                         header:'Gestão', items: [
