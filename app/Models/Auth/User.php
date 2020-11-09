@@ -63,6 +63,12 @@ class User extends Authenticatable
                 $ranks .= 'Gestão Operacional Integrada';
             } elseif ($permission['permission'] == 5) {
                 $ranks .= 'SALOP';
+            } elseif ($permission['permission'] == 6) {
+                $ranks .= 'COVID-19 Callbacks';
+            } elseif ($permission['permission'] == 7) {
+                $ranks .= 'COVID-19 Patient Information';
+            } elseif ($permission['permission'] == 8) {
+                $ranks .= 'COVID-19 Results';
             }
             $ranks .= ', ';
         }

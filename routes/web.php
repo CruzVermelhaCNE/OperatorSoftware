@@ -22,10 +22,15 @@ Route::domain('auth.'.env('APP_DOMAIN'))->name('auth.')->group(function () {
     });
 });
 
-
 Route::domain('salop.'.env('APP_DOMAIN'))->middleware(['auth'])->name('salop.')->group(function () {
     Route::get('/', 'SALOP\SALOPController@vue')->name('index');
     Route::get('{any}', 'SALOP\SALOPController@vue')->where('any', '.*');
+});
+
+
+Route::domain('covid19.'.env('APP_DOMAIN'))->middleware(['auth'])->name('covid19.')->group(function () {
+    Route::get('/', 'COVID19\COVID19Controller@vue')->name('index');
+    Route::get('{any}', 'COVID19\COVID19Controller@vue')->where('any', '.*');
 });
 
 Route::domain('goi.'.env('APP_DOMAIN'))->middleware(['auth','can:accessGOI'])->name('goi.')->group(function () {

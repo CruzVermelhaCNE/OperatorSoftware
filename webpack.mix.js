@@ -14,6 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/auth/app.js', 'public/js/auth')
     .js('resources/js/salop/app.js', 'public/js/salop')
+    .js('resources/js/covid19/app.js', 'public/js/covid19')
     //.scripts(['resources/js/map.js'], 'public/js/map.js')
     .js('resources/js/map.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
