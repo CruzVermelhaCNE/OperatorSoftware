@@ -5,7 +5,7 @@ namespace App\Http\Controllers\COVID19;
 
 use App\Http\Controllers\Controller;
 
-class SALOPController extends Controller
+class COVID19Controller extends Controller
 {
     public function vue()
     {
