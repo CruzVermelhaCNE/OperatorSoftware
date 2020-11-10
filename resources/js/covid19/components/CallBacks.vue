@@ -3,7 +3,25 @@
     <div v-if="loading" class="loading">Loading...</div>
     <h3 v-if="user">
         CallBacks
-        <span>{{user.name}}</span>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">ID Interno</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Número</th>
+                    <th scope="col">Acções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+            </tbody>
+        </table>
+        <span>{{ user.name }}</span>
     </h3>
 </div>
 </template>
