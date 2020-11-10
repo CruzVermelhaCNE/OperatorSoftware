@@ -22,7 +22,10 @@ class CallbackController extends Controller
     public function called_back(Callback $callback)
     {
         $user_id = Auth::user()->id;
-        $callback->markAsCalledBack($user_id);
+        $entries = Callback::where([['number','=',$callback->number],['date','<=',$callback->date]])->get();
+        foreach ($entries as $entry) {
+            $entry->markAsCalledBack($user_id);
+        }
         return response(null, 200);
     }
 }
