@@ -14,11 +14,11 @@
             </thead>
             <tbody>
                 <tr :key="entry.id" v-for="entry in response.data">
-                    <td>{{ entry.cdr_system_id }}</td>
+                    <td>{{ entry.id }}</td>
                     <td>{{ entry.date }}</td>
                     <td>{{ entry.number }}</td>
                     <td>
-                        <a href="#">Marcar como ligado</a>
+                        <a href="#" @click="markAsCalled(entry.id)">Marcar como ligado</a>
                     </td>
                 </tr>
             </tbody>
@@ -28,7 +28,9 @@
                 <li class="page-item" v-if="response.prev_page_url !== null">
                     <a class="page-link" href="#0" @click="prevPage">Anterior</a>
                 </li>
-                <li class="page-item"><a class="page-link" href="#0">{{response.current_page}}</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#0">{{ response.current_page }}</a>
+                </li>
                 <li class="page-item" v-if="response.next_page_url !== null">
                     <a class="page-link" href="#0" @click="nextPage">Próxima</a>
                 </li>
@@ -53,18 +55,16 @@ export default {
     methods: {
         fetchData() {
             this.loading = true;
-            axios
-                .get("api/callbacks")
-                .then((response) => {
-                    this.response = response.data;
-                    this.loading = false;
-                });
+            axios.get("api/callbacks").then((response) => {
+                this.response = response.data;
+                this.loading = false;
+            });
         },
         prevPage() {
             this.loading = true;
             axios
                 .get(this.response.prev_page_url, {
-                    params: this.query
+                    params: this.query,
                 })
                 .then((response) => {
                     this.response = response.data;
@@ -75,12 +75,17 @@ export default {
             this.loading = true;
             axios
                 .get(this.response.next_page_url, {
-                    params: this.query
+                    params: this.query,
                 })
                 .then((response) => {
                     this.response = response.data;
                     this.loading = false;
                 });
+        },
+        markAsCalled(id) {
+            axios.post(`api/callbacks/${id}/called_back`).then((response) => {
+                this.fetchData();
+            });
         },
     },
 };
