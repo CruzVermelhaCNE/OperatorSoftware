@@ -35,3 +35,10 @@ Route::middleware('auth:web')->domain('salop.'.env('APP_DOMAIN'))->group(functio
         Route::middleware(['can:isAdmin'])->get('/full', 'SALOP\API\ExtensionsController@full');
     });
 });
+
+
+Route::middleware('auth:web')->domain('covid19.'.env('APP_DOMAIN'))->group(function () {
+    Route::middleware(['can:accessCOVID19Callbacks'])->prefix('callbacks')->group(function () {
+        Route::get('/', 'COVID19\API\CallbackController@callbacks');
+    });
+});

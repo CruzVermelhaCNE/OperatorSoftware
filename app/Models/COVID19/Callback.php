@@ -6,12 +6,14 @@ namespace App\Models\COVID19;
 use App\Models\Auth\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Callbacks extends Model
+class Callback extends Model
 {
-    public function create($cdr_system_id,$called_back_user_id) 
+    protected $table = 'covid19_callbacks';
+
+    public function create($cdr_system_id, $called_back_user_id)
     {
-        $callback = new self();
-        $callback->cdr_system_id = $cdr_system_id;
+        $callback                      = new self();
+        $callback->cdr_system_id       = $cdr_system_id;
         $callback->called_back_user_id = $called_back_user_id;
         $callback->save();
         return $callback;
