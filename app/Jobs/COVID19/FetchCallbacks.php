@@ -45,7 +45,7 @@ class FetchCallbacks implements ShouldQueue
         $entries_to_import = $import_query->get();
         foreach ($entries_to_import as $entry) {
             if (Callback::where('cdr_system_id', '=', $entry->uniqueid)->get()->first() === null) {
-                Callback::create($entry->uniqueid, $entry->cid_num);
+                Callback::create($entry->uniqueid, $entry->cid_num, $entry->eventtime);
             }
         }
     }
