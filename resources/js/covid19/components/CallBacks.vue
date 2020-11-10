@@ -2,7 +2,7 @@
 <div>
     <div v-if="loading" class="loading">Loading...</div>
     <div v-if="response">
-        CallBacks
+        <h3>Devolver Chamadas</h3>
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -18,7 +18,7 @@
                     <td>{{ entry.date }}</td>
                     <td>{{ entry.number }}</td>
                     <td>
-                        <a href="#">Mark as called</a>
+                        <a href="#">Marcar como ligado</a>
                     </td>
                 </tr>
             </tbody>
