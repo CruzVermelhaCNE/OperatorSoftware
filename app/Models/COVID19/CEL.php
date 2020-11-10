@@ -16,9 +16,4 @@ class CEL extends Model
     protected $dates = [
         'eventtime',
     ];
-
-    public function callback()
-    {
-        return $this->hasOne(Callback::class, 'cdr_system_id', 'uniqueid');
-    }
 }
