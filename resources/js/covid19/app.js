@@ -5,12 +5,28 @@ Vue.use(VueRouter);
 
 import Sidebar from './components/Sidebar'
 import Index from './components/Index'
+import CallBacks from './components/CallBacks'
+import CallFlow from './components/CallFlow'
 import Unauthorized from './components/Unauthorized'
 import NotFound from './components/NotFound'
 
 const routes = [{
         path: '/',
         component: Index,
+        meta: {
+            keepAlive: false
+        }
+    },
+    {
+        path: '/callbacks',
+        component: CallBacks,
+        meta: {
+            keepAlive: false
+        }
+    },
+    {
+        path: '/callflow',
+        component: CallFlow,
         meta: {
             keepAlive: false
         }

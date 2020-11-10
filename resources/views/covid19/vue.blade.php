@@ -23,6 +23,20 @@
                             {name:'Inicio',  route: '/', icon:'home'},
                         ]
                     },
+                    @can('accessCOVID19Callbacks')
+                    {
+                        header:null,items: [
+                            {name:'Devolver Chamadas', route:'/callbacks', icon:'phone'},
+                        ]
+                    },
+                    @endcan
+                    @can('accessCOVID19CallFlow')
+                    {
+                        header:'Informação',items: [
+                            {name:'Extensões', route:'/callflow', icon:'user'},
+                        ]
+                    },
+                    @endcan
                     {
                         header:null,items: [
                             {name:'Sair', route:null, icon:'arrow-left', bottom:true, external_route:'{{ route('salop.index') }}'},

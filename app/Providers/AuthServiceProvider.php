@@ -45,5 +45,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('accessCOVID19', function ($user) {
             return $user->permissions->contains('permission', 6) || $user->permissions->contains('permission', 7) || $user->permissions->contains('permission', 8);
         });
+
+        Gate::define('accessCOVID19Callbacks', function ($user) {
+            return $user->permissions->contains('permission', 6);
+        });
+
+        Gate::define('accessCOVID19CallFlow', function ($user) {
+            return $user->permissions->contains('permission', 7) || $user->permissions->contains('permission', 8);
+        });
     }
 }
