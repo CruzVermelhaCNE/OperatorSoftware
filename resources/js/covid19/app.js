@@ -3,6 +3,8 @@ window.Vue = require('vue');
 window.VueRouter = require('vue-router').default;
 Vue.use(VueRouter);
 
+window.cleanAxios = require('axios');
+
 import Sidebar from './components/Sidebar'
 import Index from './components/Index'
 import CallBacks from './components/CallBacks'
